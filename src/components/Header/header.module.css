@@ -1,0 +1,142 @@
+header {
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+
+
+a {
+    color: #474B59;
+}
+
+
+.headerWrap {
+    color: #474B59;
+    max-width: 1920px;
+    padding: 0 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftside h1 {
+    font-weight: normal;
+    font-size: 1.9em;
+    font-weight: lighter;
+    padding-top: 10px;
+}
+
+.leftside h1 i {
+    margin-right: 10px;
+}
+
+.rightside {
+    display: flex;
+    align-items: center;
+}
+
+.rightside .input {
+    min-width: 220px;
+    padding: 8px 0px 8px 5px;
+    background: #F4F4F4;
+    border-radius: 25px;
+    margin-right: 20px;
+}
+
+.rightside input {
+    border: none;
+    outline: none;
+    background: #F4F4F4;
+    margin: 0 10px;
+
+}
+
+
+
+.rightside button {
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.rightside img {
+    display: block;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.rightside .note {
+    font-size: 20px;
+    padding: 15px 5px;
+}
+
+.profile_avatar {
+    padding: 15px 10px 15px 10px;
+}
+
+.rightside h3 {
+    font-weight: normal;
+    text-transform: none;
+    display: inline;
+    margin-left: 30px;
+
+}
+
+.adaptivemenu{
+    display: none;
+}
+
+@media (max-width: 635px) {
+
+    .rightside .input {
+        display: none;
+    }
+    .adaptivemenu{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        background: #fff;
+        left: 0;
+        bottom: 0;
+        padding:15px;
+        border-top: 1px solid lightgray;
+        z-index: 999;
+    }
+
+    .adaptivemenu .adaptiveMenu{
+        font-size: 1.2em;
+    }
+
+    .note{
+        display: none;
+    }
+
+    header {
+
+        margin-bottom: 5px;
+    }
+
+
+    .headerWrap {
+        padding: 0px 5px;
+    }
+
+
+    .leftside h1 {
+        font-weight: lighter;
+        font-size: 1.6em;
+        margin-top: 7px;
+
+
+    }
+
+
+    .rightside h3{
+        font-weight: 300;
+    }
+
+}
+
+

@@ -1,0 +1,51 @@
+
+.button{
+  padding: 7px;
+  font-size: 15px;
+  outline: none;
+  border: none;
+  color: #39383A;
+  background: none;
+
+}
+
+.item img{
+  width: 70px;
+  border-radius: 50%;
+
+}
+
+.newpost {
+  background: #fff;
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border:1px solid lightgray;
+}
+
+
+@media (max-width: 635px){
+  .newpost{
+    margin-top: 1px;
+  }
+}
+.newpost input {
+  padding: 0px 0px 0px 5px;
+  width: 80%;
+  background: #fff;
+  border: none;
+  outline: none;
+}
+
+.send {
+  color: #2B5278;
+  cursor: pointer;
+}
+
+@media (max-width: 635px) {
+  .newpost input {
+    width: 65%;
+  }
+}

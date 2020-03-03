@@ -1,0 +1,158 @@
+.dialogList {
+    background: #fff;
+    border: 1px solid lightgray;
+    width: 84%;
+
+}
+
+
+.dialogListHeader h3{
+    font-weight: normal;
+    padding: 10px;
+
+}
+
+.dialogListHeader {
+    position: relative;
+}
+
+.dialogListHeader>i {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+.dialogs input {
+    margin: 5px 0px;
+    padding: 12px 25px 12px 10px;
+    background: none;
+    border: none;
+    outline: none;
+
+}
+
+.searchDialog i {
+    background: none;
+    font-size: 13px;
+    margin-left: 15px;
+
+}
+
+.contactList {
+    overflow-y: scroll;
+
+}
+
+
+
+
+.contactList::-webkit-scrollbar {
+    background: #F4F4F4;
+    width: 4px;
+
+}
+
+.contactList::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 3px;
+}
+
+
+
+.contactList li{
+    display: flex;
+
+}
+
+
+.dialogs ul li {
+    padding: 10px;
+    border-bottom: 4px solid #F4F4F4;
+}
+
+.dialogs ul li a{
+    text-decoration: none;
+    padding-left: 10px;
+    font-size: 14px;
+    padding-top: 8px;
+}
+
+.dialogList .dialogListFooter {
+    border-top: 1px solid lightgray;
+    padding: 14px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dialogListHeader {
+    border-bottom: 1px solid lightgray;
+}
+
+
+
+
+.dialogs button {
+    background: none;
+    outline: none;
+    border: none;
+    position: relative;
+    left: -35px;
+}
+
+
+.dialogs ul li .avatar {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: lightgray;
+}
+
+.lastMessage {
+    font-size: 0.7em;
+    display: inline-block;
+    color: gray;
+    padding: 0px 0px 0px 10px;
+
+}
+
+.dates {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar img{
+     height: 100% ;
+     width: 100%;
+     border-radius: 50%;
+     border: 1px solid lightgray;
+ }
+
+@media (max-width: 635px) {
+    .dialogList {
+        width: 100%;
+        border: none;
+        margin: 0;
+        position: fixed;
+        height: calc(100% - 55px);
+        left: 0;
+        bottom: 52px;
+
+    }
+
+    .contactList {
+        overflow-y: scroll;
+        height: calc(100% - 52px);
+    }
+
+    .dialogList .dialogListFooter {
+        position: fixed;
+        bottom: 52px;
+        width: 100%;
+        background: #fff;
+    }
+
+}
+
+
+

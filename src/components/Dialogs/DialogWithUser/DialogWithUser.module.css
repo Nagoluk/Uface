@@ -1,0 +1,199 @@
+.dialogWithUser ul {
+    margin-top: 20px;
+}
+
+.dialogWithUser {
+    background: #fff;
+    border: 1px solid lightgray;
+    flex-basis: 70%;
+}
+
+.messageItem {
+
+    font-size: 0.9em;
+    margin: 3px;
+    padding: 4px 50px 4px 10px;
+    border-radius: 5px;
+    position: relative;
+    background: #2B5278;
+    color: #fff;
+}
+
+.messageItemLogo {
+    width: 0;
+    height: 0;
+    border: 4px solid transparent; border-right: 4px solid #2B5278; border-bottom: 4px solid #2B5278;
+    position: absolute;
+    bottom: 0;
+    left: -3px;
+
+}
+
+
+.messages {
+    padding: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    height:72.5vh;
+    margin-left: 10px;
+    /*background: url("https://webfon.top/wp-content/uploads/2017/10/tools.png");*/
+    overflow-Y: scroll;
+}
+
+
+.createNewMessage {
+    border-top: 1px solid lightgray;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.createNewMessage input {
+    width: 70%;
+    border: none;
+    background: #fff;
+    padding: 1px 5px;
+    outline: none;
+    margin-right: 55px;
+}
+
+
+.dialogHeader .Dialogavatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: lightgray;
+    margin-right: 15px;
+}
+
+.dialogHeader .status {
+    font-size: 11px;
+}
+
+.dialogHeader h3 {
+    text-transform: none;
+}
+
+.dialogHeader{
+    position: relative;
+    background: #fff;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+
+}
+
+.backToDialogList{
+    position: absolute;
+    top: 25px;
+    right: 10px;
+
+}
+
+.backToDialogList a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.backToDialogList i {
+    color: gray;
+    margin-right: 5px;
+    font-size: 1em;
+}
+
+.backToDialogList span{
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: grey;
+}
+
+.data {
+    color: #fff;
+    font-size: 10px;
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+}
+
+
+@media (max-width: 635px) {
+    .createNewMessage input {
+        width: 50%;
+    }
+
+
+    .createNewMessage {
+        position: fixed;
+        bottom: 54px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+    }
+
+    .dialogHeader {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: #fff;
+        padding: 5px 7px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid lightgray;
+
+
+    }
+
+    .dialogHeader .Dialogavatar {
+        height: 40px;
+        width: 40px;
+
+    }
+
+    .dialogHeader h3 {
+        font-size: 14px;
+    }
+
+    .messages {
+        border-top: 1px solid lightgray;
+        position: fixed;
+        width: 100%;
+        bottom: 95px;
+        left: 0;
+        background: #fff;
+        height: calc(100% - 50px - 44px - 51px);
+        margin: 0;
+
+    }
+
+    .backToDialogList {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+
+    }
+
+    .backToDialogList a {
+        font-size: 11px;
+    }
+
+    .createNewMessage {
+        border-top: 1px solid lightgray;
+        padding: 4px;
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .messageItem {
+        font-size: 0.8em;
+
+    }
+
+}
+
+

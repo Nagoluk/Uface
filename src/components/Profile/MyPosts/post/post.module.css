@@ -1,0 +1,88 @@
+
+.item {
+  border:1px solid lightgray;
+  padding: 20px;
+  background: #fff;
+  margin: 10px 0 10px 0;
+}
+
+
+
+.postHeder {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.postSetting{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+
+.postHeder img{
+  width: 40px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.postHeder h2 {
+  display: inline-block;
+  margin-left: 15px;
+  font-weight: normal;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.postHeder .date {
+  font-size: 11px;
+  color: grey;
+  padding: 0 0 5px 15px;
+}
+
+.content {
+  padding: 20px 0;
+  line-height: 1.3;
+}
+
+.activity {
+  border-top: 1px solid lightgray;
+  padding-top: 15px;
+}
+.activity>div{
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.activity .likes i, .activity .likes {
+
+}
+
+
+
+@media (max-width: 635px) {
+  .item {
+    margin: 1px 0 1px 0;
+    padding: 10px;
+  }
+
+  .content {
+    padding: 10px 5px;
+    line-height: 1.3;
+    font-size: 1em;
+  }
+  .postHeder h2 {
+    font-size: 17px;
+  }
+
+  .postHeder {
+    border-bottom: none;
+  }
+
+  .activity {
+    border-top: none;
+  }
+}

@@ -1,0 +1,23 @@
+.wrap {
+    background: #ffffff;
+    padding: 10px 0;
+}
+
+.wrap h1 {
+    font-weight: 400;
+
+}
+
+.wrap .item {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.wrap .item h2{
+    font-weight: 400;
+
+    margin-bottom: 5px;
+    font-size: 20px;
+}
