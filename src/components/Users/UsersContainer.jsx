@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import {connect} from "react-redux";
+import {compose} from "redux";
 import Users from "./Users";
 import {
     followThunkCreator,
@@ -13,7 +14,6 @@ import {
 } from "../../Redux/usersReducer";
 
 import LoginHoc from "../../hoc/loginHoc";
-
 import Preloader from "../assets/preloader/Preloader";
 
 
@@ -64,8 +64,6 @@ let Dispatch = {
     setUsersThunkCreator
 }
 
-let isLoginedHoc = LoginHoc(userAPIcomponent)
-
-let UsersContainer = connect(mapStateToProps, Dispatch)(isLoginedHoc);
-
-export default UsersContainer;
+export default compose(
+    connect(mapStateToProps, Dispatch),
+    LoginHoc)(userAPIcomponent);
