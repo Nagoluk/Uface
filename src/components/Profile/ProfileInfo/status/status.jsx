@@ -21,11 +21,11 @@ class Status extends React.Component {
     render(){
         return <>{ !this.state.editMode ?
                   <span>
-                      <span onDoubleClick={this.toggleEditMode}>{this.props.status}</span>
+                      <span onDoubleClick={this.toggleEditMode}>{this.props.status || "Double click to write status"}</span>
                   </span>
                     :
                   <span >
-                      <input autoFocus={true} className={styles.Input} onBlur={this.toggleEditMode} type="text" value={this.props.status}/>
+                      <input autoFocus={true} className={styles.Input} onBlur={this.toggleEditMode} type="text" value={this.props.status} maxLength={300}/>
                       <div className={styles.EditMode}>Edit mode</div>
                   </span>}
                </>

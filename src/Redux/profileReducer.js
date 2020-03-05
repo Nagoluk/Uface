@@ -72,6 +72,7 @@ export const getProfileThunkCreator = (id) => {
     return (dispatch) =>{
         ProfileAPI.getProfile(id).then(response => {
             dispatch(setProfile(response.data));
+
         });
     }
 }

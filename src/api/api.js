@@ -28,7 +28,15 @@ export let UsersAPI = {
 
 export let ProfileAPI = {
     getProfile(id) {
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/` + id);
+        return instance.get(baseURL + `profile/` + id);
+    },
+
+    getStatus(id){
+        return instance.get(baseURL + `profile/status` + id);
+    },
+
+    updateStatus(status){
+        return instance.put(baseURL + `status`, {status});
     }
 };
 

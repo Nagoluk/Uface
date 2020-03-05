@@ -4,6 +4,7 @@ import Status from "./status/status";
 
 
 const ProfileInfo = (props) => {
+    debugger;
 
         return (
             <div className={p.profileWrap}>
@@ -32,8 +33,6 @@ const ProfileInfo = (props) => {
 
             </div>
         );
-
-
 }
 
 export default ProfileInfo;
