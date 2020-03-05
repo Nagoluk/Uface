@@ -1,0 +1,11 @@
+.Input {
+    background: lightgray;
+    padding: 5px;
+    outline: none;
+    border: none;
+
+}
+
+.EditMode {
+    color: red;
+} 

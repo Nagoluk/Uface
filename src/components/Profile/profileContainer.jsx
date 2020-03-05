@@ -34,7 +34,7 @@ let mapStateToProps = (state) => (
     setLang: state.SetLang,
     isLogined: state.LoginReducer.isLogined});
 
-let isLogined = LoginHoc(ProfileContainer);
-let AddURLdate = withRouter(isLogined);
+//let isLogined = LoginHoc(ProfileContainer);
+let AddURLdate = withRouter(ProfileContainer);
 
 export default connect (mapStateToProps, {setProfile})(AddURLdate);
