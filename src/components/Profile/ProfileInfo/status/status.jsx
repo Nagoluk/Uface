@@ -5,7 +5,7 @@ import styles from "./status.module.css";
 class Status extends React.Component {
 
     state = {
-        editMode: true,
+        editMode: false,
     }
 
     toggleEditMode = () => {

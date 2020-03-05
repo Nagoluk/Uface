@@ -11,14 +11,27 @@ const instance = axios.create({
 })
 
 
-export let getUsersAPI = (currentPage = 1, pageSize = 10) => {
-    return instance.get(baseURL + `users?page=${currentPage}&count=${pageSize}`)
-    .then(response => response.data);
-}
+export let AuthAPI = {
+    getLogin () {
+        return instance.get(baseURL + "auth/me").then(response => response.data);
+    }
+};
 
-export let getLoginAPI = () => {
-    return instance.get(baseURL + "auth/me").then(response => response.data);
-}
+
+export let UsersAPI = {
+    getUsers(currentPage = 1, pageSize = 10) {
+        return instance.get(baseURL + `users?page=${currentPage}&count=${pageSize}`)
+        .then(response => response.data);
+    }
+};
+
+
+export let ProfileAPI = {
+    getProfile(id) {
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/` + id);
+    }
+};
+
 
 export let followAPI = (id) => {
     return instance.post(baseURL + "follow/" + id, {}).then(response => response.data);

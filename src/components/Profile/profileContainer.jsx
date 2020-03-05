@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 import Profile from "./profile";
 import {connect} from "react-redux";
-import * as axios from "axios";
-import {setProfile, newSymbolAC} from "../../Redux/profileReducer";
+import {setProfile} from "../../Redux/profileReducer";
 import {withRouter} from "react-router-dom";
-import LoginHoc from "../../hoc/loginHoc";
+
+import {getProfileThunkCreator} from "../../Redux/profileReducer";
+//import LoginHoc from "../../hoc/loginHoc";
 
 
 class ProfileContainer extends React.Component{
@@ -13,11 +14,9 @@ class ProfileContainer extends React.Component{
 
         let userID = this.props.match.params.userID | 2;
 
-      
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID).then(response => {
+    
 
-            this.props.setProfile(response.data);
-        });
+        this.props.getProfileThunkCreator(userID);
 
     }
 
@@ -37,4 +36,4 @@ let mapStateToProps = (state) => (
 //let isLogined = LoginHoc(ProfileContainer);
 let AddURLdate = withRouter(ProfileContainer);
 
-export default connect (mapStateToProps, {setProfile})(AddURLdate);
+export default connect (mapStateToProps, {setProfile, getProfileThunkCreator})(AddURLdate);

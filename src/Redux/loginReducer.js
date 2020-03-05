@@ -1,4 +1,4 @@
-import {getLoginAPI} from "../api/api";
+import {AuthAPI} from "../api/api";
 const SET_USER_LOGIN = "SET_USER_LOGIN";
 
 let initState = {
@@ -33,7 +33,7 @@ export let setUserLoginAC = (id, login, email) => {
 
 export let loginThunkCreator = () => {
     return (dispatch) => {
-        getLoginAPI().then(response => {
+        AuthAPI.getLogin().then(response => {
 
             if(response.resultCode === 0){
                 let {id, login, email} = response.data;

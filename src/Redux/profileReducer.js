@@ -1,3 +1,5 @@
+import {ProfileAPI} from "../api/api";
+
 const NEW_SYMBOL = "NEW_SYMBOL";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE = "SET_PROFILE";
@@ -63,6 +65,14 @@ export const newSymbolAC = (symbol) => {
     return {
         type: NEW_SYMBOL,
         symbol: symbol
+    }
+}
+
+export const getProfileThunkCreator = (id) => {
+    return (dispatch) =>{
+        ProfileAPI.getProfile(id).then(response => {
+            dispatch(setProfile(response.data));
+        });
     }
 }
 
