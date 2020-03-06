@@ -32,11 +32,13 @@ export let ProfileAPI = {
     },
 
     getStatus(id){
-        return instance.get(baseURL + `profile/status` + id);
+        
+        return instance.get(baseURL + `profile/status/` + id);
     },
 
     updateStatus(status){
-        return instance.put(baseURL + `status`, {status});
+       
+        return instance.put(baseURL + `profile/status`, {status: status});
     }
 };
 

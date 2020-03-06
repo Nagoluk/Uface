@@ -3,6 +3,8 @@ import {ProfileAPI} from "../api/api";
 const NEW_SYMBOL = "NEW_SYMBOL";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE = "SET_PROFILE";
+const GET_STATUS = "GET_STATUS";
+const SET_STATUS = "SET_STATUS";
 
 let initialProfilePage = {
     PostsData: [
@@ -13,17 +15,15 @@ let initialProfilePage = {
     ],
 
     NewPostText: "fff",
-    profile: null
+    profile: null,
+    status: ""
 };
 
 const profileReducer = (state = initialProfilePage, action) =>{
     switch(action.type) {
         case ADD_NEW_POST:
-            let now = new Date();
-            let addZero = (temp) => {
-                return parseInt(temp) < 10 ? "0" + temp : temp;
-            }
-            let currentData = addZero(now.getDate()) + '.' + addZero(now.getMonth()) + '.' + now.getFullYear() + ' | ' + addZero(now.getHours()) + ':' + addZero(now.getMinutes());
+           
+            let currentData = new Date().toString().slice(0, 24);
 
 
             let stateCopy = {
@@ -45,6 +45,12 @@ const profileReducer = (state = initialProfilePage, action) =>{
                 ...state,
                 profile: action.profile
             };
+        
+        case SET_STATUS: 
+            return {
+                ...state,
+                status: action.status
+            };
 
 
         default:
@@ -58,6 +64,13 @@ export const setProfile = (profile) =>{
     return {
         type: SET_PROFILE,
         profile: profile
+    }
+}
+
+export const setStatus = (status) => {
+    return {
+        type: SET_STATUS,
+        status
     }
 }
 
@@ -76,5 +89,23 @@ export const getProfileThunkCreator = (id) => {
         });
     }
 }
+
+export const getStatusThunkCreator = (id) => {
+    return (dispatch)=>{
+        ProfileAPI.getStatus(id).then(response => {
+            dispatch(setStatus(response.data))
+        })
+    }
+}
+
+export const updateStatusThunkCreator = (status) => {
+    return (dispatch)=>{
+        ProfileAPI.updateStatus(status).then(response => {
+            if(response.data.resultCode === 0)
+                dispatch(setStatus(status))
+        })
+    }
+}
+
 
 export default profileReducer;

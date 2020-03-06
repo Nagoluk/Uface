@@ -4,7 +4,9 @@ import Status from "./status/status";
 
 
 const ProfileInfo = (props) => {
-    debugger;
+    // console.log(props);
+    // debugger;
+
 
         return (
             <div className={p.profileWrap}>
@@ -22,7 +24,9 @@ const ProfileInfo = (props) => {
                         <h2>{props.profile.fullName}</h2>
                         <ul>
                             {/* <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>{props.profile.aboutMe}</li> */}
-                            <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span><Status status={props.profile.aboutMe}/></li>
+                            <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>
+                                <Status status={props.status} id={props.profile.userId} updateStatusThunkCreator={props.updateStatusThunkCreator}/>
+                            </li>
                             <li></li>
                             <li></li>
                             <li></li>

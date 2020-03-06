@@ -13,8 +13,8 @@ const Profile = (props) => {
     return (
         <div className={p.profile}>
 
-            <ProfileInfo profile ={props.profile} lang={props.lang}/>
-            <MyPostsContainer store={props.store} profile ={props.profile}/>
+            <ProfileInfo profile ={props.profile} lang={props.lang} updateStatusThunkCreator={props.updateStatusThunkCreator} status={props.status}/>
+            <MyPostsContainer store={props.store} profile ={props.profile} />
 
         </div>
     );
