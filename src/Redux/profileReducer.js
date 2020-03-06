@@ -3,7 +3,6 @@ import {ProfileAPI} from "../api/api";
 const NEW_SYMBOL = "NEW_SYMBOL";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE = "SET_PROFILE";
-const GET_STATUS = "GET_STATUS";
 const SET_STATUS = "SET_STATUS";
 
 let initialProfilePage = {

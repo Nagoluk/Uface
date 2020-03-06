@@ -6,6 +6,7 @@ import setLang from "./settingReducer";
 import loginReducer from "./loginReducer"
 import { applyMiddleware } from "redux";
 import thunkMiddleWare from "redux-thunk";
+import {reducer as formReducer} from "redux-form";
 
 let reducers = combineReducers({
     ProfilePage: profileReducer,
@@ -13,6 +14,7 @@ let reducers = combineReducers({
     UsersReducer: usersReducer,
     SetLang: setLang,
     LoginReducer: loginReducer,
+    form: formReducer
 })
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleWare));
