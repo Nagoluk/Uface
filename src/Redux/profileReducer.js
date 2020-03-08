@@ -29,7 +29,7 @@ const profileReducer = (state = initialProfilePage, action) =>{
 
             let stateCopy = {
                 ...state,
-                PostsData: [{id: 1, content: state.NewPostText, likes: 0, rep: 0, comm: 0, dataSend: currentData},...state.PostsData, ],
+                PostsData: [{id: 1, content: action.text, likes: 0, rep: 0, comm: 0, dataSend: currentData},...state.PostsData, ],
                 NewPostText: ""
             };
 
@@ -68,6 +68,8 @@ const profileReducer = (state = initialProfilePage, action) =>{
 
     }
 }
+
+export const addNewPostAC = text => ({type: ADD_NEW_POST, text})
 
 export const isFetchingAC = (condition) => {
     return {

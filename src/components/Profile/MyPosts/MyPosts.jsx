@@ -2,11 +2,12 @@ import React from "react";
 import MyPost from "./MyPosts.module.css";
 import Post from "./post/post";
 import { Field, reduxForm } from "redux-form";
+import {required} from "../../../utils/validators/validators";
 
 
 const PostInputForm = props => {
     return (<form className={MyPost.newpost} onSubmit={props.handleSubmit}>
-                <Field id="post" type="text" placeholder={"Що у вас нового"}  component={"input"} name={"newPostText"}/>
+                <Field id="post" type="text" placeholder={"Що у вас нового"}  component={"input"} name={"newPostText"} validate={required}/>
 
 
                 <div className="createnewpost">
@@ -18,13 +19,14 @@ const PostInputForm = props => {
 }
 
 let ReduxFormPostInput = reduxForm({
-    form: "posts"
+    form: "posts",
 })(PostInputForm)
 
 
 const MyPosts = (props) => {
 
     let addNewPost = ()=> {
+        debugger;
         console.log("hello")
     }
 

@@ -6,7 +6,6 @@ import {newSymbolAC} from "../../../Redux/profileReducer";
 
 
 let mapStateToProps = (state) => {
-    console.log(state);
     return {
         ProfilePage: state.ProfilePage,
         Lang: state.SetLang

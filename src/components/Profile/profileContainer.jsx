@@ -1,10 +1,8 @@
 import React from "react";
 import Profile from "./profile";
 import {connect} from "react-redux";
-import {setProfile} from "../../Redux/profileReducer";
+import {setProfile, addNewPostAC, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator} from "../../Redux/profileReducer";
 import {withRouter} from "react-router-dom";
-
-import {getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator} from "../../Redux/profileReducer";
 import LoginHoc from "../../hoc/loginHoc";
 
 
@@ -45,4 +43,4 @@ let mapStateToProps = (state) => (
 let isLogined = LoginHoc(ProfileContainer);
 let AddURLdate = withRouter(isLogined);
 
-export default connect (mapStateToProps, {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator})(AddURLdate);
+export default connect (mapStateToProps, {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator, addNewPostAC})(AddURLdate);
