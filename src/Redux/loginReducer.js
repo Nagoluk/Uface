@@ -1,5 +1,6 @@
 import {AuthAPI} from "../api/api";
 const SET_USER_LOGIN = "SET_USER_LOGIN";
+const SET_USER_ID = "SET_USER_ID ";
 
 let initState = {
     id: null,
@@ -10,16 +11,19 @@ let initState = {
 
 
 const loginReducer = (state = initState, action) => {
-    switch(action.type){
-       
 
+    switch(action.type){
+
+        
+       
         case SET_USER_LOGIN:
-              
-        return {
-            ...state, 
-            ...action.data, 
-            isLogined: true
-        }
+            return {
+                ...state, 
+                ...action.data,
+                id: action.data.id,
+                isLogined: true
+            }
+        
 
         default: return state
         

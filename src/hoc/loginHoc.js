@@ -6,6 +6,8 @@ let LoginHoc = (Component) => {
 
     class RedirectComponent extends React.Component {
         render(){
+    
+
             
             if(!this.props.isLogined) return <Redirect to="/login"/>
 

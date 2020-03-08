@@ -5,14 +5,14 @@ import {setProfile} from "../../Redux/profileReducer";
 import {withRouter} from "react-router-dom";
 
 import {getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator} from "../../Redux/profileReducer";
-//import LoginHoc from "../../hoc/loginHoc";
+import LoginHoc from "../../hoc/loginHoc";
 
 
 class ProfileContainer extends React.Component{
     
     componentDidMount() {
 
-        let userID = this.props.match.params.userID || 6108;
+        let userID = this.props.match.params.userID || this.props.loginData.id;
 
         this.props.getProfileThunkCreator(userID);
         this.props.getStatusThunkCreator(userID);
@@ -23,19 +23,26 @@ class ProfileContainer extends React.Component{
     render() {
 
         return (
-           <Profile {...this.props} profile={this.props.profile} lang={this.props.setLang} status={this.props.status} updateStatusThunkCreator={this.props.updateStatusThunkCreator}/>
+           <Profile {...this.props} 
+           profile={this.props.profile} 
+           lang={this.props.setLang} 
+           status={this.props.status} 
+           updateStatusThunkCreator={this.props.updateStatusThunkCreator}
+           loginData = {this.props.loginData}
+           />
         );
     }
 }
 
 let mapStateToProps = (state) => (
-    {profile: state.ProfilePage.profile,
+    {profile: state.ProfilePage,
     setLang: state.SetLang,
+    loginData: state.LoginReducer,
     isLogined: state.LoginReducer.isLogined,
     status: state.ProfilePage.status
 });
 
-//let isLogined = LoginHoc(ProfileContainer);
-let AddURLdate = withRouter(ProfileContainer);
+let isLogined = LoginHoc(ProfileContainer);
+let AddURLdate = withRouter(isLogined);
 
 export default connect (mapStateToProps, {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator})(AddURLdate);

@@ -15,7 +15,9 @@ const instance = axios.create({
 
 export let AuthAPI = {
     getLogin () {
-        return instance.get("auth/me").then(response => response.data);
+        return instance.get("auth/me").then(response => {
+          return  response.data
+        });
     }
 };
 
@@ -30,15 +32,15 @@ export let UsersAPI = {
 
 export let ProfileAPI = {
     getProfile(id) {
-        return instance.get(`profile/` + id);
+        return instance.get("profile/" + id);
     },
 
     getStatus(id){
-        return instance.get(`profile/status/` + id);
+        return instance.get("profile/status/" + id);
     },
 
     updateStatus(status){
-        return instance.put(`profile/status`, {status: status});
+        return instance.put("profile/status", {status: status});
     }
 };
 

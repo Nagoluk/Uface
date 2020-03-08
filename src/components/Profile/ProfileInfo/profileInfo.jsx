@@ -4,7 +4,6 @@ import Status from "./status/status";
 
 
 const ProfileInfo = (props) => {
-    // console.log(props);
     // debugger;
 
 
@@ -17,15 +16,15 @@ const ProfileInfo = (props) => {
 
 
                     <div >
-                        <img src={props.profile.photos.large} className={p.avatar} alt="Avatar"/>
+                        <img src={props.profile.profile.photos.large} className={p.avatar} alt="Avatar"/>
                     </div>
 
                     <div className={p.info}>
-                        <h2>{props.profile.fullName}</h2>
+                        <h2>{props.profile.profile.fullName}</h2>
                         <ul>
                             {/* <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>{props.profile.aboutMe}</li> */}
                             <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>
-                                <Status status={props.status} id={props.profile.userId} updateStatusThunkCreator={props.updateStatusThunkCreator}/>
+                                <Status status={props.status} id={props.profile.profile.userId} updateStatusThunkCreator={props.updateStatusThunkCreator} loginData={props.loginData}/>
                             </li>
                             <li></li>
                             <li></li>

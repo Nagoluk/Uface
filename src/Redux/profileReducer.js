@@ -4,6 +4,7 @@ const NEW_SYMBOL = "NEW_SYMBOL";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";
+const USERS_IS_FETCHING = "USERS_IS_FETCHING ";
 
 let initialProfilePage = {
     PostsData: [
@@ -15,7 +16,8 @@ let initialProfilePage = {
 
     NewPostText: "fff",
     profile: null,
-    status: ""
+    status: "",
+    isFetching: true,
 };
 
 const profileReducer = (state = initialProfilePage, action) =>{
@@ -51,11 +53,26 @@ const profileReducer = (state = initialProfilePage, action) =>{
                 status: action.status
             };
 
+        case USERS_IS_FETCHING : {
+           
+            return {
+                ...state,
+                isFetching: action.payload
+            }
+        }
+
 
         default:
             return state;
 
 
+    }
+}
+
+export const isFetchingAC = (condition) => {
+    return {
+        type: USERS_IS_FETCHING ,
+        payload: condition
     }
 }
 
@@ -81,10 +98,14 @@ export const newSymbolAC = (symbol) => {
 }
 
 export const getProfileThunkCreator = (id) => {
-    return (dispatch) =>{
-        ProfileAPI.getProfile(id).then(response => {
-            dispatch(setProfile(response.data));
 
+    return (dispatch) =>{
+        dispatch(isFetchingAC(true))
+
+        ProfileAPI.getProfile(id).then(response => {
+            
+            dispatch(setProfile(response.data))
+            dispatch(isFetchingAC(false))
         });
     }
 }

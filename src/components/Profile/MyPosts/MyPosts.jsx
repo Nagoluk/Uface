@@ -1,6 +1,8 @@
-import React from 'react';
+import React from "react";
 import MyPost from "./MyPosts.module.css";
-import Post from "./post/post"
+import Post from "./post/post";
+
+
 
 
 

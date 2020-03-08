@@ -10,7 +10,8 @@ class Status extends React.Component {
     }
 
     activateEditMode = () => {
-        if(this.props.id === 6108){
+        if(this.props.id === this.props.loginData){
+            debugger;
             this.setState({
                 editMode: true,
             })

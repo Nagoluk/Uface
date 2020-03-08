@@ -6,15 +6,16 @@ import Preloader from"../assets/preloader/Preloader"
 
 
 const Profile = (props) => {
+
    
-    if(!props.profile) {
+    if(props.profile.isFetching) {
         return(<Preloader/>)
     }
     return (
         <div className={p.profile}>
 
-            <ProfileInfo profile ={props.profile} lang={props.lang} updateStatusThunkCreator={props.updateStatusThunkCreator} status={props.status}/>
-            <MyPostsContainer store={props.store} profile ={props.profile} />
+            <ProfileInfo profile ={props.profile} lang={props.lang} updateStatusThunkCreator={props.updateStatusThunkCreator} status={props.status} loginData={props.loginData}/>
+            <MyPostsContainer store={props.store} profile ={props.profile}  />
 
         </div>
     );

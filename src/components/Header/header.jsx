@@ -7,7 +7,6 @@ import Navmod from "../Nav/nav.module.css";
 const Header = props => {
 
 
-
     return (
         <header>
             <div className={headermod.headerWrap}>
