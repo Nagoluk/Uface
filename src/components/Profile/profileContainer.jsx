@@ -14,9 +14,6 @@ class ProfileContainer extends React.Component{
 
         let userID = this.props.match.params.userID || 6108;
 
-        console.log(this.props);
-      
-
         this.props.getProfileThunkCreator(userID);
         this.props.getStatusThunkCreator(userID);
 

@@ -13,16 +13,16 @@ let Users = (props) => {
 
     return <div>
         <div className={UsersStlyes.settingPanel}>
-            {pages.map((p) => {
+            {pages.map((p, index) => {
                 return <button onClick={() => {
                     props.onPageChange(p)
-                }} className={props.currentPage === p && UsersStlyes.active}>{p}</button>
+                }} className={(props.currentPage === p && UsersStlyes.active).toString() } key={index.toString()}>{p}</button>
             })}
           
         </div>
         <div className={UsersStlyes.itemWrap}>
-            {props.users.map((u) => {
-                return <div className={UsersStlyes.item}>
+            {props.users.map((u, index) => {
+                return <div className={UsersStlyes.item} key={index.toString()}>
                     <div className={UsersStlyes.header}>
                         <div className={UsersStlyes.avatar}>
                             <img

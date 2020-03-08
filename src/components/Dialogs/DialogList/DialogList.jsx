@@ -25,13 +25,16 @@ const Dialog = (props) => {
 
 const DialogList = (props) => {
 
-    let Lenght = props.state.MessagePage.messageData.length - 1;
-    let LastMessage = props.state.MessagePage.messageData[Lenght].message;
+
+   
+
+    let Lenght = props.mess.messageData.length - 1;
+    let LastMessage = props.mess.messageData[Lenght].message;
 
     console.log(LastMessage);
 
 
-    let dialogsElements = props.state.MessagePage.dialogsData.map((dialog) => <Dialog name={dialog.name}
+    let dialogsElements = props.mess.dialogsData.map((dialog) => <Dialog name={dialog.name}
                                                                                       id={dialog.id} LastMessage={LastMessage}/>);
 
 
@@ -47,7 +50,7 @@ const DialogList = (props) => {
                 <div className={d.searchDialog}>
                     <i className="fas fa-search"
                        aria-hidden="true"></i>
-                    <input type="text" placeholder={props.state.SetLang.eng ? "search" : "пошук"}/>
+                    <input type="text" placeholder={"пошук"}/>
                     {/*<button><i className="fas fa-search"></i></button>*/}
                 </div>
 
@@ -66,7 +69,7 @@ const DialogList = (props) => {
             </div>
 
             <div className={d.dialogListFooter}>
-                <p>{props.state.SetLang.eng ? "Disable notifications" : "Ввимкнути сповіщення"}</p>
+                <p>{  "Ввимкнути сповіщення"}</p>
                 <i className="far fa-bell-slash"></i>
             </div>
         </div>

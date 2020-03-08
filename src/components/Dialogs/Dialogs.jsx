@@ -8,12 +8,13 @@ import DialogList from "./DialogList/DialogList";
 
 
 const Dialogs = (props) => {
-    debugger;
+    
+   
 
 
     return (<div>
-            <Route path="/dialogs/0" render={ ()=> <DialogList state={props.state} />}/>
-            <Route path="/dialogs/1" render={()=> <DialogWithPerson state={props.state} dispatch={props.dispatch}/>}/>
+            <Route path="/dialogs/0" render={ ()=> <DialogList mess={props.messageData} />}/>
+            <Route path="/dialogs/1" render={()=> <DialogWithPerson mess={props.messageData} dispatch={props.dispatch}/>}/>
         </div>
 
     );

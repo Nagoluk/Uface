@@ -6,7 +6,8 @@ import LoginHoc from "./../../hoc/loginHoc"
 
 let mapStateToProps = (state) =>{
     return {
-        isLogined: state.LoginReducer.isLogined
+        isLogined: state.LoginReducer.isLogined,
+        messageData: state.MessagePage,
     }
 
 }

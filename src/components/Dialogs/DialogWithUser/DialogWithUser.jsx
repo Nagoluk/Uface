@@ -2,6 +2,7 @@ import React from 'react';
 import MyPost from "../../Profile/MyPosts/MyPosts.module.css";
 import DialogMod from "./DialogWithUser.module.css";
 import {NavLink} from "react-router-dom";
+import { Field, reduxForm } from 'redux-form';
 
 
 
@@ -17,25 +18,32 @@ const Message = (props) => {
     );
 };
 
+const MessageForm = props => {
+    return (<form onSubmit={props.handleSubmit}>
+                <div className={DialogMod.createNewMessage}>
+                    <Field name={"newMessage"} placeholder={"Новое сообщение"} component={"input"}/>
+
+                    <div className={DialogMod.createNewMessageAcivities}>
+                        <button className={MyPost.button} disabled><i className="fas fa-photo-video"></i></button>
+                        <button className={MyPost.button} disabled><i className="fas fa-headphones-alt"></i></button>
+                        <button className={MyPost.button + " " + MyPost.send}><i className="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </form>)
+} 
+
+let MessageFormReduxForm = reduxForm({form: "messageInput"})(MessageForm)
+
 const DialogWithPerson = (props) => {
 
-
-
-    let newMessage = React.createRef();
-
     let SendMessage = () =>{
-        if(newMessage.current.value !== '') {
-            //props.dispatch(createNewMessage());
-        }
-    }
-
-    let updateMessageText = () =>{
-        //props.dispatch(createNewMessageSymbol(newMessage.current.value));
+        console.log("hello")
     }
 
 
-    let messages = props.state.MessagePage.messageData.map(d => <Message mail={d.message}/>)
-    console.log(props);
+    let messages = props.mess.messageData.map(d => <Message mail={d.message}/>)
 
 
     return (<div className={DialogMod.dialogWithUser}>
@@ -51,7 +59,7 @@ const DialogWithPerson = (props) => {
                 <div className={DialogMod.backToDialogList}>
                     <NavLink to="0">
                         <i className="fas fa-chevron-left"></i>
-                        <span>{props.state.SetLang.eng ? "Back" : "Назад"}</span>
+                        <span>{ "Назад"}</span>
                     </NavLink>
 
                 </div>
@@ -62,17 +70,9 @@ const DialogWithPerson = (props) => {
                 {messages}
             </div>
 
-            <div className={DialogMod.createNewMessage}>
-                <input name="newMessage" ref={newMessage} placeholder="Новое сообщение" value={props.state.MessagePage.updateMessageData} onChange={updateMessageText}></input>
+            <MessageFormReduxForm onSubmit={SendMessage}/>
 
-                <div className={DialogMod.createNewMessageAcivities}>
-                    <button className={MyPost.button}><i className="fas fa-photo-video"></i></button>
-                    <button className={MyPost.button}><i className="fas fa-headphones-alt"></i></button>
-                    <button className={MyPost.button + " " + MyPost.send} onClick={SendMessage}><i className="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-
-            </div>
+           
 
         </div>
     );

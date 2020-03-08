@@ -28,7 +28,6 @@ class userAPIcomponent extends React.Component {
 
     render() {
 
-        console.log(this.props);
         return <>
             {this.props.isFetching ?  <Preloader/> :
             <Users currentPage={this.props.currentPage}
