@@ -1,12 +1,12 @@
 import {AuthAPI} from "../api/api";
 const SET_USER_LOGIN = "SET_USER_LOGIN";
-const SET_USER_ID = "SET_USER_ID ";
+
 
 let initState = {
     id: null,
     email: null,
     login: null,
-    isLogined: false
+    isLogined: true
 }
 
 

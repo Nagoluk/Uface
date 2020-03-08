@@ -19,6 +19,7 @@ class ProfileContainer extends React.Component{
     }
 
     render() {
+        
 
         return (
            <Profile {...this.props} 
@@ -27,6 +28,7 @@ class ProfileContainer extends React.Component{
            status={this.props.status} 
            updateStatusThunkCreator={this.props.updateStatusThunkCreator}
            loginData = {this.props.loginData}
+           addNewPostAC={this.props.addNewPostAC}
            />
         );
     }

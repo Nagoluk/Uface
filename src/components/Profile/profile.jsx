@@ -15,7 +15,7 @@ const Profile = (props) => {
         <div className={p.profile}>
 
             <ProfileInfo profile ={props.profile} lang={props.lang} updateStatusThunkCreator={props.updateStatusThunkCreator} status={props.status} loginData={props.loginData}/>
-            <MyPostsContainer store={props.store} profile ={props.profile}  />
+            <MyPostsContainer store={props.store} profile ={props.profile}  addNewPostAC={props.addNewPostAC}/>
 
         </div>
     );
