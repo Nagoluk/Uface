@@ -1,8 +1,14 @@
 export const required = value => {
 
-    console.log("work nahui")
     if(value) return undefined;
 
-    return "Field is required"
+    return "Field is required";
    
+}
+
+export const maxSymbols = (max) => (value) => {
+    if(value.length > max) return `max size is ${max} symbols`;
+    
+    return undefined;
+    
 }

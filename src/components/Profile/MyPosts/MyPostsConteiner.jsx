@@ -2,7 +2,7 @@
 
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
-import {newSymbolAC} from "../../../Redux/profileReducer";
+import {addNewPostAC} from "../../../Redux/profileReducer";
 
 
 let mapStateToProps = (state) => {
@@ -26,6 +26,6 @@ let mapStateToProps = (state) => {
 // }
 
 
-let MyPostsContainer = connect(mapStateToProps, {newSymbolAC})(MyPosts);
+let MyPostsContainer = connect(mapStateToProps, {addNewPostAC})(MyPosts);
 
 export default MyPostsContainer;

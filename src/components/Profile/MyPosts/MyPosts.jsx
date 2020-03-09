@@ -2,12 +2,22 @@ import React from "react";
 import MyPost from "./MyPosts.module.css";
 import Post from "./post/post";
 import { Field, reduxForm } from "redux-form";
-import {required} from "../../../utils/validators/validators";
+import {required, maxSymbols} from "../../../utils/validators/validators";
+import {Input} from "../../common/formControls/FormControls";
+
+
+const maxSymbol30 = maxSymbols(30);
 
 
 const PostInputForm = props => {
     return (<form className={MyPost.newpost} onSubmit={props.handleSubmit}>
-                <Field id="post" type="text" placeholder={"Що у вас нового"}  component={"input"} name={"newPostText"} validate={required}/>
+                <Field 
+                id="post" 
+                type="text"
+                placeholder={"Що у вас нового"} 
+                component={Input} 
+                name={"newPostText"} 
+                validate={[required, maxSymbol30]}/>
 
 
                 <div className="createnewpost">
@@ -24,10 +34,10 @@ let ReduxFormPostInput = reduxForm({
 
 
 const MyPosts = (props) => {
-    debugger;
+   
 
-    let addNewPost = (props)=> {
-        props.addNewPostAC(props.newPostText)
+    let addNewPost = (data)=> {
+        props.addNewPostAC(data.newPostText)
     }
 
     let PostsElements = props.ProfilePage.PostsData.map(currentValue => <Post message={currentValue.content} likes={currentValue.likes} rep={currentValue.rep} comm={currentValue.comm} dataSend={currentValue.dataSend}/>)
