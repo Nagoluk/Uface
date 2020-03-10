@@ -5,6 +5,8 @@ nav ul {
 }
 
  .navigation ul li {
+     display: flex;
+     justify-content: center;
      text-align: center;
      box-sizing: border-box;
      background: #fff;
@@ -14,10 +16,12 @@ nav ul {
 
 }
 
-.navigation ul li i {
+.navigation  svg{
     display: block;
     margin-bottom: 4px;
-    font-size: 22px;
+    font-size: 20px;
+    text-align: center;
+
 }
 
 .navigation h2 {
