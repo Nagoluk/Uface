@@ -16,8 +16,16 @@ const instance = axios.create({
 export let AuthAPI = {
     getLogin () {
         return instance.get("auth/me").then(response => {
-          return  response.data
+          return  response.data;
         });
+    },
+
+    login (email, password, rememberMe){
+        return instance.get("auth/login", {email, password, rememberMe});
+    },
+
+    logout () {
+        return instance.delete("auth/login");
     }
 };
 

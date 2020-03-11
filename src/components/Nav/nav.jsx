@@ -11,7 +11,7 @@ const Nav = () => {
                 <ul>
                     <li>
                         <NavLink to="/profile" activeClassName={Navmod.activeLink}><i
-                            className="fas fa-address-card"></i> <span>Profile</span></NavLink></li>
+                            className="fas fa-address-card ItemMenu"></i> <span>Profile</span></NavLink></li>
                     <li><NavLink to="/friends" activeClassName={Navmod.activeLink}><i
                         className="fas fa-user-friends"></i><span>Users</span> </NavLink></li>
                     <li><NavLink to="/groups" activeClassName={Navmod.activeLink}><i className="far fa-thumbs-up"></i> <span>Groups</span> </NavLink>

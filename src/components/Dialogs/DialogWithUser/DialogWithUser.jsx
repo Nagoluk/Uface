@@ -3,9 +3,12 @@ import MyPost from "../../Profile/MyPosts/MyPosts.module.css";
 import DialogMod from "./DialogWithUser.module.css";
 import {NavLink} from "react-router-dom";
 import { Field, reduxForm } from 'redux-form';
+import {maxSymbols, required} from "../../../utils/validators/validators";
+import {Input} from "../../common/formControls/FormControls";
 
 
 
+const maxSymbol30 = maxSymbols(31);
 
 const Message = (props) => {
     let now = new Date();
@@ -21,7 +24,7 @@ const Message = (props) => {
 const MessageForm = props => {
     return (<form onSubmit={props.handleSubmit}>
                 <div className={DialogMod.createNewMessage}>
-                    <Field name={"newMessage"} placeholder={"Новое сообщение"} component={"input"}/>
+                    <Field name={"newMessage"} placeholder={"Новое сообщение"} component={Input} validate={[maxSymbol30, required]}/>
 
                     <div className={DialogMod.createNewMessageAcivities}>
                         <button className={MyPost.button} disabled><i className="fas fa-photo-video"></i></button>

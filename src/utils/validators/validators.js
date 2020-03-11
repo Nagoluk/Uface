@@ -7,7 +7,8 @@ export const required = value => {
 }
 
 export const maxSymbols = (max) => (value) => {
-    if(value.length > max) return `max size is ${max} symbols`;
+   
+    if(value && value.length > max) return `max size is ${max} symbols`;
     
     return undefined;
     
