@@ -1,6 +1,8 @@
 import React from "react"
 import p from "../profile.module.css";
 import Status from "./status/status";
+import profileAvatar from "../../../img/Profile/avatar.jpg";
+import profileWrap from "../../../img/Profile/wrap.png";
 
 
 const ProfileInfo = (props) => {
@@ -10,13 +12,13 @@ const ProfileInfo = (props) => {
         return (
             <div className={p.profileWrap}>
                
-             <img className={p.photowrap} src="https://www.worldtravelguide.net/wp-content/uploads/2017/03/shu-Ukraine-Kiev-MonumentIndependence_1088907020-1440x823-EDITORIAL.jpg" alt=""/>
+             <div className={p.photowrap} ></div>
                 
                 <div className={p.information}>
 
 
                     <div >
-                        <img src={props.profile.profile.photos.large} className={p.avatar} alt="Avatar"/>
+                        <img src={props.profile.profile.photos.large || profileAvatar} className={p.avatar} alt="Avatar"/>
                     </div>
 
                     <div className={p.info}>

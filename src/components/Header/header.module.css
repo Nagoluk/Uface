@@ -87,6 +87,10 @@ a {
     display: none;
 }
 
+.logout {
+    margin-left: 7px;
+}
+
 @media (max-width: 635px) {
 
     .rightside .input {

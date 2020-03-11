@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from "./header";
-import {loginThunkCreator} from "../../Redux/loginReducer";
+import {loginThunkCreator, logout} from "../../Redux/loginReducer";
 
 
 
@@ -32,7 +32,8 @@ let mapStateToProps = (state) => {
 }
 
 let Dispatch = {
-    loginThunkCreator
+    loginThunkCreator,
+    logout
 }
 
 export default connect(mapStateToProps, Dispatch)(HeaderContainer);
