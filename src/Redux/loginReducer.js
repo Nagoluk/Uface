@@ -21,7 +21,6 @@ const loginReducer = (state = initState, action) => {
                 ...state, 
                 ...action.data,
                 id: action.data.id,
-                isLogined: true
             }
         
 
@@ -35,18 +34,46 @@ export let setUserLoginAC = (id, login, email) => {
 }
 
 
-export let loginThunkCreator = () => {
+export let loginThunkCreator = (isLogined = false) => {
     return (dispatch) => {
         AuthAPI.getLogin().then(response => {
 
             if(response.resultCode === 0){
                 let {id, login, email} = response.data;
+        
 
-                dispatch(setUserLoginAC(id, login, email));
+                dispatch(setUserLoginAC(id, login, email, isLogined));
             }   
         });
     }
 }
+
+
+export let login = (email, password, rememberMe = false) => {
+    return (dispatch) => {
+        AuthAPI.login(email, password, rememberMe).then(response => {
+          
+            if(response.data.resultCode === 0){
+              dispatch(loginThunkCreator(true))
+            }
+        });
+    }
+}
+
+export let logout = () =>{
+    return (dispatch) => {
+        AuthAPI.logout().then(response => {
+
+            debugger;
+        })
+    }
+}
+
+
+
+
+
+
 
 
 export default loginReducer

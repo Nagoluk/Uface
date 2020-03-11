@@ -3,9 +3,11 @@ import styles from "./Login.module.css";
 import {reduxForm, Field} from "redux-form";
 import {Input} from "../common/formControls/FormControls";
 import { required } from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {login} from "./../../Redux/loginReducer";
+
 
 let Form = (props) => {
-
 
     return (<form className={styles.Form} onSubmit={props.handleSubmit}>
                 <div>
@@ -29,9 +31,10 @@ let Form = (props) => {
 
 let ReduxLoginForm = reduxForm({form: "login"})(Form)
 
-let Login = () => {
-    let onSubmit = (form) => {
-        console.log(form)
+let Login = props => {
+    let onSubmit = (loginData) => {
+        props.login(loginData.login, loginData.password, loginData.rememberMe)
+      
     }
     return(<div className={styles.Login}>
                 <h1>Login</h1>
@@ -39,4 +42,4 @@ let Login = () => {
            </div>)
 }
 
-export default Login;
+export default connect(null, {login})(Login);

@@ -21,7 +21,8 @@ export let AuthAPI = {
     },
 
     login (email, password, rememberMe){
-        return instance.get("auth/login", {email, password, rememberMe});
+
+        return instance.post("auth/login", {email, password, rememberMe});
     },
 
     logout () {
