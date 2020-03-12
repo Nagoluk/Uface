@@ -33,7 +33,7 @@ export let setUserLoginAC = (id, login, email, isLogined) => {
 }
 
 
-export let loginThunkCreator = (isLogined = false) => {
+export let loginThunkCreator = () => {
     return (dispatch) => {
         AuthAPI.getLogin().then(response => {
 
@@ -67,6 +67,7 @@ export let login = (email, password, rememberMe = false) => {
 export let logout = () =>{
     return (dispatch) => {
         AuthAPI.logout().then(response => {
+            debugger;
             if(response.data.resultCode === 0){
                 dispatch(setUserLoginAC(null, null, null, false))
             }

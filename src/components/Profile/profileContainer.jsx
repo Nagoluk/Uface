@@ -10,7 +10,8 @@ class ProfileContainer extends React.Component{
     
     componentDidMount() {
 
-        let userID = this.props.match.params.userID || 6108;
+
+        let userID = this.props.match.params.userID;
 
         this.props.getProfileThunkCreator(userID);
         this.props.getStatusThunkCreator(userID);
@@ -42,7 +43,7 @@ let mapStateToProps = (state) => (
     status: state.ProfilePage.status
 });
 
-let isLogined = LoginHoc(ProfileContainer);
-let AddURLdate = withRouter(isLogined);
+//let isLogined = LoginHoc(ProfileContainer);
+let AddURLdate = withRouter(ProfileContainer);
 
 export default connect (mapStateToProps, {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator})(AddURLdate);
