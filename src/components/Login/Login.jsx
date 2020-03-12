@@ -14,14 +14,19 @@ let Form = (props) => {
 
     return (<form className={styles.Form} onSubmit={props.handleSubmit}>
                 <div>
+                    <h1>Please sing up</h1>
+                </div>
+                <div className={styles.Input}>
+                <label>Enter your email <span>*</span></label>
                     <Field type={"text"} placeholder={"enter login"} component={Input} validate={required} name={"email"}/>
                 </div>
 
-                <div>
+                <div className={styles.Input}>
+                    <label>Enter your password<span>*</span></label>
                     <Field type={"password"} placeholder={"enter password"} component={Input} validate={required} name={"password"}/>
                 </div>
 
-                <div>
+                <div className={styles.RememberMe}>
                     <Field type={"checkbox"} component={"input"} name={"rememberMe"}/> Remember me
                 </div>
 
@@ -48,7 +53,6 @@ let Login = props => {
     }
     
     return(<div className={styles.Login}>
-                <h1>Login</h1>
                 <ReduxLoginForm onSubmit={onSubmit}/>
            </div>)
 }

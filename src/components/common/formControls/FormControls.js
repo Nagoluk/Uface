@@ -9,9 +9,11 @@ export const Input = ({input, meta, ...props}) => {
     return (
         <div className={styles.InputContainer}>
             <div>
-                {hasError && <span><i class="fas fa-exclamation"></i></span>}  <input {...props} {...input} />
+                <input {...props} {...input} />
             </div>
-            {hasError && <span>{meta.error}</span>}
+            {hasError && <span><i class="fas fa-exclamation"></i></span>} 
+                {hasError && <span>{meta.error}</span>}
+            
             
         </div>)
 }
