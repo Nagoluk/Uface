@@ -10,8 +10,9 @@ class Status extends React.Component {
     }
 
     activateEditMode = () => {
-        if(this.props.id === this.props.loginData){
-            debugger;
+        if(this.props.id === this.props.loginData.id){
+          
+         
             this.setState({
                 editMode: true,
             })
@@ -19,7 +20,7 @@ class Status extends React.Component {
     }
 
     deactivateEditMode = () => {
-        if(this.props.id === 6108){
+        if(this.props.id === this.props.loginData.id){
             this.setState({
                 editMode: false,
             })
@@ -36,7 +37,7 @@ class Status extends React.Component {
     render(){
         return <>{ !this.state.editMode ?
                   <span>
-                      <span onDoubleClick={this.activateEditMode}>{this.props.status || "Double click to write status"}</span>
+                      <span onDoubleClick={this.activateEditMode}>{this.props.status || "Status"}</span>
                   </span>
                     :
                   <span >
