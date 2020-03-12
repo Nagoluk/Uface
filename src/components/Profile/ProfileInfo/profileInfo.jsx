@@ -2,7 +2,7 @@ import React from "react"
 import p from "../profile.module.css";
 import Status from "./status/status";
 import profileAvatar from "../../../img/Profile/avatar.jpg";
-import profileWrap from "../../../img/Profile/wrap.png";
+
 
 
 const ProfileInfo = (props) => {
