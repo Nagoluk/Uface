@@ -4,9 +4,10 @@ import Header from "./header";
 import {loginThunkCreator, logout} from "../../Redux/loginReducer";
 
 
-
-
 class HeaderContainer extends React.Component {
+    componentDidMount(){
+        
+    }
     render(){   
         return (
             <Header {...this.props}/>

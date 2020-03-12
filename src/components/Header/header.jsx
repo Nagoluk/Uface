@@ -6,6 +6,7 @@ import Navmod from "../Nav/nav.module.css";
 
 const Header = props => {
 
+  
 
     return (
         <header>
@@ -68,7 +69,9 @@ const Header = props => {
                    
                     <h3>{props.isLogined ? props.login :"Please sign up"}</h3>
 
-                    {props.isLogined && <div className={headermod.note + " " + headermod.logout} onClick={props.logout}>
+                    {props.isLogined && <div className={headermod.note + " " + headermod.logout} onClick={()=> {
+                        props.logout();
+                    }}>
                         <i class="fas fa-power-off" title={"logout"} ></i>
                     </div>}
                     

@@ -10,15 +10,24 @@ import ProfileContainer from "./components/Profile/profileContainer";
 import SettingContainer from "./components/Setting/setting";
 import Login from './components/Login/Login';
 import {connect} from 'react-redux';
-import {loginThunkCreator, logout} from "./Redux/loginReducer";
+import {loginThunkCreator} from "./Redux/loginReducer";
+import {initializeApp} from "./Redux/appReducer";
+import Preloader from './components/assets/preloader/Preloader';
 
 class App extends React.Component {
 
     componentDidMount() {
-        this.props.loginThunkCreator()
+        console.log(this.props.initialized)
+       this.props.initializeApp()
     }
 
+
+
     render() {
+        if(!this.props.initialized){
+            return <Preloader></Preloader>
+        }
+
         return (
             <div className="render">
                 <HeaderContainer/>
@@ -40,6 +49,7 @@ class App extends React.Component {
             </div>);
     }
 }
+const mapStateToProps = (state) => ({initialized: state.app.initialized})
 
+export default withRouter(connect(mapStateToProps, {loginThunkCreator, initializeApp})(App));
 
-export default withRouter(connect(null, {loginThunkCreator, logout})(App));

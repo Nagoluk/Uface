@@ -3,20 +3,29 @@ import Profile from "./profile";
 import {connect} from "react-redux";
 import {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator} from "../../Redux/profileReducer";
 import {withRouter} from "react-router-dom";
-import LoginHoc from "../../hoc/loginHoc";
+
 
 
 class ProfileContainer extends React.Component{
     
     componentDidMount() {
-
+        console.log(this.props);
 
         let userID = this.props.match.params.userID;
 
+        if(!userID){
+            userID = this.props.loginData.id;
+
+            if(!userID) {
+                this.props.history.push("/login")
+                return
+            }
+        }
+
         this.props.getProfileThunkCreator(userID);
         this.props.getStatusThunkCreator(userID);
+        
 
-       
     }
 
     render() {
@@ -24,11 +33,11 @@ class ProfileContainer extends React.Component{
 
         return (
            <Profile {...this.props} 
-           profile={this.props.profile} 
-           lang={this.props.setLang} 
-           status={this.props.status} 
-           updateStatusThunkCreator={this.props.updateStatusThunkCreator}
-           loginData = {this.props.loginData}
+            profile={this.props.profile} 
+            lang={this.props.setLang} 
+            status={this.props.status} 
+            updateStatusThunkCreator={this.props.updateStatusThunkCreator}
+            loginData = {this.props.loginData}
          
            />
         );
