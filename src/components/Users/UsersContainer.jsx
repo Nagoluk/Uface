@@ -15,7 +15,15 @@ import {
 
 import LoginHoc from "../../hoc/loginHoc";
 import Preloader from "../assets/preloader/Preloader";
-import {getUsersSelector} from "../../Redux/usersSelectors";
+import {
+    getUsersSelector,
+    getPageSizeSelector,
+    getTototalUsersCountSelector,
+    getCurrentPageSelector,
+    getIsFetchingSelector,
+    getFollowProccesSelector,
+    getIsLoginedSelector
+} from "../../Redux/usersSelectors";
 
 
 class userAPIcomponent extends React.Component {
@@ -61,12 +69,12 @@ class userAPIcomponent extends React.Component {
 let mapStateToProps = (state) => {
     return {
         users: getUsersSelector(state),
-        pageSize: state.UsersReducer.pageSize,
-        totalUsersCount: state.UsersReducer.totalUsersCount,
-        currentPage: state.UsersReducer.currentPage,
-        isFetching: state.UsersReducer.isFetching,
-        followProcces: state.UsersReducer.followProcces,
-        isLogined: state.LoginReducer.isLogined,
+        pageSize: getPageSizeSelector(state),
+        totalUsersCount: getTototalUsersCountSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        isFetching: getIsFetchingSelector(state),
+        followProcces: getFollowProccesSelector(state),
+        isLogined: getIsLoginedSelector(state),
     }
 }
 
