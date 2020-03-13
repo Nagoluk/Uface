@@ -10,7 +10,6 @@ import { Redirect } from "react-router-dom";
 
 
 let Form = (props) => {
-    console.log(props)
 
     return (<form className={styles.Form} onSubmit={props.handleSubmit}>
                 <div>
@@ -30,6 +29,16 @@ let Form = (props) => {
                     <Field type={"checkbox"} component={"input"} name={"rememberMe"}/> Remember me
                 </div>
 
+               
+
+                {props.captcha && <div className={styles.Captcha}> 
+                                        <img src={props.captcha} alt="captcha"/>
+                                        <Field type={"text"} 
+                                            placeholder={"enter captcha"} 
+                                            component={Input} 
+                                            name={"captcha"}/>
+                                  </div>}
+
                 {props.error && <div className={styles.Error}>{props.error}</div>}
 
                 <div>
@@ -44,7 +53,7 @@ let ReduxLoginForm = reduxForm({form: "login"})(Form)
 let Login = props => {
 
     let onSubmit = (loginData) => {
-        props.login(loginData.email, loginData.password, loginData.rememberMe)
+        props.login(loginData.email, loginData.password, loginData.rememberMe, loginData.captcha)
       
     }
 
@@ -53,10 +62,11 @@ let Login = props => {
     }
     
     return(<div className={styles.Login}>
-                <ReduxLoginForm onSubmit={onSubmit}/>
+                <ReduxLoginForm onSubmit={onSubmit} captcha={props.captcha}/>
            </div>)
 }
 const mapStateToProps = (state) => ({
     isLogined: state.LoginReducer.isLogined,
+    captcha: state.LoginReducer.captchaURL
 })
 export default connect(mapStateToProps, {login})(Login);

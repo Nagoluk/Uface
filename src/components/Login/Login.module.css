@@ -67,3 +67,19 @@
     color: #fff;
     background: #2B5278;
 }
+
+.Captcha {
+    padding: 10px 0px;
+}
+
+.Captcha img {
+    height: 70px;
+    border: 1px solid lightgray;
+}
+
+.Captcha input {
+    outline: none;
+    border: 1px solid lightgray;
+    padding: 10px 10px;
+
+}

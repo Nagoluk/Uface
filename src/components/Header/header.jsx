@@ -72,7 +72,7 @@ const Header = props => {
                     {props.isLogined && <div className={headermod.note + " " + headermod.logout} onClick={()=> {
                         props.logout();
                     }}>
-                        <i class="fas fa-power-off" title={"logout"} ></i>
+                        <i className="fas fa-power-off" title={"logout"} ></i>
                     </div>}
                     
                     {/* <div className={headermod.profile_avatar}>

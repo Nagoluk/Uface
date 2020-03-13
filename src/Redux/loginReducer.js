@@ -1,13 +1,15 @@
-import {AuthAPI} from "../api/api";
+import {AuthAPI, getSecureCaptcha} from "../api/api";
 import { stopSubmit } from "redux-form";
 const SET_USER_LOGIN = "SET_USER_LOGIN";
+const SET_CAPTCHA_URL = "SET_CAPTCHA_URL";
 
 
 let initState = {
     id: null,
     email: null,
     login: null,
-    isLogined: false
+    isLogined: false,
+    captchaURL: "",
 }
 
 
@@ -21,7 +23,13 @@ const loginReducer = (state = initState, action) => {
                 ...action.data,
                 id: action.data.id,
             }
-        
+
+        case SET_CAPTCHA_URL:
+            return {
+                ...state,
+                captchaURL: action.URL
+            }
+
 
         default: return state
         
@@ -32,6 +40,8 @@ export let setUserLoginAC = (id, login, email, isLogined) => {
     return {type: SET_USER_LOGIN, data:{id, login, email, isLogined}}
 }
 
+export let setCaptchaUrlAC = (URL) => ({type: SET_CAPTCHA_URL, URL}) 
+
 
 export let loginThunkCreator = () => {
     return (dispatch) => {
@@ -39,7 +49,6 @@ export let loginThunkCreator = () => {
 
             if(response.resultCode === 0){
                 let {id, login, email} = response.data;
-        
 
                 dispatch(setUserLoginAC(id, login, email, true));
             }   
@@ -48,15 +57,30 @@ export let loginThunkCreator = () => {
     }
 }
 
+export let getCaptchaThunkCreator = () => {
+    return (dispatch) => {
+        getSecureCaptcha().then(url => {
+            dispatch(setCaptchaUrlAC(url))
+        })
+    }
+}
 
-export let login = (email, password, rememberMe = false) => {
+
+export let login = (email, password, rememberMe = false, captcha = null) => {
    
 
     return (dispatch) => {
 
-        AuthAPI.login(email, password, rememberMe).then(response => {
+        AuthAPI.login(email, password, rememberMe, captcha).then(response => {
             if(response.data.resultCode === 0){
               dispatch(loginThunkCreator(true))
+            }else if(response.data.resultCode === 10){
+            
+                dispatch(getCaptchaThunkCreator());
+
+                let action = stopSubmit("login", {_error: response.data.messages.join(" ")})
+                dispatch(action)
+
             }else{
                 let action = stopSubmit("login", {_error: response.data.messages.join(" ")})
                 dispatch(action)
@@ -79,4 +103,4 @@ export let logout = () =>{
 }
 
 
-export default loginReducer
+export default loginReducer;

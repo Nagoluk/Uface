@@ -40,7 +40,7 @@ const MyPosts = (props) => {
         props.addNewPostAC(data.newPostText)
     }
 
-    let PostsElements = props.ProfilePage.PostsData.map(currentValue => <Post message={currentValue.content} likes={currentValue.likes} rep={currentValue.rep} comm={currentValue.comm} dataSend={currentValue.dataSend}/>)
+    let PostsElements = props.ProfilePage.PostsData.map((currentValue, index) => <Post key={index.toString()}message={currentValue.content} likes={currentValue.likes} rep={currentValue.rep} comm={currentValue.comm} dataSend={currentValue.dataSend}/>)
     return (
         <div className={MyPost.myposts}>
             <div className="postwrap">
