@@ -16,7 +16,7 @@ import {
 import LoginHoc from "../../hoc/loginHoc";
 import Preloader from "../assets/preloader/Preloader";
 import {
-    getUsersSelector,
+    getUsersSuperSelector,
     getPageSizeSelector,
     getTototalUsersCountSelector,
     getCurrentPageSelector,
@@ -68,7 +68,7 @@ class userAPIcomponent extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: getUsersSelector(state),
+        users: getUsersSuperSelector(state),
         pageSize: getPageSizeSelector(state),
         totalUsersCount: getTototalUsersCountSelector(state),
         currentPage: getCurrentPageSelector(state),
