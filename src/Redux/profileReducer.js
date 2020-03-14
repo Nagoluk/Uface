@@ -1,6 +1,5 @@
 import {ProfileAPI} from "../api/api";
 
-const NEW_SYMBOL = "NEW_SYMBOL";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";
@@ -14,7 +13,6 @@ let initialProfilePage = {
 
     ],
 
-    NewPostText: "fff",
     profile: null,
     status: "",
     isFetching: true,
@@ -29,17 +27,11 @@ const profileReducer = (state = initialProfilePage, action) =>{
 
             let stateCopy = {
                 ...state,
-                PostsData: [{id: 1, content: action.text, likes: 0, rep: 0, comm: 0, dataSend: currentData},...state.PostsData, ],
-                NewPostText: ""
+                PostsData: [...state.PostsData, {id: 1, content: action.text, likes: 0, rep: 0, comm: 0, dataSend: currentData}],
             };
 
             return stateCopy;
 
-        case NEW_SYMBOL:
-            return  {
-                ...state,
-                NewPostText : action.symbol
-            };
 
         case SET_PROFILE:
             return {
@@ -92,12 +84,6 @@ export const setStatus = (status) => {
     }
 }
 
-export const newSymbolAC = (symbol) => {
-    return {
-        type: NEW_SYMBOL,
-        symbol: symbol
-    }
-}
 
 export const getProfileThunkCreator = (id) => {
 

@@ -1,8 +1,19 @@
 
-
+import React from "react";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {addNewPostAC} from "../../../Redux/profileReducer";
+
+
+class MyPostsContainer extends React.Component {
+
+    render(){
+        return(<MyPosts 
+                ProfilePage={this.props.ProfilePage}
+                Lang={this.props.SetLang}
+                addNewPostAC={this.props.addNewPostAC}/>)
+    }
+}
 
 
 let mapStateToProps = (state) => {
@@ -13,19 +24,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         addSymbols: (text)=>{
 
-//            dispatch(newSymbolAC(text));
-//         },
-//         addNewPost: ()=>{
-//                 //dispatch(createActionPost());
-//         }
-//     }
-// }
+export default connect(mapStateToProps, {addNewPostAC})(MyPostsContainer);
 
-
-let MyPostsContainer = connect(mapStateToProps, {addNewPostAC})(MyPosts);
-
-export default MyPostsContainer;

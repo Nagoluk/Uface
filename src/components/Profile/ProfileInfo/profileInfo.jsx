@@ -24,9 +24,7 @@ const ProfileInfo = (props) => {
                     <div className={p.info}>
                         <h2>{props.profile.profile.fullName}</h2>
                         <ul>
-                            {/* <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>{props.profile.aboutMe}</li> */}
                             <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>
-                                {/* <Status status={props.status} id={props.profile.profile.userId} updateStatusThunkCreator={props.updateStatusThunkCreator} loginData={props.loginData}/> */}
                                 <Status status={props.status} 
                                         id={props.profile.profile.userId} 
                                         updateStatusThunkCreator={props.updateStatusThunkCreator} 

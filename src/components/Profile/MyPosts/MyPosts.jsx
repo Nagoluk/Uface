@@ -21,8 +21,8 @@ const PostInputForm = props => {
 
 
                 <div className="createnewpost">
-                    <button className={MyPost.button}><i className="fas fa-photo-video"></i></button>
-                    <button className={MyPost.button}><i className="fas fa-headphones-alt"></i></button>
+                    <button className={MyPost.button} disabled={true}><i className="fas fa-photo-video"></i></button>
+                    <button className={MyPost.button} disabled={true}><i className="fas fa-headphones-alt"></i></button>
                     <button className={MyPost.button + " " + MyPost.send}> <i className="fas fa-paper-plane"></i></button>
                 </div>
             </form>)

@@ -11,7 +11,7 @@ export const Input = ({input, meta, ...props}) => {
             <div>
                 <input {...props} {...input} />
             </div>
-            {hasError && <span><i class="fas fa-exclamation"></i></span>} 
+            {hasError && <span><i className="fas fa-exclamation"></i></span>} 
                 {hasError && <span>{meta.error}</span>}
             
             
