@@ -34,10 +34,12 @@ let ReduxFormPostInput = reduxForm({
 
 
 const MyPosts = (props) => {
+    console.log("render")
    
 
     let addNewPost = (data)=> {
         props.addNewPostAC(data.newPostText)
+        data.resetForm();
     }
 
     let PostsElements = props.ProfilePage.PostsData.map((currentValue, index) => <Post key={index.toString()}message={currentValue.content} likes={currentValue.likes} rep={currentValue.rep} comm={currentValue.comm} dataSend={currentValue.dataSend}/>)
