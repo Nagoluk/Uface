@@ -12,4 +12,4 @@ export const getTototalUsersCountSelector = state => state.UsersReducer.totalUse
 export const getCurrentPageSelector = state => state.UsersReducer.currentPage;
 export const getIsFetchingSelector = state => state.UsersReducer.isFetching;
 export const getFollowProccesSelector = state => state.UsersReducer.followProcces;
-export const getIsLoginedSelector = state => state.LoginReducer.isLogined
+export const getIsLoginedSelector = state => state.LoginReducer.isLogined;

@@ -1,6 +1,6 @@
 import React from "react"
 import p from "../profile.module.css";
-import Status from "./status/status";
+import Status from "./status/statusHook";
 import profileAvatar from "../../../img/Profile/avatar.jpg";
 
 
@@ -26,7 +26,11 @@ const ProfileInfo = (props) => {
                         <ul>
                             {/* <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>{props.profile.aboutMe}</li> */}
                             <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>
-                                <Status status={props.status} id={props.profile.profile.userId} updateStatusThunkCreator={props.updateStatusThunkCreator} loginData={props.loginData}/>
+                                {/* <Status status={props.status} id={props.profile.profile.userId} updateStatusThunkCreator={props.updateStatusThunkCreator} loginData={props.loginData}/> */}
+                                <Status status={props.status} 
+                                        id={props.profile.profile.userId} 
+                                        updateStatusThunkCreator={props.updateStatusThunkCreator} 
+                                        loginData={props.loginData}/>
                             </li>
                             <li></li>
                             <li></li>
