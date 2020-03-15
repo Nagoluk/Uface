@@ -3,6 +3,7 @@
 }
 
 .settingPanel {
+    text-align: center;
     background: #fff;
     margin: 0 5px;
     padding: 5px;
@@ -10,6 +11,7 @@
 
 
 }
+
 
 .settingPanel button {
     box-sizing: border-box;
@@ -23,7 +25,21 @@
     outline: none;
     background: lightgray;
     border-radius: 0;
+    cursor: pointer;
 }
+
+button.navs {
+    font-weight: bold;
+    background: #2B5278;
+    color: #fff;
+    padding: 0 5px;
+    width: 50px;
+
+}
+button.navs:disabled {
+    background: lightgray;
+}
+
 
 .settingPanel button.active{
     background: #2B5278;
