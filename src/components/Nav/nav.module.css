@@ -61,11 +61,19 @@ nav a{
 }
 
 .friends ul li {
-    height: 43px;
-    width: 43px;
+    height: 50px;
+    width: 50px;
     background: lightgray;
     border-radius: 50%;
-    margin: 10px 8px;
+    margin: 10px 5px;
+    border: 2px solid lightgray;
+}
+
+.friends svg {
+    height: 40px;
+    width: 40px;
+    font-size: 30px;
+    color: red;
 }
 
 .friends img{
@@ -73,6 +81,7 @@ nav a{
     height: 100%;
     border-radius: 50%;
     border: 1px solid lightgray;
+
 }
 
 .photos ul {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Navmod from "./nav.module.css";
 import {NavLink} from "react-router-dom";
-import photo from "../../img/NAV/photo.png";
+import photo from "../../img/Profile/avatar.png";
 
 const Nav = () => {
     return (
@@ -25,46 +25,29 @@ const Nav = () => {
                 </ul>
             </div>
 
-            <div className={Navmod.friends}>
-                <h3>Best friends</h3>
-                <ul>
-                    <li><img src="http://www.newdesignfile.com/postpic/2014/07/generic-profile-avatar_352864.jpg" alt="f"/></li>
-                    <li><img src="http://www.newdesignfile.com/postpic/2014/07/generic-profile-avatar_352864.jpg" alt="f"/></li>
-                    <li><img src="http://www.newdesignfile.com/postpic/2014/07/generic-profile-avatar_352864.jpg" alt="f"/></li>
-                    <li><img src="http://www.newdesignfile.com/postpic/2014/07/generic-profile-avatar_352864.jpg" alt="f"/></li>
-                </ul>
-
-            </div>
-
 
             <div className={Navmod.friends}>
-                <h3>Best groups</h3>
+                <h3>Followers</h3>
                 <ul>
-                    <li><img src="http://www.newdesignfile.com/postpic/2014/07/generic-profile-avatar_352864.jpg" alt="f"/></li>
-                    <li><img src="http://www.newdesignfile.com/postpic/2014/07/generic-profile-avatar_352864.jpg" alt="f"/></li>
-                    <li><img src="http://www.newdesignfile.com/postpic/2014/07/generic-profile-avatar_352864.jpg" alt="f"/></li>
-                    <li><img src="http://www.newdesignfile.com/postpic/2014/07/generic-profile-avatar_352864.jpg" alt="f"/></li>
+                    <li><img src={photo} alt="f"/></li>
+                    <li><img src={photo} alt="f"/></li>
+                    <li><img src={photo} alt="f"/></li>
+                    <li><img src={photo} alt="f"/></li>
                 </ul>
 
             </div>
 
 
-            <div className={Navmod.friends + " " + Navmod.photos}>
-                <h3>Photos</h3>
+            <div className={Navmod.friends}>
+                <h3>Followed</h3>
                 <ul>
-                    <li><img src={photo} alt="" /></li>
-                    <li><img src={photo} alt=""/></li>
-                    <li><img src={photo} alt=""/></li>
-                    <li><img src={photo} alt=""/></li>
-                    <li><img src={photo} alt=""/></li>
-                    <li><img src={photo} alt=""/></li>
-                    <li><img src={photo} alt=""/></li>
-                    <li><img src={photo} alt=""/></li>
-                    <li><img src={photo} alt=""/></li>
+                    <li><img src={photo} alt="f"/></li>
+                    <li><img src={photo} alt="f"/></li>
+                    <li><img src={photo} alt="f"/></li>
+                    <li><img src={photo} alt="f"/></li>
                 </ul>
 
             </div>
-
 
 
 

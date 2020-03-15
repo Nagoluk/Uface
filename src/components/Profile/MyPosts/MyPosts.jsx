@@ -10,7 +10,7 @@ const maxSymbol30 = maxSymbols(30);
 
 
 const PostInputForm = props => {
-    debugger;
+
     return (<form className={MyPost.newpost} onSubmit={props.handleSubmit}>
                 <Field 
                 id="post" 

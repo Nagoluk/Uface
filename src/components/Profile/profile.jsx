@@ -2,12 +2,11 @@ import React from 'react';
 import p from "./profile.module.css";
 import MyPostsContainer from "./MyPosts/MyPostsConteiner";
 import ProfileInfo from "./ProfileInfo/profileInfo";
-import Preloader from"../assets/preloader/Preloader"
+import Preloader from"../assets/preloader/Preloader";
 
 
 const Profile = (props) => {
 
-   
     if(props.profile.isFetching) {
         return(<Preloader/>)
     }

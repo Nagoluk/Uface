@@ -1,7 +1,7 @@
 import React from "react"
 import p from "../profile.module.css";
 import Status from "./status/statusHook";
-import profileAvatar from "../../../img/Profile/avatar.jpg";
+import profileAvatar from "../../../img/Profile/avatar.png";
 
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import UsersStlyes from './Users.module.css';
 import {NavLink} from "react-router-dom";
+import Avatar from  "../../img/Profile/avatar.png";
 
 
 
@@ -26,7 +27,7 @@ let Users = (props) => {
                     <div className={UsersStlyes.header}>
                         <div className={UsersStlyes.avatar}>
                             <img
-                                src={(u.photos.small !== null) ? u.photos.small : "http://www.newdesignfile.com/postpic/2014/07/generic-profile-avatar_352864.jpg"}
+                                src={(u.photos.small !== null) ? u.photos.small : Avatar}
                                 alt="avatar"/>
                         </div>
 
