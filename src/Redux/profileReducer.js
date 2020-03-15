@@ -4,6 +4,7 @@ const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";
 const USERS_IS_FETCHING = "USERS_IS_FETCHING ";
+const DELETE_POST = "DELETE_POST";
 
 let initialProfilePage = {
     PostsData: [
@@ -53,6 +54,14 @@ const profileReducer = (state = initialProfilePage, action) =>{
             }
         }
 
+        case DELETE_POST: {
+
+            return {
+                ...state,
+                PostsData: state.PostsData.filter(item => item.id !== action.id)
+            }
+        }
+
 
         default:
             return state;
@@ -62,6 +71,7 @@ const profileReducer = (state = initialProfilePage, action) =>{
 }
 
 export const addNewPostAC = text => ({type: ADD_NEW_POST, text})
+export const deletePostAC = id => ({type: DELETE_POST, id})
 
 export const isFetchingAC = (condition) => {
     return {
