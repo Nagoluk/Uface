@@ -8,9 +8,9 @@ const DELETE_POST = "DELETE_POST";
 
 let initialProfilePage = {
     PostsData: [
-        {id: 1, content: "Cool!", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
+        {id: 1, content: "Hello Uface!", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
         {id: 2, content: "Hi, how are you?", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
-        {id: 3, content: "Hello Uface!", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
+        {id: 3, content: "good game", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
 
     ],
 

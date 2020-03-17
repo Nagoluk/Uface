@@ -53,7 +53,7 @@ const Header = props => {
 
                 <div className={headermod.rightside}>
                     <div className={headermod.input}>
-                        <input type="text" placeholder={"Search here"}/>
+                        <input type="text" placeholder={"Search here"} disabled={true}/>
                         <button><i className="fas fa-search"></i></button>
                     </div>
 

@@ -47,7 +47,7 @@ const MyPosts = (props) => {
                                                                                        likes={currentValue.likes} 
                                                                                        rep={currentValue.rep} 
                                                                                        comm={currentValue.comm} 
-                                                                                       dataSend={currentValue.dataSend}/>)
+                                                                                       dataSend={currentValue.dataSend}/>).reverse()
     return (
         <div className={MyPost.myposts}>
             <div className="postwrap">
