@@ -4,13 +4,17 @@ import User from "./User";
 
 
 let Users = (props) => {
+
+
+
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
-    let portion = 12;
+    let portion = 11;
+    let count = props.pagePagitator;
 
 
-    let [left, shiftL] = useState(1);
-    let [right, shiftR] = useState(portion);
+    let left = count * portion + 1;
+    let right = left + portion - 1;
 
 
     for (let i = 1; i <= pageCount; i++) {
@@ -18,16 +22,13 @@ let Users = (props) => {
     }
 
     let leftShift = () => {
-        left -= portion;
-        right -= portion;
-        shiftL(left);
-        shiftR(right);
+
+        props.setCurrentPagePagitator(--count)
     }
+
     let rightShift = () => {
-        left += portion;
-        right += portion;
-        shiftL(left);
-        shiftR(right);
+
+        props.setCurrentPagePagitator(++count)
     }
 
     pages = pages.filter(item => item >= left && item <= right)

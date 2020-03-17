@@ -7,13 +7,15 @@ const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_FOLLOW_IN_PROCESS = "TOGGLE_FOLLOW_IN_PROCESS";
+const SET_CURRENT_PAGE_PAGITATOR = "SET_CURRENT_PAGE_PAGITATOR";
 
 
 let initialUsers = {
     users: [],
     pageSize: 9,
     totalUsersCount: 16,
-    currentPage: 2,
+    currentPage: 1,
+    currentPagePagitator: 0,
     isFetching: true,
     followProcces: []
 };
@@ -74,6 +76,12 @@ const usersReducer = (state = initialUsers, action) =>{
                 [...state.followProcces, action.usedID] : state.followProcces.filter(id => id !== action.usedID)
             }
 
+        case SET_CURRENT_PAGE_PAGITATOR:
+            return {
+                ...state,
+                currentPagePagitator: action.payload
+            }
+
 
         default:
             return state;
@@ -87,7 +95,8 @@ export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 export const setTotalCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count});
 export const ToggleFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleFollowProcessing = (usedID, isFetchingFollow) => ({type: TOGGLE_FOLLOW_IN_PROCESS, usedID, isFetchingFollow})
+export const toggleFollowProcessing = (usedID, isFetchingFollow) => ({type: TOGGLE_FOLLOW_IN_PROCESS, usedID, isFetchingFollow});
+export const setCurrentPagePagitator =  (payload) => ({type: SET_CURRENT_PAGE_PAGITATOR, payload})
 
 export const setUsersThunkCreator = (currentPage, pageSize) => {
     return (dispatch) => {

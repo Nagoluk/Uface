@@ -10,7 +10,7 @@ import {
     ToggleFetching,
     unfollowThunkCreator,
     toggleFollowProcessing,
-    setUsersThunkCreator
+    setUsersThunkCreator, setCurrentPagePagitator
 } from "../../Redux/usersReducer";
 
 import LoginHoc from "../../hoc/loginHoc";
@@ -22,7 +22,7 @@ import {
     getCurrentPageSelector,
     getIsFetchingSelector,
     getFollowProccesSelector,
-    getIsLoginedSelector
+    getIsLoginedSelector, getPagePagitator
 } from "../../Redux/usersSelectors";
 
 
@@ -48,6 +48,8 @@ class userAPIcomponent extends React.Component {
                    unfollowThunkCreator={this.props.unfollowThunkCreator}
                    followProcces = {this.props.followProcces}
                    toggleFollowProcessing = {this.props.toggleFollowProcessing}
+                   setCurrentPagePagitator = {this.props.setCurrentPagePagitator}
+                   pagePagitator = {this.props.pagePagitator}
                    />}
                 </>
     }
@@ -75,6 +77,7 @@ let mapStateToProps = (state) => {
         isFetching: getIsFetchingSelector(state),
         followProcces: getFollowProccesSelector(state),
         isLogined: getIsLoginedSelector(state),
+        pagePagitator: getPagePagitator(state)
     }
 }
 
@@ -83,7 +86,7 @@ let mapStateToProps = (state) => {
 let Dispatch = {
     followThunkCreator, unfollowThunkCreator, setUsers, setCurrentPage, 
     setTotalCount,ToggleFetching, toggleFollowProcessing,
-    setUsersThunkCreator
+    setUsersThunkCreator, setCurrentPagePagitator
 }
 
 export default compose(
