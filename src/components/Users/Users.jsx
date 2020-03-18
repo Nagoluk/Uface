@@ -5,8 +5,6 @@ import User from "./User";
 
 let Users = (props) => {
 
-
-
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
     let portion = 11;

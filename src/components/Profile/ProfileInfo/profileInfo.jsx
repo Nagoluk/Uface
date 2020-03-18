@@ -6,7 +6,9 @@ import profileAvatar from "../../../img/Profile/avatar.png";
 
 
 const ProfileInfo = (props) => {
-    // debugger;
+        let uploadPhoto = (e) => {
+            props.uploadAvatarThunkCreator((e.target.files[0]));
+        }
 
 
         return (
@@ -19,6 +21,11 @@ const ProfileInfo = (props) => {
 
                     <div >
                         <img src={props.profile.profile.photos.large || profileAvatar} className={p.avatar} alt="Avatar"/>
+                    </div>
+
+                    <div className={p.AvatarControl}>
+                        <label htmlFor="avatar"><i className="fas fa-upload"></i>Upload avatar</label>
+                        <input type="file" id="avatar" className={p.Avatar} onChange={uploadPhoto}/>
                     </div>
 
                     <div className={p.info}>

@@ -21,7 +21,7 @@
 
 .information h2{
   font-size: 28px;
-  padding: 20px 0px 5px 0px;
+  padding: 10px 0px 5px 0px;
   font-weight: normal;
 }
 
@@ -72,5 +72,28 @@
 li .infoItem {
   font-weight: 600;
   color: #2B5278;
+}
+
+.AvatarControl {
+  padding: 10px 0 0 0;
+}
+
+.AvatarControl svg{
+  color: #2B5278;
+  margin-right: 4px;
+}
+
+.AvatarControl label {
+  padding: 5px;
+  cursor: pointer;
+  transition: all ease-in-out .1s;
+}
+
+.AvatarControl label:hover {
+  background: lightgray;
+}
+
+.Avatar{
+  display: none;
 }
 

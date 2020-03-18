@@ -5,12 +5,12 @@ const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";
 const USERS_IS_FETCHING = "USERS_IS_FETCHING ";
 const DELETE_POST = "DELETE_POST";
+const SET_AVATAR_SUCCESS = "SET_AVATAR_SUCCESS";
 
 let initialProfilePage = {
     PostsData: [
         {id: 1, content: "Hello Uface!", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
-        {id: 2, content: "Hi, how are you?", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
-        {id: 3, content: "good game", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
+        {id: 2, content: "Test", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
 
     ],
 
@@ -62,6 +62,13 @@ const profileReducer = (state = initialProfilePage, action) =>{
             }
         }
 
+        case SET_AVATAR_SUCCESS: {
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            }
+        }
+
 
         default:
             return state;
@@ -72,6 +79,7 @@ const profileReducer = (state = initialProfilePage, action) =>{
 
 export const addNewPostAC = text => ({type: ADD_NEW_POST, text})
 export const deletePostAC = id => ({type: DELETE_POST, id})
+export const savePhotoSuccess = (photos) => ({type: SET_AVATAR_SUCCESS, photos})
 
 export const isFetchingAC = (condition) => {
     return {
@@ -124,6 +132,19 @@ export const updateStatusThunkCreator = (status) => {
         })
     }
 }
+
+export const uploadAvatarThunkCreator = (avatar) => {
+    return (dispatch)=>{
+        ProfileAPI.uploadAvatar(avatar).then(response => {
+
+            if(response.resultCode === 0){
+                dispatch(savePhotoSuccess(response.data.photos))
+            }
+
+        })
+    }
+}
+
 
 
 export default profileReducer;

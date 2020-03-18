@@ -1,7 +1,13 @@
 import React from "react";
 import Profile from "./profile";
 import {connect} from "react-redux";
-import {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator} from "../../Redux/profileReducer";
+import {
+    setProfile,
+    getProfileThunkCreator,
+    updateStatusThunkCreator,
+    getStatusThunkCreator,
+    uploadAvatarThunkCreator
+} from "../../Redux/profileReducer";
 import {withRouter} from "react-router-dom";
 
 
@@ -37,7 +43,9 @@ class ProfileContainer extends React.Component{
             status={this.props.status} 
             updateStatusThunkCreator={this.props.updateStatusThunkCreator}
             loginData = {this.props.loginData}
-         
+            uploadAvatarThunkCreator = {this.props.uploadAvatarThunkCreator}
+
+
            />
         );
     }
@@ -54,4 +62,4 @@ let mapStateToProps = (state) => (
 //let isLogined = LoginHoc(ProfileContainer);
 let AddURLdate = withRouter(ProfileContainer);
 
-export default connect (mapStateToProps, {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator})(AddURLdate);
+export default connect (mapStateToProps, {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator, uploadAvatarThunkCreator})(AddURLdate);

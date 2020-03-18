@@ -4,11 +4,9 @@ header {
 }
 
 
-
 a {
     color: #474B59;
 }
-
 
 .headerWrap {
     color: #474B59;
@@ -52,7 +50,6 @@ a {
 }
 
 
-
 .rightside button {
     background: none;
     outline: none;
@@ -91,6 +88,41 @@ a {
     margin-left: 7px;
 }
 
+.input {
+    position: relative;
+}
+
+.Results {
+    position: absolute;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid lightgray;
+    top: 40px;
+    min-width: 250px;
+    border-radius: 5px;
+}
+
+.Results .Item {
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    padding: 8px 0;
+}
+
+.Results .Item>div {
+    margin-left: 10px;
+}
+
+.Results .Item p {
+    font-size: 13px;
+}
+
+
+.Results .Item h3 {
+    padding: 5px 0;
+    margin-left: 0;
+    font-weight: 400;
+    font-size: 20px;
+}
 @media (max-width: 635px) {
 
     .rightside .input {

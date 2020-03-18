@@ -2,6 +2,7 @@ import React from 'react';
 import headermod from "./header.module.css";
 import {NavLink} from "react-router-dom";
 import Navmod from "../Nav/nav.module.css";
+import Avatar from "../../img/Profile/avatar.png"
 
 
 const Header = props => {
@@ -53,9 +54,29 @@ const Header = props => {
 
                 <div className={headermod.rightside}>
                     <div className={headermod.input}>
-                        <input type="text" placeholder={"Search here"} disabled={true}/>
+                        <input type="text" placeholder={"Search here"} className={headermod.Search}/>
+                        <div className={headermod.Results}>
+                            <div className={headermod.Item}>
+                                <img src={Avatar} alt="avatar"/>
+                                <div>
+                                    <h3>Letopisec</h3>
+                                    <p>Status: sdk</p>
+                                </div>
+                            </div>
+
+                            <div className={headermod.Item}>
+                                <img src={Avatar} alt="avatar"/>
+                                <div>
+                                    <h3>Soroka</h3>
+                                    <p>Status: sdk</p>
+                                </div>
+                            </div>
+
+                        </div>
                         <button><i className="fas fa-search"></i></button>
                     </div>
+
+
 
                     <div className={headermod.note}>
                         <i className="fas fa-bell"></i>
