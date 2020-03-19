@@ -14,13 +14,13 @@ const StatusHook = props => {
 
 
     let activateEditMode = () => {
-        if(props.id === props.loginData.id){
+        if(props.amI){
             setEdit(true)
          }
     }
 
     let deactivateEditMode = () => {
-        if(props.id === props.loginData.id){
+        if(props.amI){
             
             setEdit(false)
             props.updateStatusThunkCreator(status)

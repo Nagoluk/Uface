@@ -10,6 +10,8 @@ const ProfileInfo = (props) => {
             props.uploadAvatarThunkCreator((e.target.files[0]));
         }
 
+        let amI = props.profile.profile.userId === props.loginData.id;
+
 
         return (
             <div className={p.profileWrap}>
@@ -23,19 +25,19 @@ const ProfileInfo = (props) => {
                         <img src={props.profile.profile.photos.large || profileAvatar} className={p.avatar} alt="Avatar"/>
                     </div>
 
-                    <div className={p.AvatarControl}>
+                    {amI && <div className={p.AvatarControl}>
                         <label htmlFor="avatar"><i className="fas fa-upload"></i>Upload avatar</label>
                         <input type="file" id="avatar" className={p.Avatar} onChange={uploadPhoto}/>
-                    </div>
+                    </div>}
 
                     <div className={p.info}>
                         <h2>{props.profile.profile.fullName}</h2>
                         <ul>
                             <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>
-                                <Status status={props.status} 
-                                        id={props.profile.profile.userId} 
-                                        updateStatusThunkCreator={props.updateStatusThunkCreator} 
-                                        loginData={props.loginData}/>
+                                <Status status={props.status}
+                                        updateStatusThunkCreator={props.updateStatusThunkCreator}
+                                        amI={amI}
+                                />
                             </li>
                             <li></li>
                             <li></li>
