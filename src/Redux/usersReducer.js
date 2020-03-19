@@ -8,6 +8,7 @@ const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_FOLLOW_IN_PROCESS = "TOGGLE_FOLLOW_IN_PROCESS";
 const SET_CURRENT_PAGE_PAGITATOR = "SET_CURRENT_PAGE_PAGITATOR";
+const SET_FOUNDED_USERS = "SET_FOUNDED_USERS";
 
 
 let initialUsers = {
@@ -17,7 +18,8 @@ let initialUsers = {
     currentPage: 1,
     currentPagePagitator: 0,
     isFetching: true,
-    followProcces: []
+    followProcces: [],
+    foundedUsers: []
 };
 
 const usersReducer = (state = initialUsers, action) =>{
@@ -81,7 +83,12 @@ const usersReducer = (state = initialUsers, action) =>{
                 ...state,
                 currentPagePagitator: action.payload
             }
-
+        case SET_FOUNDED_USERS: {
+            return {
+                ...state,
+                foundedUsers: action.items
+            }
+        }
 
         default:
             return state;
@@ -96,7 +103,8 @@ export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 export const setTotalCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count});
 export const ToggleFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleFollowProcessing = (usedID, isFetchingFollow) => ({type: TOGGLE_FOLLOW_IN_PROCESS, usedID, isFetchingFollow});
-export const setCurrentPagePagitator =  (payload) => ({type: SET_CURRENT_PAGE_PAGITATOR, payload})
+export const setCurrentPagePagitator =  (payload) => ({type: SET_CURRENT_PAGE_PAGITATOR, payload});
+export const setFoundedUsers = (items) => ({type: SET_FOUNDED_USERS, items})
 
 export const setUsersThunkCreator = (currentPage, pageSize) => {
     return (dispatch) => {
@@ -136,6 +144,19 @@ export const unfollowThunkCreator = (userID) => {
       })
     }
 }
+
+
+export const searchingThunkCreator = (text) => {
+    return (dispatch)=> {
+        // dispatch(toggleFollowProcessing(userID, true));
+
+        UsersAPI.Search(text).then(data => {
+
+            if(data.status === 200) dispatch(setFoundedUsers(data.data.items))
+        })
+    }
+}
+
 
 
 

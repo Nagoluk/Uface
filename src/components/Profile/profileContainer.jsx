@@ -13,9 +13,7 @@ import {withRouter} from "react-router-dom";
 
 
 class ProfileContainer extends React.Component{
-    
-    componentDidMount() {
-
+    setProfile = () => {
         let userID = this.props.match.params.userID;
 
         if(!userID){
@@ -29,12 +27,22 @@ class ProfileContainer extends React.Component{
 
         this.props.getProfileThunkCreator(userID);
         this.props.getStatusThunkCreator(userID);
-        
+    }
+    
+    componentDidMount() {
+
+            this.setProfile()
+
 
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if( this.props.match.params.userID !== prevProps.match.params.userID) {
+            this.setProfile()
+        }
+    }
+
     render() {
-        
 
         return (
            <Profile {...this.props} 
@@ -44,7 +52,6 @@ class ProfileContainer extends React.Component{
             updateStatusThunkCreator={this.props.updateStatusThunkCreator}
             loginData = {this.props.loginData}
             uploadAvatarThunkCreator = {this.props.uploadAvatarThunkCreator}
-
 
            />
         );

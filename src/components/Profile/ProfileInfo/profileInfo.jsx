@@ -34,7 +34,7 @@ const ProfileInfo = (props) => {
                         <h2>{props.profile.profile.fullName}</h2>
                         <ul>
                             <li><span className={p.infoItem}>{(props.lang.eng) ? "Status:" : "Статус"} </span>
-                                <Status status={props.status}
+                                <Status status={props.status || props.profile.aboutMe || "No status"}
                                         updateStatusThunkCreator={props.updateStatusThunkCreator}
                                         amI={amI}
                                 />

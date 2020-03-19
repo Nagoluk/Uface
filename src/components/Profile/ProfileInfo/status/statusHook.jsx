@@ -21,7 +21,6 @@ const StatusHook = props => {
 
     let deactivateEditMode = () => {
         if(props.amI){
-            
             setEdit(false)
             props.updateStatusThunkCreator(status)
          }
