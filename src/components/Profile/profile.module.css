@@ -8,11 +8,9 @@
 .avatarWrap {
   height: 130px;
   width: 130px;
-  border-radius: 50%;
   position: absolute;
   top: -110px;
   left: 20px;
-  
 }
 
 .changeAvatarContainer {
@@ -21,23 +19,14 @@
   width: 130px;
   border-radius: 50%;
   overflow: hidden;
-  
   border: 3px solid #fff;
-
 }
-
 
 .avatar{
   height: 130px;
   width: 130px;
   border-radius: 50%;
-  background-position: center top;
-  background-size: cover;
- 
 }
-
-
-
 
 .changeAvatar {
   width: 130px;
@@ -50,13 +39,11 @@
   transition: all .5s ease-in;
   color: #fff;
   cursor: pointer;
-
 }
 
 .changeAvatarContainer:hover .changeAvatar {
   bottom: 0
 }
-
 
 .AvatarControl {
   text-align: center;
@@ -66,7 +53,6 @@
   color: #fff;
   font-size: 22px;
   margin-right: 2px;
-  
 }
 
 .AvatarControl label {
@@ -75,27 +61,10 @@
   transition: all ease-in-out .1s;
 }
 
-
-.Avatar{
-  display: none;
-}
-
-
 .information h2{
   font-size: 28px;
   padding: 10px 0px 5px 0px;
   font-weight: normal;
-}
-
-.info i{
-  color: #2B5278;
-  font-size: 20px;
-  margin-right: 5px;
-}
-
-
-.info ul  {
- 
 }
 
 .info ul li {
@@ -103,18 +72,8 @@
   
 }
 
-.info ul li:first-child{
- 
-
-}
-
 .contacts {
   margin-top: 10px;
-}
-
-.contacts p {
-  text-transform: uppercase;
-  
 }
 
 .contacts ul {
@@ -123,17 +82,20 @@
 
 .contacts ul li {
   padding: 5px;
-  
 }
 
 .contacts ul li svg {
-  /* color: #474B59; */
   background: #2B5278;
   padding: 3px;
-  font-size: 25px;
+  font-size: 28px;
   color: #fff;
   cursor: pointer;
+  transition: all .2s ease-in;
 
+}
+
+.contacts ul li svg:hover {
+  padding: 5px;
 }
 
 
@@ -141,22 +103,14 @@
   background: #2B5278
 
 }
- .photowrap {
+
+.photowrap {
    width: 100%;
    height: 250px;
    border:1px solid lightgray;
    background: url("https://www.everynation.org/wp-content/uploads/2018/02/Monthly-Website-Header-background.jpg") ;
- 
    margin-bottom: 5px;
-
-  
 }
-
- @media (max-width: 635px) {
-   .photowrap {
-     height: 226px;
-   }
- }
 
 .button{
   padding: 5px 15px;
@@ -169,6 +123,16 @@
 li .infoItem {
   font-weight: 600;
   color: #2B5278;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+
+ .description {
+  font-size: 13px;
+  padding: 5px;
+  margin-left: 15px;
+
+  
 }
 
 

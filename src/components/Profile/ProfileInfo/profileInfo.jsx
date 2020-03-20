@@ -5,80 +5,126 @@ import profileAvatar from "../../../img/Profile/avatar.png";
 
 
 
-const ProfileInfo = (props) => {
-        let uploadPhoto = (e) => {
-            props.uploadAvatarThunkCreator((e.target.files[0]));
+const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...props}) => {
+
+    let hasContact = false;
+    let amI = profile.userId === props.loginData.id;
+
+    for(let key in contacts){
+        if(contacts[key] !== null){
+          hasContact = true;
         }
+    }
 
-        let amI = props.profile.profile.userId === props.loginData.id;
+    let uploadPhoto = (e) => {
+        props.uploadAvatarThunkCreator((e.target.files[0]));
+    }
 
+    return (<div className={p.profileWrap}>
+                <div className={p.photowrap} ></div>
 
-        return (
-            <div className={p.profileWrap}>
-               
-             <div className={p.photowrap} ></div>
-                
                 <div className={p.information}>
+                    {amI && <div className={p.avatarWrap}>
+                                <div className={p.changeAvatarContainer}>
+                                    <img src={profile.photos.large || profileAvatar} 
+                                    className={p.avatar}
+                                    alt="Avatar"/>
 
-
-                {amI && <div className={p.avatarWrap}>
-                        <div className={p.changeAvatarContainer}>
-                            <img src={props.profile.profile.photos.large || profileAvatar} className={p.avatar} alt="Avatar"/>
-                            <label  htmlFor="avatar" className={p.changeAvatar}>
-                               <div className={p.AvatarControl}>
+                                    <label  htmlFor="avatar" className={p.changeAvatar}>
+                                        <div className={p.AvatarControl}>
                                             <i className="fas fa-upload"></i>
-                                            <input type="file" id="avatar" className={p.Avatar} onChange={uploadPhoto}/>
+                                            <input type="file" id="avatar" 
+                                            className={p.Avatar} onInput={uploadPhoto}/>
+                                        </div>
+                                    </label>
                                 </div>
-                            </label>
-                        </div>
-                    </div>
-                }
+                            </div>}
 
-                {!amI && <div className={p.avatarWrap} >
-                       
-                    <img src={props.profile.profile.photos.large || profileAvatar} 
-                    className={p.avatar} style={{border: "3px solid #fff"}}
-                    alt="Avatar"/>
-                            
-                </div>
-                }
-
-                    
+                    {!amI && <div className={p.avatarWrap} >
+                        
+                        <img src={profile.photos.large || profileAvatar} 
+                        className={p.avatar} style={{border: "3px solid #fff"}}
+                        alt="Avatar"/>
+                                
+                    </div>}
 
                     <div className={p.info}>
-                        <h2>{props.profile.profile.fullName}</h2>
+                        <h2>{profile.fullName}</h2>
+
                         <ul>
                             <li>
                                 <span className={p.infoItem}>Status: </span>
                                 <Status status={props.status || "No status"}
                                         updateStatusThunkCreator={props.updateStatusThunkCreator}
                                         amI={amI}
-                                />
+                                    />
                             </li>
-                            <li><span className={p.infoItem}>About me: </span> {props.profile.aboutMe || "No about me"}</li>
-                          
+
+                            {profile.aboutMe && <li>
+                                    <span className={p.infoItem}><i class="far fa-address-card"></i></span>
+                                    {profile.aboutMe} 
+                            </li>}
+
+                            {profile.lookingForAJob && <li>
+                                    <span className={p.infoItem}><i className="fas fa-briefcase"></i></span>
+                                    <b>Looking for a job</b>
+
+                                    <p className={p.description}>{profile.lookingForAJobDescription}</p>
+                            </li>}
+                            
                         </ul>
                     </div>
-
-
-                    
-
                 </div>
 
-
-                <div className={p.information + " " + p.contacts}>
+                {hasContact && <div className={p.information + " " + p.contacts}>
                     <ul>
-                        {/* <li><p>Contacts: </p></li> */}
-                        <li><i className="fab fa-facebook"></i></li>
-                        <li><i className="fab fa-internet-explorer"></i></li>
-                        <li><i className="fab fa-vk"></i></li>
-                        <li><i className="fab fa-twitter"></i></li>
-                        <li><i className="fab fa-instagram"></i></li>
-                        <li><i className="fab fa-youtube"></i></li>
-                        <li><i className="fab fa-github"></i></li>
-                        <li><i className="fab fa-linkedin-in"></i></li>
+                        {contacts.facebook && <li>
+                            <a href={contacts.facebook} target="_blank">
+                                <i className="fab fa-facebook"></i>
+                            </a>
+                        </li>}
+
+                        {contacts.website && <li>
+                            <a href={contacts.website} target="_blank" >
+                                <i className="fab fa-internet-explorer"></i>
+                            </a>
+                        </li>}
+
+                        {contacts.vk && <li><a href={contacts.vk} target="_blank" >
+                            <i className="fab fa-vk"></i></a>
+                        </li>}
+
+                        {contacts.twitter && <li>
+                            <a href={contacts.twitter} target="_blank" >
+                                <i className="fab fa-twitter"></i>
+                            </a>
+                        </li>}
+
+                        {contacts.instagram && <li>
+                            <a href={contacts.instagram} target="_blank" >
+                                <i className="fab fa-instagram"></i>
+                            </a>
+                        </li>}
+                            
+                        {contacts.youtube && <li>
+                            <a href={contacts.youtube} target="_blank" >
+                                <i className="fab fa-youtube"></i>
+                            </a>
+                        </li>}
+
+                        {contacts.github && <li>
+                            <a href={contacts.github} target="_blank" >
+                                <i className="fab fa-github"></i>
+                            </a>
+                        </li>}
+
+                        {contacts.mainLink && <li>
+                            <a href={contacts.mainLink} target="_blank" >
+                                <i className="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>}
                     </ul>
-                </div>
+                </div>}
 
             </div>
         );
