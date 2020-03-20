@@ -5,6 +5,27 @@
   border:1px solid lightgray;
 }
 
+.avatarWrap {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  position: absolute;
+  top: -110px;
+  left: 20px;
+  
+}
+
+.changeAvatarContainer {
+  position: relative;
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  
+  border: 3px solid #fff;
+
+}
+
 
 .avatar{
   height: 130px;
@@ -12,12 +33,53 @@
   border-radius: 50%;
   background-position: center top;
   background-size: cover;
-  margin-right: 20px;
-  position: absolute;
-  top: -110px;
-  left: 20px;
-  border: 3px solid #fff;
+ 
 }
+
+
+
+
+.changeAvatar {
+  width: 130px;
+  padding: 3px 0;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  bottom: -50px;
+  z-index: 990;
+  transition: all .5s ease-in;
+  color: #fff;
+  cursor: pointer;
+
+}
+
+.changeAvatarContainer:hover .changeAvatar {
+  bottom: 0
+}
+
+
+.AvatarControl {
+  text-align: center;
+}
+
+.AvatarControl svg{
+  color: #fff;
+  font-size: 22px;
+  margin-right: 2px;
+  
+}
+
+.AvatarControl label {
+  padding: 0 0 10px 0;
+  cursor: pointer;
+  transition: all ease-in-out .1s;
+}
+
+
+.Avatar{
+  display: none;
+}
+
 
 .information h2{
   font-size: 28px;
@@ -33,15 +95,50 @@
 
 
 .info ul  {
-  display: flex;
+ 
 }
 
 .info ul li {
-  padding: 0px 20px;
+  padding: 5px
+  
 }
 
 .info ul li:first-child{
-  padding: 0px 20px 0px 0px;
+ 
+
+}
+
+.contacts {
+  margin-top: 10px;
+}
+
+.contacts p {
+  text-transform: uppercase;
+  
+}
+
+.contacts ul {
+  display: flex;
+}
+
+.contacts ul li {
+  padding: 5px;
+  
+}
+
+.contacts ul li svg {
+  /* color: #474B59; */
+  background: #2B5278;
+  padding: 3px;
+  font-size: 25px;
+  color: #fff;
+  cursor: pointer;
+
+}
+
+
+.contacts ul li svg:hover {
+  background: #2B5278
 
 }
  .photowrap {
@@ -74,26 +171,4 @@ li .infoItem {
   color: #2B5278;
 }
 
-.AvatarControl {
-  padding: 10px 0 0 0;
-}
-
-.AvatarControl svg{
-  color: #2B5278;
-  margin-right: 4px;
-}
-
-.AvatarControl label {
-  padding: 5px;
-  cursor: pointer;
-  transition: all ease-in-out .1s;
-}
-
-.AvatarControl label:hover {
-  background: lightgray;
-}
-
-.Avatar{
-  display: none;
-}
 
