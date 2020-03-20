@@ -15,8 +15,9 @@ let Form = (props) => {
                 <div>
                     <h1>Please sing up</h1>
                 </div>
+
                 <div className={styles.Input}>
-                <label>Enter your email <span>*</span></label>
+                    <label>Enter your email <span>*</span></label>
                     <Field type={"text"} placeholder={"enter login"} component={Input} validate={required} name={"email"}/>
                 </div>
 
@@ -29,7 +30,6 @@ let Form = (props) => {
                     <Field type={"checkbox"} component={"input"} name={"rememberMe"}/> Remember me
                 </div>
 
-               
 
                 {props.captcha && <div className={styles.Captcha}> 
                                         <img src={props.captcha} alt="captcha"/>
@@ -37,7 +37,7 @@ let Form = (props) => {
                                             placeholder={"enter captcha"} 
                                             component={Input} 
                                             name={"captcha"}/>
-                                  </div>}
+                </div>}
 
                 {props.error && <div className={styles.Error}>{props.error}</div>}
 

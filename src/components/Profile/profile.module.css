@@ -67,9 +67,17 @@
   font-weight: normal;
 }
 
-.info ul li {
-  padding: 5px
-  
+
+.about li {
+  padding: 13px 0;
+  border-bottom: 1px solid lightgray;
+}
+.about li:last-child {
+  border-bottom: none;
+}
+
+.about li:first-child {
+  padding-top: 5px;
 }
 
 .contacts {

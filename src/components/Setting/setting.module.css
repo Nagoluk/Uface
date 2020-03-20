@@ -1,6 +1,5 @@
 .wrap {
-    background: #ffffff;
-    padding: 10px 0;
+
 }
 
 .wrap h1 {
@@ -9,14 +8,14 @@
 }
 
 .wrap .item {
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
+    border: 1px solid lightgray;
     padding: 10px;
+    background: #fff;
     margin-bottom: 10px;
 }
 
 .wrap .item h2{
-    font-weight: 400;
+    font-weight: 200;
 
     margin-bottom: 5px;
     font-size: 20px;
