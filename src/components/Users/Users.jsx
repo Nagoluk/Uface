@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import UsersStlyes from './Users.module.css';
 import User from "./User";
 
@@ -7,7 +7,7 @@ let Users = (props) => {
 
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
-    let portion = 11;
+    let portion = 8;
     let count = props.pagePagitator;
 
 

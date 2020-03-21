@@ -13,7 +13,6 @@ import {
     setUsersThunkCreator, setCurrentPagePagitator
 } from "../../Redux/usersReducer";
 
-import LoginHoc from "../../hoc/loginHoc";
 import Preloader from "../assets/preloader/Preloader";
 import {
     getUsersSuperSelector,

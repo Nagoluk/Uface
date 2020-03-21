@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
 import UpdateContacts from "./UpdateProfile/Contacts";
 import {getProfileThunkCreator, putUserDataThunkCreator} from "../../Redux/profileReducer";
-import LoginHoc from "../../hoc/loginHoc";
+
 
 class SettingContainer extends React.Component{
     componentDidMount() {
@@ -45,4 +45,4 @@ let mapStateToProps = (state) => {
 
 
 
-export default LoginHoc(connect(mapStateToProps, {putUserDataThunkCreator, getProfileThunkCreator})(SettingContainer))
+export default connect(mapStateToProps, {putUserDataThunkCreator, getProfileThunkCreator})(SettingContainer)

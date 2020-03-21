@@ -5,12 +5,6 @@ const addNewSymbol = "NEW-SYMBOL-MESSAGE";
 let initialMessage =  {
     dialogsData: [
     {id: 1, name: "Stalin Soroka"},
-    {id: 2, name: "Soroka Soroka"},
-    {id: 3, name: "Putin Soroka"},
-    {id: 4, name: "Love Soroka"},
-    {id: 5, name: "Bla Soroka"},
-    {id: 1, name: "Stalin Soroka "},
-    {id: 2, name: "Soroka Soroka"},
    ],
     messageData: [
     {message: "Пешка навального"},

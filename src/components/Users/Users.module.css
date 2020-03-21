@@ -1,6 +1,3 @@
-.wrap {
-
-}
 
 .settingPanel {
     text-align: center;
@@ -9,16 +6,13 @@
     padding: 5px;
     border: 1px solid lightgray;
 
-
 }
-
 
 .settingPanel button {
     box-sizing: border-box;
     width: 30px;
     height: 30px;
-
-    margin: 5px 2px;
+    margin: 2px;
     color: #fff;
  
     border: none;
@@ -68,15 +62,7 @@ button.navs:disabled {
 
 @media (max-width: 635px) {
     .item{
-        width: 100%;
-
-
-    }
-
-
-    .settingPanel {
-        height: 83px;
-        overflow-x: scroll;
+        width: 45%;
     }
 
     .settingPanel button{

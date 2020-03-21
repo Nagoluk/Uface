@@ -121,7 +121,6 @@ a {
     font-size: 13px;
 }
 
-
 .Results .Item h3 {
     padding: 5px 0;
     margin-left: 0;
@@ -130,9 +129,10 @@ a {
 }
 @media (max-width: 635px) {
 
-    .rightside .input {
+    .hide {
         display: none;
     }
+
     .adaptivemenu{
         width: 100%;
         display: flex;
@@ -150,33 +150,40 @@ a {
         font-size: 1.2em;
     }
 
-    .note{
-        display: none;
+
+    .headerWrap {
+        padding: 5px 10px;
     }
 
     header {
-
-        margin-bottom: 5px;
-    }
-
-
-    .headerWrap {
-        padding: 0px 5px;
+        margin-bottom: 0;
     }
 
 
     .leftside h1 {
         font-weight: lighter;
         font-size: 1.6em;
-
-
-
     }
 
 
     .rightside h3{
         font-weight: 300;
     }
+
+    .headerWrap {
+        flex-direction: column;
+        position: absolute;
+        background: #fff;
+        width: 100%;
+        top: -150px;
+        transition: all .5s ease-in-out;
+        z-index: 9999;
+    }
+
+    .headerWrapShow {
+        top: 0
+    }
+
 
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import UsersContainer from "./components/Users/UsersContainer"
 import Nav from "./components/Nav/nav";
-import Footer from "./components/Footer/footer";
+//import Footer from "./components/Footer/footer";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 //import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/headerContainer";
@@ -40,12 +40,13 @@ class App extends React.Component {
 
                         <React.Suspense fallback={"Hello"}>
                             <Switch>
-                                <Redirect exact from="/" to="/profile"/>
-                                <Route exact path="/dialogs" render={() => <DialogsContainer/>}/>
+
+                                <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                                 <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                                 <Route path="/friends" render={() => <UsersContainer/>}/>
                                 <Route path="/setting" render={() => <SettingContainer/>}/>
                                 <Route path="/login" render={() => <Login/>}/>
+                                <Redirect exact from="/" to="/profile"/>
                                 <Route render={()=> <NotFound/>}/>
                             </Switch>
                         </React.Suspense>

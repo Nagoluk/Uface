@@ -69,7 +69,7 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                             </li>
 
                             {profile.aboutMe && <li>
-                                    <span className={p.infoItem}><i class="far fa-address-card"></i></span>
+                                    <span className={p.infoItem}><i className="far fa-address-card"></i></span>
                                     {profile.aboutMe} 
                             </li>}
 

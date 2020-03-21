@@ -140,7 +140,19 @@ li .infoItem {
   padding: 5px;
   margin-left: 15px;
 
-  
 }
+
+@media (max-width: 635px) {
+  .contacts {
+    margin-top: 2px;
+  }
+
+  .photowrap {
+    height: 215px;
+  }
+
+
+}
+
 
 

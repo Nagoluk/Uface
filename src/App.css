@@ -63,7 +63,7 @@ body{
 }
 
 
-@media (max-width: 860px) {
+@media (max-width: 635px) {
     .main-wrap nav {
         display: none;
     }

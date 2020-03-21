@@ -1,5 +1,4 @@
 import React from 'react';
-import headermod from "../header.module.css";
 import Search from "./Search";
 import {connect} from "react-redux";
 import {searchingThunkCreator} from "../../../Redux/usersReducer";

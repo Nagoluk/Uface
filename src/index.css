@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 105vh;
+  min-height: 105vh;
 
 }
 
@@ -52,5 +52,11 @@ code {
 .swal-button:first-child{
 
   background: lightgray;
+}
+
+@media (max-width: 635px) {
+  body{
+    padding-bottom: 54px;
+  }
 }
 
