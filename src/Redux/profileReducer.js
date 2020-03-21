@@ -71,19 +71,9 @@ const profileReducer = (state = initialProfilePage, action) =>{
             }
         }
 
-        case SET_CONTACTS_SUCCESS: {
-            return {
-                ...state,
-                profile: {...state.profile,
-                            aboutMe: action.payload.aboutMe
-                        }
-            }
-        }
-
 
         default:
             return state;
-
 
     }
 }

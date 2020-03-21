@@ -19,7 +19,8 @@ const Profile = (props) => {
                          uploadAvatarThunkCreator={props.uploadAvatarThunkCreator}
                          status={props.status}
                          loginData={props.loginData}/>
-            <MyPostsContainer store={props.store} profile ={props.profile}  />
+
+            {props.profile.profile.userId === props.loginData.id && <MyPostsContainer store={props.store} profile ={props.profile}  />}
 
         </div>
     );

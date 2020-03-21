@@ -1,29 +1,28 @@
 import React from 'react';
 import Set from './setting.module.css';
 import {connect} from "react-redux";
-import {setEng, setUa} from "../../Redux/settingReducer";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
 import UpdateContacts from "./UpdateProfile/Contacts";
-import {putUserDataThunkCreator} from "../../Redux/profileReducer";
+import {getProfileThunkCreator, putUserDataThunkCreator} from "../../Redux/profileReducer";
+import LoginHoc from "../../hoc/loginHoc";
+
+class SettingContainer extends React.Component{
+    componentDidMount() {
+        if(this.props.profile === null || this.props.profile.id !== this.props.id) {
+            this.props.getProfileThunkCreator(this.props.id);
+        }
+    }
+
+    render() {
+        if(this.props.profile === null) return <h1>f</h1>
+
+        return(<Setting {...this.props}/>)
+    }
+}
 
 
 const Setting = (props) => {
     return (<div className={Set.wrap}>
-                {/*<div className={Set.item}>*/}
-                {/*    <h2>{(props.state.eng) ? "language" : "Мова"}</h2>*/}
-                {/*    <div>*/}
-                {/*        <input type="radio"  id="ua" name="lang" checked={props.state.ua} value="ua" disabled/>*/}
-                {/*        <label htmlFor="ua" >UA</label>*/}
-                {/*    </div>*/}
-                {/*    <div>*/}
-
-                {/*        <input type="radio"  id="eng" name="lang"  checked={props.state.eng} value="eng" disabled/>*/}
-                {/*        <label htmlFor="eng" >ENG</label>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-
-
-
                 <div className={Set.item}>
                     <UpdateProfile profile={props.profile} putUserData={props.putUserDataThunkCreator}/>
                 </div>
@@ -31,8 +30,6 @@ const Setting = (props) => {
                 <div className={Set.item}>
                     <UpdateContacts profile={props.profile} putUserData={props.putUserDataThunkCreator}/>
                 </div>
-
-
         </div>)
 }
 
@@ -40,25 +37,12 @@ const Setting = (props) => {
 let mapStateToProps = (state) => {
     return {
         state: state.SetLang,
-        profile: state.ProfilePage.profile
-    }
-
-}
-
-let mapDispatchToProps = (dispatch) => {
-    return {
-        setUa: ()=>{
-            dispatch(setUa())
-        },
-        setEng: ()=>{
-            dispatch(setEng())
-        },
+        profile: state.ProfilePage.profile,
+        id: state.LoginReducer.id
     }
 
 }
 
 
-let SettingContainer = connect(mapStateToProps, {putUserDataThunkCreator})(Setting)
 
-
-export default SettingContainer
+export default LoginHoc(connect(mapStateToProps, {putUserDataThunkCreator, getProfileThunkCreator})(SettingContainer))

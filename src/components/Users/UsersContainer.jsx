@@ -90,5 +90,4 @@ let Dispatch = {
 }
 
 export default compose(
-    connect(mapStateToProps, Dispatch),
-    LoginHoc)(userAPIcomponent);
+    connect(mapStateToProps, Dispatch))(userAPIcomponent);

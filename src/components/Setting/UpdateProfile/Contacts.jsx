@@ -34,11 +34,13 @@ let ContactsForm = props => {
 ContactsForm = reduxForm({form: "updateContacts"})(ContactsForm)
 
 const UpdateContacts = props =>  {
-    let saveChanges = contacts => {
+    let saveChanges = info => {
         let data = {
             ...props.profile,
-            contacts: contacts
+            contacts: {...props.profile.contacts, ...info}
         }
+
+        console.log(data)
 
         props.putUserData(data)
     }
