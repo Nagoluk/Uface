@@ -6,6 +6,8 @@ const SET_STATUS = "SET_STATUS";
 const USERS_IS_FETCHING = "USERS_IS_FETCHING ";
 const DELETE_POST = "DELETE_POST";
 const SET_AVATAR_SUCCESS = "SET_AVATAR_SUCCESS";
+const SET_CONTACTS_SUCCESS = "SET_AVATAR_SUCCESS";
+const SET_PROFILE_DATA_SUCCESS = "SET_PROFILE_DATA_SUCCESS";
 
 let initialProfilePage = {
     PostsData: [
@@ -66,6 +68,15 @@ const profileReducer = (state = initialProfilePage, action) =>{
             return {
                 ...state,
                 profile: {...state.profile, photos: action.photos}
+            }
+        }
+
+        case SET_CONTACTS_SUCCESS: {
+            return {
+                ...state,
+                profile: {...state.profile,
+                            aboutMe: action.payload.aboutMe
+                        }
             }
         }
 
@@ -144,6 +155,19 @@ export const uploadAvatarThunkCreator = (avatar) => {
         })
     }
 }
+
+export const putUserDataThunkCreator = (data) => {
+    return (dispatch)=>{
+        ProfileAPI.putProfileData(data).then(response => {
+
+            if(response.data.resultCode === 0){
+
+            }
+
+        })
+    }
+}
+
 
 
 

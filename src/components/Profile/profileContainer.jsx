@@ -30,10 +30,7 @@ class ProfileContainer extends React.Component{
     }
     
     componentDidMount() {
-
-            this.setProfile()
-
-
+        this.setProfile()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

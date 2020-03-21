@@ -19,7 +19,6 @@ export let AuthAPI = {
 
     login (email, password, rememberMe, captcha = null){
 
-        debugger;
         if(captcha) return instance.post("auth/login", {email, password, rememberMe, captcha});
 
         return instance.post("auth/login", {email, password, rememberMe});
@@ -50,6 +49,10 @@ export let ProfileAPI = {
 
     getStatus(id){
         return instance.get("profile/status/" + id);
+    },
+
+    putProfileData(data){
+        return instance.put("profile", data)
     },
 
     updateStatus(status){

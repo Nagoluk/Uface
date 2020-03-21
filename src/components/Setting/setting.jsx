@@ -3,39 +3,33 @@ import Set from './setting.module.css';
 import {connect} from "react-redux";
 import {setEng, setUa} from "../../Redux/settingReducer";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
+import UpdateContacts from "./UpdateProfile/Contacts";
+import {putUserDataThunkCreator} from "../../Redux/profileReducer";
 
 
 const Setting = (props) => {
     return (<div className={Set.wrap}>
-                <div className={Set.item}>
-                    <h2><i className="fas fa-language"></i>{(props.state.eng) ? "language" : "Мова"}</h2>
-                    <div>
-                        <input type="radio"  id="ua" name="lang" checked={props.state.ua} value="ua" disabled/>
-                        <label htmlFor="ua" >UA</label>
-                    </div>
-                    <div>
+                {/*<div className={Set.item}>*/}
+                {/*    <h2>{(props.state.eng) ? "language" : "Мова"}</h2>*/}
+                {/*    <div>*/}
+                {/*        <input type="radio"  id="ua" name="lang" checked={props.state.ua} value="ua" disabled/>*/}
+                {/*        <label htmlFor="ua" >UA</label>*/}
+                {/*    </div>*/}
+                {/*    <div>*/}
 
-                        <input type="radio"  id="eng" name="lang"  checked={props.state.eng} value="eng" disabled/>
-                        <label htmlFor="eng" >ENG</label>
-                    </div>
+                {/*        <input type="radio"  id="eng" name="lang"  checked={props.state.eng} value="eng" disabled/>*/}
+                {/*        <label htmlFor="eng" >ENG</label>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+
+
+
+                <div className={Set.item}>
+                    <UpdateProfile profile={props.profile} putUserData={props.putUserDataThunkCreator}/>
                 </div>
 
                 <div className={Set.item}>
-                    <h2><i className="fas fa-envelope"></i>{props.state.eng ? "Get our mail" : "Отримувати наші листи"}</h2>
-                    <div>
-                        <input type="radio" id="ua" name="mail"/>
-                        <label htmlFor="ua">Yes</label>
-
-                    </div>
-                    <div>
-
-                        <input type="radio" id="eng" name="mail" checked/>
-                        <label htmlFor="eng">No</label>
-                    </div>
-                </div>
-
-                <div className={Set.item}>
-                    <UpdateProfile/>
+                    <UpdateContacts profile={props.profile} putUserData={props.putUserDataThunkCreator}/>
                 </div>
 
 
@@ -46,6 +40,7 @@ const Setting = (props) => {
 let mapStateToProps = (state) => {
     return {
         state: state.SetLang,
+        profile: state.ProfilePage.profile
     }
 
 }
@@ -63,7 +58,7 @@ let mapDispatchToProps = (dispatch) => {
 }
 
 
-let SettingContainer = connect(mapStateToProps, mapDispatchToProps)(Setting)
+let SettingContainer = connect(mapStateToProps, {putUserDataThunkCreator})(Setting)
 
 
 export default SettingContainer

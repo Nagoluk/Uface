@@ -20,3 +20,28 @@
     margin-bottom: 5px;
     font-size: 20px;
 }
+.LookingJob {
+    margin-top: 10px;
+}
+
+.LookingJob input {
+    margin-right: 5px;
+}
+
+.Send {
+    padding: 7px 16px;
+    outline: none;
+    border: none;
+    color: #2B5278;
+    border: 1px solid #2B5278;
+    background: none;
+    cursor: pointer;
+    margin-top: 10px;
+
+    transition: all .5s ease-in-out;
+}
+
+.Send:hover {
+    background: #2B5278;
+    color: #fff;
+}

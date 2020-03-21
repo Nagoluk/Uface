@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Set from './../setting.module.css';
 import styles from "../../Login/Login.module.css";
 import {Field, reduxForm} from "redux-form";
@@ -7,34 +7,47 @@ import {required} from "../../../utils/validators/validators";
 
 
 let FormUpdateProfile = props => {
-    return (<form onSubmit={props.handleSubmit} className={Set.Form}>
+    let [isLookingJob, setLookingJob] = useState(false);
 
+    let checkBoxHandler = e => {
+        setLookingJob(e.target.value)
+    }
+
+    return (<form onSubmit={props.handleSubmit} className={Set.Form}>
                 <div className={styles.Input}>
                     <label>About you</label>
-                    <Field type={"text"} placeholder={"enter about you"} component={Input} validate={required} name={"about"}/>
+                    <Field type={"text"} placeholder={"enter about you"} component={Input} validate={required} name={"aboutMe"}/>
                 </div>
 
 
+                <div className={Set.LookingJob}>
+                    <Field type={"checkbox"} component={"input"} name={"lookingForAJob"} onInput={checkBoxHandler}/>lookingForAJob
+                </div>
 
                 <div className={styles.Input}>
-                    <div><Field type={"checkbox"} component={"input"} name={"lookingForAJob"}/>lookingForAJob</div>
-
                     <label>looking For A Job Description</label>
-                    <Field type={"text"} placeholder={"lookingForAJobDescription"} component={Input} validate={required} name={"lookingForAJobDescription\""}/>
+                    <Field type={"text"} placeholder={"looking for a job description"} component={Input} name={"lookingForAJobDescription"} disabled={!isLookingJob}/>
                 </div>
 
-        <button>Send</button>
 
+                <button className={Set.Send}>Send</button>
             </form>)
 }
 let FormUpdate = reduxForm({form: "updateProfile"})(FormUpdateProfile)
 
 const UpdateProfile = props =>  {
-    let saveChanges = props => {
+    let saveChanges = data => {
 
+        let updatedData = {
+            ...props.profile,
+            aboutMe: data.aboutMe,
+            lookingForAJob: data.lookingForAJob,
+            lookingForAJobDescription: data.lookingForAJobDescription
+        }
+        props.putUserData(updatedData)
     }
     return (<>
-                <h2><i className="fas fa-user-edit"></i>Update profile</h2>
+                <h2>Update profile</h2>
                 <FormUpdate onSubmit={saveChanges}/>
             </>)
 }
