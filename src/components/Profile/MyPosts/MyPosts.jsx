@@ -35,8 +35,6 @@ let ReduxFormPostInput = reduxForm({
 
 
 const MyPosts = (props) => {
-    console.log("render")
-   
 
     let addNewPost = (data)=> {
         props.addNewPostAC(data.newPostText)

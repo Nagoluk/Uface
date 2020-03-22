@@ -41,7 +41,7 @@ const DialogWithPerson = (props) => {
 
     }
 
-    let messages = props.mess.messageData.map(d => <Message mail={d.message}/>)
+    let messages = props.mess.messageData.map((d, index) => <Message mail={d.message} key={index}/>)
 
     return (<div className={DialogMod.dialogWithUser}>
                 <div className={DialogMod.dialogHeader}>
