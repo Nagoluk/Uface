@@ -1,22 +1,19 @@
 .dialogList {
     background: #fff;
     border: 1px solid lightgray;
-    width: 84%;
 
 }
-
 
 .dialogListHeader h3{
     font-weight: normal;
     padding: 10px;
-
 }
 
 .dialogListHeader {
     position: relative;
 }
 
-.dialogListHeader>i {
+.dialogListHeader>svg {
     position: absolute;
     right: 10px;
     top: 15px;
@@ -28,28 +25,21 @@
     background: none;
     border: none;
     outline: none;
-
 }
 
-.searchDialog i {
+.searchDialog svg {
     background: none;
     font-size: 13px;
     margin-left: 15px;
-
 }
 
 .contactList {
     overflow-y: scroll;
-
 }
-
-
-
 
 .contactList::-webkit-scrollbar {
     background: #F4F4F4;
     width: 4px;
-
 }
 
 .contactList::-webkit-scrollbar-thumb {
@@ -57,13 +47,9 @@
     border-radius: 3px;
 }
 
-
-
 .contactList li{
     display: flex;
-
 }
-
 
 .dialogs ul li {
     padding: 10px;
@@ -88,9 +74,6 @@
     border-bottom: 1px solid lightgray;
 }
 
-
-
-
 .dialogs button {
     background: none;
     outline: none;
@@ -98,7 +81,6 @@
     position: relative;
     left: -35px;
 }
-
 
 .dialogs ul li .avatar {
     display: inline-block;
@@ -113,7 +95,6 @@
     display: inline-block;
     color: gray;
     padding: 0px 0px 0px 10px;
-
 }
 
 .dates {

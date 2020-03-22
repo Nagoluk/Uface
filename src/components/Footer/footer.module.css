@@ -3,7 +3,6 @@ footer{
   padding: 15px 30px;
   color: #39383A;
   margin-top: 15px;
-
 }
 
 h3{
@@ -11,9 +10,14 @@ h3{
   text-transform: uppercase;
 }
 
-
-.footerwrap{ 
+.footerWrap{
   max-width: 960px;
   margin: 0 auto;
+}
+
+@media (max-width: 635px) {
+  footer{
+    margin-top: 1px;
+  }
 }
 

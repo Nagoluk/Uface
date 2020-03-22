@@ -46,7 +46,7 @@ let Users = (props) => {
 
 
                 <div className={UsersStlyes.itemWrap}>
-                    {props.users.map((user, index) => <User user={user} index={index} {...props}/>)}
+                    {props.users.map((user, index) => <User user={user} key={index}index={index} {...props}/>)}
                 </div>
              </div>)
 

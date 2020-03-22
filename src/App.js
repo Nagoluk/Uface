@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
-import UsersContainer from "./components/Users/UsersContainer"
+import UsersContainer from "./components/Users/UsersContainer";
 import Nav from "./components/Nav/nav";
-//import Footer from "./components/Footer/footer";
+import Footer from "./components/Footer/footer";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
-//import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/headerContainer";
 import ProfileContainer from "./components/Profile/profileContainer";
 import SettingContainer from "./components/Setting/setting";
@@ -14,19 +13,17 @@ import {loginThunkCreator} from "./Redux/loginReducer";
 import {initializeApp} from "./Redux/appReducer";
 import Preloader from './components/assets/preloader/Preloader';
 import NotFound from "./components/404/notFound";
-
-
-const DialogsContainer = React.lazy(()=> import("./components/Dialogs/DialogsContainer"))
+import {compose} from "redux";
+const DialogsContainer = React.lazy(()=> import("./components/Dialogs/DialogsContainer"));
 
 class App extends React.Component {
-
     componentDidMount() {
        this.props.initializeApp()
     }
 
     render() {
         if(!this.props.initialized){
-            return <Preloader></Preloader>
+            return <Preloader/>
         }
 
         return (
@@ -34,13 +31,11 @@ class App extends React.Component {
                 <HeaderContainer/>
 
                 <div className="main-wrap">
-
                     <Nav/>
-                    <main>
 
+                    <main>
                         <React.Suspense fallback={"Hello"}>
                             <Switch>
-
                                 <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                                 <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                                 <Route path="/friends" render={() => <UsersContainer/>}/>
@@ -51,14 +46,17 @@ class App extends React.Component {
                             </Switch>
                         </React.Suspense>
                     </main>
-
                 </div>
 
-                {/*<Footer/>*/}
+                <Footer/>
             </div>);
     }
 }
-const mapStateToProps = (state) => ({initialized: state.app.initialized})
 
-export default withRouter(connect(mapStateToProps, {loginThunkCreator, initializeApp})(App));
+const mapStateToProps = (state) => ({initialized: state.app.initialized});
+
+export default compose(
+                    connect(mapStateToProps, {loginThunkCreator, initializeApp}),
+                    withRouter)(App)
+
 

@@ -34,10 +34,9 @@ const Search = props => {
 
             {searchMode && <div className={headermod.Results}>
                 {!props.results.length && "No results"}
-                {props.results.map(item => <Item
-                    item={item}
+                {props.results.map((item, key) => <Item
+                    item={item} key={key.toString()}
                     hideResults={hideResults}/>)}
-
 
 
             </div>}

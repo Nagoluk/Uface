@@ -11,7 +11,6 @@ li {
 body{
     background: #E7EBF0;
     font-family: Calibri, sans-serif;
-
 }
 
 .main-wrap{
@@ -19,7 +18,8 @@ body{
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
-
+    position: relative;
+    min-height: calc(100vh - 153px ) ;
 }
 
 .main-wrap main {
@@ -27,8 +27,6 @@ body{
     margin: 0 10px;
     flex-basis: 68%;
     min-width: 320px;
-
-
 }
 
 .main-wrap nav {
@@ -36,50 +34,45 @@ body{
     position: relative;
 }
 
-
 .content{
     display: flex;
     justify-content: space-between;
 }
 
 .preloader {
-
     width: 100%;
     height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
-.preloader > div {
-
-}
 .preloader img {
-
     height: 75px;
     width: 75px;
-
 }
 
+@media (max-width: 690px) {
+    .main-wrap main {
+        flex-basis: 63%;
+        min-width: 320px;
+    }
+
+    .main-wrap nav {
+        flex-basis: 35%;
+        position: relative;
+    }
+}
 
 @media (max-width: 635px) {
+
     .main-wrap nav {
         display: none;
     }
 
     .main-wrap main {
-        flex-basis: 80%;
-        margin: 0 auto;
-    }
-}
-
-
-@media (max-width: 635px) {
-
-    .main-wrap main {
         flex-basis: 100%;
-        margin: 0 auto;
+        margin: 0;
     }
 }
 
