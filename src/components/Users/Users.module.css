@@ -27,7 +27,6 @@ button.navs {
     background: #2B5278;
     color: #fff;
     padding: 0 5px;
-    width: 50px;
 
 }
 button.navs:disabled {
@@ -68,16 +67,11 @@ button.navs:disabled {
     .settingPanel button{
         margin-bottom: 5px;
     }
-
-
 }
 
 .item button{
-
     bottom: 10px;
     left: 54px;
-
-
     padding: 5px 14px;
     border-radius: 20px;
     border: 1px solid silver;
@@ -90,11 +84,6 @@ button.navs:disabled {
     position: absolute;
     bottom: 10px;
     left: 0;
-
-
-}
-
-.content {
 }
 
 .name h2{
@@ -123,10 +112,7 @@ button.navs:disabled {
     color: #2B5278;
     font-size: 0.8em;
     color: grey;
-
 }
-
-
 
 button.follower{
     border: 1px solid #2B5278;
@@ -140,5 +126,4 @@ button.follower{
     color: #ffffff;
     padding: 7px 13px;
     border: none;
-
 }

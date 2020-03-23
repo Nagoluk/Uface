@@ -9,7 +9,6 @@ const Header = props => {
 
     let [menu, setMenu] = useState(false);
 
-
     return (
         <header>
             <div className={headermod.headerWrap + " " + (menu ? headermod.headerWrapShow : "")}>
@@ -39,7 +38,7 @@ const Header = props => {
                 </div>
             </div>
 
-            <AdaptiveMenu menuHandler={setMenu} menu={menu}/>
+            <AdaptiveMenu menuHandler={setMenu} menu={menu} isLogined={props.isLogined} logout={props.logout}/>
         </header>
 
 
@@ -48,17 +47,20 @@ const Header = props => {
 
 
 const AdaptiveMenu = props => {
-    let ShowMenu = () => {
 
-        let show = !props.menu;
-        console.log(show)
-        props.menuHandler(show)
-    }
     return (<div className={headermod.adaptivemenu}>
-        <div className={headermod.adaptiveMenu}>
-            <NavLink to='/dialogs/0' activeClassName={Navmod.activeLink}><i
-                className="fas fa-envelope"></i></NavLink>
-        </div>
+        {props.isLogined && <div className={headermod.note + " " + headermod.logout} onClick={() => {
+            props.logout();
+        }}>
+            <i className="fas fa-power-off" title={"logout"}></i>
+        </div>}
+
+        {!props.isLogined && <div className={headermod.note}>
+            <NavLink to="/login">
+                <i className="fas fa-sign-in-alt" title={"logout"}></i>
+            </NavLink>
+        </div>}
+
 
         <div className={headermod.adaptiveMenu}>
             <NavLink to="/setting" activeClassName={Navmod.activeLink}><i
@@ -76,14 +78,15 @@ const AdaptiveMenu = props => {
         </div>
 
         <div className={headermod.adaptiveMenu}>
+            <NavLink to='/dialogs/0' activeClassName={Navmod.activeLink}><i
+                className="fas fa-envelope"></i></NavLink>
+        </div>
+
+
+        <div className={headermod.adaptiveMenu}>
             <NavLink to="/profile" activeClassName={Navmod.activeLink}><i
                 className="fas fa-address-card"></i></NavLink>
         </div>
-
-        <div className={headermod.adaptiveMenu} onClick={ShowMenu}>
-             <i className="fas fa-bars" ></i>
-        </div>
-
     </div>)
 }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import UsersContainer from "./components/Users/UsersContainer";
 import Nav from "./components/Nav/nav";
-import Footer from "./components/Footer/footer";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/headerContainer";
 import ProfileContainer from "./components/Profile/profileContainer";
@@ -47,8 +46,6 @@ class App extends React.Component {
                         </React.Suspense>
                     </main>
                 </div>
-
-                <Footer/>
             </div>);
     }
 }

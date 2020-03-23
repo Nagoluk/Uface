@@ -144,11 +144,13 @@ li .infoItem {
 
 @media (max-width: 635px) {
   .contacts {
-    margin-top: 2px;
+    margin-top: 1px;
   }
 
   .photowrap {
-    height: 215px;
+    height: 200px;
+    border: none;
+    margin-bottom: 2px;
   }
 
 
