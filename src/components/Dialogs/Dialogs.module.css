@@ -115,10 +115,8 @@
         border: none;
         margin: 0;
         position: fixed;
-        height: calc(100% - 55px);
+        height: calc(100% - 99px);
         left: 0;
-        bottom: 52px;
-
     }
 
     .contactList {

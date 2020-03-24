@@ -1,11 +1,12 @@
 import {ProfileAPI} from "../api/api";
-
+import { stopSubmit } from "redux-form";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";
 const USERS_IS_FETCHING = "USERS_IS_FETCHING ";
 const DELETE_POST = "DELETE_POST";
 const SET_AVATAR_SUCCESS = "SET_AVATAR_SUCCESS";
+const UPOAL_PROFILE_INFO_PROCCESS = "UPOAL_PROFILE_INFO_PROCCESS";
 
 
 let initialProfilePage = {
@@ -18,6 +19,7 @@ let initialProfilePage = {
     profile: null,
     status: "",
     isFetching: true,
+    isUploadProfile: false,
 };
 
 const profileReducer = (state = initialProfilePage, action) =>{
@@ -70,6 +72,13 @@ const profileReducer = (state = initialProfilePage, action) =>{
             }
         }
 
+        case UPOAL_PROFILE_INFO_PROCCESS: {
+            return {
+                ...state,
+                isUploadProfile: action.payload
+            }
+        }
+
 
         default:
             return state;
@@ -80,6 +89,7 @@ const profileReducer = (state = initialProfilePage, action) =>{
 export const addNewPostAC = text => ({type: ADD_NEW_POST, text})
 export const deletePostAC = id => ({type: DELETE_POST, id})
 export const savePhotoSuccess = (photos) => ({type: SET_AVATAR_SUCCESS, photos})
+export const isUploadProfileAC = (payload) => ({type: UPOAL_PROFILE_INFO_PROCCESS, payload})
 
 export const isFetchingAC = (condition) => {
     return {
@@ -147,10 +157,15 @@ export const uploadAvatarThunkCreator = (avatar) => {
 
 export const putUserDataThunkCreator = (data) => {
     return (dispatch)=>{
+        dispatch(isUploadProfileAC(true));
         ProfileAPI.putProfileData(data).then(response => {
-
             if(response.data.resultCode === 0){
+                dispatch(isUploadProfileAC(false));
 
+            }else {
+                dispatch(isUploadProfileAC(false));
+                let action = stopSubmit("updateProfile", {_error: response.data.messages.join(" ")})
+                dispatch(action)
             }
 
         })

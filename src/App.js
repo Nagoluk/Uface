@@ -5,7 +5,7 @@ import Nav from "./components/Nav/nav";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/headerContainer";
 import ProfileContainer from "./components/Profile/profileContainer";
-import SettingContainer from "./components/Setting/setting";
+import SettingContainer from "./components/Setting/settingContainer";
 import Login from './components/Login/Login';
 import {connect} from 'react-redux';
 import {loginThunkCreator} from "./Redux/loginReducer";
@@ -38,7 +38,7 @@ class App extends React.Component {
                                 <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                                 <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                                 <Route path="/friends" render={() => <UsersContainer/>}/>
-                                {/*<Route path="/setting" render={() => <SettingContainer/>}/>*/}
+                                <Route path="/setting" render={() => <SettingContainer/>}/>
                                 <Route path="/login" render={() => <Login/>}/>
                                 <Redirect exact from="/" to="/profile"/>
                                 <Route render={()=> <NotFound/>}/>

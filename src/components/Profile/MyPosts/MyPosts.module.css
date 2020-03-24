@@ -19,30 +19,69 @@
   background: #fff;
   margin-top: 10px;
   padding: 10px;
+  border:1px solid lightgray;
+}
+
+
+newpost textarea::-webkit-scrollbar {
+  background: #F4F4F4;
+  width: 4px;
+}
+
+newpost textarea::-webkit-scrollbar-thumb {
+  background: lightgray;
+  border-radius: 3px;
+}
+
+
+.newpost textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  height: auto;
+  overflow-y: none;
+  outline: none;
+  padding: 5px;
+  max-height: 300px;
+}
+
+.send {
+  background: #2B5278;
+  color: #fff;
+}
+
+.send svg {
+  color: #fff;
+  margin-right: 5px;
+}
+
+.send:disabled {
+  background: lightgray;
+}
+
+.createnewpost {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border:1px solid lightgray;
 }
+
+.createnewpost span {
+  font-weight: lighter;
+}
+
+
 
 
 @media (max-width: 635px){
   .newpost{
     margin-top: 1px;
   }
-}
-.newpost input {
-  padding: 0px 0px 0px 5px;
-  width: 80%;
-  background: #fff;
-  border: none;
-  outline: none;
+
+  .newpost textarea {
+    max-height: 50px;
+  }
 }
 
-.send {
-  color: #2B5278;
-  cursor: pointer;
-}
 
 @media (max-width: 635px) {
   .newpost input {

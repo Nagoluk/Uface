@@ -1,10 +1,5 @@
-.wrap {
-
-}
-
 .wrap h1 {
     font-weight: 400;
-
 }
 
 .wrap .item {
@@ -16,16 +11,21 @@
 
 .wrap .item h2{
     font-weight: 200;
-
     margin-bottom: 5px;
     font-size: 20px;
 }
+
 .LookingJob {
     margin-top: 10px;
 }
 
 .LookingJob input {
     margin-right: 5px;
+}
+
+.SubmitComtainer {
+    height: 35px;
+    margin-top: 10px;
 }
 
 .Send {
@@ -36,12 +36,15 @@
     border: 1px solid #2B5278;
     background: none;
     cursor: pointer;
-    margin-top: 10px;
-
     transition: all .5s ease-in-out;
 }
 
 .Send:hover {
     background: #2B5278;
     color: #fff;
+}
+
+.Processing img {
+    height: 30px;
+    width: 30px;
 }
