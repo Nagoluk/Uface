@@ -12,7 +12,6 @@ const UPOAL_PROFILE_INFO_PROCCESS = "UPOAL_PROFILE_INFO_PROCCESS";
 let initialProfilePage = {
     PostsData: [
         {id: 1, content: "Hello Uface!", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
-        {id: 2, content: "Test", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
 
     ],
 
@@ -27,7 +26,6 @@ const profileReducer = (state = initialProfilePage, action) =>{
         case ADD_NEW_POST:
            
             let currentData = new Date().toString().slice(0, 24);
-
 
             let stateCopy = {
                 ...state,

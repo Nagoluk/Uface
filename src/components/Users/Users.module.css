@@ -1,11 +1,9 @@
-
 .settingPanel {
     text-align: center;
     background: #fff;
     margin: 0 5px;
     padding: 5px;
     border: 1px solid lightgray;
-
 }
 
 .settingPanel button {
@@ -14,7 +12,6 @@
     height: 30px;
     margin: 2px;
     color: #fff;
- 
     border: none;
     outline: none;
     background: lightgray;
@@ -27,12 +24,11 @@ button.navs {
     background: #2B5278;
     color: #fff;
     padding: 0 5px;
-
 }
+
 button.navs:disabled {
     background: lightgray;
 }
-
 
 .settingPanel button.active{
     background: #2B5278;
@@ -56,12 +52,22 @@ button.navs:disabled {
     border-radius: 5px;
     text-align: center;
     padding-bottom: 40px;
+}
 
+.item a {
+    text-decoration: none;
 }
 
 @media (max-width: 635px) {
     .item{
-        width: 45%;
+        width: 50%;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .settingPanel {
+        box-sizing: border-box;
+        margin: 0;
     }
 
     .settingPanel button{

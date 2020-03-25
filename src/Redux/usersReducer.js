@@ -11,9 +11,10 @@ const SET_CURRENT_PAGE_PAGITATOR = "SET_CURRENT_PAGE_PAGITATOR";
 const SET_FOUNDED_USERS = "SET_FOUNDED_USERS";
 
 
+
 let initialUsers = {
     users: [],
-    pageSize: 9,
+    pageSize: 6,
     totalUsersCount: 16,
     currentPage: 1,
     currentPagePagitator: 0,
@@ -47,11 +48,13 @@ const usersReducer = (state = initialUsers, action) =>{
                     return u;
                 })
             }
+
         case SET_USERS:
             return {
                 ...state,
                 users: action.users,
             }
+
         case SET_CURRENT_PAGE:
             return  {
                 ...state,
@@ -94,7 +97,6 @@ const usersReducer = (state = initialUsers, action) =>{
             return state;
     }
 }
-
 
 export const follow = (usedID) =>({type: FOLLOW, usedID});
 export const unfollow = (usedID) => ({type: UNFOLLOW, usedID});

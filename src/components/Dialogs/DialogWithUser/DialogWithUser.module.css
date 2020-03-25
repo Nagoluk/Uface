@@ -21,10 +21,10 @@
 .messageItemLogo {
     width: 0;
     height: 0;
-    border: 4px solid transparent; border-right: 4px solid #2B5278; border-bottom: 4px solid #2B5278;
+    border: 4px solid transparent; border-left: 4px solid #2B5278; border-bottom: 4px solid #2B5278;
     position: absolute;
     bottom: 0;
-    left: -3px;
+    right: -3px;
 }
 
 .messages {
@@ -54,6 +54,10 @@
     display: flex;
     justify-content: space-between;
 
+}
+
+.isMy {
+    align-self: flex-end;
 }
 
 .createNewMessage input {
@@ -131,7 +135,7 @@
 
 .createNewMessage textarea {
     flex-grow: 1;
-    padding: 5px 0 0 0;
+    padding: 1px 5px 0px 10px;
     border: none;
     outline: none;
     resize: none;

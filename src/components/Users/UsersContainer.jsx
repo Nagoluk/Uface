@@ -10,7 +10,7 @@ import {
     ToggleFetching,
     unfollowThunkCreator,
     toggleFollowProcessing,
-    setUsersThunkCreator, setCurrentPagePagitator
+    setUsersThunkCreator, setCurrentPagePagitator,
 } from "../../Redux/usersReducer";
 
 import Preloader from "../assets/preloader/Preloader";
@@ -26,8 +26,29 @@ import {
 
 
 class userAPIcomponent extends React.Component {
+
+
     componentDidMount() {
+        this.screenWidth = window.innerWidth;
+        window.addEventListener(`resize`, event => {
+
+            if(event.currentTarget.innerWidth <= 635 && this.screenWidth >= 635){
+                this.screenWidth = event.currentTarget.innerWidth;
+                this.forceUpdate()
+
+            }
+
+            if(event.currentTarget.innerWidth > 635 && this.screenWidth < 635){
+                this.screenWidth = event.currentTarget.innerWidth;
+                this.forceUpdate();
+            }
+
+        }, false);
         this.props.setUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener('resize', ()=> {})
     }
 
     onPageChange = (p) => {
@@ -49,22 +70,12 @@ class userAPIcomponent extends React.Component {
                    toggleFollowProcessing = {this.props.toggleFollowProcessing}
                    setCurrentPagePagitator = {this.props.setCurrentPagePagitator}
                    pagePagitator = {this.props.pagePagitator}
+                   windowsWidth={this.screenWidth}
+                   setPageSize={this.props.setPageSize}
                    />}
                 </>
     }
 }
-
-// let mapStateToProps = (state) => {
-//     return {
-//         users: state.UsersReducer.users,
-//         pageSize: state.UsersReducer.pageSize,
-//         totalUsersCount: state.UsersReducer.totalUsersCount,
-//         currentPage: state.UsersReducer.currentPage,
-//         isFetching: state.UsersReducer.isFetching,
-//         followProcces: state.UsersReducer.followProcces,
-//         isLogined: state.LoginReducer.isLogined,
-//     }
-// }
 
 
 let mapStateToProps = (state) => {

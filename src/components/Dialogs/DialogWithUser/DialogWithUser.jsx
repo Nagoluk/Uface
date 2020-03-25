@@ -9,10 +9,12 @@ import {Input} from "../../common/formControls/FormControls";
 const Message = (props) => {
     let now = new Date().toString().slice(16, 21);
     return (
-        <div className={DialogMod.messageItem}>
-            {props.mail}
-            <span className={DialogMod.data}>{now}</span>
+        <div className={DialogMod.messageItem + " " + DialogMod.isMy} >
             <div className={DialogMod.messageItemLogo}></div>
+            <span className={DialogMod.data}>{now}</span>
+            {props.mail}
+
+
         </div>
     );
 };
@@ -20,8 +22,6 @@ const Message = (props) => {
 
 
 const DialogWithPerson = (props) => {
-
- 
 
     let messages = props.mess.messageData.map((d, index) => <Message mail={d.message} key={index}/>)
 
