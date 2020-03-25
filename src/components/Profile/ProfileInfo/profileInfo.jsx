@@ -1,7 +1,8 @@
-import React from "react"
+import React, {useState} from "react"
 import p from "../profile.module.css";
 import Status from "./status/statusHook";
 import profileAvatar from "../../../img/Profile/avatar.png";
+import Gellery from "../../common/gallery/gallery";
 
 
 
@@ -16,6 +17,8 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
         }
     }
 
+    let [showGallery, setShowGallery] = useState(false)
+
     let normalizeLink = (link) => {
         if(link.match("https://") || link.match("http://")){
 
@@ -29,6 +32,13 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
         props.uploadAvatarThunkCreator((e.target.files[0]));
     }
 
+    let Gallery = () => {
+        if(profile.photos.large || profile.photos.small){
+            setShowGallery(true)
+        }
+    }
+
+
     return (<div className={p.profileWrap}>
                 <div className={p.photowrap} ></div>
 
@@ -37,7 +47,7 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                                 <div className={p.changeAvatarContainer}>
                                     <img src={profile.photos.large || profileAvatar} 
                                     className={p.avatar}
-                                    alt="Avatar"/>
+                                    alt="Avatar" onClick={Gallery}/>
 
                                     <label  htmlFor="avatar" className={p.changeAvatar}>
                                         <div className={p.AvatarControl}>
@@ -52,7 +62,7 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                         
                         <img src={profile.photos.large || profileAvatar} 
                         className={p.avatar} style={{border: "3px solid #fff"}}
-                        alt="Avatar"/>
+                        alt="Avatar" onClick={Gallery}/>
                                 
                     </div>}
 
@@ -133,6 +143,8 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                         </li>}
                     </ul>
                 </div>}
+
+                {showGallery && <Gellery img={profile.photos.large} setShowGallery={setShowGallery} amI={amI} uploadPhoto={uploadPhoto}/>}
 
             </div>
         );

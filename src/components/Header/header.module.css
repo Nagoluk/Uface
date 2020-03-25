@@ -3,7 +3,6 @@ header {
     margin-bottom: 10px;
 }
 
-
 a {
     color: #474B59;
 }
@@ -46,9 +45,7 @@ a {
     outline: none;
     background: #F4F4F4;
     margin: 0 10px;
-
 }
-
 
 .rightside button {
     background: none;
@@ -77,7 +74,6 @@ a {
     text-transform: none;
     display: inline;
     margin-left: 30px;
-
 }
 
 .adaptivemenu{
@@ -146,7 +142,6 @@ a {
     font-size: 20px;
 }
 
-
 @media (max-width: 635px) {
     header {
         margin: 0;
@@ -159,7 +154,6 @@ a {
     .headerWrap {
        display: none;
     }
-
 
     .logout svg {
         color: red;

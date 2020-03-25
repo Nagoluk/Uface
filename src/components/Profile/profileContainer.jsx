@@ -63,7 +63,7 @@ let mapStateToProps = (state) => (
     status: state.ProfilePage.status
 });
 
-//let isLogined = LoginHoc(ProfileContainer);
+
 let AddURLdate = withRouter(ProfileContainer);
 
 export default connect (mapStateToProps, {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator, uploadAvatarThunkCreator})(AddURLdate);

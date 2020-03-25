@@ -1,0 +1,55 @@
+.Wrap {
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    bottom: 0;
+}
+
+.ContentWrapper {
+    position: relative;
+    height: 100%;
+}
+
+.Content {
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Content img {
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    border: 5px solid #fff;
+}
+
+.Header {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Content svg, .Content p {
+    color: #fff;
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.Content p {
+    padding: 5px;
+}
+
+@media (max-width: 635px) {
+    .Content {
+        width: 100%;
+        height: auto;
+    }
+}
