@@ -5,7 +5,7 @@ import Nav from "./components/Nav/nav";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/headerContainer";
 import ProfileContainer from "./components/Profile/profileContainer";
-import SettingContainer from "./components/Setting/settingContainer";
+//import SettingContainer from "./components/Setting/settingContainer";
 import Login from './components/Login/Login';
 import {connect} from 'react-redux';
 import {loginThunkCreator} from "./Redux/loginReducer";
@@ -14,6 +14,7 @@ import Preloader from './components/assets/preloader/Preloader';
 import NotFound from "./components/404/notFound";
 import {compose} from "redux";
 const DialogsContainer = React.lazy(()=> import("./components/Dialogs/DialogsContainer"));
+const SettingContainer = React.lazy(() => import("./components/Setting/settingContainer"));
 
 class App extends React.Component {
     componentDidMount() {
@@ -33,12 +34,12 @@ class App extends React.Component {
                     <Nav/>
 
                     <main>
-                        <React.Suspense fallback={"Hello"}>
+                        <React.Suspense fallback={<Preloader/>}>
                             <Switch>
                                 <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+                                <Route path="/setting" render={() => <SettingContainer/>}/>
                                 <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                                 <Route path="/friends" render={() => <UsersContainer/>}/>
-                                <Route path="/setting" render={() => <SettingContainer/>}/>
                                 <Route path="/login" render={() => <Login/>}/>
                                 <Redirect exact from="/" to="/profile"/>
                                 <Route render={()=> <NotFound/>}/>
