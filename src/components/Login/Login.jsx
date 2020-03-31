@@ -13,7 +13,11 @@ let Form = (props) => {
 
     return (<form className={styles.Form} onSubmit={props.handleSubmit}>
                 <div>
-                    <h1>Please sing up</h1>
+                    <div>
+                        <h1><i className="fas fa-dragon"></i>Uface</h1>
+                        <h2>Please sing up</h2>
+                    </div>
+
                 </div>
 
                 <div className={styles.Input}>
