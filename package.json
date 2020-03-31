@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nagoluk.github.io/ReactSocialNetwork",
+  "homepage": "https://github.com/Nagoluk/ReactSocialNetwork",
   "dependencies": {
     "axios": "^0.19.2",
     "gh-pages": "^2.2.0",

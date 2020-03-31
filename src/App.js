@@ -5,7 +5,6 @@ import Nav from "./components/Nav/nav";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/headerContainer";
 import ProfileContainer from "./components/Profile/profileContainer";
-//import SettingContainer from "./components/Setting/settingContainer";
 import Login from './components/Login/Login';
 import {connect} from 'react-redux';
 import {loginThunkCreator} from "./Redux/loginReducer";

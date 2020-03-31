@@ -13,7 +13,7 @@ const Header = props => {
         <header>
             <div className={headermod.headerWrap + " " + (menu ? headermod.headerWrapShow : "")}>
                 <div className={headermod.leftside}>
-                    <h1><i className="fas fa-dragon"></i>Uface</h1>
+                    <NavLink to="/"><h1><i className="fas fa-dragon"></i>Uface</h1></NavLink>
                 </div>
 
                 <div className={headermod.rightside}>

@@ -16,6 +16,10 @@ a {
     justify-content: space-between;
 }
 
+.leftside a {
+    text-decoration: none;
+}
+
 .leftside h1 {
     font-weight: normal;
     font-size: 1.9em;
