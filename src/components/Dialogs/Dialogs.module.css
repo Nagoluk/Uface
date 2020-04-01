@@ -64,10 +64,19 @@
 }
 
 .dialogList .dialogListFooter {
-    border-top: 1px solid lightgray;
-    padding: 14px 10px;
+    height: 40px;
+    width: 40px;
+    background: #2B5278;
+    color: #fff;
+    border-radius: 50%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.dialogList .dialogListFooter svg{
+    font-size: 20px;
 }
 
 .dialogListHeader {
@@ -127,8 +136,8 @@
     .dialogList .dialogListFooter {
         position: fixed;
         bottom: 52px;
-        width: 100%;
-        background: #fff;
+        right: 10px;
+
     }
 
 }

@@ -30,6 +30,7 @@ class userAPIcomponent extends React.Component {
 
     componentDidMount() {
         this.screenWidth = window.innerWidth;
+        document.title = "Users";
         window.addEventListener(`resize`, event => {
 
             if(event.currentTarget.innerWidth <= 635 && this.screenWidth >= 635){

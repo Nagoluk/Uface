@@ -9,6 +9,7 @@ import Preloader from "../assets/preloader/Preloader";
 
 class SettingContainer extends React.Component{
     componentDidMount() {
+        document.title = "Setting";
         if(this.props.profile === null || this.props.profile.id !== this.props.id) {
             this.props.getProfileThunkCreator(this.props.id);
         }

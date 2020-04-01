@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import photo from "../../img/Profile/avatar.png";
 
 const Nav = () => {
+
     return (
         <nav>
             <div className={Navmod.navigation}>
@@ -21,15 +22,15 @@ const Nav = () => {
                     </NavLink>
 
                     <NavLink to="/news" activeClassName={Navmod.activeLink}>
-                        <li><i className="far fa-newspaper"></i> <span>News</span> </li>
+                        <li><i className="far fa-newspaper"></i> <span>News</span></li>
                     </NavLink>
 
                     <NavLink to="/music" activeClassName={Navmod.activeLink}>
-                        <li><i className="fas fa-headphones-alt"></i> <span>Music</span> </li>
+                        <li><i className="fas fa-headphones-alt"></i> <span>Music</span></li>
                     </NavLink>
 
                     <NavLink to="/setting" activeClassName={Navmod.activeLink}>
-                        <li><i className="fas fa-cogs"></i> <span>Setting</span>  </li>
+                        <li><i className="fas fa-cogs"></i> <span>Setting</span></li>
                     </NavLink>
                 </ul>
             </div>
@@ -54,7 +55,8 @@ const Nav = () => {
                 </ul>
             </div>
         </nav>
-);
+    );
 }
+
 
 export default Nav;

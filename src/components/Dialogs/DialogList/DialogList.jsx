@@ -50,7 +50,6 @@ const DialogList = (props) => {
             </div>
 
             <div className={d.dialogListFooter}>
-                <p>{  "Ввимкнути сповіщення"}</p>
                 <i className="far fa-bell-slash"></i>
             </div>
         </div>

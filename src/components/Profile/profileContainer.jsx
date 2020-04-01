@@ -30,6 +30,7 @@ class ProfileContainer extends React.Component{
     }
     
     componentDidMount() {
+        document.title = "Profile";
         this.setProfile()
     }
 
