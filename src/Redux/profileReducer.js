@@ -24,7 +24,6 @@ let initialProfilePage = {
 const profileReducer = (state = initialProfilePage, action) =>{
     switch(action.type) {
         case ADD_NEW_POST:
-           
             let currentData = new Date().toString().slice(0, 24);
 
             let stateCopy = {

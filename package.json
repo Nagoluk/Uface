@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "https://github.com/Nagoluk/ReactSocialNetwork",
   "dependencies": {
+    "@types/jest": "^25.1.5",
+    "@types/node": "^13.11.0",
+    "@types/react": "^16.9.32",
+    "@types/react-dom": "^16.9.6",
     "axios": "^0.19.2",
     "gh-pages": "^2.2.0",
     "react": "^16.13.1",
@@ -13,10 +17,11 @@
     "react-scripts": "3.0.1",
     "react-textarea-autosize": "^7.1.2",
     "redux": "^4.0.5",
-    "redux-form": "^8.3.1",
+    "redux-form": "^8.3.2",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",

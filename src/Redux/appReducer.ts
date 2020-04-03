@@ -1,36 +1,38 @@
-import { loginThunkCreator } from "./loginReducer";
+import {loginThunkCreator} from "./loginReducer";
+const SET_INITIALIZED: string = "SET_INITIALIZED";
 
-const SET_INITALIZED = "SET_INITALIZED";
 
+export type IntitState = {
+    initialized: boolean
+}
 
-let initState = {
+let initState: IntitState = {
    initialized: false
 }
 
 
-const appReducer = (state = initState, action) => {
-
+const appReducer = (state = initState, action: any): IntitState => {
     switch(action.type){
        
-        case SET_INITALIZED:
+        case SET_INITIALIZED:
             return {
                 ...state,
-                initialized: true
+                initialized: true,
             }
-        
 
         default: return state
         
     }
 }
 
+
 export let setInitializedAC = () => {
-    return {type: SET_INITALIZED}
+    return {type: SET_INITIALIZED}
 }
 
 
 export let initializeApp = () => {
-    return (dispatch) => {
+    return (dispatch: any) => {
         let promise = dispatch(loginThunkCreator());
 
         Promise.all([promise]).then(() => {
@@ -38,7 +40,6 @@ export let initializeApp = () => {
         });
     }
 }
-
 
 
 
