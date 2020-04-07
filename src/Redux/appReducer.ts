@@ -1,7 +1,6 @@
 import {loginThunkCreator} from "./loginReducer";
 const SET_INITIALIZED: string = "SET_INITIALIZED";
 
-
 export type IntitState = {
     initialized: boolean
 }
@@ -13,7 +12,6 @@ let initState: IntitState = {
 
 const appReducer = (state = initState, action: any): IntitState => {
     switch(action.type){
-       
         case SET_INITIALIZED:
             return {
                 ...state,
@@ -24,12 +22,9 @@ const appReducer = (state = initState, action: any): IntitState => {
         
     }
 }
+type SetInitializedACType = {type: typeof SET_INITIALIZED }
 
-
-export let setInitializedAC = () => {
-    return {type: SET_INITIALIZED}
-}
-
+export let setInitializedAC = ():SetInitializedACType => ({type: SET_INITIALIZED})
 
 export let initializeApp = () => {
     return (dispatch: any) => {
@@ -40,7 +35,5 @@ export let initializeApp = () => {
         });
     }
 }
-
-
 
 export default appReducer;

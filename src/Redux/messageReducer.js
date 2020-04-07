@@ -1,11 +1,11 @@
-
 const addNewMessage = "ADD-NEW-MESSAGE";
 const addNewSymbol = "NEW-SYMBOL-MESSAGE";
 
+
 let initialMessage =  {
     dialogsData: [
-    {id: 1, name: "Stalin Soroka"},
-   ],
+        {id: 1, name: "Stalin Soroka"}
+    ],
     messageData: [
     {message: "Пешка навального"},
     {message: "Либераху прорвало"},

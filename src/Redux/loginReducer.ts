@@ -1,19 +1,22 @@
 import {AuthAPI, getSecureCaptcha} from "../api/api";
 import { stopSubmit } from "redux-form";
+
 const SET_USER_LOGIN = "SET_USER_LOGIN";
 const SET_CAPTCHA_URL = "SET_CAPTCHA_URL";
 
 
 let initState = {
-    id: null,
-    email: null,
-    login: null,
-    isLogined: false,
+    id: null as number | null,
+    email: null as string | null,
+    login: null as string | null,
+    isLogined: false as boolean,
     captchaURL: "",
 }
 
+export type InitStateType = typeof initState;
 
-const loginReducer = (state = initState, action) => {
+
+const loginReducer = (state = initState, action: any):InitStateType => {
 
     switch(action.type){
        
@@ -36,16 +39,33 @@ const loginReducer = (state = initState, action) => {
     }
 }
 
-export let setUserLoginAC = (id, login, email, isLogined) => {
+type dataType = {
+    id: number | null
+    login: string | null
+    email: string | null
+    isLogined: boolean
+}
+
+type setUserLoginType = {
+    type: typeof SET_USER_LOGIN,
+    data: dataType
+}
+
+export let setUserLoginAC = (id: number | null, login: string | null, email: string | null, isLogined: boolean):setUserLoginType => {
     return {type: SET_USER_LOGIN, data:{id, login, email, isLogined}}
 }
 
-export let setCaptchaUrlAC = (URL) => ({type: SET_CAPTCHA_URL, URL}) 
+type setCaptchaUrlACType = {
+    type: typeof SET_CAPTCHA_URL,
+    URL: string
+}
+
+export let setCaptchaUrlAC = (URL: string):setCaptchaUrlACType => ({type: SET_CAPTCHA_URL, URL})
 
 
 export let loginThunkCreator = () => {
-    return (dispatch) => {
-        return AuthAPI.getLogin().then(response => {
+    return (dispatch: any) => {
+        return AuthAPI.getLogin().then((response: any) => {
 
             if(response.resultCode === 0){
                 let {id, login, email} = response.data;
@@ -58,22 +78,22 @@ export let loginThunkCreator = () => {
 }
 
 export let getCaptchaThunkCreator = () => {
-    return (dispatch) => {
-        getSecureCaptcha().then(url => {
+    return (dispatch: any) => {
+        getSecureCaptcha().then((url: string) => {
             dispatch(setCaptchaUrlAC(url))
         })
     }
 }
 
 
-export let login = (email, password, rememberMe = false, captcha = null) => {
+export let login = (email: string, password: string, rememberMe: boolean = false, captcha = null) => {
    
 
-    return (dispatch) => {
+    return (dispatch: any) => {
 
-        AuthAPI.login(email, password, rememberMe, captcha).then(response => {
+        AuthAPI.login(email, password, rememberMe, captcha).then((response: any) => {
             if(response.data.resultCode === 0){
-              dispatch(loginThunkCreator(true))
+              dispatch(loginThunkCreator())
             }else if(response.data.resultCode === 10){
             
                 dispatch(getCaptchaThunkCreator());
@@ -92,8 +112,8 @@ export let login = (email, password, rememberMe = false, captcha = null) => {
 }
 
 export let logout = () =>{
-    return (dispatch) => {
-        AuthAPI.logout().then(response => {
+    return (dispatch: any) => {
+        AuthAPI.logout().then((response:any)  => {
             if(response.data.resultCode === 0){
                 dispatch(setUserLoginAC(null, null, null, false))
             }
