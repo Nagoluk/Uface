@@ -51,6 +51,11 @@
     display: flex;
 }
 
+.contactList p {
+    padding: 10px;
+    font-weight: lighter;
+}
+
 .dialogs ul li {
     padding: 10px;
     border-bottom: 4px solid #F4F4F4;

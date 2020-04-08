@@ -3,9 +3,7 @@ const addNewSymbol = "NEW-SYMBOL-MESSAGE";
 
 
 let initialMessage =  {
-    dialogsData: [
-        {id: 1, name: "Stalin Soroka"}
-    ],
+    dialogs: [],
     messageData: [
     {message: "Пешка навального"},
     {message: "Либераху прорвало"},
@@ -15,9 +13,7 @@ let initialMessage =  {
     updateMessageData: "gg",};
 
 const messageReducer = (state = initialMessage, action) => {
-
     switch (action.type) {
-
         case addNewMessage:
 
             return {
@@ -26,7 +22,6 @@ const messageReducer = (state = initialMessage, action) => {
                 updateMessageData: ""
 
             }
-
 
         case addNewSymbol:
             return  {

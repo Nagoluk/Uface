@@ -3,12 +3,13 @@ import d from "../Dialogs.module.css";
 import {NavLink} from "react-router-dom";
 import Avatar from "../../../img/Profile/avatar.png";
 
-const Dialog = (props) => {
-
+const DialogItem = (props) => {
     let path = "/dialogs/" + props.id;
 
     return (<li>
-                <div className={d.avatar}><img src={Avatar} alt={"avatar"}/></div>
+                <div className={d.avatar}>
+                    <img src={Avatar} alt={"avatar"}/>
+                </div>
 
                 <div className={d.dates}>
                     <NavLink to={path}>{props.name}</NavLink>
@@ -18,16 +19,14 @@ const Dialog = (props) => {
                     </div>
                  </div>
              </li>);
-
 }
 
-const DialogList = (props) => {
-
+const Dialogs = (props) => {
     let Length = props.mess.messageData.length - 1;
     let LastMessage = props.mess.messageData[Length].message;
 
-    let dialogsElements = props.mess.dialogsData.map((dialog, key) => {
-        return <Dialog name={dialog.name} key={key} id={dialog.id} LastMessage={LastMessage}/>
+    let dialogsElements = props.mess.dialogs.map((dialog, key) => {
+        return <DialogItem name={dialog.name} key={key} id={dialog.id} LastMessage={LastMessage}/>
     });
 
 
@@ -45,7 +44,7 @@ const DialogList = (props) => {
 
             <div className={d.contactList}>
                 <ul>
-                    {dialogsElements}
+                    {dialogsElements.length ? dialogsElements : <p>Нет сообщений</p>}
                 </ul>
             </div>
 
@@ -57,4 +56,4 @@ const DialogList = (props) => {
 
 }
 
-export default DialogList;
+export default Dialogs;
