@@ -4,8 +4,6 @@ import DialogMod from "./DialogWithUser.module.css";
 import {NavLink} from "react-router-dom";
 import {Input} from "../../common/formControls/FormControls";
 
-
-
 const Message = (props) => {
     let now = new Date().toString().slice(16, 21);
     return (
@@ -13,17 +11,18 @@ const Message = (props) => {
             <div className={DialogMod.messageItemLogo}></div>
             <span className={DialogMod.data}>{now}</span>
             {props.mail}
-
-
         </div>
     );
 };
 
 
+const Dialog = (props) => {
 
-const DialogWithPerson = (props) => {
+    debugger;
 
-    let messages = props.mess.messageData.map((d, index) => <Message mail={d.message} key={index}/>)
+    // let messages = props.mess.messageData.map((d, index) => <Message mail={d.message} key={index}/>)
+
+    let messages;
 
     return (<div className={DialogMod.dialogWithUser}>
                 <div className={DialogMod.dialogHeader}>
@@ -36,7 +35,7 @@ const DialogWithPerson = (props) => {
                     </div>
 
                     <div className={DialogMod.backToDialogList}>
-                        <NavLink to="0">
+                        <NavLink to="/dialogs">
                             <i className="fas fa-chevron-left"></i>
                         </NavLink>
                     </div>
@@ -45,7 +44,6 @@ const DialogWithPerson = (props) => {
 
                 <div className={DialogMod.messages}>
                     {messages}
-                    
                 </div>
 
                 <div className={DialogMod.createNewMessage}>
@@ -54,15 +52,14 @@ const DialogWithPerson = (props) => {
                         <div className={DialogMod.createNewMessageAcivities}>
                             <button className={MyPost.button} disabled><i className="fas fa-photo-video"></i></button>
                             <button className={MyPost.button} disabled><i className="fas fa-headphones-alt"></i></button>
-                            <button className={MyPost.button + " " + MyPost.send}>send <i class="fas fa-mail-bulk"></i></button>
+                            <button className={MyPost.button + " " + MyPost.send}>send <i className="fas fa-mail-bulk"></i></button>
                         </div>
-                    </div>
+                </div>
 
-                
         </div>
     );
 
 
 };
 
-export default DialogWithPerson;
+export default Dialog;

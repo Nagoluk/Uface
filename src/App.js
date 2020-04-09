@@ -12,7 +12,8 @@ import {initializeApp} from "./Redux/appReducer";
 import Preloader from './components/assets/preloader/Preloader';
 import NotFound from "./components/404/notFound";
 import {compose} from "redux";
-const DialogsContainer = React.lazy(()=> import("./components/Dialogs/DialogsContainer"));
+import DialogContainer from "./components/Dialogs/Dialog/DialogContainer";
+const DialogsListContainer = React.lazy(()=> import("./components/Dialogs/DialogList/DialogsListContainer"));
 const SettingContainer = React.lazy(() => import("./components/Setting/settingContainer"));
 
 class App extends React.Component {
@@ -35,7 +36,8 @@ class App extends React.Component {
                     <main>
                         <React.Suspense fallback={<Preloader/>}>
                             <Switch>
-                                <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+                                <Route exact path="/dialogs/:userID" render={() => <DialogContainer/>}/>
+                                <Route path="/dialogs/" render={() => <DialogsListContainer/>}/>
                                 <Route path="/setting" render={() => <SettingContainer/>}/>
                                 <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                                 <Route path="/friends" render={() => <UsersContainer/>}/>

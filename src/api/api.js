@@ -41,6 +41,27 @@ export let UsersAPI = {
     }
 };
 
+export let DialogsAPI = {
+    getDialogs(){
+        return instance.get("dialogs")
+    },
+
+   sendMessage(){
+    return instance.post("dialogs/1079/messages", {body: "test"}).then(response => {
+           debugger
+      })
+    },
+
+    getMessages(UserId){
+        return instance.get(`dialogs/${UserId}/messages`).then(response => {
+            debugger;
+        })
+    }
+}
+
+
+
+
 
 export let ProfileAPI = {
     getProfile(id) {

@@ -24,7 +24,7 @@ const Header = props => {
                     </div>
 
                     <div className={headermod.note + " " + headermod.hide} >
-                        <NavLink to='/dialogs/0' activeClassName={Navmod.activeLink}><i
+                        <NavLink to='/dialogs' activeClassName={Navmod.activeLink}><i
                             className="fas fa-envelope"></i></NavLink>
                     </div>
 

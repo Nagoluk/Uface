@@ -111,6 +111,31 @@
     padding: 0px 0px 0px 10px;
 }
 
+.DialogItem {
+    position: relative;
+
+}
+
+.newMessagesCount {
+    height: 30px;
+    width: 30px;
+    background: lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    font-size: 15px;
+}
+
+.newMessagesCount.active{
+    background: #2B5278;
+}
+
+
+
 .dates {
     display: flex;
     flex-direction: column;
