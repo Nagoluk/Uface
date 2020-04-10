@@ -8,17 +8,37 @@
     flex-basis: 70%;
 }
 
+.dialogHeader h3 {
+    font-weight: normal;
+}
+
 .messageItem {
     font-size: 1em;
     margin: 3px;
-    padding: 4px 50px 8px 10px;
+    padding: 4px 50px 6px 10px;
     border-radius: 5px;
     position: relative;
+    background: #F0F0F0;
+    color: #000;
+    max-width: 45%;
+}
+
+.isMy {
+    align-self: flex-end;
     background: #2B5278;
     color: #fff;
 }
 
-.messageItemLogo {
+.isMy .messageItemLogo {
+    width: 0;
+    height: 0;
+    border: 4px solid transparent; border-left: 4px solid #2B5278; border-bottom: 4px solid #2B5278;
+    position: absolute;
+    bottom: 0;
+    right: -3px;
+}
+
+.isMy .messageItemLogo {
     width: 0;
     height: 0;
     border: 4px solid transparent; border-left: 4px solid #2B5278; border-bottom: 4px solid #2B5278;
@@ -52,11 +72,6 @@
     padding: 12px;
     display: flex;
     justify-content: space-between;
-
-}
-
-.isMy {
-    align-self: flex-end;
 }
 
 .createNewMessage input {
@@ -67,7 +82,6 @@
     outline: none;
     margin-right: 55px;
 }
-
 
 .dialogHeader .Dialogavatar {
     height: 50px;
@@ -102,7 +116,6 @@
     position: absolute;
     top: 25px;
     right: 10px;
-
 }
 
 .backToDialogList a {
@@ -124,7 +137,7 @@
 }
 
 .data {
-    color: #fff;
+    color: darkgray;
     font-size: 10px;
     position: absolute;
     right: 10px;

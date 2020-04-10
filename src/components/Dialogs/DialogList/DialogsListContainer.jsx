@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import Dialogs from "./DialogsList";
 import LoginHoc from "../../../hoc/loginHoc";
 import {compose} from "redux";
-import {setDialogsThunkCreator} from "../../../Redux/messageReducer";
+import {getDialogsThunkCreator} from "../../../Redux/messageReducer";
 
 class DialogsListContainer extends React.Component {
     componentDidMount() {
@@ -25,5 +25,5 @@ let mapStateToProps = (state) =>{
 }
 
 
-export default compose(connect(mapStateToProps, {setDialogsThunkCreator}),
+export default compose(connect(mapStateToProps, {setDialogsThunkCreator: getDialogsThunkCreator}),
                 LoginHoc)(DialogsListContainer);

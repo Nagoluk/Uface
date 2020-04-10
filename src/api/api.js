@@ -53,9 +53,7 @@ export let DialogsAPI = {
     },
 
     getMessages(UserId){
-        return instance.get(`dialogs/${UserId}/messages`).then(response => {
-            debugger;
-        })
+        return instance.get(`dialogs/${UserId}/messages`);
     }
 }
 

@@ -1,58 +1,20 @@
 import {DialogsAPI, UsersAPI} from "../api/api";
-import {setCurrentPage, setTotalCount, setUsers, ToggleFetching} from "./usersReducer";
 
 const addNewMessage = "ADD-NEW-MESSAGE";
 const addNewSymbol = "NEW-SYMBOL-MESSAGE";
-const SET_DIALOGS = "SET_DIALOGS";
-
-let dialogIinit = {
-    id: 0,
-        userName: "Soroka",
-    hasNewMessages: false,
-    lastDialogActivityDate: "2020-04-09T09:35:32.323",
-    lastUserActivityDate: "2020-04-09T09:30:05.843",
-    newMessagesCount: 1,
-    photos: {
-    small: null,
-        large: null
-    }
-}
-
-
-let messagesInit = {
-    items: [
-        {
-            id: "2ef5932b-853f-4995-b131-9e743a1a991f",
-            body: "test",
-            translatedBody: null,
-            addedAt: "2020-04-09T12:08:04.547",
-            senderId: 6108,
-            senderName: "Letopisec",
-            recipientId: 1079,
-            viewed: false
-        },
-        {
-            id: "2c63aaf7-5376-45c5-a7b9-1ccaa9066531",
-            body: "test",
-            translatedBody: null,
-            addedAt: "2020-04-09T12:08:12.473",
-            senderId: 6101,
-            senderName: "Letopisec",
-            recipientId: 1079,
-            viewed: false
-        }
-    ],
-    totalCount: 2,
-    error: null
-}
-
+const GET_DIALOGS = "GET_DIALOGS";
+const GET_MESSAGES = "GET_MESSAGES";
 
 let initialMessage =  {
     dialogs: [
 
      ],
 
-    messages: messagesInit,
+    messages: {
+        items: [],
+        totalCount: 0,
+        error: null,
+    },
     updateMessageData: "gg",};
 
 const messageReducer = (state = initialMessage, action) => {
@@ -73,10 +35,23 @@ const messageReducer = (state = initialMessage, action) => {
             }
 
 
-        case SET_DIALOGS: {
+        case GET_DIALOGS: {
             return {
                 ...state,
-                dialogs: [dialogIinit, ...action.dialogs]
+                dialogs: [...action.dialogs]
+            }
+        }
+
+
+        case GET_MESSAGES: {
+            return {
+                ...state,
+                messages: {
+                    items: [...action.messages.items],
+                    totalCount: action.totalCount,
+                    error: action.error,
+
+                }
             }
         }
 
@@ -86,14 +61,22 @@ const messageReducer = (state = initialMessage, action) => {
 
 }
 
-export const setDialogsAC = (dialogs) => ({type: SET_DIALOGS, dialogs})
+export const getDialogsAC = (dialogs) => ({type: GET_DIALOGS, dialogs})
+export const getMessagesAC = (messages) => ({type: GET_MESSAGES, messages})
 
 
-export const setDialogsThunkCreator = () => {
+export const getDialogsThunkCreator = () => {
     return (dispatch) => {
         DialogsAPI.getDialogs().then(data => {
-            if(data.status === 200) dispatch(setDialogsAC(data.data))
+            if(data.status === 200) dispatch(getDialogsAC(data.data))
+        });
+    }
+}
 
+export const getMessagesThunkCreator = (id) => {
+    return (dispatch) => {
+        DialogsAPI.getMessages(id).then(data => {
+            if(data.status === 200) dispatch(getMessagesAC(data.data))
         });
     }
 }
