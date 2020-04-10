@@ -9,9 +9,9 @@
 }
 
 .messageItem {
-    font-size: 0.9em;
+    font-size: 1em;
     margin: 3px;
-    padding: 4px 50px 4px 10px;
+    padding: 4px 50px 8px 10px;
     border-radius: 5px;
     position: relative;
     background: #2B5278;
@@ -32,9 +32,8 @@
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-start;
-    height:70vh;
+    height:75vh;
     margin-left: 10px;
-    background: url("https://webfon.top/wp-content/uploads/2017/10/tools.png");
     overflow-Y: scroll;
 }
 
@@ -74,8 +73,7 @@
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    background: lightgray;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .dialogHeader .status {
@@ -93,7 +91,11 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid lightgray;
+    font-weight: lighter;
+}
 
+.dialogHeader h3 {
+    font-weight: lighter;
 }
 
 .backToDialogList{

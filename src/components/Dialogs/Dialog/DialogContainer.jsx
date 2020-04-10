@@ -1,6 +1,7 @@
 import React from "react";
 import Dialog from "./Dialog";
 import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
 
 class DialogContainer extends React.Component {
     componentDidMount() {
@@ -12,5 +13,11 @@ class DialogContainer extends React.Component {
     }
 }
 
-export default withRouter(DialogContainer);
+let mapStateToProps = state => {
+    return {
+        messagesData: state.MessagePage.messages
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(DialogContainer));
 

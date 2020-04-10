@@ -2,14 +2,16 @@ import React from 'react';
 import MyPost from "../../Profile/MyPosts/MyPosts.module.css";
 import DialogMod from "./DialogWithUser.module.css";
 import {NavLink} from "react-router-dom";
-import {Input} from "../../common/formControls/FormControls";
+import Avatar from "../../../img/Profile/avatar.png"
+
 
 const Message = (props) => {
-    let now = new Date().toString().slice(16, 21);
+    let data = props.addedAt.slice(11, 19);
+
     return (
         <div className={DialogMod.messageItem + " " + DialogMod.isMy} >
             <div className={DialogMod.messageItemLogo}></div>
-            <span className={DialogMod.data}>{now}</span>
+            <span className={DialogMod.data}>{data}</span>
             {props.mail}
         </div>
     );
@@ -17,17 +19,11 @@ const Message = (props) => {
 
 
 const Dialog = (props) => {
-
-    debugger;
-
-    // let messages = props.mess.messageData.map((d, index) => <Message mail={d.message} key={index}/>)
-
-    let messages;
+    let messages = props.messagesData.items.map((d, index) => <Message mail={d.body} addedAt={d.addedAt}key={index}/>)
 
     return (<div className={DialogMod.dialogWithUser}>
                 <div className={DialogMod.dialogHeader}>
-
-                    <div className={DialogMod.Dialogavatar}></div>
+                    <img src={Avatar} alt="Avatar" className={DialogMod.Dialogavatar}/>
 
                     <div>
                         <h3>Alexandr Soroka</h3>
@@ -47,7 +43,7 @@ const Dialog = (props) => {
                 </div>
 
                 <div className={DialogMod.createNewMessage}>
-                        <textarea name={"newMessage"} placeholder={"Новое сообщение"} component={Input} />
+                        <textarea name={"newMessage"} placeholder={"Новое сообщение"} />
 
                         <div className={DialogMod.createNewMessageAcivities}>
                             <button className={MyPost.button} disabled><i className="fas fa-photo-video"></i></button>
