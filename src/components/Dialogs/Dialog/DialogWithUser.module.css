@@ -8,17 +8,36 @@
     flex-basis: 70%;
 }
 
+.dialogHeader h3 {
+    font-weight: normal;
+}
+
 .messageItem {
     font-size: 0.9em;
     margin: 3px;
     padding: 4px 50px 4px 10px;
     border-radius: 5px;
     position: relative;
+    background: #9c0fbe;
+    color: #000;
+}
+
+.isMy {
+    align-self: flex-end;
     background: #2B5278;
     color: #fff;
 }
 
 .messageItemLogo {
+    width: 0;
+    height: 0;
+    border: 4px solid transparent; border-left: 4px solid #2B5278; border-bottom: 4px solid #2B5278;
+    position: absolute;
+    bottom: 0;
+    right: -3px;
+}
+
+.isMy .messageItemLogo {
     width: 0;
     height: 0;
     border: 4px solid transparent; border-left: 4px solid #2B5278; border-bottom: 4px solid #2B5278;
@@ -34,7 +53,6 @@
     align-items: flex-start;
     height:70vh;
     margin-left: 10px;
-    background: url("https://webfon.top/wp-content/uploads/2017/10/tools.png");
     overflow-Y: scroll;
 }
 
@@ -56,9 +74,7 @@
 
 }
 
-.isMy {
-    align-self: flex-end;
-}
+
 
 .createNewMessage input {
     width: 70%;

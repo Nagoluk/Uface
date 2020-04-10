@@ -7,7 +7,7 @@ const SET_DIALOGS = "SET_DIALOGS";
 
 let dialogIinit = {
     id: 0,
-        userName: "Soroka",
+    userName: "Soroka",
     hasNewMessages: false,
     lastDialogActivityDate: "2020-04-09T09:35:32.323",
     lastUserActivityDate: "2020-04-09T09:30:05.843",
@@ -23,7 +23,7 @@ let messagesInit = {
     items: [
         {
             id: "2ef5932b-853f-4995-b131-9e743a1a991f",
-            body: "test",
+            body: "Soroka gg",
             translatedBody: null,
             addedAt: "2020-04-09T12:08:04.547",
             senderId: 6108,
@@ -33,10 +33,10 @@ let messagesInit = {
         },
         {
             id: "2c63aaf7-5376-45c5-a7b9-1ccaa9066531",
-            body: "test",
+            body: "Сорока привет. Это игорь твой одноклассник",
             translatedBody: null,
             addedAt: "2020-04-09T12:08:12.473",
-            senderId: 6108,
+            senderId: 6109,
             senderName: "Letopisec",
             recipientId: 1079,
             viewed: false
