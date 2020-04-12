@@ -25,11 +25,11 @@ const Dialog = (props) => {
 
     return (<div className={DialogMod.dialogWithUser}>
                 <div className={DialogMod.dialogHeader}>
-                    <img src={Avatar} alt="" className={DialogMod.Dialogavatar}/>
+                    <img src={Avatar || props.userData.photos.small || props.userData.photos.large} alt="avatar" className={DialogMod.Dialogavatar}/>
 
                     <div>
-                        <h3>Alexandr Soroka</h3>
-                        <div className={DialogMod.status}>Online</div>
+                        <h3>{props.userData.userName}</h3>
+                        <div className={DialogMod.status}>Was online: {props.userData.lastUserActivityDate}</div>
                     </div>
 
                     <div className={DialogMod.backToDialogList}>
@@ -50,7 +50,7 @@ const Dialog = (props) => {
                     <div className={DialogMod.createNewMessageAcivities}>
                         <button className={MyPost.button} disabled><i className="fas fa-photo-video"></i></button>
                         <button className={MyPost.button} disabled><i className="fas fa-headphones-alt"></i></button>
-                        <button className={MyPost.button + " " + MyPost.send}>send <i className="fas fa-mail-bulk"></i></button>
+                        <button className={MyPost.button + " " + MyPost.send}>send <i className="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
              </div>);

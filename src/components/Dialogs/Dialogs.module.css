@@ -1,13 +1,8 @@
 .dialogList {
     background: #fff;
     border: 1px solid lightgray;
-
 }
 
-.dialogListHeader h3{
-    font-weight: normal;
-    padding: 10px;
-}
 
 .dialogListHeader {
     position: relative;
@@ -69,8 +64,8 @@
 }
 
 .dialogList .dialogListFooter {
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     background: #2B5278;
     color: #fff;
     border-radius: 50%;
@@ -113,7 +108,6 @@
 
 .DialogItem {
     position: relative;
-
 }
 
 .newMessagesCount {

@@ -4,13 +4,16 @@ import Dialogs from "./DialogsList";
 import LoginHoc from "../../../hoc/loginHoc";
 import {compose} from "redux";
 import {getDialogsThunkCreator} from "../../../Redux/messageReducer";
+import Preloader from "../../assets/preloader/Preloader";
 
 class DialogsListContainer extends React.Component {
     componentDidMount() {
-        this.props.setDialogsThunkCreator()
+        this.props.getDialogsThunkCreator()
     }
 
     render (){
+        if(this.props.messageData.dialogs === null) return <Preloader/>
+
         return <Dialogs {...this.props}/>
     }
 }
@@ -25,5 +28,5 @@ let mapStateToProps = (state) =>{
 }
 
 
-export default compose(connect(mapStateToProps, {setDialogsThunkCreator: getDialogsThunkCreator}),
+export default compose(connect(mapStateToProps, {getDialogsThunkCreator}),
                 LoginHoc)(DialogsListContainer);

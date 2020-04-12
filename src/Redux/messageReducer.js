@@ -4,18 +4,19 @@ const addNewMessage = "ADD-NEW-MESSAGE";
 const addNewSymbol = "NEW-SYMBOL-MESSAGE";
 const GET_DIALOGS = "GET_DIALOGS";
 const GET_MESSAGES = "GET_MESSAGES";
+const IS_DIALOG_FETCHING = "IS_DIALOG_FETCHING";
 
 let initialMessage =  {
-    dialogs: [
-
-     ],
+    dialogs: null,
 
     messages: {
         items: [],
         totalCount: 0,
         error: null,
     },
-    updateMessageData: "gg",};
+    updateMessageData: "gg",
+    isDialogsFetching: false
+};
 
 const messageReducer = (state = initialMessage, action) => {
     switch (action.type) {
@@ -55,19 +56,29 @@ const messageReducer = (state = initialMessage, action) => {
             }
         }
 
+        case IS_DIALOG_FETCHING: {
+            return {
+                ...state,
+                isDialogsFetching: action.payload
+            }
+        }
+
         default:
             return state;
     }
 
 }
 
-export const getDialogsAC = (dialogs) => ({type: GET_DIALOGS, dialogs})
-export const getMessagesAC = (messages) => ({type: GET_MESSAGES, messages})
+export const getDialogsAC = (dialogs) => ({type: GET_DIALOGS, dialogs});
+export const getMessagesAC = (messages) => ({type: GET_MESSAGES, messages});
+export const isDialogsFetchingAC = (payload) => ({type: IS_DIALOG_FETCHING, payload})
 
 
 export const getDialogsThunkCreator = () => {
     return (dispatch) => {
+        dispatch(isDialogsFetchingAC(true))
         DialogsAPI.getDialogs().then(data => {
+            dispatch(isDialogsFetchingAC(false))
             if(data.status === 200) dispatch(getDialogsAC(data.data))
         });
     }

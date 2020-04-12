@@ -2,27 +2,40 @@ import React from "react";
 import Dialog from "./Dialog";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {getMessagesThunkCreator} from "../../../Redux/messageReducer";
+import {getDialogsThunkCreator, getMessagesThunkCreator} from "../../../Redux/messageReducer";
+import Preloader from "../../assets/preloader/Preloader";
 
 class DialogContainer extends React.Component {
+
     componentDidMount() {
-        this.props.getMessagesThunkCreator(this.props.match.params.userID)
+        this.props.getMessagesThunkCreator(this.props.match.params.userID);
+        this.props.getDialogsThunkCreator();
     }
 
     render (){
-        let userData = this.props.dialogs.find(item =>{})
+        if(this.props.isDialogsFetching) return <Preloader/>
 
-        return <Dialog {...this.props}/>
+        let userData;
+        if(this.props.dialogs !== null) {
+            userData = this.props.dialogs.find(item => {
+                return item.id === +this.props.match.params.userID
+            })
+
+                return <Dialog {...this.props} userData={userData}/>
+        }
+
+        return <Preloader/>
     }
 }
 
 let mapStateToProps = state => {
     return {
         messagesData: state.MessagePage.messages,
-        dialogs: state.MessagePage.totalCount,
-        id: state.LoginReducer.id
+        dialogs: state.MessagePage.dialogs,
+        id: state.LoginReducer.id,
+        isDialogsFetching: state.MessagePage.isDialogsFetching
     }
 }
 
-export default connect(mapStateToProps, {getMessagesThunkCreator})(withRouter(DialogContainer));
+export default connect(mapStateToProps, {getMessagesThunkCreator, getDialogsThunkCreator})(withRouter(DialogContainer));
 
