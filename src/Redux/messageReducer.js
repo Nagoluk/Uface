@@ -1,10 +1,11 @@
-import {DialogsAPI, UsersAPI} from "../api/api";
+import {DialogsAPI} from "../api/api";
 
 const addNewMessage = "ADD-NEW-MESSAGE";
 const addNewSymbol = "NEW-SYMBOL-MESSAGE";
 const GET_DIALOGS = "GET_DIALOGS";
 const GET_MESSAGES = "GET_MESSAGES";
 const IS_DIALOG_FETCHING = "IS_DIALOG_FETCHING";
+const ADD_MESSAGE = "ADD_MESSAGE";
 
 let initialMessage =  {
     dialogs: null,
@@ -35,14 +36,12 @@ const messageReducer = (state = initialMessage, action) => {
                 updateMessageData: action.symbol,
             }
 
-
         case GET_DIALOGS: {
             return {
                 ...state,
                 dialogs: [...action.dialogs]
             }
         }
-
 
         case GET_MESSAGES: {
             return {
@@ -51,7 +50,6 @@ const messageReducer = (state = initialMessage, action) => {
                     items: [...action.messages.items],
                     totalCount: action.totalCount,
                     error: action.error,
-
                 }
             }
         }
@@ -63,6 +61,17 @@ const messageReducer = (state = initialMessage, action) => {
             }
         }
 
+        case ADD_MESSAGE: {
+            return {
+                ...state,
+                messages: {
+                    ...state.messages,
+                    items: [...state.messages.items, action.message]
+                }
+
+            }
+        }
+
         default:
             return state;
     }
@@ -71,7 +80,8 @@ const messageReducer = (state = initialMessage, action) => {
 
 export const getDialogsAC = (dialogs) => ({type: GET_DIALOGS, dialogs});
 export const getMessagesAC = (messages) => ({type: GET_MESSAGES, messages});
-export const isDialogsFetchingAC = (payload) => ({type: IS_DIALOG_FETCHING, payload})
+export const isDialogsFetchingAC = (payload) => ({type: IS_DIALOG_FETCHING, payload});
+export const addMessageAC = (message) => ({type: ADD_MESSAGE, message})
 
 
 export const getDialogsThunkCreator = () => {
@@ -91,6 +101,18 @@ export const getMessagesThunkCreator = (id) => {
         });
     }
 }
+
+export const sendMessagesThunkCreator = (id, body) => {
+    return (dispatch) => {
+
+        DialogsAPI.sendMessage(id, body).then(data => {
+            dispatch(addMessageAC(data.data.message))
+        })
+
+
+    }
+}
+
 
 
 export default messageReducer;

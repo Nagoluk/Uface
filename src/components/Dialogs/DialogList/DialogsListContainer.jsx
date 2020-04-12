@@ -1,10 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
-import Dialogs from "./DialogsList";
+import DialogsList from "./DialogsList";
 import LoginHoc from "../../../hoc/loginHoc";
 import {compose} from "redux";
 import {getDialogsThunkCreator} from "../../../Redux/messageReducer";
 import Preloader from "../../assets/preloader/Preloader";
+
 
 class DialogsListContainer extends React.Component {
     componentDidMount() {
@@ -12,9 +13,10 @@ class DialogsListContainer extends React.Component {
     }
 
     render (){
-        if(this.props.messageData.dialogs === null) return <Preloader/>
 
-        return <Dialogs {...this.props}/>
+        if(this.props.dialogs === null) return <Preloader/>
+
+        return <DialogsList {...this.props}/>
     }
 }
 
@@ -22,7 +24,7 @@ class DialogsListContainer extends React.Component {
 let mapStateToProps = (state) =>{
     return {
         isLogined: state.LoginReducer.isLogined,
-        messageData: state.MessagePage,
+        dialogs: state.MessagePage.dialogs,
     }
 
 }

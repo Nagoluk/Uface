@@ -2,7 +2,7 @@ import React from "react";
 import Dialog from "./Dialog";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {getDialogsThunkCreator, getMessagesThunkCreator} from "../../../Redux/messageReducer";
+import {getDialogsThunkCreator, getMessagesThunkCreator, sendMessagesThunkCreator} from "../../../Redux/messageReducer";
 import Preloader from "../../assets/preloader/Preloader";
 
 class DialogContainer extends React.Component {
@@ -21,7 +21,7 @@ class DialogContainer extends React.Component {
                 return item.id === +this.props.match.params.userID
             })
 
-                return <Dialog {...this.props} userData={userData}/>
+                return <Dialog {...this.props} userData={userData} dialogId={+this.props.match.params.userID}/>
         }
 
         return <Preloader/>
@@ -30,12 +30,11 @@ class DialogContainer extends React.Component {
 
 let mapStateToProps = state => {
     return {
-        messagesData: state.MessagePage.messages,
         dialogs: state.MessagePage.dialogs,
         id: state.LoginReducer.id,
         isDialogsFetching: state.MessagePage.isDialogsFetching
     }
 }
 
-export default connect(mapStateToProps, {getMessagesThunkCreator, getDialogsThunkCreator})(withRouter(DialogContainer));
+export default connect(mapStateToProps, {getMessagesThunkCreator, getDialogsThunkCreator, sendMessagesThunkCreator})(withRouter(DialogContainer));
 

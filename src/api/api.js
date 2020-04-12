@@ -46,10 +46,8 @@ export let DialogsAPI = {
         return instance.get("dialogs")
     },
 
-   sendMessage(){
-    return instance.post("dialogs/1079/messages", {body: "test"}).then(response => {
-           debugger
-      })
+   sendMessage(id, body){
+    return instance.post(`dialogs/${id}/messages`, {body: body}).then(response => response.data)
     },
 
     getMessages(UserId){

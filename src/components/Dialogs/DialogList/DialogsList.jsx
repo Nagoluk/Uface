@@ -30,7 +30,7 @@ const DialogItem = (props) => {
 
 const DialogsList = (props) => {
 
-    let dialogsElements = props.messageData.dialogs.map((dialog, key) => {
+    let dialogsElements = props.dialogs.map((dialog, key) => {
         return <DialogItem name={dialog.userName}
                            key={key} id={dialog.id}
                            lastDialogActivityDate={dialog.lastDialogActivityDate}
