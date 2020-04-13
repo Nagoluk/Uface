@@ -12,61 +12,6 @@
     font-weight: normal;
 }
 
-.messageItem {
-    font-size: 1em;
-    margin: 3px;
-    padding: 4px 50px 6px 10px;
-    border-radius: 5px;
-    position: relative;
-    background: #F0F0F0;
-    color: #000;
-    max-width: 45%;
-}
-
-.isMy {
-    align-self: flex-end;
-    background: #2B5278;
-    color: #fff;
-}
-
-.isMy .messageItemLogo {
-    width: 0;
-    height: 0;
-    border: 4px solid transparent; border-left: 4px solid #2B5278; border-bottom: 4px solid #2B5278;
-    position: absolute;
-    bottom: 0;
-    right: -3px;
-}
-
-.isMy .messageItemLogo {
-    width: 0;
-    height: 0;
-    border: 4px solid transparent; border-left: 4px solid #2B5278; border-bottom: 4px solid #2B5278;
-    position: absolute;
-    bottom: 0;
-    right: -3px;
-}
-
-.messages {
-    padding: 10px;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    height:75vh;
-    margin-left: 10px;
-    overflow-Y: scroll;
-}
-
-.messages::-webkit-scrollbar {
-    background: #F4F4F4;
-    width: 4px;
-}
-
-.messages::-webkit-scrollbar-thumb {
-    background: lightgray;
-    border-radius: 3px;
-}
-
 .createNewMessage {
     border-top: 1px solid lightgray;
     padding: 12px;
@@ -136,14 +81,6 @@
     color: grey;
 }
 
-.data {
-    color: darkgray;
-    font-size: 10px;
-    position: absolute;
-    right: 10px;
-    bottom: 3px;
-}
-
 .createNewMessage {
     display: flex;
 }
@@ -155,7 +92,6 @@
     outline: none;
     resize: none;
 }
-
 
 @media (max-width: 635px) {
     .createNewMessage input {
@@ -192,23 +128,10 @@
         font-size: 14px;
     }
 
-    .messages {
-        border-top: 1px solid lightgray;
-        position: fixed;
-        width: 100%;
-        bottom: 95px;
-        left: 0;
-        background: #fff;
-        height: calc(100% - 55px - 44px - 61px);
-        margin: 0;
-
-    }
-
     .backToDialogList {
         position: absolute;
         top: 20px;
         right: 10px;
-
     }
 
     .backToDialogList a {
@@ -223,10 +146,7 @@
 
     }
 
-    .messageItem {
-        font-size: 0.8em;
 
-    }
 
 }
 

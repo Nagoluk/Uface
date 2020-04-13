@@ -78,7 +78,7 @@ const AdaptiveMenu = props => {
         </div>
 
         <div className={headermod.adaptiveMenu}>
-            <NavLink to='/dialogs/0' activeClassName={Navmod.activeLink}><i
+            <NavLink to='/dialogs' activeClassName={Navmod.activeLink}><i
                 className="fas fa-envelope"></i></NavLink>
         </div>
 

@@ -1,15 +1,15 @@
-import DialogMod from "../DialogWithUser.module.css";
 import React from "react";
 import {connect} from "react-redux";
+import MessagesStyle from "./Messages.module.css";
 
 
 const Message = (props) => {
     let now = new Date().toString().slice(16, 21);
 
     return (
-        <div className={DialogMod.messageItem + " " + (props.myId === props.senderId ? DialogMod.isMy : "")} >
-            <div className={DialogMod.messageItemLogo}></div>
-            <span className={DialogMod.data}>{now}</span>
+        <div className={MessagesStyle.messageItem + " " + (props.myId === props.senderId ? MessagesStyle.isMy : "")} >
+            <div className={MessagesStyle.messageItemLogo}></div>
+            <span className={MessagesStyle.data}>{now}</span>
             {props.mail}
         </div>
     );
@@ -24,7 +24,7 @@ class Messages extends React.Component{
                                                                                  myId={this.props.myId}
                                                                                  senderId={messageItem.senderId}/>).reverse()
 
-        return  (<div className={DialogMod.messages}>
+        return  (<div className={MessagesStyle.messages}>
                     {messages}
                 </div>)
 
