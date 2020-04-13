@@ -21,7 +21,6 @@ const Message = (props) => {
     );
 };
 
-
 class Messages extends React.Component{
     render() {
 
@@ -37,7 +36,6 @@ class Messages extends React.Component{
 
     }
 }
-
 
 let mapStateToProps = (state) => {
     return {

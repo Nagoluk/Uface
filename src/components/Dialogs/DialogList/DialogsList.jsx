@@ -1,11 +1,10 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import DialogsStyles from "../Dialogs.module.css";
+import DialogsStyles from "./DialogsList.module.css";
 import Avatar from "../../../img/Profile/avatar.png";
 
 
 const DialogItem = (props) => {
-
     let path = "/dialogs/" + props.id;
 
     return (<li className={DialogsStyles.DialogItem}>

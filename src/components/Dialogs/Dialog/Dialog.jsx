@@ -7,15 +7,12 @@ import Messages from "./Messages/Messages";
 
 
 const Dialog = (props) => {
-
     let [message, setMessageText] = useState("");
-
-
 
 
     return (<div className={DialogMod.dialogWithUser}>
                 <div className={DialogMod.dialogHeader}>
-                    <img src={Avatar || props.userData.photos.small || props.userData.photos.large} alt="avatar" className={DialogMod.Dialogavatar}/>
+                    <img src={Avatar | props.userData.photos.small | props.userData.photos.large} alt="avatar" className={DialogMod.Dialogavatar}/>
 
                     <div>
                         <h3>{props.userData.userName}</h3>
