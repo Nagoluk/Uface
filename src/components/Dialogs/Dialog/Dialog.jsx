@@ -9,8 +9,6 @@ import Messages from "./Messages/Messages";
 const Dialog = (props) => {
     let [message, setMessageText] = useState("");
 
-    debugger;
-
 
     return (<div className={DialogMod.dialogWithUser}>
                 <div className={DialogMod.dialogHeader}>
