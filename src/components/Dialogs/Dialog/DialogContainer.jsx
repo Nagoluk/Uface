@@ -21,7 +21,11 @@ class DialogContainer extends React.Component {
                 return item.id === +this.props.match.params.userID
             })
 
-                return <Dialog {...this.props} userData={userData} dialogId={+this.props.match.params.userID}/>
+                return <Dialog userData={userData}
+                               dialogId={+this.props.match.params.userID}
+                               sendMessagesThunkCreator={this.props.sendMessagesThunkCreator}
+                               id={this.props.id}
+                />
         }
 
         return <Preloader/>
