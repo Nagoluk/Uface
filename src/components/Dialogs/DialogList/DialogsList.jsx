@@ -57,7 +57,7 @@ const DialogsList = (props) => {
                     </ul>
                 </div>
 
-                <div className={DialogsStyles.dialogListFooter}>
+                <div className={DialogsStyles.Notification}>
                     <i className="far fa-bell-slash"></i>
                 </div>
             </div>

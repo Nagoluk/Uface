@@ -62,20 +62,22 @@
     padding-top: 8px;
 }
 
-.dialogList .dialogListFooter {
-    height: 35px;
-    width: 35px;
-    background: #2B5278;
+.Notification {
+    height: 45px;
+    width: 45px;
+    background: lightgrey;
     color: #fff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10px;
+    z-index: 9999;
+
 }
 
-.dialogList .dialogListFooter svg{
-    font-size: 20px;
+.Notification svg{
+    font-size: 23px;
 }
 
 .dialogListHeader {
@@ -151,10 +153,10 @@
 
     .contactList {
         overflow-y: scroll;
-        height: calc(100% - 52px);
+        height: calc(100% - 3px);
     }
 
-    .dialogList .dialogListFooter {
+    .Notification{
         position: fixed;
         bottom: 52px;
         right: 10px;
