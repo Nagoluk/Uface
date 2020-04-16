@@ -44,10 +44,6 @@
     font-weight: lighter;
 }
 
-.dialogHeader h3 {
-    font-weight: lighter;
-}
-
 .backToDialogList{
     position: absolute;
     top: 25px;
