@@ -21,12 +21,22 @@
 .messageItem {
     font-size: 1em;
     margin: 3px;
-    padding: 6px 50px 6px 10px;
+    padding: 6px 6px 6px 10px;
     border-radius: 5px;
     position: relative;
     background: #F0F0F0;
     color: #000;
-    max-width: 45%;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.data {
+    color: darkgray;
+    font-size: 10px;
+    margin-left: 5px;
+    position: relative;
+    top: 5px;
+    float: right;
 }
 
 .isMy {
@@ -53,13 +63,6 @@
     right: -3px;
 }
 
-.data {
-    color: darkgray;
-    font-size: 10px;
-    position: absolute;
-    right: 10px;
-    bottom: 3px;
-}
 
 @media (max-width: 635px) {
 

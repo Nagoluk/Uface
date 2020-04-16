@@ -15,8 +15,8 @@ const Message = (props) => {
     return (
         <div className={MessagesStyle.messageItem + " " + (props.myId === props.senderId ? MessagesStyle.isMy : "")} >
             <div className={MessagesStyle.messageItemLogo}></div>
-            <span className={MessagesStyle.data}>{getCorrectTime(props.addedAt)}</span>
             {props.mail}
+            <span className={MessagesStyle.data}>{getCorrectTime(props.addedAt)}</span>
         </div>
     );
 };

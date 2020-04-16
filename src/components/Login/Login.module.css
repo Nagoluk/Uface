@@ -97,14 +97,13 @@
 @media (max-width: 635px) {
     .Form {
         max-width: 100%;
+        margin: 0;
     }
     .Login {
         background: #fff;
+        height: 92.8vh;
     }
 
-    body {
-        background: #fff;
-    }
 
 
 }
