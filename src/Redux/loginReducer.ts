@@ -115,6 +115,7 @@ export let logout = () =>{
     return (dispatch: any) => {
         AuthAPI.logout().then((response:any)  => {
             if(response.data.resultCode === 0){
+                window.location.reload();
                 dispatch(setUserLoginAC(null, null, null, false))
             }
            
