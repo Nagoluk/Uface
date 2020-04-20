@@ -21,9 +21,9 @@ const DialogItem = (props) => {
                     </div>
                 </div>
 
-                <div className={DialogsStyles.newMessagesCount + " " + (props.newMessagesCount > 0 ? DialogsStyles.active : "")}>
+                 {(props.newMessagesCount > 0) && <div className={DialogsStyles.newMessagesCount + " " + DialogsStyles.active}>
                     {props.newMessagesCount}
-                </div>
+                 </div>}
             </li>);
 }
 
