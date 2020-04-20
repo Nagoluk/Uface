@@ -3,10 +3,13 @@ import p from "../profile.module.css";
 import Status from "./status/statusHook";
 import profileAvatar from "../../../img/Profile/avatar.png";
 import Gellery from "../../common/gallery/gallery";
+import {DialogsAPI} from "../../../api/api";
+import {Redirect} from "react-router-dom";
 
 
 
 const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...props}) => {
+
 
     let hasContact = false;
     let amI = profile.userId === props.loginData.id;
@@ -36,6 +39,10 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
         if(profile.photos.large || profile.photos.small){
             setShowGallery(true)
         }
+    }
+
+    if(props.isRedirectedToDialog){
+        return <Redirect to={"/dialogs/" + profile.userId}/>
     }
 
 
@@ -92,6 +99,8 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                             
                         </ul>
                     </div>
+
+                    {!amI &&  <div className={p.Activity}><button onClick={() => props.startChatingThunkCreator(profile.userId)}><i className="far fa-envelope"></i></button></div>}
                 </div>
 
                 {hasContact && <div className={p.information + " " + p.contacts}>
@@ -145,6 +154,8 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                 </div>}
 
                 {showGallery && <Gellery img={profile.photos.large} setShowGallery={setShowGallery} amI={amI} uploadPhoto={uploadPhoto}/>}
+
+
 
             </div>
         );

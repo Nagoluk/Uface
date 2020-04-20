@@ -9,6 +9,7 @@ import {
     uploadAvatarThunkCreator
 } from "../../Redux/profileReducer";
 import {withRouter} from "react-router-dom";
+import {setRedirectedToDialog, startChatingThunkCreator} from "../../Redux/messageReducer";
 
 
 
@@ -40,6 +41,10 @@ class ProfileContainer extends React.Component{
         }
     }
 
+    componentWillUnmount() {
+        this.props.setRedirectedToDialog(false);
+    }
+
     render() {
 
         return (
@@ -50,6 +55,8 @@ class ProfileContainer extends React.Component{
             updateStatusThunkCreator={this.props.updateStatusThunkCreator}
             loginData = {this.props.loginData}
             uploadAvatarThunkCreator = {this.props.uploadAvatarThunkCreator}
+             startChatingThunkCreator = {this.props.startChatingThunkCreator}
+                    isRedirectedToDialog = {this.props.isRedirectedToDialog}
 
            />
         );
@@ -61,10 +68,17 @@ let mapStateToProps = (state) => (
     setLang: state.SetLang,
     loginData: state.LoginReducer,
     isLogined: state.LoginReducer.isLogined,
-    status: state.ProfilePage.status
+    status: state.ProfilePage.status,
+    isRedirectedToDialog: state.MessagePage.isRedirectedToDialog
 });
 
 
 let AddURLdate = withRouter(ProfileContainer);
 
-export default connect (mapStateToProps, {setProfile, getProfileThunkCreator, updateStatusThunkCreator, getStatusThunkCreator, uploadAvatarThunkCreator})(AddURLdate);
+export default connect (mapStateToProps, {setProfile,
+                                            getProfileThunkCreator,
+                                            updateStatusThunkCreator,
+                                            getStatusThunkCreator,
+                                            uploadAvatarThunkCreator,
+                                            startChatingThunkCreator,
+                                            setRedirectedToDialog})(AddURLdate);

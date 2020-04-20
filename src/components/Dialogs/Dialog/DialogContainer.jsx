@@ -12,7 +12,12 @@ class DialogContainer extends React.Component {
         this.props.getDialogsThunkCreator();
     }
 
+    componentWillUnmount() {
+
+    }
+
     render (){
+
         if(this.props.isDialogsFetching) return <Preloader/>
 
         let userData;
@@ -20,6 +25,8 @@ class DialogContainer extends React.Component {
             userData = this.props.dialogs.find(item => {
                 return item.id === +this.props.match.params.userID
             })
+
+            if(userData === undefined) return <Preloader/>
 
                 return <Dialog userData={userData}
                                dialogId={+this.props.match.params.userID}

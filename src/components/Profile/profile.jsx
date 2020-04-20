@@ -18,7 +18,10 @@ const Profile = (props) => {
                          updateStatusThunkCreator={props.updateStatusThunkCreator}
                          uploadAvatarThunkCreator={props.uploadAvatarThunkCreator}
                          status={props.status}
-                         loginData={props.loginData}/>
+                         loginData={props.loginData}
+                         startChatingThunkCreator={props.startChatingThunkCreator}
+                         isRedirectedToDialog={props.isRedirectedToDialog}
+            />
 
             {props.profile.profile.userId === props.loginData.id && <MyPostsContainer store={props.store} profile ={props.profile}  />}
 

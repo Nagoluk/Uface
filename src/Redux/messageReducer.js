@@ -1,4 +1,5 @@
 import {DialogsAPI} from "../api/api";
+import {setInitializedAC} from "./appReducer";
 
 const addNewMessage = "ADD-NEW-MESSAGE";
 const addNewSymbol = "NEW-SYMBOL-MESSAGE";
@@ -6,6 +7,7 @@ const GET_DIALOGS = "GET_DIALOGS";
 const GET_MESSAGES = "GET_MESSAGES";
 const IS_DIALOG_FETCHING = "IS_DIALOG_FETCHING";
 const ADD_MESSAGE = "ADD_MESSAGE";
+const SET_IS_REDIRECTED_TO_DIALOG = "SET_IS_REDIRECTED_TO_DIALOG"
 
 let initialMessage =  {
     dialogs: null,
@@ -16,7 +18,8 @@ let initialMessage =  {
         error: null,
     },
     updateMessageData: "gg",
-    isDialogsFetching: false
+    isDialogsFetching: false,
+    isRedirectedToDialog: false,
 };
 
 const messageReducer = (state = initialMessage, action) => {
@@ -71,7 +74,12 @@ const messageReducer = (state = initialMessage, action) => {
 
             }
         }
-
+        case SET_IS_REDIRECTED_TO_DIALOG: {
+            return {
+                ...state,
+                isRedirectedToDialog: action.payload
+            }
+        }
         default:
             return state;
     }
@@ -81,7 +89,8 @@ const messageReducer = (state = initialMessage, action) => {
 export const getDialogsAC = (dialogs) => ({type: GET_DIALOGS, dialogs});
 export const getMessagesAC = (messages) => ({type: GET_MESSAGES, messages});
 export const isDialogsFetchingAC = (payload) => ({type: IS_DIALOG_FETCHING, payload});
-export const addMessageAC = (message) => ({type: ADD_MESSAGE, message})
+export const addMessageAC = (message) => ({type: ADD_MESSAGE, message});
+export const setRedirectedToDialog = (payload) => ({type: SET_IS_REDIRECTED_TO_DIALOG, payload})
 
 
 export const getDialogsThunkCreator = () => {
@@ -109,9 +118,19 @@ export const sendMessagesThunkCreator = (id, body) => {
             dispatch(addMessageAC(data.data.message))
         })
 
-
     }
 }
+
+export const startChatingThunkCreator = (id) => {
+    return (dispatch) => {
+        DialogsAPI.startChating(id).then(data => {
+            DialogsAPI.getDialogs().then(data => {
+               dispatch(setRedirectedToDialog(true));
+            })
+        })
+    }
+}
+
 
 
 

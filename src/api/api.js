@@ -46,6 +46,10 @@ export let DialogsAPI = {
         return instance.get("dialogs")
     },
 
+    startChating(id) {
+        return instance.put(`dialogs/${id}`)
+    },
+
    sendMessage(id, body){
     return instance.post(`dialogs/${id}/messages`, {body: body}).then(response => response.data)
     },
@@ -54,8 +58,6 @@ export let DialogsAPI = {
         return instance.get(`dialogs/${UserId}/messages`);
     }
 }
-
-
 
 
 

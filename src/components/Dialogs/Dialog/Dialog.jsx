@@ -9,7 +9,6 @@ import Messages from "./Messages/Messages";
 const Dialog = (props) => {
     let [message, setMessageText] = useState("");
 
-
     return (<div className={DialogMod.dialogWithUser}>
                 <div className={DialogMod.dialogHeader}>
                     <img src={props.userData.photos.small || props.userData.photos.large || Avatar} alt="avatar" className={DialogMod.Dialogavatar}/>
