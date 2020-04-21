@@ -8,13 +8,12 @@ const Post = (props) => {
     return (
         <div className={post.item}>
             <div className={post.postHeder}>
-                <img
-                    src={Avatar}
-                  alt="avatar"/>
-                    <div>
-                        <h2>Letopisec</h2>
-                        <div className={post.date}>{props.dataSend}</div>
-                    </div>
+                <img src={props.photos.small || props.photos.large || Avatar } alt="avatar"/>
+
+                <div>
+                    <h2>{props.name}</h2>
+                    <div className={post.date}>{props.dataSend}</div>
+                </div>
 
                 <div className={post.postSetting}>
                     <i className="fas fa-ellipsis-h"></i>
@@ -24,7 +23,6 @@ const Post = (props) => {
             <div className={post.content}>
                 {props.message}
             </div>
-
 
             <div className={post.activity}>
                 <div className={post.likes}><i className="far fa-thumbs-up"></i> {props.likes}</div>

@@ -33,7 +33,7 @@ class Messages extends React.Component{
 
 
     render() {
-         this.timer = setTimeout(this.getNewMessages.bind(this), 5000)
+        this.timer = setTimeout(this.getNewMessages.bind(this), 5000)
         let messages = this.props.messagesData.items.map(messageItem => <Message mail={messageItem.body}
                                                                                  key={messageItem.id}
                                                                                  addedAt={messageItem.addedAt}

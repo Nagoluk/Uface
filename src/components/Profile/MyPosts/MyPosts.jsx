@@ -35,8 +35,11 @@ const MyPosts = (props) => {
                                                                                        message={currentValue.content} 
                                                                                        likes={currentValue.likes} 
                                                                                        rep={currentValue.rep} 
-                                                                             comm={currentValue.comm} 
-                                                                                       dataSend={currentValue.dataSend}/>).reverse()
+                                                                                       comm={currentValue.comm}
+                                                                                       dataSend={currentValue.dataSend}
+                                                                                       name={props.ProfilePage.profile.fullName}
+                                                                                       photos={props.ProfilePage.profile.photos}
+                                                                                    />).reverse()
     return (
         <div className={MyPost.myposts}>
             <div className="postwrap">

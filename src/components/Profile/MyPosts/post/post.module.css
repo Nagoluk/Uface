@@ -1,12 +1,9 @@
-
 .item {
   border:1px solid lightgray;
   padding: 20px;
   background: #fff;
   margin: 10px 0 10px 0;
 }
-
-
 
 .postHeder {
   border-bottom: 1px solid lightgray;
@@ -22,12 +19,11 @@
   top: 0;
 }
 
-
 .postHeder img{
   width: 50px;
   border-radius: 50%;
   margin-bottom: 10px;
-  border: 2px solid lightgray;
+  border: 1px solid lightgray;
 }
 
 .postHeder h2 {
@@ -61,8 +57,6 @@
 .activity .likes i, .activity .likes {
 
 }
-
-
 
 @media (max-width: 635px) {
   .item {
