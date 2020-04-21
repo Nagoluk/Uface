@@ -1,5 +1,7 @@
 import * as axios from "axios";
+import {deletePostAC} from "../Redux/profileReducer";
 
+import io from "socket.io-client"
 
 const instance = axios.create({
     withCredentials: true,
@@ -8,6 +10,9 @@ const instance = axios.create({
         "API-KEY": "9b1ed003-d374-49c4-a5a6-e095c440ccd1",  
     }
 })
+
+//const socket = io.connect("https://social-network.samuraijs.com/api/1.0/dialogs")
+
 
 
 export let AuthAPI = {
@@ -55,7 +60,8 @@ export let DialogsAPI = {
     },
 
     getMessages(UserId){
-        return instance.get(`dialogs/${UserId}/messages`);
+
+        return instance.get(`dialogs/${UserId}/messages/new?newerThen=2020-4-19`);
     }
 }
 

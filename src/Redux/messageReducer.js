@@ -47,10 +47,11 @@ const messageReducer = (state = initialMessage, action) => {
         }
 
         case GET_MESSAGES: {
+
             return {
                 ...state,
                 messages: {
-                    items: [...action.messages.items],
+                    items: [...action.messages],
                     totalCount: action.totalCount,
                     error: action.error,
                 }

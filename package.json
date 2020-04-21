@@ -21,8 +21,10 @@
     "redux-form": "^8.3.2",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "socket.io-client": "^2.3.0",
     "sweetalert": "^2.1.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "websocket": "^1.0.31"
   },
   "scripts": {
     "start": "react-scripts start",
