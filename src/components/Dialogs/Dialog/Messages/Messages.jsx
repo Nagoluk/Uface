@@ -27,9 +27,13 @@ class Messages extends React.Component{
         this.props.getMessagesThunkCreator(this.props.dialogId)
     }
 
+    componentWillUnmount() {
+        clearTimeout(this.timer)
+    }
+
 
     render() {
-         setTimeout(this.getNewMessages.bind(this), 20000)
+         this.timer = setTimeout(this.getNewMessages.bind(this), 5000)
         let messages = this.props.messagesData.items.map(messageItem => <Message mail={messageItem.body}
                                                                                  key={messageItem.id}
                                                                                  addedAt={messageItem.addedAt}

@@ -14,7 +14,7 @@ const Dialog = (props) => {
                     <img src={props.userData.photos.small || props.userData.photos.large || Avatar} alt="avatar" className={DialogMod.Dialogavatar}/>
 
                     <div>
-                        <h3>{props.userData.userName}</h3>
+                        <NavLink to={"/profile/"+props.dialogId}><h3>{props.userData.userName}</h3></NavLink>
                         <div className={DialogMod.status}>Was online: {props.userData.lastUserActivityDate}</div>
                     </div>
 

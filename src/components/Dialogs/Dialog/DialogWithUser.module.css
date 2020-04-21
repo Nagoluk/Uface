@@ -30,6 +30,11 @@
     font-size: 11px;
 }
 
+.dialogHeader a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .dialogHeader h3 {
     text-transform: none;
 }
