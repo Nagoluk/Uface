@@ -29,6 +29,7 @@
 
 .contactList {
     overflow-y: scroll;
+    max-height: 76vh;
 }
 
 .contactList::-webkit-scrollbar {
