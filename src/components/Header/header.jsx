@@ -6,7 +6,6 @@ import SearchContainer from "./Search/SearchContainer";
 
 
 const Header = props => {
-
     let [menu, setMenu] = useState(false);
 
     return (
@@ -23,9 +22,11 @@ const Header = props => {
                         <i className="fas fa-bell"></i>
                     </div>
 
-                    <div className={headermod.note + " " + headermod.hide} >
-                        <NavLink to='/dialogs' activeClassName={Navmod.activeLink}><i
-                            className="fas fa-envelope"></i></NavLink>
+                    <div className={headermod.note + " " + headermod.hide + " " + headermod.messages} >
+                        <NavLink to='/dialogs' >
+                            <i className="fas fa-envelope"></i>
+                        </NavLink>
+                        {props.newMessageCount ? <div className={headermod.newMessageCount}>{props.newMessageCount}</div> : null}
                     </div>
 
                     <h3>{props.isLogined ? props.login :  <NavLink exact={true} to="/login">Please sign in</NavLink>}</h3>
@@ -38,7 +39,7 @@ const Header = props => {
                 </div>
             </div>
 
-            <AdaptiveMenu menuHandler={setMenu} menu={menu} isLogined={props.isLogined} logout={props.logout}/>
+            <AdaptiveMenu menuHandler={setMenu} menu={menu} isLogined={props.isLogined} logout={props.logout} newMessageCount={props.newMessageCount}/>
         </header>
 
 
@@ -77,9 +78,11 @@ const AdaptiveMenu = props => {
             <NavLink to="/profile"><i className="fas fa-bell"></i></NavLink>
         </div>
 
-        <div className={headermod.adaptiveMenu}>
-            <NavLink to='/dialogs' activeClassName={Navmod.activeLink}><i
-                className="fas fa-envelope"></i></NavLink>
+        <div className={headermod.adaptiveMenu + " "  + headermod.messages}>
+            <NavLink to='/dialogs'>
+                <i className="fas fa-envelope"></i>
+            </NavLink>
+            {props.newMessageCount ? <div className={headermod.newMessageCount}>{props.newMessageCount}</div> : null}
         </div>
 
 

@@ -4,6 +4,7 @@ import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {getDialogsThunkCreator, getMessagesThunkCreator, sendMessagesThunkCreator} from "../../../Redux/messageReducer";
 import Preloader from "../../assets/preloader/Preloader";
+import {getNewMessageCountThunkCreator} from "../../../Redux/notificationReducer";
 
 class DialogContainer extends React.Component {
 
@@ -13,7 +14,7 @@ class DialogContainer extends React.Component {
     }
 
     componentWillUnmount() {
-
+        this.props.getNewMessageCountThunkCreator();
     }
 
     render (){
@@ -32,6 +33,7 @@ class DialogContainer extends React.Component {
                                dialogId={+this.props.match.params.userID}
                                sendMessagesThunkCreator={this.props.sendMessagesThunkCreator}
                                id={this.props.id}
+                               getNewMessageCountThunkCreator={this.props.getNewMessageCountThunkCreator}
                 />
         }
 
@@ -47,5 +49,5 @@ let mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getMessagesThunkCreator, getDialogsThunkCreator, sendMessagesThunkCreator})(withRouter(DialogContainer));
+export default connect(mapStateToProps, {getMessagesThunkCreator, getDialogsThunkCreator, sendMessagesThunkCreator, getNewMessageCountThunkCreator})(withRouter(DialogContainer));
 

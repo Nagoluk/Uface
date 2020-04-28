@@ -64,6 +64,24 @@
 }
 
 
+.messageItem:first-child{
+    position: relative;
+
+    /*transition: all linear .2s;*/
+    -webkit-animation: appearMessage 1s;
+    animation: appearMessage 1s;
+
+}
+
+@keyframes appearMessage {
+    0%   {
+        left: -30px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
 @media (max-width: 635px) {
 
     .messages {

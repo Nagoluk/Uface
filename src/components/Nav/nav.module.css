@@ -3,7 +3,7 @@ nav ul {
     flex-wrap: wrap;
 }
 
- .navigation ul a {
+.navigation ul a {
      display: flex;
      justify-content: center;
      text-align: center;
@@ -12,7 +12,6 @@ nav ul {
      padding: 30px;
      flex-basis: 50%;
      border: 1px solid lightgray;
-
 }
 
 .navigation  svg{
@@ -29,8 +28,6 @@ nav ul {
     font-weight: normal;
 }
 
-
-
 nav li span {
     font-size: 13px;
 }
@@ -39,8 +36,8 @@ nav li span {
 }
 
 nav a{
-    text-decoration: none;}
-
+    text-decoration: none;
+}
 
 .friends{
     background: #fff;

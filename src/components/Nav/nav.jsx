@@ -3,6 +3,7 @@ import Navmod from "./nav.module.css";
 import {NavLink} from "react-router-dom";
 import photo from "../../img/Profile/avatar.png";
 
+
 const Nav = () => {
 
     return (

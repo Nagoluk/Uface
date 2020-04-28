@@ -8,6 +8,7 @@ import { applyMiddleware } from "redux";
 import thunkMiddleWare from "redux-thunk";
 import {reducer as formReducer} from "redux-form";
 import appReducer from "./appReducer";
+import notificationReducer from "./notificationReducer";
 
 
 let reducers = combineReducers({
@@ -17,7 +18,8 @@ let reducers = combineReducers({
     SetLang: setLang,
     LoginReducer: loginReducer,
     form: formReducer,
-    app: appReducer
+    app: appReducer,
+    notification: notificationReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

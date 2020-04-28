@@ -69,6 +69,29 @@ a {
     padding: 15px 5px;
 }
 
+.messages a {
+    text-decoration: none;
+}
+
+.messages {
+    position: relative;
+}
+
+.messages .newMessageCount{
+    background: red;
+    font-size: 0.5em;
+    height: 19px;
+    width: 19px;
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 4px;
+}
+
 .profile_avatar {
     padding: 15px 10px 15px 10px;
 }
@@ -161,6 +184,11 @@ a {
 
     .logout svg {
         color: red;
+    }
+
+    .messages .newMessageCount{
+        top: -10px;
+        left: 8px
     }
 }
 

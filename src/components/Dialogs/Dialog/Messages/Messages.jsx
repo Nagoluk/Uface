@@ -14,7 +14,7 @@ let getCorrectTime = (date) => {
 const Message = (props) => {
 
     return (
-        <div className={MessagesStyle.messageItem + " " + (props.myId === props.senderId ? MessagesStyle.isMy : "")} >
+        <div className={MessagesStyle.messageItem + " " + MessagesStyle.animation + " " + (props.myId === props.senderId ? MessagesStyle.isMy : "")} >
             <div className={MessagesStyle.messageItemLogo}></div>
             {props.mail}
             <span className={MessagesStyle.data}>{getCorrectTime(props.addedAt)}</span>
@@ -27,18 +27,23 @@ class Messages extends React.Component{
         this.props.getMessagesThunkCreator(this.props.dialogId)
     }
 
+    componentDidMount() {
+       this.props.getNewMessageCountThunkCreator();
+    }
+
     componentWillUnmount() {
         clearTimeout(this.timer)
     }
 
 
     render() {
-        this.timer = setTimeout(this.getNewMessages.bind(this), 5000)
+        this.timer = setTimeout(this.getNewMessages.bind(this), 30000)
         let messages = this.props.messagesData.items.map(messageItem => <Message mail={messageItem.body}
                                                                                  key={messageItem.id}
                                                                                  addedAt={messageItem.addedAt}
                                                                                  senderId={messageItem.senderId}
                                                                                  myId={this.props.myId}/>).reverse()
+
 
         return  (<div className={MessagesStyle.messages}>
                     {messages}

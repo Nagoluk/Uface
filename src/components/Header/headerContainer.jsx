@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from "./header";
 import {loginThunkCreator, logout} from "../../Redux/loginReducer";
+import {getNewMessageCountThunkCreator} from "../../Redux/notificationReducer";
 
 
 class HeaderContainer extends React.Component {
-    componentDidMount(){
-        
-    }
-    render(){   
+
+    render(){
         return (
             <Header {...this.props}/>
         );
@@ -21,14 +20,16 @@ let mapStateToProps = (state) => {
     return {
         isLogined: state.LoginReducer.isLogined,
         email: state.LoginReducer.email,
-        login: state.LoginReducer.login
+        login: state.LoginReducer.login,
+        newMessageCount: state.notification.newMessageCount
 
     }
 }
 
 let Dispatch = {
     loginThunkCreator,
-    logout
+    logout,
+    getNewMessageCountThunkCreator
 }
 
 export default connect(mapStateToProps, Dispatch)(HeaderContainer);

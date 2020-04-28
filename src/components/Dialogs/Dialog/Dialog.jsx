@@ -25,7 +25,7 @@ const Dialog = (props) => {
                     </div>
                 </div>
 
-               <Messages myId={props.id} dialogId={props.dialogId}/>
+               <Messages myId={props.id} dialogId={props.dialogId} getNewMessageCountThunkCreator={props.getNewMessageCountThunkCreator}/>
 
 
 

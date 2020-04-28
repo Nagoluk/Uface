@@ -13,12 +13,14 @@ import Preloader from './components/assets/preloader/Preloader';
 import NotFound from "./components/404/notFound";
 import {compose} from "redux";
 import DialogContainer from "./components/Dialogs/Dialog/DialogContainer";
+import {getNewMessageCountThunkCreator} from "./Redux/notificationReducer";
 const DialogsListContainer = React.lazy(()=> import("./components/Dialogs/DialogList/DialogsListContainer"));
 const SettingContainer = React.lazy(() => import("./components/Setting/settingContainer"));
 
 class App extends React.Component {
     componentDidMount() {
        this.props.initializeApp()
+        this.props.getNewMessageCountThunkCreator()
     }
 
     render() {
@@ -55,7 +57,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({initialized: state.app.initialized});
 
 export default compose(
-                    connect(mapStateToProps, {loginThunkCreator, initializeApp}),
+                    connect(mapStateToProps, {loginThunkCreator, initializeApp, getNewMessageCountThunkCreator}),
                     withRouter)(App)
 
 
