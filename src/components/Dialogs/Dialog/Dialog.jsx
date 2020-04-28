@@ -15,7 +15,7 @@ const Dialog = (props) => {
 
                     <div>
                         <NavLink to={"/profile/"+props.dialogId}><h3>{props.userData.userName}</h3></NavLink>
-                        <div className={DialogMod.status}>Was online: {props.userData.lastUserActivityDate}</div>
+                        <div className={DialogMod.status}>Was online: {props.userData.lastUserActivityDate.split("T").join(" ").slice(0, 16)}</div>
                     </div>
 
                     <div className={DialogMod.backToDialogList}>
