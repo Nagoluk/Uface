@@ -14,7 +14,7 @@ const SET_FOUNDED_USERS = "SET_FOUNDED_USERS";
 
 let initialUsers = {
     users: [],
-    pageSize: 6,
+    pageSize: 12,
     totalUsersCount: 16,
     currentPage: 1,
     currentPagePagitator: 0,

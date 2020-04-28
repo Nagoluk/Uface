@@ -68,11 +68,22 @@ button.navs:disabled {
     .settingPanel {
         box-sizing: border-box;
         margin: 0;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        width: 100%;
+    }
+    .itemWrap{
+        margin-top: 49px;
     }
 
     .settingPanel button{
         margin-bottom: 5px;
     }
+
+
+
 }
 
 .item button{
@@ -133,3 +144,5 @@ button.follower{
     padding: 7px 13px;
     border: none;
 }
+
+
