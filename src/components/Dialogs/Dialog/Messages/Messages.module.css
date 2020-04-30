@@ -85,13 +85,13 @@
 @media (max-width: 635px) {
 
     .messages {
-        border-top: 1px solid lightgray;
+        border-top: none;
         position: fixed;
         width: 100%;
         bottom: 95px;
         left: 0;
         background: #fff;
-        height: calc(100% - 55px - 44px - 61px);
+        height: calc(100% - 30px - 44px - 61px);
         margin: 0;
     }
 

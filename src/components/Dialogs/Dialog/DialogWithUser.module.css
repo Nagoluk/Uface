@@ -109,29 +109,34 @@
         top: 0;
         left: 0;
         background: #fff;
-        padding: 10px 7px;
+        padding: 5px 7px;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid lightgray;
+        border-bottom: none;
     }
 
     .dialogHeader .Dialogavatar {
-        height: 45px;
-        width: 45px;
+        height: 30px;
+        width: 30px;
     }
 
     .dialogHeader h3 {
-        font-size: 14px;
+        font-size: 12px;
+        font-weight: bold;
     }
 
     .backToDialogList {
         position: absolute;
-        top: 20px;
+        top: 15px;
         right: 10px;
     }
 
-    .backToDialogList a {
+    .backToDialogList a svg{
         font-size: 11px;
+    }
+
+    .dialogHeader .status {
+        font-size: 10px;
     }
 
 }
