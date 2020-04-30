@@ -43,6 +43,7 @@ class ProfileContainer extends React.Component{
 
     componentWillUnmount() {
         this.props.setRedirectedToDialog(false);
+        this.props.setProfile(null);
     }
 
     render() {

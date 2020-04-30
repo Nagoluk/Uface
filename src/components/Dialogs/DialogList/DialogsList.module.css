@@ -29,6 +29,7 @@
 
 .contactList {
     overflow-y: scroll;
+    max-height: 76vh;
 }
 
 .contactList::-webkit-scrollbar {
@@ -156,13 +157,14 @@
         overflow-y: scroll;
         height: calc(100% - 3px);
         background: #fff;
+        max-height: none;
+
     }
 
     .Notification{
         position: fixed;
         bottom: 52px;
         right: 10px;
-
     }
 
 }
