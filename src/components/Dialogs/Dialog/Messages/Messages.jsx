@@ -7,6 +7,7 @@ let getCorrectTime = (date) => {
     let x = new Date();
     let timeZone = x.getTimezoneOffset() / 60;
 
+
     return (Number(date.slice(11, 13)) - timeZone) + date.slice(13, 16);
 }
 

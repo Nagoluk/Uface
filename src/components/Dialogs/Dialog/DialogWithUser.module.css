@@ -83,6 +83,7 @@
     border: none;
     outline: none;
     resize: none;
+    font-family: Calibri, sans-serif;
 }
 
 @media (max-width: 635px) {
@@ -96,6 +97,10 @@
         left: 0;
         width: 100%;
         background: #fff;
+        padding: 8px 0px 0px 3px;
+        border-top: 1px solid lightgray;
+        display: flex;
+        justify-content: space-between;
     }
 
     .dialogHeader {
@@ -113,7 +118,6 @@
     .dialogHeader .Dialogavatar {
         height: 45px;
         width: 45px;
-
     }
 
     .dialogHeader h3 {
@@ -130,13 +134,6 @@
         font-size: 11px;
     }
 
-    .createNewMessage {
-        border-top: 1px solid lightgray;
-        padding: 4px;
-        display: flex;
-        justify-content: space-between;
-
-    }
 }
 
 
