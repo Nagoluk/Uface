@@ -60,7 +60,7 @@ export let DialogsAPI = {
 
     getMessages(UserId){
 
-        return instance.get(`dialogs/${UserId}/messages/new?newerThen=2020-4-19`);
+        return instance.get(`dialogs/${UserId}/messages/new?newerThen=2019-4-19`);
     },
 
     getMessageCount (){

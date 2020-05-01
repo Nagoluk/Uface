@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import MessagesStyle from "./Messages.module.css";
-import {getMessagesThunkCreator} from "../../../../Redux/messageReducer";
+import {getMessagesAC, getMessagesThunkCreator} from "../../../../Redux/messageReducer";
 
 let getCorrectTime = (date) => {
     let x = new Date();
@@ -33,11 +33,11 @@ class Messages extends React.Component{
     }
 
     componentWillUnmount() {
-        clearTimeout(this.timer)
+            this.props.getMessagesAC([])
+
     }
 
     render() {
-        this.timer = setTimeout(this.getNewMessages.bind(this), 30000)
         let messages = this.props.messagesData.items.map(messageItem => <Message mail={messageItem.body}
                                                                                  key={messageItem.id}
                                                                                  addedAt={messageItem.addedAt}
@@ -59,6 +59,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getMessagesThunkCreator})(Messages)
+export default connect(mapStateToProps, {getMessagesThunkCreator, getMessagesAC})(Messages)
 
 
