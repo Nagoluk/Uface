@@ -190,6 +190,46 @@ a {
         top: -10px;
         left: 8px
     }
+
+    .input {
+        padding: 5px;
+        background: #fff;
+        display: flex;
+
+    }
+
+    .input button {
+        background: none;
+        outline: none;
+        border: none;
+        position: relative;
+        left: -25px;
+    }
+
+    .Search{
+       padding: 5px 3px;
+        width: 100%;
+        outline: none;
+    }
+
+    .Results {
+        box-sizing: border-box;
+        width: 95%;
+        margin-top: 5px;
+    }
+
+    .Results .Item {
+        display: flex;
+        border-bottom: 1px solid lightgray;
+        padding: 8px 0;
+        margin: 5px;
+    }
+
+    .Results .Item img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+    }
 }
 
 

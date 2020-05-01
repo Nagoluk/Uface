@@ -14,6 +14,7 @@ import NotFound from "./components/404/notFound";
 import {compose} from "redux";
 import DialogContainer from "./components/Dialogs/Dialog/DialogContainer";
 import {getNewMessageCountThunkCreator} from "./Redux/notificationReducer";
+import Search from "./components/Header/Search/SearchContainer";
 const DialogsListContainer = React.lazy(()=> import("./components/Dialogs/DialogList/DialogsListContainer"));
 const SettingContainer = React.lazy(() => import("./components/Setting/settingContainer"));
 
@@ -44,6 +45,7 @@ class App extends React.Component {
                                 <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                                 <Route path="/friends" render={() => <UsersContainer/>}/>
                                 <Route path="/login" render={() => <Login/>}/>
+                                <Route path="/search" render={() => <Search/>}/>
                                 <Redirect exact from="/" to="/profile"/>
                                 <Route render={()=> <NotFound/>}/>
                             </Switch>

@@ -100,10 +100,11 @@
         margin: 0;
     }
     .Login {
+        padding-top: 100px;
         background: #fff;
-        height: calc(100vh - 52px);
-        position: fixed;
         width: 100%;
+        position: fixed;
+        bottom: 53px;
     }
 
 }

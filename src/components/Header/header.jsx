@@ -74,10 +74,6 @@ const AdaptiveMenu = props => {
                 className="fas fa-user-friends"></i></NavLink>
         </div>
 
-        <div className={headermod.adaptiveMenu}>
-            <NavLink to="/profile"><i className="fas fa-bell"></i></NavLink>
-        </div>
-
         <div className={headermod.adaptiveMenu + " "  + headermod.messages}>
             <NavLink to='/dialogs'>
                 <i className="fas fa-envelope"></i>
@@ -85,6 +81,9 @@ const AdaptiveMenu = props => {
             {props.newMessageCount ? <div className={headermod.newMessageCount}>{props.newMessageCount}</div> : null}
         </div>
 
+        <div className={headermod.adaptiveMenu}>
+            <NavLink to="/search"><i className="fas fa-search"></i></NavLink>
+        </div>
 
         <div className={headermod.adaptiveMenu}>
             <NavLink to="/profile" activeClassName={Navmod.activeLink}><i

@@ -162,7 +162,6 @@ export const searchingThunkCreator = (text) => {
         // dispatch(toggleFollowProcessing(userID, true));
 
         UsersAPI.Search(text).then(data => {
-            debugger;
 
             if(data.status === 200) dispatch(setFoundedUsers(data.data.items))
         })

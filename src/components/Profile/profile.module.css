@@ -19,14 +19,14 @@
   width: 130px;
   border-radius: 50%;
   overflow: hidden;
+  border: 3px solid #fff;
 }
 
 .avatar{
-  height: 130px;
-  width: 130px;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
   cursor: pointer;
-  border: 3px solid #fff;
 }
 
 .changeAvatar {
