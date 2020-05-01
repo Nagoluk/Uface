@@ -6,8 +6,10 @@ import {getMessagesAC, getMessagesThunkCreator} from "../../../../Redux/messageR
 let getCorrectTime = (date) => {
     let x = new Date();
     let timeZone = x.getTimezoneOffset() / 60;
+    let temp = (new Date(date)).getTime() - timeZone * 3.6e+6
 
-    return (Number(date.slice(11, 13)) - timeZone) + date.slice(13, 16);
+    return new Date(temp).toString().slice(0, 21)
+
 }
 
 

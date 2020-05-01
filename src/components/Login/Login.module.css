@@ -101,9 +101,9 @@
     }
     .Login {
         background: #fff;
-        height: 92.8vh;
+        height: calc(100vh - 52px);
+        position: fixed;
+        width: 100%;
     }
-
-
 
 }
