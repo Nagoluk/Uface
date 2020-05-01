@@ -8,6 +8,7 @@ import Messages from "./Messages/Messages";
 
 const Dialog = (props) => {
     let [message, setMessageText] = useState("");
+    let [isNewMessage, setIsNewMessage] = useState(false);
 
     return (<div className={DialogMod.dialogWithUser}>
                 <div className={DialogMod.dialogHeader}>
@@ -25,7 +26,12 @@ const Dialog = (props) => {
                     </div>
                 </div>
 
-               <Messages myId={props.id} dialogId={props.dialogId} getNewMessageCountThunkCreator={props.getNewMessageCountThunkCreator}/>
+               <Messages myId={props.id}
+                         dialogId={props.dialogId}
+                         getNewMessageCountThunkCreator={props.getNewMessageCountThunkCreator}
+                         isNewMessage={isNewMessage}
+                         setIsNewMessage={setIsNewMessage}
+               />
 
 
 
@@ -42,6 +48,7 @@ const Dialog = (props) => {
                         <button
                             className={MyPost.button + " " + MyPost.send}
                             onClick={() =>{
+                                setIsNewMessage(true);
                                 setMessageText("")
                                 props.sendMessagesThunkCreator(props.dialogId, message)
                             }}

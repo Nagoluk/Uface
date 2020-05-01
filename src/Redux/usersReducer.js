@@ -1,4 +1,5 @@
 import {UsersAPI, unfollowAPI, followAPI} from "../api/api"
+import {setFollowAC} from "./profileReducer";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -127,9 +128,14 @@ export const followThunkCreator = (userID) => {
         dispatch(toggleFollowProcessing(userID, true));
 
         followAPI(userID).then(data => {
-                if(data.resultCode === 0) dispatch(follow(userID))
+                if(data.resultCode === 0) {
+                    dispatch(follow(userID))
+                    dispatch(setFollowAC(true))
+                }
+
 
         dispatch(toggleFollowProcessing(userID, false))
+
       })
     }
 }
@@ -140,7 +146,10 @@ export const unfollowThunkCreator = (userID) => {
         dispatch(toggleFollowProcessing(userID, true));
 
         unfollowAPI(userID).then(data => {
-                if(data.resultCode === 0) dispatch(unfollow(userID))
+                if(data.resultCode === 0) {
+                    dispatch(unfollow(userID))
+                    dispatch(setFollowAC(false))
+                }
 
         dispatch(toggleFollowProcessing(userID, false))
       })
@@ -153,6 +162,7 @@ export const searchingThunkCreator = (text) => {
         // dispatch(toggleFollowProcessing(userID, true));
 
         UsersAPI.Search(text).then(data => {
+            debugger;
 
             if(data.status === 200) dispatch(setFoundedUsers(data.data.items))
         })

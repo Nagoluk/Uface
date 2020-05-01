@@ -1,5 +1,6 @@
-import {ProfileAPI} from "../api/api";
+import {ProfileAPI, UsersAPI} from "../api/api";
 import { stopSubmit } from "redux-form";
+import {searchingThunkCreator} from "./usersReducer";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";
@@ -7,6 +8,7 @@ const USERS_IS_FETCHING = "USERS_IS_FETCHING ";
 const DELETE_POST = "DELETE_POST";
 const SET_AVATAR_SUCCESS = "SET_AVATAR_SUCCESS";
 const UPOAL_PROFILE_INFO_PROCCESS = "UPOAL_PROFILE_INFO_PROCCESS";
+const SET_FOLLOW = "SET_FOLLOW";
 
 
 let initialProfilePage = {
@@ -19,6 +21,7 @@ let initialProfilePage = {
     status: "",
     isFetching: true,
     isUploadProfile: false,
+    isFollowed: false,
 };
 
 const profileReducer = (state = initialProfilePage, action) =>{
@@ -69,6 +72,13 @@ const profileReducer = (state = initialProfilePage, action) =>{
             }
         }
 
+        case SET_FOLLOW: {
+            return {
+                ...state,
+                isFollowed: action.payload
+            }
+        }
+
         case UPOAL_PROFILE_INFO_PROCCESS: {
             return {
                 ...state,
@@ -87,6 +97,7 @@ export const addNewPostAC = text => ({type: ADD_NEW_POST, text})
 export const deletePostAC = id => ({type: DELETE_POST, id})
 export const savePhotoSuccess = (photos) => ({type: SET_AVATAR_SUCCESS, photos})
 export const isUploadProfileAC = (payload) => ({type: UPOAL_PROFILE_INFO_PROCCESS, payload})
+export const setFollowAC = (payload) => ({type: SET_FOLLOW, payload})
 
 export const isFetchingAC = (condition) => {
     return {
@@ -116,9 +127,12 @@ export const getProfileThunkCreator = (id) => {
         dispatch(isFetchingAC(true))
 
         ProfileAPI.getProfile(id).then(response => {
-            
-            dispatch(setProfile(response.data))
-            dispatch(isFetchingAC(false))
+            UsersAPI.Search(response.data.fullName).then(i =>{
+                dispatch(setFollowAC(i.data.items[0].followed))
+                dispatch(setProfile(response.data))
+                dispatch(isFetchingAC(false))
+            })
+
         });
     }
 }

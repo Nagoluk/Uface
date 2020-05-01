@@ -64,12 +64,12 @@
 }
 
 
-.messageItem:first-child{
+.messageItem.animation:first-child{
     position: relative;
 
     /*transition: all linear .2s;*/
-    -webkit-animation: appearMessage 1s;
-    animation: appearMessage 1s;
+    -webkit-animation: appearMessage 0.25s;
+    animation: appearMessage 0.25s;
 
 }
 

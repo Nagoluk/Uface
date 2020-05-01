@@ -10,6 +10,8 @@ import {
 } from "../../Redux/profileReducer";
 import {withRouter} from "react-router-dom";
 import {setRedirectedToDialog, startChatingThunkCreator} from "../../Redux/messageReducer";
+import {getFollowProccesSelector} from "../../Redux/usersSelectors";
+import {followThunkCreator, searchingThunkCreator, unfollowThunkCreator} from "../../Redux/usersReducer";
 
 
 
@@ -32,7 +34,9 @@ class ProfileContainer extends React.Component{
     
     componentDidMount() {
         document.title = "Profile";
-        this.setProfile()
+        this.setProfile();
+        console.log(this.props)
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -49,15 +53,21 @@ class ProfileContainer extends React.Component{
     render() {
 
         return (
-           <Profile {...this.props} 
-            profile={this.props.profile} 
-            lang={this.props.setLang} 
-            status={this.props.status} 
-            updateStatusThunkCreator={this.props.updateStatusThunkCreator}
-            loginData = {this.props.loginData}
-            uploadAvatarThunkCreator = {this.props.uploadAvatarThunkCreator}
-             startChatingThunkCreator = {this.props.startChatingThunkCreator}
+           <Profile {...this.props}
+                    isFollowed={this.props.isFollowed}
+                    profile={this.props.profile}
+                    lang={this.props.setLang}
+                    status={this.props.status}
+                    updateStatusThunkCreator={this.props.updateStatusThunkCreator}
+                    loginData = {this.props.loginData}
+                    uploadAvatarThunkCreator = {this.props.uploadAvatarThunkCreator}
+                    startChatingThunkCreator = {this.props.startChatingThunkCreator}
                     isRedirectedToDialog = {this.props.isRedirectedToDialog}
+                    followProcces = {this.props.followProcces}
+                    searchingThunkCreator = {this.props.searchingThunkCreator}
+                    followThunkCreator = {this.props.followThunkCreator}
+                    unfollowThunkCreator = {this.props.unfollowThunkCreator}
+
 
            />
         );
@@ -70,7 +80,10 @@ let mapStateToProps = (state) => (
     loginData: state.LoginReducer,
     isLogined: state.LoginReducer.isLogined,
     status: state.ProfilePage.status,
-    isRedirectedToDialog: state.MessagePage.isRedirectedToDialog
+    isRedirectedToDialog: state.MessagePage.isRedirectedToDialog,
+     followProcces: getFollowProccesSelector(state),
+        isFollowed: state.ProfilePage.isFollowed
+
 });
 
 
@@ -78,8 +91,11 @@ let AddURLdate = withRouter(ProfileContainer);
 
 export default connect (mapStateToProps, {setProfile,
                                             getProfileThunkCreator,
+                                            searchingThunkCreator,
                                             updateStatusThunkCreator,
                                             getStatusThunkCreator,
                                             uploadAvatarThunkCreator,
                                             startChatingThunkCreator,
-                                            setRedirectedToDialog})(AddURLdate);
+                                            setRedirectedToDialog,
+                                            followThunkCreator,
+                                            unfollowThunkCreator})(AddURLdate);

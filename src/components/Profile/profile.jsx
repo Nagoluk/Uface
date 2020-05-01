@@ -7,7 +7,8 @@ import Preloader from"../assets/preloader/Preloader";
 
 const Profile = (props) => {
 
-    if(props.profile.isFetching) {
+
+    if(props.profile.isFetching || props.profile.profile === null) {
         return(<Preloader/>)
     }
     return (
@@ -21,6 +22,11 @@ const Profile = (props) => {
                          loginData={props.loginData}
                          startChatingThunkCreator={props.startChatingThunkCreator}
                          isRedirectedToDialog={props.isRedirectedToDialog}
+                         followProcces={props.followProcces}
+                         isFollowed={props.isFollowed}
+                         followThunkCreator={props.followThunkCreator}
+                         unfollowThunkCreator={props.unfollowThunkCreator}
+
             />
 
             {props.profile.profile.userId === props.loginData.id && <MyPostsContainer store={props.store} profile ={props.profile}  />}

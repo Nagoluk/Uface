@@ -5,6 +5,7 @@ import profileAvatar from "../../../img/Profile/avatar.png";
 import Gellery from "../../common/gallery/gallery";
 import {DialogsAPI} from "../../../api/api";
 import {Redirect} from "react-router-dom";
+import UsersStlyes from "../../Users/Users.module.css";
 
 
 
@@ -100,7 +101,25 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                         </ul>
                     </div>
 
-                    {!amI &&  <div className={p.Activity}><button onClick={() => props.startChatingThunkCreator(profile.userId)}><i className="far fa-envelope"></i></button></div>}
+                    {!amI &&  <div className={p.Activity}>
+
+                        {props.isFollowed ?
+                            <button disabled={props.followProcces.some(item => item === profile.userId)}
+                                                    className={UsersStlyes.follower + " " + p.ActivityButtons + " " + p.Unfollow}
+                                                    onClick={() => {
+
+                                                        props.unfollowThunkCreator(profile.userId)
+                                                    }}>Unfollow</button> :  <button disabled={props.followProcces.some(item => item === profile.userId)}
+                                className={UsersStlyes.follower + " " + p.ActivityButtons}
+                                onClick={() => {
+
+                                    props.followThunkCreator(profile.userId)
+                                }}>follow</button>}
+
+                        <button onClick={() => props.startChatingThunkCreator(profile.userId)} className={p.Mail}><i className="far fa-envelope"></i></button>
+
+
+                    </div>}
                 </div>
 
                 {hasContact && <div className={p.information + " " + p.contacts}>

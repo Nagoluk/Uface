@@ -146,6 +146,25 @@ li .infoItem {
   position: absolute;
   top: 10px;
   right: 10px;
+  display: flex;
+}
+
+.Mail{
+  margin-left: 7px;
+}
+
+.Activity .Mail svg {
+  font-size: 1.2em;
+
+}
+
+.Activity  .ActivityButtons {
+  color: #2B5278;
+  padding: 8px;
+}
+
+.Activity .ActivityButtons:hover{
+  color: #fff;
 }
 
 .Activity button{
@@ -169,7 +188,11 @@ li .infoItem {
 .Activity button svg {
   font-size: 22px;
   color: #2B5278;
+}
 
+.Activity .Unfollow {
+  background: #2B5278;
+  color: #fff;
 }
 
 @media (max-width: 635px) {

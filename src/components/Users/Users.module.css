@@ -135,6 +135,12 @@ button.follower{
     background: #2B5278;
 }
 
+button.follower:disabled{
+    background: lightgrey;
+    border: 1px solid lightgrey;
+    color: #fff;
+}
+
 .getUsers {
     outline: none;
     background: #2B5278;
