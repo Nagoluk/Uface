@@ -15,9 +15,12 @@ const notificationReducer = (state = initalNotification, action) =>{
             newMessageCount: action.payload < 100 ? action.payload : "99+"
         }
 
+        default: {
+            return state
+        }
+
     }
 
-    return state
 }
 
 const setNewMessageCount = (payload) => ({type: SET_NEW_MESSAGE_COUNT, payload})

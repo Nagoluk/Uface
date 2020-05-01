@@ -1,6 +1,6 @@
 import {ProfileAPI, UsersAPI} from "../api/api";
 import { stopSubmit } from "redux-form";
-import {searchingThunkCreator} from "./usersReducer";
+
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";

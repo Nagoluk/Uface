@@ -1,7 +1,6 @@
 import * as axios from "axios";
-import {deletePostAC} from "../Redux/profileReducer";
 
-import io from "socket.io-client"
+
 
 const instance = axios.create({
     withCredentials: true,

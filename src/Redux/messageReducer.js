@@ -1,5 +1,5 @@
 import {DialogsAPI} from "../api/api";
-import {setInitializedAC} from "./appReducer";
+
 
 const addNewMessage = "ADD-NEW-MESSAGE";
 const addNewSymbol = "NEW-SYMBOL-MESSAGE";

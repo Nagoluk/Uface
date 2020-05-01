@@ -3,7 +3,6 @@ import p from "../profile.module.css";
 import Status from "./status/statusHook";
 import profileAvatar from "../../../img/Profile/avatar.png";
 import Gellery from "../../common/gallery/gallery";
-import {DialogsAPI} from "../../../api/api";
 import {Redirect} from "react-router-dom";
 import UsersStlyes from "../../Users/Users.module.css";
 
