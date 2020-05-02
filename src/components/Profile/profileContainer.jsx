@@ -35,8 +35,6 @@ class ProfileContainer extends React.Component{
     componentDidMount() {
         document.title = "Profile";
         this.setProfile();
-        console.log(this.props)
-
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

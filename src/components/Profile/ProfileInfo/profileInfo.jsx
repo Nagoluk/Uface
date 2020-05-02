@@ -15,7 +15,7 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
     let amI = profile.userId === props.loginData.id;
 
     for(let key in contacts){
-        if(contacts[key] !== null){
+        if(contacts[key] !== null && contacts[key] !== ""){
           hasContact = true;
         }
     }
