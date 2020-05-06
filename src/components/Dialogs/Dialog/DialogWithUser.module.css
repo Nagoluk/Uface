@@ -6,6 +6,7 @@
     background: #fff;
     border: 1px solid lightgray;
     flex-basis: 70%;
+    position: relative;
 }
 
 .dialogHeader h3 {

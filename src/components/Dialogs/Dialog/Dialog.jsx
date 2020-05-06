@@ -4,6 +4,7 @@ import DialogMod from "./DialogWithUser.module.css";
 import {NavLink} from "react-router-dom";
 import Avatar from "../../../img/Profile/avatar.png";
 import Messages from "./Messages/Messages";
+import Alert from "../../common/alert/alert";
 
 
 const Dialog = (props) => {
@@ -26,6 +27,8 @@ const Dialog = (props) => {
                     </div>
                 </div>
 
+
+
                <Messages myId={props.id}
                          dialogId={props.dialogId}
                          getNewMessageCountThunkCreator={props.getNewMessageCountThunkCreator}
@@ -34,8 +37,8 @@ const Dialog = (props) => {
                />
 
 
-
                 <div className={DialogMod.createNewMessage}>
+
 
                     <textarea name={"newMessage"} placeholder={"Новое сообщение"}
                               value={message}

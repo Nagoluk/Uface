@@ -65,6 +65,10 @@ export let DialogsAPI = {
 
     getMessageCount (){
         return instance.get("dialogs/messages/new/count");
+    },
+
+    deleteMessage(messageId){
+        return instance.delete(`dialogs/messages/${messageId}`)
     }
 }
 

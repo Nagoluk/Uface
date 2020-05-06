@@ -1,0 +1,33 @@
+.Wrap {
+    background: #fff;
+    border: 1px solid lightgrey;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    position: relative;
+    left: 10px;
+    bottom: 0;
+    z-index: 999;
+}
+
+.Wrap h2 {
+    font-weight: normal;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.Wrap button {
+    border: none;
+    outline: none;
+    padding: 5px 13px;
+    margin: 5px;
+    color: #fff;
+}
+
+button.Yes {
+    background: lightgrey;
+}
+
+button.No {
+    background: #2B5278;
+}

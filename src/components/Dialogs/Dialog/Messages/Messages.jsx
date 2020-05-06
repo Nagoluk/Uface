@@ -1,7 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
 import MessagesStyle from "./Messages.module.css";
-import {getMessagesAC, getMessagesThunkCreator} from "../../../../Redux/messageReducer";
+import {deleteMessageThunkCreator, getMessagesAC, getMessagesThunkCreator} from "../../../../Redux/messageReducer";
+import Alert from "../../../common/alert/alert";
+
 
 let getCorrectTime = (date) => {
     let x = new Date();
@@ -16,7 +18,10 @@ let getCorrectTime = (date) => {
 const Message = (props) => {
 
     return (
-        <div className={MessagesStyle.messageItem + " " + ((props.isNewMessage) ? MessagesStyle.animation : "") + " " + (props.myId === props.senderId ? MessagesStyle.isMy : "")} >
+        <div
+            className={MessagesStyle.messageItem + " " + ((props.isNewMessage) ? MessagesStyle.animation : "") + " " + (props.myId === props.senderId ? MessagesStyle.isMy : "")}
+            onDoubleClick={() => props.setDeleteMessageAlert(true, props.messageId)}
+        >
             <div className={MessagesStyle.messageItemLogo}></div>
             {props.mail}
             <span className={MessagesStyle.data}>{getCorrectTime(props.addedAt)}</span>
@@ -25,6 +30,16 @@ const Message = (props) => {
 };
 
 class Messages extends React.Component{
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+            showMessage: false,
+            deleteMessageId: null
+        }
+    }
+
     getNewMessages(){
         this.props.getMessagesThunkCreator(this.props.dialogId)
     }
@@ -36,21 +51,42 @@ class Messages extends React.Component{
 
     componentWillUnmount() {
             this.props.getMessagesAC([])
+    }
 
+    deleteMessage = (messageId) => {
+            this.props.deleteMessageThunkCreator(messageId);
+            this.setState({showMessage: false})
+    }
+
+    setDeleteMessageAlert = (value = false, messageId) => {
+        this.setState({showMessage: value})
+        this.setState({deleteMessageId: messageId})
     }
 
     render() {
         let messages = this.props.messagesData.items.map(messageItem => <Message mail={messageItem.body}
                                                                                  key={messageItem.id}
+                                                                                 messageId = {messageItem.id}
                                                                                  addedAt={messageItem.addedAt}
                                                                                  senderId={messageItem.senderId}
                                                                                  isNewMessage={this.props.isNewMessage}
-                                                                                 myId={this.props.myId}/>).reverse()
+                                                                                 myId={this.props.myId}
+                                                                                 setDeleteMessageAlert={this.setDeleteMessageAlert}
+                                                                                                        />).reverse()
 
 
-        return  (<div className={MessagesStyle.messages}>
+        return  (<>
+                    <div className={MessagesStyle.messages}>
                     {messages}
-                 </div>)
+                    </div>
+
+                    {this.state.showMessage && <Alert
+                                                    deleteMessage = {this.deleteMessage}
+                                                    deleteMessageId={this.state.deleteMessageId}
+                                                    setDeleteMessageAlert={this.setDeleteMessageAlert}
+
+                    />}
+                </>)
 
     }
 }
@@ -58,9 +94,10 @@ class Messages extends React.Component{
 let mapStateToProps = (state) => {
     return {
         messagesData: state.MessagePage.messages,
+        refresh: state.MessagePage.refresh
     }
 }
 
-export default connect(mapStateToProps, {getMessagesThunkCreator, getMessagesAC})(Messages)
+export default connect(mapStateToProps, {getMessagesThunkCreator, getMessagesAC, deleteMessageThunkCreator})(Messages)
 
 

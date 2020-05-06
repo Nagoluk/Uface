@@ -7,7 +7,8 @@ const GET_DIALOGS = "GET_DIALOGS";
 const GET_MESSAGES = "GET_MESSAGES";
 const IS_DIALOG_FETCHING = "IS_DIALOG_FETCHING";
 const ADD_MESSAGE = "ADD_MESSAGE";
-const SET_IS_REDIRECTED_TO_DIALOG = "SET_IS_REDIRECTED_TO_DIALOG"
+const SET_IS_REDIRECTED_TO_DIALOG = "SET_IS_REDIRECTED_TO_DIALOG";
+const REFRESH = "REFRESH";
 
 let initialMessage =  {
     dialogs: null,
@@ -20,6 +21,7 @@ let initialMessage =  {
     updateMessageData: "gg",
     isDialogsFetching: false,
     isRedirectedToDialog: false,
+    refresh: false
 };
 
 const messageReducer = (state = initialMessage, action) => {
@@ -81,6 +83,13 @@ const messageReducer = (state = initialMessage, action) => {
                 isRedirectedToDialog: action.payload
             }
         }
+
+        case REFRESH: {
+            return {
+                ...state,
+                refresh: !state.refresh
+            }
+        }
         default:
             return state;
     }
@@ -92,7 +101,7 @@ export const getMessagesAC = (messages) => ({type: GET_MESSAGES, messages});
 export const isDialogsFetchingAC = (payload) => ({type: IS_DIALOG_FETCHING, payload});
 export const addMessageAC = (message) => ({type: ADD_MESSAGE, message});
 export const setRedirectedToDialog = (payload) => ({type: SET_IS_REDIRECTED_TO_DIALOG, payload})
-
+export const refreshAC = () => ({type: REFRESH})
 
 export const getDialogsThunkCreator = () => {
     return (dispatch) => {
@@ -131,6 +140,19 @@ export const startChatingThunkCreator = (id) => {
         })
     }
 }
+
+
+export const deleteMessageThunkCreator = (messageId) => {
+    return (dispatch) => {
+        DialogsAPI.deleteMessage(messageId).then(response => {
+            dispatch(refreshAC())
+        })
+    }
+}
+
+
+
+
 
 
 
