@@ -3,11 +3,11 @@ const SET_UA = "SET_UA";
 const SET_ENG = "SET_ENG";
 
 let initialUsers = {
-    eng: true,
-    ua: false
+    eng: true as boolean,
+    ua: false as boolean,
 };
 
-const setLang = (state = initialUsers, action) =>{
+const setLang = (state = initialUsers, action: any) =>{
 
 
     switch(action.type) {
