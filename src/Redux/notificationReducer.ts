@@ -4,10 +4,12 @@ const SET_NEW_MESSAGE_COUNT = "SET_NEW_MESSAGE_COUNT";
 
 
 const initalNotification = {
-    newMessageCount: 0,
+    newMessageCount: 0 as number | string,
 }
 
-const notificationReducer = (state = initalNotification, action) =>{
+export type initialNotificationT = typeof initalNotification;
+
+const notificationReducer = (state = initalNotification, action: any): initialNotificationT =>{
 
     switch (action.type) {
         case SET_NEW_MESSAGE_COUNT: return {
@@ -22,13 +24,16 @@ const notificationReducer = (state = initalNotification, action) =>{
     }
 
 }
-
-const setNewMessageCount = (payload) => ({type: SET_NEW_MESSAGE_COUNT, payload})
+type setNewMessageCountACT = {
+    type: typeof SET_NEW_MESSAGE_COUNT,
+    payload: number
+}
+const setNewMessageCount = (payload: number): setNewMessageCountACT => ({type: SET_NEW_MESSAGE_COUNT, payload})
 
 
 export const getNewMessageCountThunkCreator = () => {
-    return (dispatch) =>{
-        DialogsAPI.getMessageCount().then(data => {
+    return (dispatch: any) =>{
+        DialogsAPI.getMessageCount().then((data: any) => {
             dispatch(setNewMessageCount(data.data))
         })
     }
