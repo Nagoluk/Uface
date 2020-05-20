@@ -1,5 +1,6 @@
 import {UsersAPI, unfollowAPI, followAPI} from "../api/api"
 import {setFollowAC} from "./profileReducer";
+import {photosT} from "./messageReducer";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -12,19 +13,30 @@ const SET_CURRENT_PAGE_PAGITATOR = "SET_CURRENT_PAGE_PAGITATOR";
 const SET_FOUNDED_USERS = "SET_FOUNDED_USERS";
 
 
+type UserT = {
+    name: string,
+    id: number,
+    uniqueUrlName: string | number | null,
+    photos: photosT,
+    status: null | string,
+    followed: boolean
+}
+
 
 let initialUsers = {
-    users: [],
-    pageSize: 12,
-    totalUsersCount: 16,
-    currentPage: 1,
-    currentPagePagitator: 0,
-    isFetching: true,
-    followProcces: [],
-    foundedUsers: []
+    users: [] as Array<UserT>,
+    pageSize: 12 as number,
+    totalUsersCount: 16 as number,
+    currentPage: 1 as number,
+    currentPagePagitator: 0 as number,
+    isFetching: true as boolean,
+    followProcces: [] as Array<number>,
+    foundedUsers: [] as Array<UserT>
 };
 
-const usersReducer = (state = initialUsers, action) =>{
+export type InitialUsersT = typeof initialUsers;
+
+const usersReducer = (state = initialUsers, action: any): InitialUsersT =>{
     switch(action.type) {
         case FOLLOW:
         return {
@@ -79,7 +91,7 @@ const usersReducer = (state = initialUsers, action) =>{
             return {
                 ...state,
                 followProcces: action.isFetchingFollow ? 
-                [...state.followProcces, action.usedID] : state.followProcces.filter(id => id !== action.usedID)
+                [...state.followProcces, action.userID] : state.followProcces.filter(id => id !== action.userID)
             }
 
         case SET_CURRENT_PAGE_PAGITATOR:
@@ -99,21 +111,41 @@ const usersReducer = (state = initialUsers, action) =>{
     }
 }
 
-export const follow = (usedID) =>({type: FOLLOW, usedID});
-export const unfollow = (usedID) => ({type: UNFOLLOW, usedID});
-export const setUsers = (users) => ({type: SET_USERS, users});
-export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
-export const setTotalCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count});
-export const ToggleFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleFollowProcessing = (usedID, isFetchingFollow) => ({type: TOGGLE_FOLLOW_IN_PROCESS, usedID, isFetchingFollow});
-export const setCurrentPagePagitator =  (payload) => ({type: SET_CURRENT_PAGE_PAGITATOR, payload});
-export const setFoundedUsers = (items) => ({type: SET_FOUNDED_USERS, items})
+type followACT = {type: typeof FOLLOW, userID: number}
+export const follow = (userID: number): followACT =>({type: FOLLOW, userID});
 
-export const setUsersThunkCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
+type unFollowACT = {type: typeof UNFOLLOW, userID: number }
+export const unfollow = (userID: number): unFollowACT => ({type: UNFOLLOW, userID});
+
+type setUsersACT = {type: typeof SET_USERS, users: Array<UserT> }
+export const setUsers = (users: Array<UserT>): setUsersACT => ({type: SET_USERS, users});
+
+type setCurrentPageACT = {type: typeof SET_CURRENT_PAGE, page: number}
+export const setCurrentPage = (page: number): setCurrentPageACT => ({type: SET_CURRENT_PAGE, page});
+
+type setTotalCountACT = {type: typeof SET_TOTAL_USERS_COUNT, count: number}
+export const setTotalCount = (count: number): setTotalCountACT => ({type: SET_TOTAL_USERS_COUNT, count});
+
+type toggleFetchingACT = {type: typeof TOGGLE_IS_FETCHING, isFetching: boolean}
+export const ToggleFetching = (isFetching: boolean): toggleFetchingACT => ({type: TOGGLE_IS_FETCHING, isFetching});
+
+type toggleFollowProcessingACT = {type: typeof TOGGLE_FOLLOW_IN_PROCESS, usedID: number, isFetchingFollow: boolean}
+export const toggleFollowProcessing = (usedID: number, isFetchingFollow: boolean):toggleFollowProcessingACT => ({type: TOGGLE_FOLLOW_IN_PROCESS, usedID, isFetchingFollow});
+
+type setCurrentPagePagitatorACT = {type: typeof SET_CURRENT_PAGE_PAGITATOR, payload: number}
+export const setCurrentPagePagitator =  (payload: number): setCurrentPagePagitatorACT => ({type: SET_CURRENT_PAGE_PAGITATOR, payload});
+
+type setFoundedUsersACT = {
+    type: typeof SET_FOUNDED_USERS,
+    items: Array<UserT>
+}
+export const setFoundedUsers = (items: Array<UserT>): setFoundedUsersACT => ({type: SET_FOUNDED_USERS, items})
+
+export const setUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: any) => {
         dispatch(setCurrentPage(currentPage));
         dispatch(ToggleFetching(true));
-        UsersAPI.getUsers(currentPage, pageSize).then(data => {
+        UsersAPI.getUsers(currentPage, pageSize).then((data: any) => {
         
             dispatch(setUsers(data.items));
             dispatch(setTotalCount(data.totalCount));
@@ -123,11 +155,11 @@ export const setUsersThunkCreator = (currentPage, pageSize) => {
     }
 }
 
-export const followThunkCreator = (userID) => {
-    return (dispatch)=> {
+export const followThunkCreator = (userID: number) => {
+    return (dispatch: any)=> {
         dispatch(toggleFollowProcessing(userID, true));
 
-        followAPI(userID).then(data => {
+        followAPI(userID).then((data: any) => {
                 if(data.resultCode === 0) {
                     dispatch(follow(userID))
                     dispatch(setFollowAC(true))
@@ -141,11 +173,11 @@ export const followThunkCreator = (userID) => {
 }
 
 
-export const unfollowThunkCreator = (userID) => {
-    return (dispatch)=> {
+export const unfollowThunkCreator = (userID: number) => {
+    return (dispatch: any)=> {
         dispatch(toggleFollowProcessing(userID, true));
 
-        unfollowAPI(userID).then(data => {
+        unfollowAPI(userID).then((data: any) => {
                 if(data.resultCode === 0) {
                     dispatch(unfollow(userID))
                     dispatch(setFollowAC(false))
@@ -157,21 +189,16 @@ export const unfollowThunkCreator = (userID) => {
 }
 
 
-export const searchingThunkCreator = (text) => {
-    return (dispatch)=> {
+export const searchingThunkCreator = (text: string) => {
+    return (dispatch: any)=> {
         // dispatch(toggleFollowProcessing(userID, true));
 
-        UsersAPI.Search(text).then(data => {
+        UsersAPI.Search(text).then((data: any) => {
 
             if(data.status === 200) dispatch(setFoundedUsers(data.data.items))
         })
     }
 }
-
-
-
-
-
 
 
 export default usersReducer;

@@ -8,7 +8,7 @@ const ADD_MESSAGE = "ADD_MESSAGE";
 const SET_IS_REDIRECTED_TO_DIALOG = "SET_IS_REDIRECTED_TO_DIALOG";
 const REFRESH = "REFRESH";
 
-type photosT = {
+export type photosT = {
     small: string | null,
     large: string | null
 }
