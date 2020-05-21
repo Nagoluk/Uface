@@ -2,9 +2,20 @@ import React from "react";
 import UsersStlyes from "./Users.module.css";
 import Avatar from "../../img/Profile/avatar.png";
 import {NavLink} from "react-router-dom";
+import {UserT} from "../../Redux/usersReducer";
+
+type PropsType = {
+    index: number,
+    user: UserT
+    followProcces: Array<number>,
+    unfollowThunkCreator: (userID: number) => void,
+    followThunkCreator: (userID: number) => void,
 
 
-let User = props => {
+}
+let User: React.FC<PropsType> = props => {
+
+    debugger;
     return (<div className={UsersStlyes.item} key={props.index.toString()}>
         <div className={UsersStlyes.header}>
             <div className={UsersStlyes.avatar}>

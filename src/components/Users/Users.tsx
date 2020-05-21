@@ -10,9 +10,13 @@ type PropsType = {
     pagePagitator: number,
     setCurrentPagePagitator: (page: number) => void,
     users: Array<UserT>,
+    followProcces: Array<number>,
     windowsWidth: number,
 
     onPageChange: (a: number)=>void,
+    followThunkCreator: (a: number) => void,
+    unfollowThunkCreator: (a: number) => void,
+    toggleFollowProcessing: (a: number, b: boolean) => void
 }
 
 let Users: React.FC<PropsType> = ({totalUsersCount, pageSize, pagePagitator, setCurrentPagePagitator, users, ...props}) => {

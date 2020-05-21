@@ -87,7 +87,7 @@ const usersReducer = (state = initialUsers, action: any): InitialUsersT =>{
                 isFetching: action.isFetching
             }
 
-        case TOGGLE_FOLLOW_IN_PROCESS: 
+        case TOGGLE_FOLLOW_IN_PROCESS:
             return {
                 ...state,
                 followProcces: action.isFetchingFollow ? 

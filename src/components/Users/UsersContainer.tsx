@@ -10,7 +10,7 @@ import {
     ToggleFetching,
     unfollowThunkCreator,
     toggleFollowProcessing,
-    setUsersThunkCreator, setCurrentPagePagitator,
+    setUsersThunkCreator, setCurrentPagePagitator, UserT,
 } from "../../Redux/usersReducer";
 
 import Preloader from "../assets/preloader/Preloader";
@@ -20,28 +20,66 @@ import {
     getTototalUsersCountSelector,
     getCurrentPageSelector,
     getIsFetchingSelector,
-    getFollowProccesSelector,
-    getIsLoginedSelector, getPagePagitator
+    getFollowProccesSelector, getPagePagitator
 } from "../../Redux/usersSelectors";
+import {AppStateType} from "../../Redux/stateRedux";
+
+type MapStateToPropsType = {
+    currentPage: number,
+    pageSize: number,
+    isFetching: boolean,
+    totalUsersCount: number,
+    pagePagitator: number,
+    users: Array<UserT>,
+    followProcces: Array<number>,
+
+}
+
+type MapDispatchToPropsType = {
+    setUsersThunkCreator: (currentPage: number, pageSize: number) => void,
+    followThunkCreator: (userID: number) => void,
+    unfollowThunkCreator: (userID: number) => void,
 
 
-class userAPIcomponent extends React.Component {
+    setCurrentPagePagitator: (a: number) => void,
+    toggleFollowProcessing: (a: number, b: boolean) => void,
+
+    setUsers: (list: Array<UserT>) => void,
+    setTotalCount: (a: number) => void,
+    setCurrentPage: (a: number) => void
+
+
+
+}
+
+type OwnToPropsType = {}
+
+
+type StateTypes = {
+    screenWidth: number,
+}
+
+type PropsTypes = MapDispatchToPropsType & MapStateToPropsType & OwnToPropsType;
+
+class userAPIcomponent extends React.Component<PropsTypes, StateTypes> {
+    constructor(props: PropsTypes) {
+        super(props);
+        // Не вызывайте здесь this.setState()!
+        this.state = { screenWidth: window.innerWidth };
+
+    }
 
 
     componentDidMount() {
-        this.screenWidth = window.innerWidth;
         document.title = "Users";
-        window.addEventListener(`resize`, event => {
+        window.addEventListener(`resize`, (event: any) => {
 
-            if(event.currentTarget.innerWidth <= 635 && this.screenWidth >= 635){
-                this.screenWidth = event.currentTarget.innerWidth;
-                this.forceUpdate()
-
+            if(event.currentTarget.innerWidth <= 635 && this.state.screenWidth >= 635){
+                this.setState({screenWidth: event.currentTarget.innerWidth});
             }
 
-            if(event.currentTarget.innerWidth > 635 && this.screenWidth < 635){
-                this.screenWidth = event.currentTarget.innerWidth;
-                this.forceUpdate();
+            if(event.currentTarget.innerWidth > 635 && this.state.screenWidth < 635){
+                this.setState({screenWidth: event.currentTarget.innerWidth});
             }
 
         }, false);
@@ -52,7 +90,7 @@ class userAPIcomponent extends React.Component {
         window.removeEventListener('resize', ()=> {})
     }
 
-    onPageChange = (p) => {
+    onPageChange = (p: number) => {
         this.props.setUsersThunkCreator(p, this.props.pageSize);
     }
 
@@ -71,15 +109,14 @@ class userAPIcomponent extends React.Component {
                    toggleFollowProcessing = {this.props.toggleFollowProcessing}
                    setCurrentPagePagitator = {this.props.setCurrentPagePagitator}
                    pagePagitator = {this.props.pagePagitator}
-                   windowsWidth={this.screenWidth}
-                   setPageSize={this.props.setPageSize}
+                   windowsWidth={this.state.screenWidth}
                    />}
                 </>
     }
 }
 
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         users: getUsersSuperSelector(state),
         pageSize: getPageSizeSelector(state),
@@ -87,7 +124,6 @@ let mapStateToProps = (state) => {
         currentPage: getCurrentPageSelector(state),
         isFetching: getIsFetchingSelector(state),
         followProcces: getFollowProccesSelector(state),
-        isLogined: getIsLoginedSelector(state),
         pagePagitator: getPagePagitator(state)
     }
 }
@@ -101,4 +137,4 @@ let Dispatch = {
 }
 
 export default compose(
-    connect(mapStateToProps, Dispatch))(userAPIcomponent);
+    connect<MapStateToPropsType, MapDispatchToPropsType, OwnToPropsType, AppStateType>(mapStateToProps, Dispatch))(userAPIcomponent);
