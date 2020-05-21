@@ -22,10 +22,16 @@ let reducers = combineReducers({
     notification: notificationReducer
 })
 
+type RootReducerType = typeof reducers;
+export type AppStateType = ReturnType<RootReducerType>
+
+
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-let store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleWare)));
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleWare)));
 
-window.store = store;
+// @ts-ignore
+//window._market = store;
 
 export default store;
