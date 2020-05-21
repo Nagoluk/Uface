@@ -1,11 +1,23 @@
 import React from 'react';
 import UsersStlyes from './Users.module.css';
 import User from "./User";
+import { UserT } from '../../Redux/usersReducer';
 
+type PropsType = {
+    totalUsersCount: number,
+    currentPage: number,
+    pageSize: number,
+    pagePagitator: number,
+    setCurrentPagePagitator: (page: number) => void,
+    users: Array<UserT>,
+    windowsWidth: number,
 
-let Users = (props) => {
-    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
+    onPageChange: (a: number)=>void,
+}
+
+let Users: React.FC<PropsType> = ({totalUsersCount, pageSize, pagePagitator, setCurrentPagePagitator, users, ...props}) => {
+    let pageCount = Math.ceil(totalUsersCount / pageSize);
+    let pages: Array<number> = [];
     let portion;
 
     if(props.windowsWidth <= 635){
@@ -14,7 +26,7 @@ let Users = (props) => {
         portion = 10;
     }
 
-    let count = props.pagePagitator;
+    let count = pagePagitator;
     let left = count * portion + 1;
     let right = left + portion - 1;
 
@@ -24,11 +36,11 @@ let Users = (props) => {
     }
 
     let leftShift = () => {
-        props.setCurrentPagePagitator(--count)
+        setCurrentPagePagitator(--count)
     }
 
     let rightShift = () => {
-        props.setCurrentPagePagitator(++count)
+        setCurrentPagePagitator(++count)
     }
 
     pages = pages.filter(item => item >= left && item <= right)
@@ -52,7 +64,7 @@ let Users = (props) => {
                 </div>
 
                 <div className={UsersStlyes.itemWrap}>
-                    {props.users.map((user, index) => <User user={user} key={index}index={index} {...props}/>)}
+                    {users.map((user, index) => <User user={user} key={index}index={index} {...props}/>)}
                 </div>
              </div>)
 }

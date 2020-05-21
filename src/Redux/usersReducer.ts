@@ -13,7 +13,7 @@ const SET_CURRENT_PAGE_PAGITATOR = "SET_CURRENT_PAGE_PAGITATOR";
 const SET_FOUNDED_USERS = "SET_FOUNDED_USERS";
 
 
-type UserT = {
+export type UserT = {
     name: string,
     id: number,
     uniqueUrlName: string | number | null,
