@@ -1,4 +1,5 @@
-import * as axios from "axios";
+import axios from "axios";
+import {ProfileType} from "../Redux/profileReducer";
 
 
 
@@ -11,25 +12,52 @@ const instance = axios.create({
 })
 
 //const socket = io.connect("https://social-network.samuraijs.com/api/1.0/dialogs")
+export enum ResultsCodes{
+    Success = 0,
+    Error = 1,
+}
 
+export enum ResultCodeForCaptcha {
+    CaptchaIsRequired= 10
+}
+type GetLoginResponseType = {
+    resultCode: ResultsCodes,
+    messages: Array<string>,
+    data: {
+        id: number,
+        email: string,
+        login: string
+    }
+}
 
+type LoginResponseType = {
+    resultCode: ResultsCodes | ResultCodeForCaptcha
+    messages: Array<string>,
+    data: {
+        userId: number
+    }
+}
+
+type LogoutResponseType = {
+    resultCode: ResultsCodes
+    messages: Array<string>,
+    data: {}
+}
 
 export let AuthAPI = {
     getLogin () {
-        return instance.get("auth/me").then(response => {
-          return  response.data;
-        });
+        return instance.get<GetLoginResponseType>("auth/me").then(response => response.data);
     },
 
-    login (email, password, rememberMe, captcha = null){
+    login (email: string, password: string, rememberMe = false, captcha: null | string = null){
 
-        if(captcha) return instance.post("auth/login", {email, password, rememberMe, captcha});
+        if(captcha) return instance.post<LoginResponseType>("auth/login", {email, password, rememberMe, captcha});
 
-        return instance.post("auth/login", {email, password, rememberMe});
+        return instance.post<LoginResponseType>("auth/login", {email, password, rememberMe});
     },
 
     logout () {
-        return instance.delete("auth/login");
+        return instance.delete<LogoutResponseType>("auth/login");
     }
 };
 
@@ -40,7 +68,7 @@ export let UsersAPI = {
         .then(response => response.data);
     },
 
-    Search(text) {
+    Search(text: string) {
         return instance.get(`users?term=${text}&count=${5}`)
     }
 };
@@ -50,15 +78,15 @@ export let DialogsAPI = {
         return instance.get("dialogs")
     },
 
-    startChating(id) {
+    startChating(id: number) {
         return instance.put(`dialogs/${id}`)
     },
 
-   sendMessage(id, body){
+   sendMessage(id: number, body: string){
     return instance.post(`dialogs/${id}/messages`, {body: body}).then(response => response.data)
     },
 
-    getMessages(UserId){
+    getMessages(UserId: number){
 
         return instance.get(`dialogs/${UserId}/messages/new?newerThen=2019-4-19`);
     },
@@ -67,7 +95,7 @@ export let DialogsAPI = {
         return instance.get("dialogs/messages/new/count");
     },
 
-    deleteMessage(messageId){
+    deleteMessage(messageId: string){
         return instance.delete(`dialogs/messages/${messageId}`)
     }
 }
@@ -75,23 +103,23 @@ export let DialogsAPI = {
 
 
 export let ProfileAPI = {
-    getProfile(id) {
+    getProfile(id: number) {
         return instance.get("profile/" + id);
     },
 
-    getStatus(id){
+    getStatus(id: number){
         return instance.get("profile/status/" + id);
     },
 
-    putProfileData(data){
+    putProfileData(data: ProfileType){
         return instance.put("profile", data)
     },
 
-    updateStatus(status){
+    updateStatus(status: string){
         return instance.put("profile/status", {status: status});
     },
 
-    uploadAvatar(avatar) {
+    uploadAvatar(avatar: any) {
         let formData = new FormData();
         formData.append("image", avatar)
 
@@ -109,10 +137,10 @@ export let getSecureCaptcha = () => {
 }
 
 
-export let followAPI = (id) => {
+export let followAPI = (id: number) => {
     return instance.post("follow/" + id, {}).then(response => response.data);
 }
 
-export let unfollowAPI = (id) => {
+export let unfollowAPI = (id: number) => {
     return instance.delete(("follow/" + id)).then(response => response.data)
 }

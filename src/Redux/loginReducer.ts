@@ -1,4 +1,4 @@
-import {AuthAPI, getSecureCaptcha} from "../api/api";
+import {AuthAPI, getSecureCaptcha, ResultsCodes, ResultCodeForCaptcha} from "../api/api";
 import { stopSubmit } from "redux-form";
 
 const SET_USER_LOGIN = "SET_USER_LOGIN";
@@ -92,9 +92,9 @@ export let login = (email: string, password: string, rememberMe: boolean = false
     return (dispatch: any) => {
 
         AuthAPI.login(email, password, rememberMe, captcha).then((response: any) => {
-            if(response.data.resultCode === 0){
+            if(response.data.resultCode === ResultsCodes.Success){
               dispatch(loginThunkCreator())
-            }else if(response.data.resultCode === 10){
+            }else if(response.data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired){
             
                 dispatch(getCaptchaThunkCreator());
 
@@ -114,7 +114,7 @@ export let login = (email: string, password: string, rememberMe: boolean = false
 export let logout = () =>{
     return (dispatch: any) => {
         AuthAPI.logout().then((response:any)  => {
-            if(response.data.resultCode === 0){
+            if(response.data.resultCode === ResultsCodes.Success){
                 window.location.reload();
                 dispatch(setUserLoginAC(null, null, null, false))
             }

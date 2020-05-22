@@ -30,7 +30,7 @@ type ContactsType = {
     mainLink: string | null
 }
 
-type ProfileType = {
+export type ProfileType = {
     aboutMe: string | null,
     contacts: ContactsType,
     lookingForAJob: boolean,
