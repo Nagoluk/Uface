@@ -1,6 +1,9 @@
 import {UsersAPI, unfollowAPI, followAPI} from "../api/api"
 import {setFollowAC} from "./profileReducer";
 import {photosT} from "./messageReducer";
+import {AppStateType} from "./stateRedux";
+import {Dispatch} from "redux";
+import {ThunkAction} from "redux-thunk";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -147,8 +150,14 @@ type ActionTypes = followACT | unFollowACT |
 
 export const setFoundedUsers = (items: Array<UserT>): setFoundedUsersACT => ({type: SET_FOUNDED_USERS, items})
 
+
+//Первый вариант типизации санки
+type getStateType = () => AppStateType
+type currentDispatchType = Dispatch<ActionTypes>
+
 export const setUsersThunkCreator = (currentPage: number, pageSize: number) => {
-    return (dispatch: any) => {
+    return (dispatch: currentDispatchType, getState: getStateType) => {
+
         dispatch(setCurrentPage(currentPage));
         dispatch(ToggleFetching(true));
         UsersAPI.getUsers(currentPage, pageSize).then((data: any) => {
@@ -161,14 +170,15 @@ export const setUsersThunkCreator = (currentPage: number, pageSize: number) => {
     }
 }
 
+
 export const followThunkCreator = (userID: number) => {
-    return (dispatch: any)=> {
+    return (dispatch: currentDispatchType, getState: getStateType)=> {
         dispatch(toggleFollowProcessing(userID, true));
 
         followAPI(userID).then((data: any) => {
                 if(data.resultCode === 0) {
                     dispatch(follow(userID))
-                    dispatch(setFollowAC(true))
+                    // dispatch(setFollowAC(true))
                 }
 
 
@@ -180,13 +190,13 @@ export const followThunkCreator = (userID: number) => {
 
 
 export const unfollowThunkCreator = (userID: number) => {
-    return (dispatch: any)=> {
+    return (dispatch: currentDispatchType, getState: getStateType)=> {
         dispatch(toggleFollowProcessing(userID, true));
 
         unfollowAPI(userID).then((data: any) => {
                 if(data.resultCode === 0) {
                     dispatch(unfollow(userID))
-                    dispatch(setFollowAC(false))
+                    // dispatch(setFollowAC(false))
                 }
 
         dispatch(toggleFollowProcessing(userID, false))
@@ -196,7 +206,7 @@ export const unfollowThunkCreator = (userID: number) => {
 
 
 export const searchingThunkCreator = (text: string) => {
-    return (dispatch: any)=> {
+    return (dispatch: currentDispatchType, getState: getStateType)=> {
         // dispatch(toggleFollowProcessing(userID, true));
 
         UsersAPI.Search(text).then((data: any) => {
