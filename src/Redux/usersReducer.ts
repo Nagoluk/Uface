@@ -36,13 +36,13 @@ let initialUsers = {
 
 export type InitialUsersT = typeof initialUsers;
 
-const usersReducer = (state = initialUsers, action: any): InitialUsersT =>{
+const usersReducer = (state = initialUsers, action: ActionTypes): InitialUsersT =>{
     switch(action.type) {
         case FOLLOW:
         return {
             ...state,
             users: state.users.map(u => {
-                if(u.id === action.usedID) {
+                if(u.id === action.userID) {
                     let uc = {...u, followed: true};
                     
                     return uc;
@@ -55,7 +55,7 @@ const usersReducer = (state = initialUsers, action: any): InitialUsersT =>{
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if(u.id === action.usedID) {
+                    if(u.id === action.userID) {
                         return {...u, followed: false}
                     }
                     return u;
@@ -129,8 +129,8 @@ export const setTotalCount = (count: number): setTotalCountACT => ({type: SET_TO
 type toggleFetchingACT = {type: typeof TOGGLE_IS_FETCHING, isFetching: boolean}
 export const ToggleFetching = (isFetching: boolean): toggleFetchingACT => ({type: TOGGLE_IS_FETCHING, isFetching});
 
-type toggleFollowProcessingACT = {type: typeof TOGGLE_FOLLOW_IN_PROCESS, usedID: number, isFetchingFollow: boolean}
-export const toggleFollowProcessing = (usedID: number, isFetchingFollow: boolean):toggleFollowProcessingACT => ({type: TOGGLE_FOLLOW_IN_PROCESS, usedID, isFetchingFollow});
+type toggleFollowProcessingACT = {type: typeof TOGGLE_FOLLOW_IN_PROCESS, userID: number, isFetchingFollow: boolean}
+export const toggleFollowProcessing = (userID: number, isFetchingFollow: boolean):toggleFollowProcessingACT => ({type: TOGGLE_FOLLOW_IN_PROCESS, userID, isFetchingFollow});
 
 type setCurrentPagePagitatorACT = {type: typeof SET_CURRENT_PAGE_PAGITATOR, payload: number}
 export const setCurrentPagePagitator =  (payload: number): setCurrentPagePagitatorACT => ({type: SET_CURRENT_PAGE_PAGITATOR, payload});
@@ -139,6 +139,12 @@ type setFoundedUsersACT = {
     type: typeof SET_FOUNDED_USERS,
     items: Array<UserT>
 }
+
+type ActionTypes = followACT | unFollowACT |
+    setUsersACT | setCurrentPageACT | setTotalCountACT | toggleFetchingACT
+    | toggleFollowProcessingACT | setCurrentPagePagitatorACT | setFoundedUsersACT
+
+
 export const setFoundedUsers = (items: Array<UserT>): setFoundedUsersACT => ({type: SET_FOUNDED_USERS, items})
 
 export const setUsersThunkCreator = (currentPage: number, pageSize: number) => {
