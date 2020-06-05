@@ -15,7 +15,6 @@ type PropsType = {
 }
 let User: React.FC<PropsType> = props => {
 
-    debugger;
     return (<div className={UsersStlyes.item} key={props.index.toString()}>
         <div className={UsersStlyes.header}>
             <div className={UsersStlyes.avatar}>
