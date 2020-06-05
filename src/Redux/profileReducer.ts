@@ -190,7 +190,7 @@ export const getStatusThunkCreator = (id: number) => {
     }
 }
 
-export const updateStatusThunkCreator = (status: string | null) => {
+export const updateStatusThunkCreator = (status: string ) => {
     return (dispatch: any)=>{
         ProfileAPI.updateStatus(status).then((response: any) => {
             if(response.data.resultCode === 0)

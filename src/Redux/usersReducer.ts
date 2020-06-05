@@ -1,7 +1,7 @@
 import {UsersAPI, unfollowAPI, followAPI} from "../api/api"
 import {setFollowAC} from "./profileReducer";
 import {photosT} from "./messageReducer";
-import {AppStateType} from "./stateRedux";
+import {AppStateType, InferActionsTypes} from "./stateRedux";
 import {Dispatch} from "redux";
 import {ThunkAction} from "redux-thunk";
 
@@ -114,41 +114,21 @@ const usersReducer = (state = initialUsers, action: ActionTypes): InitialUsersT 
     }
 }
 
-type followACT = {type: typeof FOLLOW, userID: number}
-export const follow = (userID: number): followACT =>({type: FOLLOW, userID});
-
-type unFollowACT = {type: typeof UNFOLLOW, userID: number }
-export const unfollow = (userID: number): unFollowACT => ({type: UNFOLLOW, userID});
-
-type setUsersACT = {type: typeof SET_USERS, users: Array<UserT> }
-export const setUsers = (users: Array<UserT>): setUsersACT => ({type: SET_USERS, users});
-
-type setCurrentPageACT = {type: typeof SET_CURRENT_PAGE, page: number}
-export const setCurrentPage = (page: number): setCurrentPageACT => ({type: SET_CURRENT_PAGE, page});
-
-type setTotalCountACT = {type: typeof SET_TOTAL_USERS_COUNT, count: number}
-export const setTotalCount = (count: number): setTotalCountACT => ({type: SET_TOTAL_USERS_COUNT, count});
-
-type toggleFetchingACT = {type: typeof TOGGLE_IS_FETCHING, isFetching: boolean}
-export const ToggleFetching = (isFetching: boolean): toggleFetchingACT => ({type: TOGGLE_IS_FETCHING, isFetching});
-
-type toggleFollowProcessingACT = {type: typeof TOGGLE_FOLLOW_IN_PROCESS, userID: number, isFetchingFollow: boolean}
-export const toggleFollowProcessing = (userID: number, isFetchingFollow: boolean):toggleFollowProcessingACT => ({type: TOGGLE_FOLLOW_IN_PROCESS, userID, isFetchingFollow});
-
-type setCurrentPagePagitatorACT = {type: typeof SET_CURRENT_PAGE_PAGITATOR, payload: number}
-export const setCurrentPagePagitator =  (payload: number): setCurrentPagePagitatorACT => ({type: SET_CURRENT_PAGE_PAGITATOR, payload});
-
-type setFoundedUsersACT = {
-    type: typeof SET_FOUNDED_USERS,
-    items: Array<UserT>
+export const UsersActions = {
+    follow: (userID: number) => ({type: FOLLOW, userID} as const),
+    unfollow: (userID: number) => ({type: UNFOLLOW, userID} as const),
+    setUsers: (users: Array<UserT>) => ({type: SET_USERS, users} as const),
+    setCurrentPage: (page: number) => ({type: SET_CURRENT_PAGE, page} as const),
+    setTotalCount: (count: number) => ({type: SET_TOTAL_USERS_COUNT, count} as const),
+    ToggleFetching: (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const),
+    toggleFollowProcessing: (userID: number, isFetchingFollow: boolean) => ({type: TOGGLE_FOLLOW_IN_PROCESS, userID, isFetchingFollow} as const),
+    setCurrentPagePagitator: (payload: number) => ({type: SET_CURRENT_PAGE_PAGITATOR, payload} as const),
+    setFoundedUsers: (items: Array<UserT>) => ({type: SET_FOUNDED_USERS, items} as const)
 }
 
-type ActionTypes = followACT | unFollowACT |
-    setUsersACT | setCurrentPageACT | setTotalCountACT | toggleFetchingACT
-    | toggleFollowProcessingACT | setCurrentPagePagitatorACT | setFoundedUsersACT
 
+type ActionTypes = InferActionsTypes<typeof UsersActions>;
 
-export const setFoundedUsers = (items: Array<UserT>): setFoundedUsersACT => ({type: SET_FOUNDED_USERS, items})
 
 
 //Первый вариант типизации санки
@@ -158,13 +138,13 @@ type currentDispatchType = Dispatch<ActionTypes>
 export const setUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return (dispatch: currentDispatchType, getState: getStateType) => {
 
-        dispatch(setCurrentPage(currentPage));
-        dispatch(ToggleFetching(true));
+        dispatch(UsersActions.setCurrentPage(currentPage));
+        dispatch(UsersActions.ToggleFetching(true));
         UsersAPI.getUsers(currentPage, pageSize).then((data: any) => {
         
-            dispatch(setUsers(data.items));
-            dispatch(setTotalCount(data.totalCount));
-            dispatch(ToggleFetching(false));
+            dispatch(UsersActions.setUsers(data.items));
+            dispatch(UsersActions.setTotalCount(data.totalCount));
+            dispatch(UsersActions.ToggleFetching(false));
 
         });
     }
@@ -173,16 +153,16 @@ export const setUsersThunkCreator = (currentPage: number, pageSize: number) => {
 
 export const followThunkCreator = (userID: number) => {
     return (dispatch: currentDispatchType, getState: getStateType)=> {
-        dispatch(toggleFollowProcessing(userID, true));
+        dispatch(UsersActions.toggleFollowProcessing(userID, true));
 
         followAPI(userID).then((data: any) => {
                 if(data.resultCode === 0) {
-                    dispatch(follow(userID))
+                    dispatch(UsersActions.follow(userID))
                     // dispatch(setFollowAC(true))
                 }
 
 
-        dispatch(toggleFollowProcessing(userID, false))
+        dispatch(UsersActions.toggleFollowProcessing(userID, false))
 
       })
     }
@@ -191,15 +171,15 @@ export const followThunkCreator = (userID: number) => {
 
 export const unfollowThunkCreator = (userID: number) => {
     return (dispatch: currentDispatchType, getState: getStateType)=> {
-        dispatch(toggleFollowProcessing(userID, true));
+        dispatch(UsersActions.toggleFollowProcessing(userID, true));
 
         unfollowAPI(userID).then((data: any) => {
                 if(data.resultCode === 0) {
-                    dispatch(unfollow(userID))
+                    dispatch(UsersActions.unfollow(userID))
                     // dispatch(setFollowAC(false))
                 }
 
-        dispatch(toggleFollowProcessing(userID, false))
+        dispatch(UsersActions.toggleFollowProcessing(userID, false))
       })
     }
 }
@@ -211,7 +191,7 @@ export const searchingThunkCreator = (text: string) => {
 
         UsersAPI.Search(text).then((data: any) => {
 
-            if(data.status === 200) dispatch(setFoundedUsers(data.data.items))
+            if(data.status === 200) dispatch(UsersActions.setFoundedUsers(data.data.items))
         })
     }
 }

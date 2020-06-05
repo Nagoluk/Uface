@@ -3,14 +3,8 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import Users from "./Users";
 import {
-    followThunkCreator,
-    setCurrentPage,
-    setTotalCount,
-    setUsers,
-    ToggleFetching,
-    unfollowThunkCreator,
-    toggleFollowProcessing,
-    setUsersThunkCreator, setCurrentPagePagitator, UserT,
+    followThunkCreator, unfollowThunkCreator,setUsersThunkCreator,
+    UsersActions, UserT,
 } from "../../Redux/usersReducer";
 
 import Preloader from "../assets/preloader/Preloader";
@@ -128,10 +122,11 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-
+let {setUsers, setCurrentPage,
+    setTotalCount, ToggleFetching, toggleFollowProcessing, setCurrentPagePagitator} = UsersActions
 
 let Dispatch = {
-    followThunkCreator, unfollowThunkCreator, setUsers, setCurrentPage, 
+    followThunkCreator, unfollowThunkCreator, setUsers, setCurrentPage,
     setTotalCount,ToggleFetching, toggleFollowProcessing,
     setUsersThunkCreator, setCurrentPagePagitator
 }

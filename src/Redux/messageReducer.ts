@@ -192,7 +192,7 @@ export const startChatingThunkCreator = (id: number) => {
 }
 
 
-export const deleteMessageThunkCreator = (messageId: number) => {
+export const deleteMessageThunkCreator = (messageId: string) => {
     return (dispatch: any) => {
         DialogsAPI.deleteMessage(messageId).then((response: any) => {
             // dispatch(refreshAC())
