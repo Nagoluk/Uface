@@ -8,7 +8,6 @@ nav ul {
      justify-content: center;
      text-align: center;
      box-sizing: border-box;
-     background: #fff;
      padding: 30px;
      flex-basis: 50%;
      border: 1px solid lightgray;
@@ -40,8 +39,7 @@ nav a{
 }
 
 .friends{
-    background: #fff;
-    border: 1px solid lightgray;
+
     margin-top: 10px;
 }
 

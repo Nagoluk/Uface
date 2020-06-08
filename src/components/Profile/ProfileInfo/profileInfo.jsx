@@ -5,6 +5,16 @@ import profileAvatar from "../../../img/Profile/avatar.png";
 import Gellery from "../../common/gallery/gallery";
 import {Redirect} from "react-router-dom";
 import UsersStlyes from "../../Users/Users.module.css";
+import styled from "styled-components";
+import Profile from "../profile";
+
+
+const ProfileItemStyled = styled.div`
+    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+    color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    border: ${props => (props.black ? "1px solid #2B2B2B" : "1px solid lightgray;")};
+    transition: all .2s ease-in;
+`
 
 
 
@@ -49,7 +59,7 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
     return (<div className={p.profileWrap}>
                 <div className={p.photowrap} ></div>
 
-                <div className={p.information}>
+                <ProfileItemStyled  black={props.black} className={p.information}>
                     {amI && <div className={p.avatarWrap}>
                                 <div className={p.changeAvatarContainer}>
                                     <img src={profile.photos.large || profileAvatar} 
@@ -119,9 +129,9 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
 
 
                     </div>}
-                </div>
+                </ProfileItemStyled>
 
-                {hasContact && <div className={p.information + " " + p.contacts}>
+                {hasContact && <ProfileItemStyled className={p.information + " " + p.contacts} black={props.black}>
                     <ul>
                         {contacts.facebook && <li>
                             <a href={normalizeLink(contacts.facebook)} target="_blank" rel="noopener noreferrer">
@@ -169,7 +179,7 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                             </a>
                         </li>}
                     </ul>
-                </div>}
+                </ProfileItemStyled>}
 
                 {showGallery && <Gellery img={profile.photos.large} setShowGallery={setShowGallery} amI={amI} uploadPhoto={uploadPhoto}/>}
 

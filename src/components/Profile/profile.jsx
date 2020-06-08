@@ -26,10 +26,11 @@ const Profile = (props) => {
                          isFollowed={props.isFollowed}
                          followThunkCreator={props.followThunkCreator}
                          unfollowThunkCreator={props.unfollowThunkCreator}
+                         black={props.black}
 
             />
 
-            {props.profile.profile.userId === props.loginData.id && <MyPostsContainer store={props.store} profile ={props.profile}  />}
+            {props.profile.profile.userId === props.loginData.id && <MyPostsContainer store={props.store} profile ={props.profile}  black={props.black} />}
 
         </div>
     );

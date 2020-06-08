@@ -1,8 +1,8 @@
 .information{
   padding: 15px;
-  background: #ffffff;
+
   position: relative;
-  border:1px solid lightgray;
+  /*border:1px solid lightgray;*/
 }
 
 .avatarWrap {
@@ -116,7 +116,7 @@
 .photowrap {
    width: 100%;
    height: 250px;
-   border:1px solid lightgray;
+   /*border:1px solid lightgray;*/
    background: url("https://www.everynation.org/wp-content/uploads/2018/02/Monthly-Website-Header-background.jpg") ;
    margin-bottom: 5px;
 }

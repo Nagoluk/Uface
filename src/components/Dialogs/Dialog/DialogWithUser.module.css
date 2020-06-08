@@ -3,7 +3,6 @@
 }
 
 .dialogWithUser {
-    background: #fff;
     border: 1px solid lightgray;
     flex-basis: 70%;
     position: relative;
@@ -14,7 +13,6 @@
 }
 
 .createNewMessage {
-    border-top: 1px solid lightgray;
     padding: 12px;
     display: flex;
     justify-content: space-between;
@@ -42,11 +40,10 @@
 
 .dialogHeader{
     position: relative;
-    background: #fff;
+
     padding: 12px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid lightgray;
     font-weight: lighter;
 }
 
@@ -71,7 +68,6 @@
 .backToDialogList span{
     font-size: 0.8em;
     text-transform: uppercase;
-    color: grey;
 }
 
 .createNewMessage {
@@ -97,7 +93,6 @@
         bottom: 53px;
         left: 0;
         width: 100%;
-        background: #fff;
         padding: 8px 0px 0px 3px;
         border-top: 1px solid lightgray;
         display: flex;
@@ -109,7 +104,6 @@
         width: 100%;
         top: 0;
         left: 0;
-        background: #fff;
         padding: 5px 7px;
         display: flex;
         align-items: center;

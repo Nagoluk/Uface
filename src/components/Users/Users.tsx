@@ -13,6 +13,7 @@ type PropsType = {
     users: Array<UserT>,
     followProcces: Array<number>,
     windowsWidth: number,
+    black: boolean,
 
     onPageChange: (a: number)=>void,
     followThunkCreator: (a: number) => void,
@@ -30,11 +31,12 @@ let Users: React.FC<PropsType> = ({totalUsersCount, pageSize, pagePagitator, set
                            setCurrentPagePagitator={setCurrentPagePagitator}
                            totalUsersCount={totalUsersCount}
                            windowsWidth={props.windowsWidth}
+                           black={props.black}
                     />
 
 
                 <div className={UsersStlyes.itemWrap}>
-                    {users.map((user, index) => <User user={user} key={index}index={index} {...props}/>)}
+                    {users.map((user, index) => <User user={user} key={index}index={index} {...props} black={props.black}/>)}
                 </div>
              </div>)
 }

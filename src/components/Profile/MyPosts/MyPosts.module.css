@@ -16,10 +16,9 @@
 }
 
 .newpost {
-  background: #fff;
   margin-top: 10px;
   padding: 10px;
-  border:1px solid lightgray;
+  /*border:1px solid lightgray;*/
 }
 
 
@@ -43,6 +42,9 @@ newpost textarea::-webkit-scrollbar-thumb {
   outline: none;
   padding: 5px;
   max-height: 300px;
+  min-height: 35px;
+  border-radius: 5px;
+  font-family: Calibri, sans-serif;
 }
 
 .send {

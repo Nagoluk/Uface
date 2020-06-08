@@ -11,7 +11,9 @@ class MyPostsContainer extends React.Component {
         return(<MyPosts 
                 ProfilePage={this.props.ProfilePage}
                 Lang={this.props.SetLang}
-                addNewPostAC={this.props.addNewPostAC}/>)
+                addNewPostAC={this.props.addNewPostAC}
+                black={this.props.black}
+        />)
     }
 }
 

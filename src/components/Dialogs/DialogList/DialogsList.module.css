@@ -1,6 +1,5 @@
 .dialogList {
-    background: #fff;
-    border: 1px solid lightgray;
+
 }
 
 .dialogListHeader {
@@ -33,7 +32,6 @@
 }
 
 .contactList::-webkit-scrollbar {
-    background: #F4F4F4;
     width: 4px;
 }
 
@@ -53,7 +51,7 @@
 
 .dialogs ul li {
     padding: 10px;
-    border-bottom: 4px solid #F4F4F4;
+
 }
 
 .dialogs ul li a{
@@ -82,7 +80,7 @@
 }
 
 .dialogListHeader {
-    border-bottom: 1px solid lightgray;
+
 }
 
 .dialogs button {

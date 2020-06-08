@@ -2,6 +2,22 @@ import React, {useState} from "react";
 import MyPost from "./MyPosts.module.css";
 import Post from "./post/post";
 import TextareaAutosize from 'react-textarea-autosize';
+import styled from "styled-components";
+
+const ProfileItemStyled = styled.div`
+    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+    color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    border: ${props => (props.black ? "1px solid #2B2B2B" : "1px solid lightgray;")};
+    transition: all .2s ease-in;
+    
+    & textarea {
+        background:  ${props => (props.black ? '#3C3F41' : '#fff')};
+        color:  ${props => (props.black ? '#fff' : '#000')};
+        margin-bottom: 10px;
+        transition: all .2s ease-in;
+    }
+`
+
 
 
 
@@ -39,11 +55,12 @@ const MyPosts = (props) => {
                                                                                        dataSend={currentValue.dataSend}
                                                                                        name={props.ProfilePage.profile.fullName}
                                                                                        photos={props.ProfilePage.profile.photos}
+                                                                                       black={props.black}
                                                                                     />).reverse()
     return (
         <div className={MyPost.myposts}>
             <div className="postwrap">
-                <div className={MyPost.newpost }>
+                <ProfileItemStyled className={MyPost.newpost} black={props.black}>
                     <TextareaAutosize value={value} onChange={postHandler} placeholder={"Create new post!"} autoComplete={"off"} wrap={"hard"}/>
                     <div className={MyPost.createnewpost}>
                         <span>Symbols: {symbols}</span>
@@ -55,7 +72,7 @@ const MyPosts = (props) => {
                     </div>
 
                     
-                </div>
+                </ProfileItemStyled>
 
                 <div className="news">
 

@@ -2,6 +2,34 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 import DialogsStyles from "./DialogsList.module.css";
 import Avatar from "../../../img/Profile/avatar.png";
+import styled from "styled-components";
+
+const DialogListStyled = styled.div`
+     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+    transition: all .2s ease-in;
+    border: ${props => (props.black ? "1px solid #2B2B2B": "1px solid lightgray")};
+
+    
+    && a {
+        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    }
+    
+    & svg {
+        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    }
+    
+    & h1 {
+        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    }
+    
+    & h3 {
+        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    }
+    
+    & h1 svg {
+        color: ${props => (props.black ? '#0078D4' : '#474B59;')};
+    }
+`
 
 
 const DialogItem = (props) => {
@@ -41,7 +69,7 @@ const DialogsList = (props) => {
 
     return(
         <div className={DialogsStyles.dialogs}>
-            <div className={DialogsStyles.dialogList}>
+            <DialogListStyled className={DialogsStyles.dialogList} black={props.black}>
                 <div className={DialogsStyles.dialogListHeader}>
                     <i className="fas fa-plus"></i>
 
@@ -60,7 +88,7 @@ const DialogsList = (props) => {
                 <div className={DialogsStyles.Notification}>
                     <i className="far fa-bell-slash"></i>
                 </div>
-            </div>
+            </DialogListStyled>
         </div>);
 }
 

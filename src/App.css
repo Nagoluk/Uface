@@ -10,14 +10,16 @@ li {
 
 body{
     background: #E7EBF0;
+    background: #3C3F41;
     font-family: Calibri, sans-serif;
+
 }
 
 .main-wrap{
     max-width: 820px;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .main-wrap main {

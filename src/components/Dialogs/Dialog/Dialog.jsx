@@ -5,19 +5,51 @@ import {NavLink} from "react-router-dom";
 import Avatar from "../../../img/Profile/avatar.png";
 import Messages from "./Messages/Messages";
 import Alert from "../../common/alert/alert";
+import styled from "styled-components";
+
+const DialogStyled = styled.div`
+     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+    transition: all .2s ease-in;
+    border: ${props => (props.black ? "1px solid #2B2B2B": "1px solid lightgray")};
+
+    
+    && a {
+        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    }
+    
+    & svg {
+        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    }
+    
+    & h1 {
+        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    }
+    
+    & h3 {
+        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
+    }
+    
+    & h1 svg {
+        color: ${props => (props.black ? '#0078D4' : '#474B59;')};
+    }
+    
+    & .last {
+        color: ${props => (props.black ? '#fff' : 'gray;')};
+    }
+`
 
 
 const Dialog = (props) => {
     let [message, setMessageText] = useState("");
     let [isNewMessage, setIsNewMessage] = useState(false);
 
-    return (<div className={DialogMod.dialogWithUser}>
+    return (<DialogStyled className={DialogMod.dialogWithUser} black={props.black}>
                 <div className={DialogMod.dialogHeader}>
                     <img src={props.userData.photos.small || props.userData.photos.large || Avatar} alt="avatar" className={DialogMod.Dialogavatar}/>
 
                     <div>
                         <NavLink to={"/profile/"+props.dialogId}><h3>{props.userData.userName}</h3></NavLink>
-                        <div className={DialogMod.status}>Was online: {props.userData.lastUserActivityDate.split("T").join(" ").slice(0, 16)}</div>
+                        <div className={DialogMod.status  + " last"}>Was online: {props.userData.lastUserActivityDate.split("T").join(" ").slice(0, 16)}</div>
                     </div>
 
                     <div className={DialogMod.backToDialogList}>
@@ -58,7 +90,7 @@ const Dialog = (props) => {
                             disabled={message === ""}>Send <i className="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
-             </div>);
+             </DialogStyled>);
 
 };
 

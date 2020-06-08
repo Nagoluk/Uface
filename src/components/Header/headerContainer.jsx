@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from "./header";
 import {loginThunkCreator, logout} from "../../Redux/loginReducer";
 import {getNewMessageCountThunkCreator} from "../../Redux/notificationReducer";
+import {ChangeThemeAC} from "../../Redux/appReducer";
 
 
 class HeaderContainer extends React.Component {
@@ -29,7 +30,8 @@ let mapStateToProps = (state) => {
 let Dispatch = {
     loginThunkCreator,
     logout,
-    getNewMessageCountThunkCreator
+    getNewMessageCountThunkCreator,
+    ChangeThemeAC
 }
 
 export default connect(mapStateToProps, Dispatch)(HeaderContainer);

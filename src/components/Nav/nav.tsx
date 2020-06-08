@@ -2,12 +2,36 @@ import React from 'react';
 import Navmod from "./nav.module.css";
 import {NavLink} from "react-router-dom";
 import photo from "../../img/Profile/avatar.png";
+import styled from "styled-components";
+//@ts-ignore
 
 
-const Nav: React.FC = () => {
+const NavigationStyle = styled.nav<any>`
+        & div a{
+               background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+               color: ${props => (props.black ? '#fff' : '#3C3F41')};
+               border: ${props => (props.black ? '1px solid #3C3F41' : '1px solid lightgray')};
+               transition: all .2s ease-in;
+              
+        }
+`
+
+const Followers = styled.div<any>`
+               background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+               color: ${props => (props.black ? '#fff' : '#3C3F41')};
+               border: ${props => (props.black ? '1px solid #3C3F41' : '1px solid lightgray')};
+               transition: all .2s ease-in;
+
+`
+
+type NavPropsType = {
+    black: boolean
+}
+
+const Nav: React.FC<NavPropsType> = props => {
 
     return (
-        <nav>
+        <NavigationStyle black={props.black}>
             <div className={Navmod.navigation}>
                 <ul>
                     <NavLink to="/profile" activeClassName={Navmod.activeLink}>
@@ -36,7 +60,7 @@ const Nav: React.FC = () => {
                 </ul>
             </div>
 
-            <div className={Navmod.friends}>
+            <Followers className={Navmod.friends} black={props.black}>
                 <h3>Followers</h3>
                 <ul>
                     <li><img src={photo} alt="f"/></li>
@@ -44,9 +68,9 @@ const Nav: React.FC = () => {
                     <li><img src={photo} alt="f"/></li>
                     <li><img src={photo} alt="f"/></li>
                 </ul>
-            </div>
+            </Followers>
 
-            <div className={Navmod.friends}>
+            <Followers className={Navmod.friends} black={props.black}>
                 <h3>Followed</h3>
                 <ul>
                     <li><img src={photo} alt="f"/></li>
@@ -54,8 +78,8 @@ const Nav: React.FC = () => {
                     <li><img src={photo} alt="f"/></li>
                     <li><img src={photo} alt="f"/></li>
                 </ul>
-            </div>
-        </nav>
+            </Followers>
+        </NavigationStyle>
     );
 }
 

@@ -2,6 +2,22 @@ import React, {useState} from 'react';
 import headermod from "../header.module.css";
 import Avatar from "../../../img/Profile/avatar.png";
 import {NavLink} from "react-router-dom";
+import styled from "styled-components";
+
+const SearchContainer  = styled.div`
+     background: ${props => (props.black ? '#3C3F41' : '#E7EBF0')};
+     
+     & input {
+        background: ${props => (props.black ? '#3C3F41' : '#E7EBF0')};
+        color: ${props => (props.black ? '#fff' : '#000')};
+    }
+    
+`
+
+const SearchResult = styled.div`
+    background: ${props => (props.black ? '#3C3F41' : '#fff')};
+    color: ${props => (props.black ? '#fff' : '#000')};
+`
 
 
 const Search = props => {
@@ -15,10 +31,7 @@ const Search = props => {
     }
 
     let stopSearching = () => {
-
         setText("")
-
-
     }
 
     let hideResults = () => {
@@ -27,24 +40,24 @@ const Search = props => {
 
 
     return (
-        <div className={headermod.input}>
+        <SearchContainer black={props.black} className={headermod.input} >
             <input type="text" placeholder={"Search here"} className={headermod.Search} onChange={searching}
                    onBlur={stopSearching} value={text}/>
 
 
-            {searchMode && <div className={headermod.Results}>
+            {searchMode && <SearchResult black={props.black} className={headermod.Results}>
                 {!props.results.length && "No results"}
                 {props.results.map((item, key) => <Item
                     item={item} key={key.toString()}
                     hideResults={hideResults}/>)}
 
 
-            </div>}
+            </SearchResult>}
 
             {searchMode && <button onClick={hideResults}><i className="far fa-times-circle"></i></button>}
             {!searchMode && <button ><i className="fas fa-search"></i></button>}
 
-        </div>)
+        </SearchContainer>)
 }
 
 const Item = props => {

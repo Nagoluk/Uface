@@ -34,6 +34,7 @@ class DialogContainer extends React.Component {
                                sendMessagesThunkCreator={this.props.sendMessagesThunkCreator}
                                id={this.props.id}
                                getNewMessageCountThunkCreator={this.props.getNewMessageCountThunkCreator}
+                               black={this.props.black}
                 />
         }
 
