@@ -31,9 +31,10 @@ const HeaderStyled = styled.header`
     }
 `
 
-const switchButton = styled.button`
+const SwitchButton = styled.button`
     background: none;
     outline: none;
+    border: none;
     
     & svg {
         color: #0078D4;
@@ -53,13 +54,13 @@ const Header = props => {
                 <div className={headermod.leftside}>
                     <NavLink to="/"><h1><i className="fas fa-dragon"></i>Uface</h1></NavLink>
                     <div style={{"margin-top": "5px"}}>
-                        {props.black && <switchButton onClick={() => props.ChangeThemeAC()}>
+                        {props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
                             <i className="far fa-moon"></i>
-                        </switchButton>}
+                        </SwitchButton>}
 
-                        {!props.black && <switchButton onClick={() => props.ChangeThemeAC()}>
+                        {!props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
                             <i className="fas fa-sun"></i>
-                        </switchButton>}
+                        </SwitchButton>}
                     </div>
 
                 </div>
@@ -127,13 +128,13 @@ const AdaptiveMenu = props => {
         </div>
 
         <div className={headermod.adaptiveMenu}>
-            {props.black && <switchButton onClick={() => props.ChangeThemeAC()}>
+            {props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
                 <i className="far fa-moon"></i>
-            </switchButton>}
+            </SwitchButton>}
 
-            {!props.black && <switchButton onClick={() => props.ChangeThemeAC()}>
+            {!props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
                 <i className="fas fa-sun"></i>
-            </switchButton>}
+            </SwitchButton>}
         </div>
 
         <div className={headermod.adaptiveMenu}>

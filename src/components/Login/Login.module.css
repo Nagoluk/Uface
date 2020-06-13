@@ -4,7 +4,6 @@
 }
 
 .Form {
-    background: #fff;
     padding: 30px 20px;
     border-top: 5px solid #2B5278;
     margin: 50px auto;
@@ -17,7 +16,7 @@
     text-transform: uppercase;
     font-size: 30px;
     padding-bottom: 10px;
-    border-bottom: 1px solid lightgray;
+
 }
 
 .Form h2 {
@@ -100,8 +99,6 @@
         margin: 0;
     }
     .Login {
-        padding-top: 100px;
-        background: #fff;
         width: 100%;
         position: fixed;
         bottom: 53px;

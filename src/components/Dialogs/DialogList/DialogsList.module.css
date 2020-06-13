@@ -154,7 +154,6 @@
     .contactList {
         overflow-y: scroll;
         height: calc(100% - 3px);
-        background: #fff;
         max-height: none;
 
     }

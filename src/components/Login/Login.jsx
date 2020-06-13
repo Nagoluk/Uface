@@ -6,11 +6,20 @@ import { required } from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../Redux/loginReducer";
 import { Redirect } from "react-router-dom";
+import styled from "styled-components";
+
+const LoginStyled = styled.form`
+    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+    color: ${props => (props.black ? '#fff' : '')};
+    border: 1px solid ${props => (props.black ? '#2B2B2B' : 'lightgray')};
+    transition: all .2s ease-in;
+`
+
 
 
 
 let Form = (props) => {
-    return (<form className={styles.Form} onSubmit={props.handleSubmit}>
+    return (<LoginStyled className={styles.Form} onSubmit={props.handleSubmit} black={props.black}>
                 <div>
                     <div>
                         <h1><i className="fas fa-dragon"></i>Uface</h1>
@@ -48,7 +57,7 @@ let Form = (props) => {
                     <button type="submit" disabled={props.submitting}>Login in</button>
                 </div>
 
-            </form>)
+            </LoginStyled>)
 }
 
 let ReduxLoginForm = reduxForm({form: "login"})(Form)
@@ -70,7 +79,7 @@ class Login extends React.Component{
         }
 
         return(<div className={styles.Login}>
-            <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha}/>
+            <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha} black={this.props.black}/>
         </div>)
     }
 }

@@ -56,7 +56,7 @@ class App extends React.Component {
                                 <Route path="/setting" render={() => <SettingContainer black={this.props.isBlackTheme}/>}/>
                                 <Route path="/profile/:userID?" render={() => <ProfileContainer black={this.props.isBlackTheme}/>}/>
                                 <Route path="/friends" render={() => <UsersContainer black={this.props.isBlackTheme}/>}/>
-                                <Route path="/login" render={() => <Login black={this.props.isBlackTheme}/>}/>
+                                <Route path="/login" render={() => <Login black={this.props.isBlackTheme} black={this.props.isBlackTheme}/>}/>
                                 <Route path="/search" render={() => <Search black={this.props.isBlackTheme}/>}/>
                                 <Redirect exact from="/" to="/profile"/>
                                 <Route render={()=> <NotFound/>}/>

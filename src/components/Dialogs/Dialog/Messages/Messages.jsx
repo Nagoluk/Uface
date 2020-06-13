@@ -4,6 +4,12 @@ import MessagesStyle from "./Messages.module.css";
 import {deleteMessageThunkCreator, getMessagesAC, getMessagesThunkCreator} from "../../../../Redux/messageReducer";
 import Alert from "../../../common/alert/alert";
 
+import styled from "styled-components";
+
+const MessageWrap = styled.div`
+    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+`
+
 
 let getCorrectTime = (date) => {
     let x = new Date();
@@ -76,9 +82,9 @@ class Messages extends React.Component{
 
 
         return  (<>
-                    <div className={MessagesStyle.messages}>
+                    <MessageWrap className={MessagesStyle.messages}  black={this.props.black}>
                     {messages}
-                    </div>
+                    </MessageWrap>
 
                     {this.state.showMessage && <Alert
                                                     deleteMessage = {this.deleteMessage}

@@ -8,16 +8,17 @@ import Alert from "../../common/alert/alert";
 import styled from "styled-components";
 
 const DialogStyled = styled.div`
+    & > div{
      background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
-    transition: all .2s ease-in;
-    border: ${props => (props.black ? "1px solid #2B2B2B": "1px solid lightgray")};
-
-    
-    && a {
-        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
     }
     
-    & svg {
+    & textarea {
+        background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+        color: ${props => (props.black ? '#fff' : '#000')};
+   
+    }
+  
+    && a {
         color: ${props => (props.black ? '#ffffff' : '#474B59;')};
     }
     
@@ -37,7 +38,6 @@ const DialogStyled = styled.div`
         color: ${props => (props.black ? '#fff' : 'gray;')};
     }
 `
-
 
 const Dialog = (props) => {
     let [message, setMessageText] = useState("");
@@ -66,10 +66,11 @@ const Dialog = (props) => {
                          getNewMessageCountThunkCreator={props.getNewMessageCountThunkCreator}
                          isNewMessage={isNewMessage}
                          setIsNewMessage={setIsNewMessage}
+                         black={props.black}
                />
 
 
-                <div className={DialogMod.createNewMessage}>
+                <DialogStyled className={DialogMod.createNewMessage} black={props.black}>
 
 
                     <textarea name={"newMessage"} placeholder={"Новое сообщение"}
@@ -89,7 +90,7 @@ const Dialog = (props) => {
                             }}
                             disabled={message === ""}>Send <i className="fas fa-paper-plane"></i></button>
                     </div>
-                </div>
+                </DialogStyled>
              </DialogStyled>);
 
 };

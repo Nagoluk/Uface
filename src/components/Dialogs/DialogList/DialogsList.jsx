@@ -5,11 +5,9 @@ import Avatar from "../../../img/Profile/avatar.png";
 import styled from "styled-components";
 
 const DialogListStyled = styled.div`
-     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
     transition: all .2s ease-in;
-    border: ${props => (props.black ? "1px solid #2B2B2B": "1px solid lightgray")};
 
-    
     && a {
         color: ${props => (props.black ? '#ffffff' : '#474B59;')};
     }

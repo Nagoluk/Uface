@@ -3,7 +3,6 @@
 }
 
 .dialogWithUser {
-    border: 1px solid lightgray;
     flex-basis: 70%;
     position: relative;
 }
@@ -93,8 +92,7 @@
         bottom: 53px;
         left: 0;
         width: 100%;
-        padding: 8px 0px 0px 3px;
-        border-top: 1px solid lightgray;
+        padding: 8px 8px 0px 3px;
         display: flex;
         justify-content: space-between;
     }
