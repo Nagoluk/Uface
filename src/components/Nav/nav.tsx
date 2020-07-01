@@ -14,6 +14,11 @@ const NavigationStyle = styled.nav<any>`
                transition: all .2s ease-in;
               
         }
+
+        & div a.active{
+            background: ${props => (props.black ? '#202020' : '#f2f2f2')};
+    
+        } 
 `
 
 const Followers = styled.div<any>`

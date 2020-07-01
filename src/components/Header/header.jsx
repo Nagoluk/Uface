@@ -13,6 +13,10 @@ const HeaderStyled = styled.header`
     && a {
         color: ${props => (props.black ? '#ffffff' : '#474B59;')};
     }
+
+    & a.active svg{
+        color: #0078D4;
+    }
     
     & svg {
         color: ${props => (props.black ? '#ffffff' : '#474B59;')};
@@ -121,12 +125,7 @@ const AdaptiveMenu = props => {
             </NavLink>
         </div>}
 
-
-        <div className={headermod.adaptiveMenu}>
-            <NavLink to="/setting" activeClassName={Navmod.activeLink}><i
-                className="fas fa-cogs"></i></NavLink>
-        </div>
-
+        
         <div className={headermod.adaptiveMenu}>
             {props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
                 <i className="far fa-moon"></i>
@@ -136,6 +135,13 @@ const AdaptiveMenu = props => {
                 <i className="fas fa-sun"></i>
             </SwitchButton>}
         </div>
+
+
+        <div className={headermod.adaptiveMenu}>
+            <NavLink to="/setting" activeClassName={Navmod.activeLink}><i
+                className="fas fa-cogs"></i></NavLink>
+        </div>
+
 
         <div className={headermod.adaptiveMenu}>
             <NavLink to="/friends" activeClassName={Navmod.activeLink}><i
