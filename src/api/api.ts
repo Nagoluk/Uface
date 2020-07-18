@@ -1,5 +1,13 @@
 import axios from "axios";
 import {ProfileType} from "../Redux/profileReducer";
+import {
+    GetLoginResponseType,
+    LoginResponseType,
+    LogoutResponseType,
+    GetUsersType,
+    DialogsType,
+    BasisType, messageType, MessagesType, StatusType
+} from "./api-types";
 
 
 
@@ -12,37 +20,7 @@ const instance = axios.create({
 })
 
 //const socket = io.connect("https://social-network.samuraijs.com/api/1.0/dialogs")
-export enum ResultsCodes{
-    Success = 0,
-    Error = 1,
-}
 
-export enum ResultCodeForCaptcha {
-    CaptchaIsRequired= 10
-}
-type GetLoginResponseType = {
-    resultCode: ResultsCodes,
-    messages: Array<string>,
-    data: {
-        id: number,
-        email: string,
-        login: string
-    }
-}
-
-type LoginResponseType = {
-    resultCode: ResultsCodes | ResultCodeForCaptcha
-    messages: Array<string>,
-    data: {
-        userId: number
-    }
-}
-
-type LogoutResponseType = {
-    resultCode: ResultsCodes
-    messages: Array<string>,
-    data: {}
-}
 
 export let AuthAPI = {
     getLogin () {
@@ -64,39 +42,38 @@ export let AuthAPI = {
 
 export let UsersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+        return instance.get<GetUsersType>(`users?page=${currentPage}&count=${pageSize}`)
         .then(response => response.data);
     },
 
     Search(text: string) {
-        return instance.get(`users?term=${text}&count=${5}`)
+        return instance.get<GetUsersType>(`users?term=${text}&count=${5}`)
     }
 };
 
 export let DialogsAPI = {
     getDialogs(){
-        return instance.get("dialogs")
+        return instance.get<DialogsType>("dialogs")
     },
 
     startChating(id: number) {
-        return instance.put(`dialogs/${id}`)
+        return instance.put<BasisType>(`dialogs/${id}`)
     },
 
    sendMessage(id: number, body: string){
-    return instance.post(`dialogs/${id}/messages`, {body: body}).then(response => response.data)
+        return instance.post<messageType>(`dialogs/${id}/messages`, {body: body}).then(response => response.data)
     },
 
     getMessages(UserId: number){
-
-        return instance.get(`dialogs/${UserId}/messages/new?newerThen=2019-4-19`);
+        return instance.get<MessagesType>(`dialogs/${UserId}/messages/new?newerThen=2019-4-19`)
     },
 
     getMessageCount (){
-        return instance.get("dialogs/messages/new/count");
+        return instance.get<number>("dialogs/messages/new/count");
     },
 
     deleteMessage(messageId: string){
-        return instance.delete(`dialogs/messages/${messageId}`)
+        return instance.delete<BasisType>(`dialogs/messages/${messageId}`)
     }
 }
 
@@ -104,19 +81,19 @@ export let DialogsAPI = {
 
 export let ProfileAPI = {
     getProfile(id: number) {
-        return instance.get("profile/" + id);
+        return instance.get<ProfileType>("profile/" + id)
     },
 
     getStatus(id: number){
-        return instance.get("profile/status/" + id);
+        return instance.get<string>("profile/status/" + id);
     },
 
     putProfileData(data: ProfileType){
-        return instance.put("profile", data)
+        return instance.put<BasisType>("profile", data)
     },
 
     updateStatus(status: string){
-        return instance.put("profile/status", {status: status});
+        return instance.put<BasisType>("profile/status", {status: status});
     },
 
     uploadAvatar(avatar: any) {
@@ -138,9 +115,9 @@ export let getSecureCaptcha = () => {
 
 
 export let followAPI = (id: number) => {
-    return instance.post("follow/" + id, {}).then(response => response.data);
+    return instance.post<BasisType>("follow/" + id, {}).then(response => response.data);
 }
 
 export let unfollowAPI = (id: number) => {
-    return instance.delete(("follow/" + id)).then(response => response.data)
+    return instance.delete<BasisType>("follow/" + id).then(response => response.data)
 }

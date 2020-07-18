@@ -13,7 +13,7 @@ export type photosT = {
     large: string | null
 }
 
-type dialogT = {
+export type dialogT = {
     id: string,
     userName: string,
     hasNewMessages: boolean,
@@ -23,7 +23,7 @@ type dialogT = {
     photos: photosT
 }
 
-type messageT = {
+export type messageT = {
     id: string,
     body: string,
     translatedBody: string | null,
