@@ -3,7 +3,6 @@ import Navmod from "./nav.module.css";
 import {NavLink} from "react-router-dom";
 import photo from "../../img/Profile/avatar.png";
 import styled from "styled-components";
-//@ts-ignore
 
 
 const NavigationStyle = styled.nav<any>`

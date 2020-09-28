@@ -7,8 +7,8 @@ import HeaderContainer from "./components/Header/headerContainer";
 import ProfileContainer from "./components/Profile/profileContainer";
 import Login from './components/Login/Login';
 import {connect} from 'react-redux';
-import {loginThunkCreator} from "./Redux/loginReducer";
-import {initializeApp} from "./Redux/appReducer";
+import {loginThunkCreator, logout} from "./Redux/loginReducer";
+import {ChangeThemeAC, initializeApp} from "./Redux/appReducer";
 import Preloader from './components/assets/preloader/Preloader';
 import NotFound from "./components/404/notFound";
 import {compose} from "redux";
@@ -16,6 +16,7 @@ import DialogContainer from "./components/Dialogs/Dialog/DialogContainer";
 import {getNewMessageCountThunkCreator} from "./Redux/notificationReducer";
 import Search from "./components/Header/Search/SearchContainer";
 import styled, {createGlobalStyle} from "styled-components";
+import {AdaptiveMenu} from "./components/Nav/adaptiveNav";
 const DialogsListContainer = React.lazy(()=> import("./components/Dialogs/DialogList/DialogsListContainer"));
 const SettingContainer = React.lazy(() => import("./components/Setting/settingContainer"));
 
@@ -47,6 +48,10 @@ class App extends React.Component {
 
                 <div className="main-wrap">
                     <Nav black={this.props.isBlackTheme}/>
+                    <AdaptiveMenu black={this.props.isBlackTheme}
+                                  ChangeThemeAC={this.props.ChangeThemeAC}
+                                  isLogined={this.props.isLogined}
+                                  logout={this.props.logout} newMessageCount={this.props.newMessageCount}/>
 
                     <main>
                         <React.Suspense fallback={<Preloader/>}>
@@ -70,11 +75,12 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     initialized: state.app.initialized,
-    isBlackTheme: state.app.blackTheme
+    isBlackTheme: state.app.blackTheme,
+    isLogined: state.LoginReducer.isLogined,
+    newMessageCount: state.notification.newMessageCount
 });
 
-export default compose(
-                    connect(mapStateToProps, {loginThunkCreator, initializeApp, getNewMessageCountThunkCreator}),
+export default compose(connect(mapStateToProps, {loginThunkCreator, initializeApp, getNewMessageCountThunkCreator, ChangeThemeAC, logout}),
                     withRouter)(App)
 
 

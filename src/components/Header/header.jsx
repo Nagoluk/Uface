@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import headermod from "./header.module.css";
 import {NavLink} from "react-router-dom";
-import Navmod from "../Nav/nav.module.css";
 import SearchContainer from "./Search/SearchContainer";
 import styled from "styled-components";
+import {SwitchButton} from "../Nav/adaptiveNav";
 
-const HeaderStyled = styled.header`
+export const HeaderStyled = styled.header`
     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
     transition: background .2s ease-in;
 
@@ -34,19 +34,6 @@ const HeaderStyled = styled.header`
         color: ${props => (props.black ? '#0078D4' : '#474B59;')};
     }
 `
-
-const SwitchButton = styled.button`
-    background: none;
-    outline: none;
-    border: none;
-    
-    & svg {
-        color: #0078D4;
-        
-    }
-`
-
-
 
 
 const Header = props => {
@@ -94,76 +81,7 @@ const Header = props => {
                     </div>}
                 </div>
             </div>
-
-            <AdaptiveMenu menuHandler={setMenu}
-                          menu={menu}
-                          isLogined={props.isLogined}
-                          logout={props.logout}
-                          newMessageCount={props.newMessageCount}
-                          black={props.black}
-                          ChangeThemeAC={props.ChangeThemeAC}
-            />
-        </HeaderStyled>
-
-
-    );
-}
-
-
-const AdaptiveMenu = props => {
-
-    return (<HeaderStyled className={headermod.adaptivemenu} black={props.black}>
-        {props.isLogined && <div className={headermod.note + " " + headermod.logout} onClick={() => {
-            props.logout();
-        }}>
-            <i className="fas fa-power-off" title={"logout"}></i>
-        </div>}
-
-        {!props.isLogined && <div className={headermod.note}>
-            <NavLink to="/login">
-                <i className="fas fa-sign-in-alt" title={"logout"}></i>
-            </NavLink>
-        </div>}
-
-        
-        <div className={headermod.adaptiveMenu}>
-            {props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
-                <i className="far fa-moon"></i>
-            </SwitchButton>}
-
-            {!props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
-                <i className="fas fa-sun"></i>
-            </SwitchButton>}
-        </div>
-
-
-        <div className={headermod.adaptiveMenu}>
-            <NavLink to="/setting" activeClassName={Navmod.activeLink}><i
-                className="fas fa-cogs"></i></NavLink>
-        </div>
-
-
-        <div className={headermod.adaptiveMenu}>
-            <NavLink to="/friends" activeClassName={Navmod.activeLink}><i
-                className="fas fa-user-friends"></i></NavLink>
-        </div>
-
-        <div className={headermod.adaptiveMenu + " "  + headermod.messages}>
-            <NavLink to='/dialogs'>
-                <i className="fas fa-envelope"></i>
-            </NavLink>
-            {props.newMessageCount ? <div className={headermod.newMessageCount}>{props.newMessageCount}</div> : null}
-        </div>
-
-        {/*<div className={headermod.adaptiveMenu}>*/}
-        {/*    <NavLink to="/search"><i className="fas fa-search"></i></NavLink>*/}
-        {/*</div>*/}
-
-        <div className={headermod.adaptiveMenu}>
-            <NavLink to="/profile" activeClassName={Navmod.activeLink}><i
-                className="fas fa-address-card"></i></NavLink>
-        </div>
-    </HeaderStyled>)
+        </HeaderStyled>);
 }
 
 export default Header;

@@ -1,0 +1,29 @@
+.adaptivemenu{
+    display: none;
+}
+
+.adaptivemenu{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding:15px;
+    z-index: 999;
+    display: none;
+}
+
+.adaptivemenu svg{
+    font-size: 20px;
+}
+
+.logout svg {
+    color: red!important;
+}
+
+@media (max-width: 635px) {
+    .adaptivemenu{
+        display: flex;
+    }
+}
