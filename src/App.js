@@ -17,6 +17,7 @@ import {getNewMessageCountThunkCreator} from "./Redux/notificationReducer";
 import Search from "./components/Header/Search/SearchContainer";
 import styled, {createGlobalStyle} from "styled-components";
 import {AdaptiveMenu} from "./components/Nav/adaptiveNav";
+import Dialogs from "./components/Dialogs";
 const DialogsListContainer = React.lazy(()=> import("./components/Dialogs/DialogList/DialogsListContainer"));
 const SettingContainer = React.lazy(() => import("./components/Setting/settingContainer"));
 
@@ -56,8 +57,7 @@ class App extends React.Component {
                     <main>
                         <React.Suspense fallback={<Preloader/>}>
                             <Switch>
-                                <Route exact path="/dialogs/:userID" render={() => <DialogContainer black={this.props.isBlackTheme}/>}/>
-                                <Route path="/dialogs/" render={() => <DialogsListContainer black={this.props.isBlackTheme}/>}/>
+                                <Route path="/dialogs/:userID?" render={() => <Dialogs/>}/>
                                 <Route path="/setting" render={() => <SettingContainer black={this.props.isBlackTheme}/>}/>
                                 <Route path="/profile/:userID?" render={() => <ProfileContainer black={this.props.isBlackTheme}/>}/>
                                 <Route path="/friends" render={() => <UsersContainer black={this.props.isBlackTheme}/>}/>
