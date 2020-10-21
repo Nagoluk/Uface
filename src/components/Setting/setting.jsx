@@ -2,6 +2,7 @@ import React from 'react';
 import Set from './setting.module.css';
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
 import styled from "styled-components";
+import {UniversalWrap} from "../../styles/wrap.styles";
 
 const SettingItem = styled.div`
     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
@@ -11,11 +12,8 @@ const SettingItem = styled.div`
     
 `
 
-
-
-
 const Setting = (props) => {
-    return (<div className={Set.wrap}>
+    return (<UniversalWrap className={Set.wrap} maxWidth={500}>
                 <SettingItem className={Set.item} black={props.black}>
                     <UpdateProfile profile={props.profile} putUserData={props.putUserDataThunkCreator} isUpload={props.isUploadProfile}/>
                 </SettingItem>
@@ -23,7 +21,7 @@ const Setting = (props) => {
                 {/* <div className={Set.item}>
                     <UpdateContacts profile={props.profile} putUserData={props.putUserDataThunkCreator}/>
                 </div> */}
-            </div>)
+            </UniversalWrap>)
 }
 
 export default Setting;
