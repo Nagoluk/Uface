@@ -61,28 +61,6 @@
     padding-top: 8px;
 }
 
-.Notification {
-    height: 45px;
-    width: 45px;
-    background: lightgrey;
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    z-index: 9999;
-
-}
-
-.Notification svg{
-    font-size: 23px;
-}
-
-.dialogListHeader {
-
-}
-
 .dialogs button {
     background: none;
     outline: none;

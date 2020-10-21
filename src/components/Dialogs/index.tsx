@@ -23,7 +23,6 @@ const ChooseDialog = styled.div`
 
 export const Dialogs: React.FC<BookDetailProps>= (props) => {
 
-    debugger;
     return (<DialogWrap>
                 <DialogsListContainer black={true}/>
                 {props.match.params.userID ? <DialogContainer black={true}/> : <ChooseDialog>Choose Dialog</ChooseDialog>}

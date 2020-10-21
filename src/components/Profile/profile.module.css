@@ -1,8 +1,11 @@
+.profile {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .information{
   padding: 15px;
-
   position: relative;
-  /*border:1px solid lightgray;*/
 }
 
 .avatarWrap {
@@ -100,23 +103,19 @@
   color: #fff;
   cursor: pointer;
   transition: all .2s ease-in;
-
 }
 
 .contacts ul li svg:hover {
   padding: 5px;
 }
 
-
 .contacts ul li svg:hover {
   background: #2B5278
-
 }
 
 .photowrap {
    width: 100%;
    height: 250px;
-   /*border:1px solid lightgray;*/
    background: url("https://www.everynation.org/wp-content/uploads/2018/02/Monthly-Website-Header-background.jpg") ;
    margin-bottom: 5px;
 }
@@ -171,7 +170,6 @@ li .infoItem {
   padding: 7px;
   background: none;
   border: 1px solid #2B5278;
-  /*border-radius: 50%;*/
   cursor: pointer;
   transition: all ease-in-out .2s;
   outline: none;
@@ -205,8 +203,6 @@ li .infoItem {
     border: none;
     margin-bottom: 2px;
   }
-
-
 }
 
 

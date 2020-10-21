@@ -48,7 +48,6 @@ class App extends React.Component {
                 <HeaderContainer black={this.props.isBlackTheme} />
 
                 <div className="main-wrap">
-                    <Nav black={this.props.isBlackTheme}/>
                     <AdaptiveMenu black={this.props.isBlackTheme}
                                   ChangeThemeAC={this.props.ChangeThemeAC}
                                   isLogined={this.props.isLogined}

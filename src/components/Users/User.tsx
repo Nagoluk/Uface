@@ -29,12 +29,11 @@ type PropsType = {
     index: number,
     user: UserT,
     black: boolean,
-
     followProcces: Array<number>,
     unfollowThunkCreator: (userID: number) => void,
     followThunkCreator: (userID: number) => void,
-
 }
+
 let User: React.FC<PropsType> = props => {
 
     return (<UserItem black={props.black} className={UsersStlyes.item} key={props.index.toString()}>

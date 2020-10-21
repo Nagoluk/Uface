@@ -1,3 +1,7 @@
+nav {
+    margin: 0px 10px;
+}
+
 nav ul {
     display: flex;
     flex-wrap: wrap;
@@ -8,9 +12,7 @@ nav ul {
      justify-content: center;
      text-align: center;
      box-sizing: border-box;
-     padding: 30px;
-     flex-basis: 50%;
-     border: 1px solid lightgray;
+     padding: 16px 15px;
 }
 
 .navigation  svg{
@@ -34,60 +36,6 @@ nav li span {
 nav a{
     text-decoration: none;
 }
-
-.friends{
-
-    margin-top: 10px;
-}
-
-.friends h3 {
-    font-weight: normal;
-    font-size: 14px;
-    text-transform: uppercase;
-    padding: 10px 7px;
-    border-bottom: 1px solid lightgray;
-}
-
-.friends ul li {
-    height: 50px;
-    width: 50px;
-    background: lightgray;
-    border-radius: 50%;
-    margin: 10px 5px;
-}
-
-.friends svg {
-    height: 40px;
-    width: 40px;
-    font-size: 30px;
-    color: red;
-}
-
-.friends img{
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 1px solid lightgray;
-}
-
-.photos ul {
-padding: 9px;
-}
-
-.photos ul li {
-    border-radius: 0px;
-    margin: 1px;
-    height: 72px;
-    width: 72px;
-    display: inline-block;
-
-
-}
-
-.photos img {
-    border-radius: 0px;
-}
-
 
 
 

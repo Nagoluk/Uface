@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import SearchContainer from "./Search/SearchContainer";
 import styled from "styled-components";
 import {SwitchButton} from "../Nav/adaptiveNav";
+import Nav from "../Nav/nav";
 
 export const HeaderStyled = styled.header`
     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
@@ -54,22 +55,14 @@ const Header = props => {
                         </SwitchButton>}
                     </div>
 
+                    <Nav black={props.black} />
                 </div>
-
-
 
                 <div className={headermod.rightside}>
                     <SearchContainer black={props.black}/>
 
                     <div className={headermod.note  + " " + headermod.hide}>
                         <i className="fas fa-bell"></i>
-                    </div>
-
-                    <div className={headermod.note + " " + headermod.hide + " " + headermod.messages} >
-                        <NavLink to='/dialogs' >
-                            <i className="fas fa-envelope"></i>
-                        </NavLink>
-                        {props.newMessageCount ? <div className={headermod.newMessageCount}>{props.newMessageCount}</div> : null}
                     </div>
 
                     <h3>{props.isLogined ? props.login :  <NavLink exact={true} to="/login">Please sign in</NavLink>}</h3>

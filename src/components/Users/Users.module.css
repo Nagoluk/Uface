@@ -1,6 +1,5 @@
 .settingPanel {
     text-align: center;
-    margin: 0 5px;
     padding: 5px;
 }
 
@@ -35,19 +34,17 @@ button.navs:disabled {
 .itemWrap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .item {
     position: relative;
     width: 32.4%;
     padding: 8px;
-    margin-top: 5px;
-    margin-left: 5px;
     border: 1px solid lightgray;
-    border-radius: 5px;
     text-align: center;
     padding-bottom: 40px;
+    margin: 4px 0;
 }
 
 .item a {

@@ -25,7 +25,6 @@ let Form = (props) => {
                         <h1><i className="fas fa-dragon"></i>Uface</h1>
                         <h2>Please sing up</h2>
                     </div>
-
                 </div>
 
                 <div className={styles.Input}>

@@ -9,29 +9,19 @@ li {
 }
 
 body{
-    background: #E7EBF0;
-    background: #3C3F41;
     font-family: Calibri, sans-serif;
     overflow-y: scroll;
 }
 
 .main-wrap{
-    max-width: 820px;
-    display: flex;
-    justify-content: space-between;
+    max-width: 960px;
     margin: 10px auto;
 }
 
 .main-wrap main {
     box-sizing: border-box;
     margin: 0 10px;
-    flex-basis: 68%;
     min-width: 320px;
-}
-
-.main-wrap nav {
-    flex-basis: 30%;
-    position: relative;
 }
 
 .content{

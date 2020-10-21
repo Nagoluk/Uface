@@ -1,8 +1,10 @@
 import React from 'react';
 import UsersStlyes from './Users.module.css';
-import User from "./User";
+import User from './User';
 import { UserT } from '../../Redux/usersReducer';
-import {Pagitator} from "../common/pagitator/Pagitator";
+import {Pagitator} from '../common/pagitator/Pagitator';
+import {UniversalWrap} from '../../styles/wrap.styles'
+
 
 type PropsType = {
     totalUsersCount: number,
@@ -23,7 +25,7 @@ type PropsType = {
 
 let Users: React.FC<PropsType> = ({totalUsersCount, pageSize, pagePagitator, setCurrentPagePagitator, users, ...props}) => {
 
-    return (<div>
+    return (<UniversalWrap>
                 <Pagitator currentPage={props.currentPage}
                            onPageChange={props.onPageChange}
                            pagePagitator={pagePagitator}
@@ -38,7 +40,7 @@ let Users: React.FC<PropsType> = ({totalUsersCount, pageSize, pagePagitator, set
                 <div className={UsersStlyes.itemWrap}>
                     {users.map((user, index) => <User user={user} key={index}index={index} {...props} black={props.black}/>)}
                 </div>
-             </div>)
+             </UniversalWrap>)
 }
 
 

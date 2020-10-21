@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const PagitatorStlyed = styled.div<any>`
             background:  ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+            border: 1px solid ${props => (props.black ? '#3C3F41' : 'lightgray')};
             transition: background .2s ease-in;
             `
 

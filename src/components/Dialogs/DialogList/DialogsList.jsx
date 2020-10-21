@@ -54,7 +54,6 @@ const DialogItem = (props) => {
 }
 
 const DialogsList = (props) => {
-
     let dialogsElements = props.dialogs.map((dialog, key) => {
         return <DialogItem name={dialog.userName}
                            key={key} id={dialog.id}
@@ -69,8 +68,6 @@ const DialogsList = (props) => {
         <div className={DialogsStyles.dialogs}>
             <DialogListStyled className={DialogsStyles.dialogList} black={props.black}>
                 <div className={DialogsStyles.dialogListHeader}>
-                    <i className="fas fa-plus"></i>
-
                     <div className={DialogsStyles.searchDialog}>
                         <i className="fas fa-search" aria-hidden="true"></i>
                         <input type="text" placeholder={"пошук"}/>
@@ -81,10 +78,6 @@ const DialogsList = (props) => {
                     <ul>
                         {dialogsElements.length ? dialogsElements : <p>Нет сообщений</p>}
                     </ul>
-                </div>
-
-                <div className={DialogsStyles.Notification}>
-                    <i className="far fa-bell-slash"></i>
                 </div>
             </DialogListStyled>
         </div>);
