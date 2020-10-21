@@ -22,7 +22,8 @@ let mapStateToProps = (state) => {
         isLogined: state.LoginReducer.isLogined,
         email: state.LoginReducer.email,
         login: state.LoginReducer.login,
-        newMessageCount: state.notification.newMessageCount
+        newMessageCount: state.notification.newMessageCount,
+        profile: state.LoginReducer.profile,
 
     }
 }

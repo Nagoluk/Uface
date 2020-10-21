@@ -1,10 +1,12 @@
-import {AuthAPI, getSecureCaptcha} from "../api/api";
+import {AuthAPI, getSecureCaptcha, ProfileAPI} from "../api/api";
 import { stopSubmit } from "redux-form";
 import { ResultsCodes, ResultCodeForCaptcha } from "../api/api-types";
-
+import {ProfileType} from "./profileReducer";
 
 const SET_USER_LOGIN = "SET_USER_LOGIN";
 const SET_CAPTCHA_URL = "SET_CAPTCHA_URL";
+const SET_OWN_PROFILE = "SET_OWN_PROFILE";
+
 
 
 let initState = {
@@ -13,6 +15,7 @@ let initState = {
     login: null as string | null,
     isLogined: false as boolean,
     captchaURL: "",
+    profile: null as null | ProfileType
 }
 
 export type InitStateType = typeof initState;
@@ -33,6 +36,12 @@ const loginReducer = (state = initState, action: any):InitStateType => {
             return {
                 ...state,
                 captchaURL: action.URL
+            }
+
+        case SET_OWN_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
             }
 
 
@@ -64,15 +73,26 @@ type setCaptchaUrlACType = {
 
 export let setCaptchaUrlAC = (URL: string):setCaptchaUrlACType => ({type: SET_CAPTCHA_URL, URL})
 
+type setProfileACType = {
+    type: typeof SET_OWN_PROFILE,
+    profile: null | ProfileType
+}
+
+export let setProfileAC = (profile: null | ProfileType):setProfileACType => ({type: SET_OWN_PROFILE, profile})
+
 
 export let loginThunkCreator = () => {
     return (dispatch: any) => {
         return AuthAPI.getLogin().then((response: any) => {
 
             if(response.resultCode === 0){
-                let {id, login, email} = response.data;
 
+                let {id, login, email} = response.data;
                 dispatch(setUserLoginAC(id, login, email, true));
+
+                ProfileAPI.getProfile(id).then((response: any) => {
+                    dispatch(setProfileAC(response.data));
+                })
             }   
         });
 
@@ -96,6 +116,7 @@ export let login = (email: string, password: string, rememberMe: boolean = false
         AuthAPI.login(email, password, rememberMe, captcha).then((response: any) => {
             if(response.data.resultCode === ResultsCodes.Success){
               dispatch(loginThunkCreator())
+
             }else if(response.data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired){
             
                 dispatch(getCaptchaThunkCreator());

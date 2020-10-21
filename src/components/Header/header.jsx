@@ -5,6 +5,8 @@ import SearchContainer from "./Search/SearchContainer";
 import styled from "styled-components";
 import {SwitchButton} from "../Nav/adaptiveNav";
 import Nav from "../Nav/nav";
+import {Avatar} from "../assets/avatar/avatar";
+import {VerticalAlign} from "../../styles/vertical.align";
 
 export const HeaderStyled = styled.header`
     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
@@ -65,7 +67,7 @@ const Header = props => {
                         <i className="fas fa-bell"></i>
                     </div>
 
-                    <h3>{props.isLogined ? props.login :  <NavLink exact={true} to="/login">Please sign in</NavLink>}</h3>
+                    <h3>{props.isLogined ? <VerticalAlign>{props.login}<Avatar link={props.profile ? props.profile.photos.small : null} size={30}/></VerticalAlign> :  <NavLink exact={true} to="/login">Please sign in</NavLink>}</h3>
 
                     {props.isLogined && <div className={headermod.note + " " + headermod.logout} onClick={() => {
                         props.logout();
