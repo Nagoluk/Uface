@@ -1,11 +1,15 @@
 import React from 'react';
 import galleryStyle from './gallery.module.css';
-import p from "../../Profile/profile.module.css";
+import p from '../../Profile/profile.module.css';
 
 
 let Gellery = props => {
-    return (<div className={galleryStyle.Wrap}>
-                <div className={galleryStyle.ContentWrapper}>
+    let clickOnWrap = event => {
+        if(event.target.id !== "") props.setShowGallery(false)
+    }
+
+    return (<div className={galleryStyle.Wrap} >
+                <div className={galleryStyle.ContentWrapper} onClick={clickOnWrap} id={'wrap'}>
                     <div className={galleryStyle.Content}>
                         <div className={galleryStyle.Header} >
                             <p onClick={() => props.setShowGallery(false)}><i className="fas fa-times"></i>Close</p>
