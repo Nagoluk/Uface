@@ -7,7 +7,6 @@ const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";
 const USERS_IS_FETCHING = "USERS_IS_FETCHING ";
 const DELETE_POST = "DELETE_POST";
-const SET_AVATAR_SUCCESS = "SET_AVATAR_SUCCESS";
 const UPOAL_PROFILE_INFO_PROCCESS = "UPOAL_PROFILE_INFO_PROCCESS";
 const SET_FOLLOW = "SET_FOLLOW";
 
@@ -88,20 +87,9 @@ const profileReducer = (state = initialProfilePage, action: any): initialProfile
         }
 
         case DELETE_POST: {
-
             return {
                 ...state,
                 PostsData: state.PostsData.filter(item => item.id !== action.id)
-            }
-        }
-
-        case SET_AVATAR_SUCCESS: {
-            return {
-                ...state,
-                profile: {
-                    ...state.profile,
-                    photos: action.photos,
-                } as ProfileType
             }
         }
 
@@ -131,9 +119,6 @@ export const addNewPostAC = (text: string): addNewPostACT => ({type: ADD_NEW_POS
 
 type deletePostACT = {type: typeof DELETE_POST, id: number}
 export const deletePostAC = (id:number): deletePostACT => ({type: DELETE_POST, id})
-
-type savePhotoSuccessACT = {type: typeof SET_AVATAR_SUCCESS, photos: photosT}
-export const savePhotoSuccess = (photos: photosT): savePhotoSuccessACT => ({type: SET_AVATAR_SUCCESS, photos})
 
 type isUploadProfileACT = {type: typeof UPOAL_PROFILE_INFO_PROCCESS, payload: boolean}
 export const isUploadProfileAC = (payload: boolean): isUploadProfileACT => ({type: UPOAL_PROFILE_INFO_PROCCESS, payload})
@@ -202,11 +187,9 @@ export const updateStatusThunkCreator = (status: string ) => {
 export const uploadAvatarThunkCreator = (avatar: any) => {
     return (dispatch: any)=>{
         ProfileAPI.uploadAvatar(avatar).then((response: any) => {
-
             if(response.resultCode === 0){
-                dispatch(savePhotoSuccess(response.data.photos))
+               window.location.reload()
             }
-
         })
     }
 }
