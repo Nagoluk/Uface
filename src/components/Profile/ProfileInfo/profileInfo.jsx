@@ -5,22 +5,10 @@ import profileAvatar from "../../../img/Profile/avatar.png";
 import Gellery from "../../common/gallery/gallery";
 import {Redirect} from "react-router-dom";
 import UsersStlyes from "../../Users/Users.module.css";
-import styled from "styled-components";
-import Profile from "../profile";
-
-
-const ProfileItemStyled = styled.div`
-    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
-    color: ${props => (props.black ? '#ffffff' : '#474B59;')};
-    border: ${props => (props.black ? "1px solid #2B2B2B" : "1px solid lightgray;")};
-    transition: all .2s ease-in;
-`
-
+import {ProfileItemStyled} from "../../../styles/theme";
 
 
 const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...props}) => {
-
-
     let hasContact = false;
     let amI = profile.userId === props.loginData.id;
 
@@ -57,9 +45,9 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
 
 
     return (<div className={p.profileWrap}>
-                <div className={p.photowrap} ></div>
+                <div className={p.photowrap}></div>
 
-                <ProfileItemStyled  black={props.black} className={p.information}>
+                <ProfileItemStyled className={p.information}>
                     {amI && <div className={p.avatarWrap}>
                                 <div className={p.changeAvatarContainer}>
                                     <img src={profile.photos.large || profileAvatar} 

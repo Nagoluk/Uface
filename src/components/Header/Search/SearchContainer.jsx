@@ -9,7 +9,6 @@ class HeaderContainer extends React.Component{
         return (<Search
             results={this.props.results}
             searchingThunkCreator={this.props.searchingThunkCreator}
-            black={this.props.black}
         />)
     }
 }

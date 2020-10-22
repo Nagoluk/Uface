@@ -22,6 +22,10 @@ button.navs {
     padding: 0 5px;
 }
 
+button.navs svg{
+    color: #fff;
+}
+
 button.navs:disabled {
     background: lightgray;
 }
@@ -41,7 +45,6 @@ button.navs:disabled {
     position: relative;
     width: 32.4%;
     padding: 8px;
-    border: 1px solid lightgray;
     text-align: center;
     padding-bottom: 40px;
     margin: 4px 0;

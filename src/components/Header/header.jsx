@@ -2,48 +2,18 @@ import React, {useState} from 'react';
 import headermod from "./header.module.css";
 import {NavLink} from "react-router-dom";
 import SearchContainer from "./Search/SearchContainer";
-import styled from "styled-components";
 import {SwitchButton} from "../Nav/adaptiveNav";
 import Nav from "../Nav/nav";
 import {Avatar} from "../assets/avatar/avatar";
 import {VerticalAlign} from "../../styles/vertical.align";
-
-export const HeaderStyled = styled.header`
-    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
-    transition: background .2s ease-in;
-
-    
-    && a {
-        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
-    }
-
-    & a.active svg{
-        color: #0078D4;
-    }
-    
-    & svg {
-        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
-    }
-    
-    & h1 {
-        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
-    }
-    
-    & h3 {
-        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
-    }
-    
-    & h1 svg {
-        color: ${props => (props.black ? '#0078D4' : '#474B59;')};
-    }
-`
+import {UniversalThemeComponent} from "../../styles/theme";
 
 
 const Header = props => {
     let [menu, setMenu] = useState(false);
 
     return (
-        <HeaderStyled black={props.black}>
+        <UniversalThemeComponent>
             <div className={headermod.headerWrap + " " + (menu ? headermod.headerWrapShow : "")}>
                 <div className={headermod.leftside}>
                     <NavLink to="/"><h1><i className="fas fa-dragon"></i>Uface</h1></NavLink>
@@ -57,11 +27,11 @@ const Header = props => {
                         </SwitchButton>}
                     </div>
 
-                    <Nav black={props.black} />
+                    <Nav/>
                 </div>
 
                 <div className={headermod.rightside}>
-                    <SearchContainer black={props.black}/>
+                    <SearchContainer/>
 
                     <div className={headermod.note  + " " + headermod.hide}>
                         <i className="fas fa-bell"></i>
@@ -76,7 +46,7 @@ const Header = props => {
                     </div>}
                 </div>
             </div>
-        </HeaderStyled>);
+        </UniversalThemeComponent>);
 }
 
 export default Header;

@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import UsersContainer from "./components/Users/UsersContainer";
-import Nav from "./components/Nav/nav";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/headerContainer";
 import ProfileContainer from "./components/Profile/profileContainer";
@@ -12,21 +11,17 @@ import {ChangeThemeAC, initializeApp} from "./Redux/appReducer";
 import Preloader from './components/assets/preloader/Preloader';
 import NotFound from "./components/404/notFound";
 import {compose} from "redux";
-import DialogContainer from "./components/Dialogs/Dialog/DialogContainer";
 import {getNewMessageCountThunkCreator} from "./Redux/notificationReducer";
 import Search from "./components/Header/Search/SearchContainer";
-import styled, {createGlobalStyle} from "styled-components";
+import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {AdaptiveMenu} from "./components/Nav/adaptiveNav";
 import Dialogs from "./components/Dialogs";
-const DialogsListContainer = React.lazy(()=> import("./components/Dialogs/DialogList/DialogsListContainer"));
 const SettingContainer = React.lazy(() => import("./components/Setting/settingContainer"));
 
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background: ${props => (props.black ? '#3C3F41' : '#E7EBF0')};
-    transition: background .2s ease-in;
- 
+    background: ${props => (props.theme.mode === "dark" ? '#3C3F41' : '#E7EBF0')};
   }
 `
 
@@ -43,32 +38,34 @@ class App extends React.Component {
         }
 
         return (
-            <div className="render">
-                <GlobalStyle black={this.props.isBlackTheme}/>
-                <HeaderContainer black={this.props.isBlackTheme} />
+            <ThemeProvider theme={{mode: this.props.isBlackTheme ? 'dark' : 'light'}}>
+                <div className="render">
+                    <GlobalStyle/>
+                    <HeaderContainer black={this.props.isBlackTheme} />
 
-                <div className="main-wrap">
-                    <AdaptiveMenu black={this.props.isBlackTheme}
-                                  ChangeThemeAC={this.props.ChangeThemeAC}
-                                  isLogined={this.props.isLogined}
-                                  logout={this.props.logout} newMessageCount={this.props.newMessageCount}/>
+                    <div className="main-wrap">
+                        <AdaptiveMenu black={this.props.isBlackTheme}
+                                      ChangeThemeAC={this.props.ChangeThemeAC}
+                                      isLogined={this.props.isLogined}
+                                      logout={this.props.logout} newMessageCount={this.props.newMessageCount}/>
 
-                    <main>
-                        <React.Suspense fallback={<Preloader/>}>
-                            <Switch>
-                                <Route path="/dialogs/:userID?" render={() => <Dialogs/>}/>
-                                <Route path="/setting" render={() => <SettingContainer black={this.props.isBlackTheme}/>}/>
-                                <Route path="/profile/:userID?" render={() => <ProfileContainer black={this.props.isBlackTheme}/>}/>
-                                <Route path="/friends" render={() => <UsersContainer black={this.props.isBlackTheme}/>}/>
-                                <Route path="/login" render={() => <Login black={this.props.isBlackTheme} black={this.props.isBlackTheme}/>}/>
-                                <Route path="/search" render={() => <Search black={this.props.isBlackTheme}/>}/>
-                                <Redirect exact from="/" to="/profile"/>
-                                <Route render={()=> <NotFound/>}/>
-                            </Switch>
-                        </React.Suspense>
-                    </main>
+                        <main>
+                            <React.Suspense fallback={<Preloader/>}>
+                                <Switch>
+                                    <Route path="/dialogs/:userID?" render={() => <Dialogs/>}/>
+                                    <Route path="/setting" render={() => <SettingContainer/>}/>
+                                    <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
+                                    <Route path="/friends" render={() => <UsersContainer/>}/>
+                                    <Route path="/login" render={() => <Login/>}/>
+                                    <Route path="/search" render={() => <Search/>}/>
+                                    <Redirect exact from="/" to="/profile"/>
+                                    <Route render={()=> <NotFound/>}/>
+                                </Switch>
+                            </React.Suspense>
+                        </main>
+                    </div>
                 </div>
-            </div>);
+            </ThemeProvider>);
     }
 }
 

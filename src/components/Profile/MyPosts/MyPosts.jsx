@@ -2,23 +2,7 @@ import React, {useState} from "react";
 import MyPost from "./MyPosts.module.css";
 import Post from "./post/post";
 import TextareaAutosize from 'react-textarea-autosize';
-import styled from "styled-components";
-
-const ProfileItemStyled = styled.div`
-    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
-    color: ${props => (props.black ? '#ffffff' : '#474B59;')};
-    border: ${props => (props.black ? "1px solid #2B2B2B" : "1px solid lightgray;")};
-    transition: all .2s ease-in;
-    
-    & textarea {
-        background:  ${props => (props.black ? '#3C3F41' : '#fff')};
-        color:  ${props => (props.black ? '#fff' : '#000')};
-        margin-bottom: 10px;
-        transition: all .2s ease-in;
-    }
-`
-
-
+import {PostsItemStyled} from "../../../styles/theme";
 
 
 const MyPosts = (props) => {
@@ -60,19 +44,18 @@ const MyPosts = (props) => {
     return (
         <div className={MyPost.myposts}>
             <div className="postwrap">
-                <ProfileItemStyled className={MyPost.newpost} black={props.black}>
+                <PostsItemStyled className={MyPost.newpost} >
                     <TextareaAutosize value={value} onChange={postHandler} placeholder={"Create new post!"} autoComplete={"off"} wrap={"hard"}/>
                     <div className={MyPost.createnewpost}>
                         <span>Symbols: {symbols}</span>
-                        <div >
-                            <button className={MyPost.button} disabled={true}><i className="fas fa-photo-video"></i></button>
-                            <button className={MyPost.button} disabled={true}><i className="fas fa-headphones-alt"></i></button>
-                            <button className={MyPost.button + " " + MyPost.send} disabled={isDisabled} onClick={addNewPost} > <i className="fas fa-paper-plane"></i>Send</button>
+                        <div>
+                            <button className={MyPost.button + " " + MyPost.send} disabled={isDisabled} onClick={addNewPost} >
+                                <i className="fab fa-telegram"></i></button>
                         </div>
                     </div>
 
                     
-                </ProfileItemStyled>
+                </PostsItemStyled>
 
                 <div className="news">
 

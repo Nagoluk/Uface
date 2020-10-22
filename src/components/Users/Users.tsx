@@ -33,7 +33,6 @@ let Users: React.FC<PropsType> = ({totalUsersCount, pageSize, pagePagitator, set
                            setCurrentPagePagitator={setCurrentPagePagitator}
                            totalUsersCount={totalUsersCount}
                            windowsWidth={props.windowsWidth}
-                           black={props.black}
                     />
 
 

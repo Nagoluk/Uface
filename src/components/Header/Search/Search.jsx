@@ -2,23 +2,7 @@ import React, {useState} from 'react';
 import headermod from "../header.module.css";
 import Avatar from "../../../img/Profile/avatar.png";
 import {NavLink} from "react-router-dom";
-import styled from "styled-components";
-
-const SearchContainer  = styled.div`
-     background: ${props => (props.black ? '#3C3F41' : '#E7EBF0')};
-     
-     & input {
-        background: ${props => (props.black ? '#3C3F41' : '#E7EBF0')};
-        color: ${props => (props.black ? '#fff' : '#000')};
-    }
-    
-`
-
-const SearchResult = styled.div`
-    background: ${props => (props.black ? '#3C3F41' : '#fff')};
-    color: ${props => (props.black ? '#fff' : '#000')};
-`
-
+import {SearchContainerStyle, UniversalThemeComponent} from "../../../styles/theme";
 
 const Search = props => {
     const [searchMode, setSearchMode] = useState(false);
@@ -40,24 +24,24 @@ const Search = props => {
 
 
     return (
-        <SearchContainer black={props.black} className={headermod.input} >
+        <SearchContainerStyle black={props.black} className={headermod.input} >
             <input type="text" placeholder={"Search here"} className={headermod.Search} onChange={searching}
                    onBlur={stopSearching} value={text}/>
 
 
-            {searchMode && <SearchResult black={props.black} className={headermod.Results}>
+            {searchMode && <UniversalThemeComponent black={props.black} className={headermod.Results}>
                 {!props.results.length && "No results"}
                 {props.results.map((item, key) => <Item
                     item={item} key={key.toString()}
                     hideResults={hideResults}/>)}
 
 
-            </SearchResult>}
+            </UniversalThemeComponent>}
 
             {searchMode && <button onClick={hideResults}><i className="far fa-times-circle"></i></button>}
             {!searchMode && <button ><i className="fas fa-search"></i></button>}
 
-        </SearchContainer>)
+        </SearchContainerStyle>)
 }
 
 const Item = props => {

@@ -3,27 +3,9 @@ import UsersStlyes from "./Users.module.css";
 import Avatar from "../../img/Profile/avatar.png";
 import {NavLink} from "react-router-dom";
 import {UserT} from "../../Redux/usersReducer";
-import styled from "styled-components";
 
-const UserItem = styled.div<any>`
-    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
-    border: 1px solid ${props => (props.black ? '#3C3F41' : 'lightgray')};
-    transition: all .2s ease-in;
-    
-    & button{
-        color:  ${props => (props.black ? '#fff' : '')};
-    }
-    
-    & button.follower{
-        border: 1px solid #2B5278;
-        color: #fff!important;
-        background: #2B5278;
-        }
-    
-    & span {
-        color: ${props => (props.black ? '#fff' : '#2B2B2B')};
-    }
-`
+import {UniversalThemeComponent, UserItemStyled} from "../../styles/theme";
+
 
 type PropsType = {
     index: number,
@@ -36,7 +18,7 @@ type PropsType = {
 
 let User: React.FC<PropsType> = props => {
 
-    return (<UserItem black={props.black} className={UsersStlyes.item} key={props.index.toString()}>
+    return (<UserItemStyled className={UsersStlyes.item} key={props.index.toString()}>
         <div className={UsersStlyes.header}>
             <div className={UsersStlyes.avatar}>
                 <img
@@ -61,7 +43,7 @@ let User: React.FC<PropsType> = props => {
         <div className={UsersStlyes.buttons}>
             {props.user.followed ?
                 <button disabled={props.followProcces.some(item => item === props.user.id)}
-                        className={UsersStlyes.follower}
+                        className={UsersStlyes.follower + " unfollow"}
                         onClick={() => {
                             props.unfollowThunkCreator(props.user.id)
                         }}>Unfollow</button> :
@@ -72,7 +54,7 @@ let User: React.FC<PropsType> = props => {
             }
         </div>
 
-    </UserItem>)
+    </UserItemStyled>)
 }
 
 

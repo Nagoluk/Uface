@@ -1,12 +1,10 @@
 
 .button{
-  padding: 7px;
-  font-size: 15px;
+  font-size: 25px;
   outline: none;
   border: none;
   color: #39383A;
   background: none;
-
 }
 
 .item img{
@@ -48,8 +46,11 @@ newpost textarea::-webkit-scrollbar-thumb {
 }
 
 .send {
-  background: #2B5278;
+  background: none!important;
   color: #fff;
+  border-radius: 50%;
+  height: 29px;
+  width: 29px;
 }
 
 .send svg {

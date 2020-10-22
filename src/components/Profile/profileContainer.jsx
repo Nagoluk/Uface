@@ -65,9 +65,6 @@ class ProfileContainer extends React.Component{
                     searchingThunkCreator = {this.props.searchingThunkCreator}
                     followThunkCreator = {this.props.followThunkCreator}
                     unfollowThunkCreator = {this.props.unfollowThunkCreator}
-                    black={this.props.black}
-
-
            />
         );
     }

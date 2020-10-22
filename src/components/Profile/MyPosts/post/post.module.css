@@ -4,11 +4,11 @@
 }
 
 .postHeder {
-  border-bottom: 1px solid lightgray;
   display: flex;
   align-items: center;
   position: relative;
   padding-bottom: 5px;
+
 }
 
 .postSetting{
@@ -44,16 +44,17 @@
 }
 
 .activity {
-  border-top: 1px solid lightgray;
   padding-top: 15px;
+  color: lightgrey;
 }
+.activity svg{
+  color: lightgrey!important;
+}
+
+
 .activity>div{
   display: inline-block;
   padding-right: 20px;
-}
-
-.activity .likes i, .activity .likes {
-
 }
 
 @media (max-width: 635px) {

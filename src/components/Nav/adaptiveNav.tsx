@@ -1,19 +1,11 @@
 import React from 'react'
-import headermod from "./adaptiveNav.module.css";
-import {NavLink} from "react-router-dom";
-import Navmod from "./nav.module.css";
-import styled from "styled-components";
+import {NavLink} from 'react-router-dom';
 
-type Switch = {black: boolean}
-const AdaptiveNav = styled.div<Switch>`
- background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
- border-top: 1px solid ${props => (props.black) ? "#3C3F41" : "lightgray"};
- 
- & svg {
-        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
- }
-`
+import styled from 'styled-components';
+import headermod from './adaptiveNav.module.css';
+import Navmod from './nav.module.css';
 
+import {AdaptiveNav} from '../../styles/theme'
 
 export const SwitchButton = styled.button`
     background: none;
@@ -22,7 +14,6 @@ export const SwitchButton = styled.button`
     
     & svg {
         color: #0078D4;
-        
     }
 `
 
@@ -36,7 +27,7 @@ type Props = {
 
 export const AdaptiveMenu: React.FC<Props> = props => {
 
-    return (<AdaptiveNav className={headermod.adaptivemenu} black={props.black}>
+    return (<AdaptiveNav className={headermod.adaptivemenu}>
         {props.isLogined && <div className={headermod.note + " " + headermod.logout} onClick={() => {
             props.logout();
         }}>

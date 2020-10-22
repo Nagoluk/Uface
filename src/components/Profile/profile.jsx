@@ -26,7 +26,6 @@ const Profile = (props) => {
                          isFollowed={props.isFollowed}
                          followThunkCreator={props.followThunkCreator}
                          unfollowThunkCreator={props.unfollowThunkCreator}
-                         black={props.black}
 
             />
 
