@@ -11,6 +11,7 @@ li {
 body{
     font-family: Calibri, sans-serif;
     overflow-y: scroll;
+    padding-top: 50px;
 }
 
 .main-wrap{
@@ -61,6 +62,10 @@ body{
     .main-wrap main {
         flex-basis: 100%;
         margin: 0;
+    }
+
+    body{
+        padding-top: 0px;
     }
 }
 
