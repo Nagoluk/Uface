@@ -38,25 +38,9 @@ body{
     align-items: center;
 }
 
-@media (max-width: 690px) {
-    .main-wrap main {
-        flex-basis: 63%;
-        min-width: 320px;
-    }
-
-    .main-wrap nav {
-        flex-basis: 35%;
-        position: relative;
-    }
-}
-
 @media (max-width: 635px) {
     .main-wrap{
         margin: 0px auto;
-    }
-
-    .main-wrap nav {
-        display: none;
     }
 
     .main-wrap main {
