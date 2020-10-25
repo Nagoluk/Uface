@@ -1,25 +1,31 @@
 import React from "react";
 import styles from "./Login.module.css";
-import {reduxForm, Field} from "redux-form";
+import {reduxForm, Field, InjectedFormProps} from "redux-form";
 import {Input} from "../common/formControls/FormControls";
 import { required } from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../Redux/loginReducer";
 import { Redirect } from "react-router-dom";
-import styled from "styled-components";
+import {AppStateType} from "../../Redux/stateRedux";
 
-const LoginStyled = styled.form`
-    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
-    color: ${props => (props.black ? '#fff' : '')};
-    border: 1px solid ${props => (props.black ? '#2B2B2B' : 'lightgray')};
-    transition: all .2s ease-in;
-`
+type loginFormValuesType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha: string | null
+}
 
+type LoginFormOwnProps = {
+    captcha: string | null
+}
 
-
-
-let Form = (props) => {
-    return (<LoginStyled className={styles.Form} onSubmit={props.handleSubmit} black={props.black}>
+let Form: React.FC<InjectedFormProps<loginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = ({
+                                                                                      handleSubmit,
+                                                                                      submitting,
+                                                                                      error,
+                                                                                      captcha
+}) => {
+    return (<form className={styles.Form} onSubmit={handleSubmit}>
                 <div>
                     <div>
                         <h1><i className="fas fa-dragon"></i>Uface</h1>
@@ -42,35 +48,47 @@ let Form = (props) => {
                 </div>
 
 
-                {props.captcha && <div className={styles.Captcha}> 
-                                        <img src={props.captcha} alt="captcha"/>
+                {captcha && <div className={styles.Captcha}>
+                                        <img src={captcha} alt="captcha"/>
                                         <Field type={"text"} 
                                             placeholder={"enter captcha"} 
                                             component={Input} 
                                             name={"captcha"}/>
                 </div>}
 
-                {props.error && <div className={styles.Error}>{props.error}</div>}
+                {error && <div className={styles.Error}>{error}</div>}
 
                 <div>
-                    <button type="submit" disabled={props.submitting}>Login in</button>
+                    <button type="submit" disabled={submitting}>Login in</button>
                 </div>
 
-            </LoginStyled>)
+            </form>)
 }
 
-let ReduxLoginForm = reduxForm({form: "login"})(Form)
+let ReduxLoginForm = reduxForm<loginFormValuesType, LoginFormOwnProps>({form: "login"})(Form)
+
+type mapStatePropsType = {
+    isLogined: boolean
+    captcha: string | null
+}
+
+type mapDispatchToPropsType = {
+    login: (email: string, password: string, rememberMe: boolean , captcha: string | null) => void
+}
 
 
-class Login extends React.Component{
+
+type loginPropsType = mapDispatchToPropsType & mapStatePropsType
+
+
+class Login extends React.Component<loginPropsType>{
     componentDidMount() {
         document.title = "Login";
     }
 
     render() {
-        let onSubmit = (loginData) => {
+        let onSubmit = (loginData: loginFormValuesType) => {
             this.props.login(loginData.email, loginData.password, loginData.rememberMe, loginData.captcha)
-
         }
 
         if(this.props.isLogined) {
@@ -78,13 +96,13 @@ class Login extends React.Component{
         }
 
         return(<div className={styles.Login}>
-            <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha} black={this.props.black}/>
-        </div>)
+                <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha} />
+               </div>)
     }
 }
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType): mapStatePropsType=> ({
     isLogined: state.LoginReducer.isLogined,
     captcha: state.LoginReducer.captchaURL
 })

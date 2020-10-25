@@ -108,7 +108,7 @@ export let getCaptchaThunkCreator = () => {
 }
 
 
-export let login = (email: string, password: string, rememberMe: boolean = false, captcha = null) => {
+export let login = (email: string, password: string, rememberMe: boolean = false, captcha: string | null = null ) => {
    
 
     return (dispatch: any) => {
