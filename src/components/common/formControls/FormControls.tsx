@@ -1,15 +1,10 @@
 import React from "react";
 import styles from "./FormControls.module.css";
 import {Input} from "antd";
+import {WrappedFieldProps} from "redux-form";
 
-type PropsType = {
-    input: {}
-    meta: {
-        error: string
-        touched: boolean
-    }
-}
-type InputFieldType = (params: PropsType) => React.ReactNode
+
+type InputFieldType = (params: WrappedFieldProps) => React.ReactNode
 export const InputField: InputFieldType = ({input, meta, ...props}): any => {
     let hasError = meta.error  && meta.touched;
 
