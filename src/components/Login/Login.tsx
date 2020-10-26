@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Login.module.css";
 import {reduxForm, Field, InjectedFormProps} from "redux-form";
-import {Input} from "../common/formControls/FormControls";
+import {InputField} from "../common/formControls/FormControls";
 import { required } from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../Redux/loginReducer";
@@ -35,12 +35,12 @@ let Form: React.FC<InjectedFormProps<loginFormValuesType, LoginFormOwnProps> & L
 
                 <div className={styles.Input}>
                     <label>Enter your email <span>*</span></label>
-                    <Field type={"text"} placeholder={"enter login"} component={Input} validate={required} name={"email"}/>
+                    <Field type={"text"} placeholder={"enter login"} component={InputField} validate={required} name={"email"}/>
                 </div>
 
                 <div className={styles.Input}>
                     <label>Enter your password<span>*</span></label>
-                    <Field type={"password"} placeholder={"enter password"} component={Input} validate={required} name={"password"}/>
+                    <Field type={"password"} placeholder={"enter password"} component={InputField} validate={required} name={"password"}/>
                 </div>
 
                 <div className={styles.RememberMe}>
@@ -52,7 +52,7 @@ let Form: React.FC<InjectedFormProps<loginFormValuesType, LoginFormOwnProps> & L
                                         <img src={captcha} alt="captcha"/>
                                         <Field type={"text"} 
                                             placeholder={"enter captcha"} 
-                                            component={Input} 
+                                            component={InputField}
                                             name={"captcha"}/>
                 </div>}
 
