@@ -16,6 +16,7 @@ import Search from "./components/Header/Search/SearchContainer";
 import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {AdaptiveMenu} from "./components/Nav/adaptiveNav";
 import Dialogs from "./components/Dialogs";
+import {NetworkError} from "./components/common/NetworkError/NetworkError";
 const SettingContainer = React.lazy(() => import("./components/Setting/settingContainer"));
 
 
@@ -52,7 +53,7 @@ class App extends React.Component {
                         <main>
                             <React.Suspense fallback={<Preloader/>}>
                                 <Switch>
-                                    <Route path="/dialogs/:userID?" render={() => <Dialogs/>}/>
+                                    <Route path="/dialogs/:userID?" render={() => <NetworkError refresh={() => alert("work")}/>}/>
                                     <Route path="/setting" render={() => <SettingContainer/>}/>
                                     <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                                     <Route path="/friends" render={() => <UsersContainer/>}/>
