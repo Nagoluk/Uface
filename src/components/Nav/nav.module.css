@@ -22,5 +22,11 @@ nav ul {
     margin: 2px auto;
 }
 
+@media (max-width: 875px) {
+    nav{
+        display: none;
+    }
+}
+
 
 

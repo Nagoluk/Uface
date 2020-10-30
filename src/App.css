@@ -38,18 +38,24 @@ body{
     align-items: center;
 }
 
-@media (max-width: 635px) {
+@media (max-width: 875px) {
     .main-wrap{
-        margin: 0px auto;
+        margin: 10px auto;
     }
 
     .main-wrap main {
         flex-basis: 100%;
         margin: 0;
     }
+}
 
+@media (max-width: 640px) {
     body{
         padding-top: 0px;
+    }
+
+    .main-wrap{
+        margin: 0px auto;
     }
 }
 

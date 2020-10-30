@@ -152,7 +152,7 @@ header {
 }
 
 
-@media (max-width: 635px) {
+@media (max-width: 640px) {
     header {
         margin: 0;
     }

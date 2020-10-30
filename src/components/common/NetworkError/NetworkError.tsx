@@ -11,8 +11,6 @@ const Wrap = styled.div`
     color: ${props => props.theme.mode === "dark" ? '#fff' : '#474B59'};
     font-size: 24px;
     
-  
-    
     & svg{
        color: #0078D4;
        font-size: 100px; 

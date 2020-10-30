@@ -22,7 +22,7 @@
     color: red!important;
 }
 
-@media (max-width: 635px) {
+@media (max-width: 875px) {
     .adaptivemenu{
         display: flex;
     }
