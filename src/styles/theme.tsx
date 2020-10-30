@@ -57,6 +57,8 @@ export const ProfileItemStyled = styled(UniversalThemeComponent)`
     }
 `
 
+export const PagitatorItemStyled = styled(ProfileItemStyled)``
+
 export const UserItemStyled = styled(ProfileItemStyled)`
     & button {
         color:  ${props => props.theme.mode === "dark" ? '#fff' : '#2B2B2B'};

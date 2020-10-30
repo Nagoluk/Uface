@@ -1,6 +1,6 @@
 import React from 'react';
 import UsersStlyes from "../../Users/Users.module.css";
-import {UniversalThemeComponent} from "../../../styles/theme";
+import {PagitatorItemStyled} from "../../../styles/theme";
 
 
 type PagitatorTypes = {
@@ -53,7 +53,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
 
     pages = pages.filter(item => item >= left && item <= right)
 
-    return (<UniversalThemeComponent className={UsersStlyes.settingPanel} >
+    return (<PagitatorItemStyled className={UsersStlyes.settingPanel} >
                 <button className={UsersStlyes.navs} disabled={left <= 1} onClick={leftShift}>
                     <i className="fas fa-chevron-left"></i>
                 </button>
@@ -68,5 +68,5 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
                 <button className={UsersStlyes.navs} onClick={rightShift} disabled={right >= pageCount}>
                     <i className="fas fa-chevron-right"></i>
                 </button>
-            </UniversalThemeComponent>)
+            </PagitatorItemStyled>)
 }
