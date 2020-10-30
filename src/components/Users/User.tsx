@@ -1,10 +1,11 @@
 import React from "react";
 import UsersStlyes from "./Users.module.css";
-import Avatar from "../../img/Profile/avatar.png";
+import AvatarImg from "../../img/Profile/avatar.png";
 import {NavLink} from "react-router-dom";
 import {UserT} from "../../Redux/usersReducer";
 
 import {UniversalThemeComponent, UserItemStyled} from "../../styles/theme";
+import {Avatar} from "../assets/avatar/avatar";
 
 
 type PropsType = {
@@ -20,11 +21,12 @@ let User: React.FC<PropsType> = props => {
 
     return (<UserItemStyled className={UsersStlyes.item} key={props.index.toString()}>
         <div className={UsersStlyes.header}>
-            <div className={UsersStlyes.avatar}>
-                <img
-                    src={(props.user.photos.small !== null) ? props.user.photos.small : Avatar}
-                    alt="avatar"/>
-            </div>
+            <Avatar size={100} link={(props.user.photos.small !== null) ? props.user.photos.small : AvatarImg}/>
+            {/*<div className={UsersStlyes.avatar}>*/}
+            {/*    <img*/}
+            {/*        src={(props.user.photos.small !== null) ? props.user.photos.small : AvatarImg}*/}
+            {/*        alt="avatar"/>*/}
+            {/*</div>*/}
         </div>
 
         <div className={UsersStlyes.content}>

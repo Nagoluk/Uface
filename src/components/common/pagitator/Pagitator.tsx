@@ -9,8 +9,6 @@ type PagitatorTypes = {
     pageSize: number,
     windowsWidth: number,
     currentPage: number,
-
-
     setCurrentPagePagitator: (count: number) => void,
     onPageChange: (a: number) => void,
 }
