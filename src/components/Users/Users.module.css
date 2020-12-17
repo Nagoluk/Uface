@@ -108,26 +108,7 @@ button.navs:disabled {
 .status {
     word-wrap: break-word;
     font-size: 0.8em;
-    margin-bottom: 5px;
-}
-
-.location{
-    margin-bottom: 10px;
-    color: #2B5278;
-    font-size: 0.8em;
-    color: grey;
-}
-
-button.follower{
-    border: 1px solid #2B5278;
-    color: #fff;
-    background: #2B5278;
-}
-
-button.follower:disabled{
-    background: lightgrey;
-    border: 1px solid lightgrey;
-    color: #fff;
+    margin: 7px 0;
 }
 
 .getUsers {

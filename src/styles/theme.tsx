@@ -64,7 +64,15 @@ export const UserItemStyled = styled(ProfileItemStyled)`
         color:  ${props => props.theme.mode === "dark" ? '#fff' : '#2B2B2B'};
     }
     
-    & button.unfollow {
+    & button.unfollow{
+        border: 1px solid #2B5278;
+        color: #fff;
+        background: #2B5278;
+    }
+
+    & button:disabled{
+        background: lightgrey;
+        border: 1px solid lightgrey;
         color: #fff;
     }
 `

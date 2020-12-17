@@ -35,17 +35,12 @@ let User: React.FC<PropsType> = props => {
             </div>
 
             <div className={UsersStlyes.status}>{props.user.status}</div>
-
-            <div className={UsersStlyes.location}>
-                <span className={UsersStlyes.country}> Minsk </span>
-                <span className={UsersStlyes.city}>Belarus </span>
-            </div>
         </div>
 
         <div className={UsersStlyes.buttons}>
             {props.user.followed ?
                 <button disabled={props.followProcces.some(item => item === props.user.id)}
-                        className={UsersStlyes.follower + " unfollow"}
+                        className={"unfollow"}
                         onClick={() => {
                             props.unfollowThunkCreator(props.user.id)
                         }}>Unfollow</button> :
