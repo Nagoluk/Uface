@@ -9,6 +9,8 @@ import {
     BasisType, messageType, MessagesType, StatusType
 } from "./api-types";
 
+const DEBUG = process.env.NODE_ENV === "development";
+
 
 
 const instance = axios.create({
@@ -18,6 +20,16 @@ const instance = axios.create({
         "API-KEY": "9b1ed003-d374-49c4-a5a6-e095c440ccd1",  
     }
 })
+
+instance.interceptors.request.use((config) => {
+    console.log('Works!')
+    /** In dev, intercepts request and logs it into console for dev */
+    if (DEBUG) { console.info("✉️ ", config); }
+    return config;
+}, (error) => {
+    if (DEBUG) { console.error("✉️ ", error); }
+    return Promise.reject(error);
+});
 
 //const socket = io.connect("https://social-network.samuraijs.com/api/1.0/dialogs")
 
