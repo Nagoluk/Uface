@@ -7,9 +7,10 @@ import Nav from "../Nav/nav";
 import {Avatar} from "../assets/avatar/avatar";
 import {VerticalAlign} from "../../styles/vertical.align";
 import {UniversalThemeComponent} from "../../styles/theme";
+import {HeaderProps} from "./headerContainer";
 
 
-const Header = props => {
+const Header: React.FC<HeaderProps> = (props) => {
     let [menu, setMenu] = useState(false);
 
     return (<header>
@@ -17,7 +18,7 @@ const Header = props => {
                     <div className={headermod.headerWrap + " " + (menu ? headermod.headerWrapShow : "")}>
                         <div className={headermod.leftside}>
                             <NavLink to="/"><h1><i className="fas fa-dragon"></i>Uface</h1></NavLink>
-                            <div style={{"margin-top": "5px"}}>
+                            <div style={{"marginTop": "5px"}}>
                                 {props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
                                     <i className="far fa-moon"></i>
                                 </SwitchButton>}
