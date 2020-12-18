@@ -1,13 +1,16 @@
-import React from "react";
-import styles from "./Login.module.css";
-import {reduxForm, Field, InjectedFormProps} from "redux-form";
-import {InputField} from "../common/formControls/FormControls";
-import { required } from "../../utils/validators/validators";
-import {connect} from "react-redux";
-import {login} from "../../Redux/loginReducer";
-import { Redirect } from "react-router-dom";
-import {AppStateType} from "../../Redux/stateRedux";
-import {LoginWrapStyled} from "../../styles/theme";
+import React from 'react';
+import {reduxForm, Field, InjectedFormProps} from 'redux-form';
+import {connect} from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
+import styles from './Login.module.css';
+
+import {InputField} from '../common/formControls/FormControls';
+import { required } from '../../utils/validators/validators';
+import {login} from '../../Redux/loginReducer';
+
+import {AppStateType} from '../../Redux/stateRedux';
+import {LoginWrapStyled} from '../../styles/theme';
 
 type loginFormValuesType = {
     email: string
@@ -97,9 +100,9 @@ class Login extends React.Component<loginPropsType>{
         }
 
         return(<div className={styles.Login}>
-                <LoginWrapStyled>
-                    <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha} />
-                </LoginWrapStyled>
+                    <LoginWrapStyled>
+                        <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha} />
+                    </LoginWrapStyled>
                </div>)
     }
 }

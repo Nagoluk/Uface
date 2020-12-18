@@ -7,7 +7,6 @@
     border-top: 5px solid #2B5278;
     margin: 50px auto;
     max-width: 320px;
-   
 }
 
 .Form h1 {
@@ -15,7 +14,6 @@
     text-transform: uppercase;
     font-size: 30px;
     padding-bottom: 10px;
-
 }
 
 .Form h2 {
@@ -34,7 +32,6 @@
    border: 1px solid lightgray;
    padding: 10px 10px;
    width: 100%;
-   
 }
 
 .Input {
@@ -68,8 +65,6 @@
 
 .Form button{
     padding: 7px 16px;
-   
-   
     outline: none;
     border: none;
     color: #fff;
