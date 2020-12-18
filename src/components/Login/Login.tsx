@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {login} from "../../Redux/loginReducer";
 import { Redirect } from "react-router-dom";
 import {AppStateType} from "../../Redux/stateRedux";
+import {LoginWrapStyled} from "../../styles/theme";
 
 type loginFormValuesType = {
     email: string
@@ -96,7 +97,9 @@ class Login extends React.Component<loginPropsType>{
         }
 
         return(<div className={styles.Login}>
-                <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha} />
+                <LoginWrapStyled>
+                    <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha} />
+                </LoginWrapStyled>
                </div>)
     }
 }

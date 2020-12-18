@@ -90,3 +90,8 @@ export const PostsItemStyled = styled(ProfileItemStyled)`
         border-top: 1px solid ${props => (props.theme.mode === "dark" ? '#3C3F41' : 'lightgray')};
     }
 `
+
+export const LoginWrapStyled = styled(UniversalThemeComponent)`
+    max-width: 320px;
+    margin: 0 auto;
+`
