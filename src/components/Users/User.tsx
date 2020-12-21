@@ -4,7 +4,7 @@ import AvatarImg from "../../img/Profile/avatar.png";
 import {NavLink} from "react-router-dom";
 import {UserT} from "../../Redux/usersReducer";
 
-import {UniversalThemeComponent, UserItemStyled} from "../../styles/theme";
+import {UserItemStyled} from "../../styles/theme";
 import {Avatar} from "../assets/avatar/avatar";
 
 

@@ -15,7 +15,7 @@ import {getNewMessageCountThunkCreator} from "./Redux/notificationReducer";
 import Search from "./components/Header/Search/SearchContainer";
 import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {AdaptiveMenu} from "./components/Nav/adaptiveNav";
-import Dialogs from "./components/Dialogs";
+//import Dialogs from "./components/Dialogs";
 import {NetworkError} from "./components/common/NetworkError/NetworkError";
 const SettingContainer = React.lazy(() => import("./components/Setting/settingContainer"));
 

@@ -1,9 +1,9 @@
 import {UsersAPI, unfollowAPI, followAPI} from "../api/api"
-import {setFollowAC} from "./profileReducer";
+
 import {photosT} from "./messageReducer";
 import {AppStateType, InferActionsTypes} from "./stateRedux";
 import {Dispatch} from "redux";
-import {ThunkAction} from "redux-thunk";
+
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";

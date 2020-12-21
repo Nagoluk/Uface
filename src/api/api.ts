@@ -6,7 +6,7 @@ import {
     LogoutResponseType,
     GetUsersType,
     DialogsType,
-    BasisType, messageType, MessagesType, StatusType
+    BasisType, messageType, MessagesType
 } from "./api-types";
 
 const DEBUG = process.env.NODE_ENV === "development";
@@ -22,9 +22,10 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use((config) => {
-    console.log('Works!')
     /** In dev, intercepts request and logs it into console for dev */
-    if (DEBUG) { console.info("✉️ ", config); }
+    if (DEBUG) {
+        //console.info("✉️ ", config);
+    }
     return config;
 }, (error) => {
     if (DEBUG) { console.error("✉️ ", error); }

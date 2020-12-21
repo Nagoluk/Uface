@@ -1,13 +1,12 @@
 import React from "react";
-import preloader from "../../../img/Preloader/preloader.gif"
 
 
 
-let Preloader = props => {
+let Preloader = () => {
     return(<div className="preloader">
              <div>
-             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink" x="0px" y="0px" stroke="#0078D4" fill="#0078D4" height="60" width="60"
-                                          viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml="preserve" strokeWidth={"3"}>
+             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" stroke="#0078D4" fill="#0078D4" height="60" width="60"
+                                          viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xml="preserve" strokeWidth={"3"}>
                     <rect fill="#fff" width="3" height="100" transform="translate(0) rotate(180 3 50)">
                       <animate
                           attributeName="height"

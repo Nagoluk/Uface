@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import headermod from "./header.module.css";
 import {NavLink} from "react-router-dom";
 import SearchContainer from "./Search/SearchContainer";
@@ -11,11 +11,10 @@ import {HeaderProps} from "./headerContainer";
 
 
 const Header: React.FC<HeaderProps> = (props) => {
-    let [menu, setMenu] = useState(false);
 
     return (<header>
                 <UniversalThemeComponent>
-                    <div className={headermod.headerWrap + " " + (menu ? headermod.headerWrapShow : "")}>
+                    <div className={headermod.headerWrap}>
                         <div className={headermod.leftside}>
                             <NavLink to="/"><h1><i className="fas fa-dragon"></i>Uface</h1></NavLink>
                             <div style={{"marginTop": "5px"}}>
