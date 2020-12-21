@@ -109,7 +109,6 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                                                     }}>Unfollow</button> :  <button disabled={props.followProcces.some(item => item === profile.userId)}
                                 className={UsersStlyes.follower + " " + p.ActivityButtons}
                                 onClick={() => {
-
                                     props.followThunkCreator(profile.userId)
                                 }}>follow</button>}
 

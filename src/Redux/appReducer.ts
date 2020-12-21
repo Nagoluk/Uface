@@ -9,7 +9,7 @@ export type IntitState = {
 
 let initState: IntitState = {
    initialized: false,
-   blackTheme: true,
+   blackTheme: false,
 }
 
 

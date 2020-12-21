@@ -13,7 +13,6 @@ const Profile = (props) => {
     }
     return (
         <div className={p.profile}>
-
             <ProfileInfo profile ={props.profile}
                          lang={props.lang}
                          updateStatusThunkCreator={props.updateStatusThunkCreator}

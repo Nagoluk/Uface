@@ -11,6 +11,16 @@ import {login} from '../../Redux/loginReducer';
 
 import {AppStateType} from '../../Redux/stateRedux';
 import {LoginWrapStyled} from '../../styles/theme';
+import styled from "styled-components";
+
+const Background = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 100%;
+    background: url('https://image.freepik.com/free-vector/season-rain-blue-seamless-background_95169-905.jpg');
+`
 
 type loginFormValuesType = {
     email: string
@@ -100,6 +110,8 @@ class Login extends React.Component<loginPropsType>{
         }
 
         return(<div className={styles.Login}>
+                    <Background/>
+
                     <LoginWrapStyled>
                         <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha} />
                     </LoginWrapStyled>

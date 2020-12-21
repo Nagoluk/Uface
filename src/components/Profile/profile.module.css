@@ -192,6 +192,12 @@ li .infoItem {
   color: #fff;
 }
 
+.Activity:disabled {
+  background: lightgrey!important;
+  border: 1px solid lightgrey;
+  color: #fff;
+}
+
 @media (max-width: 635px) {
   .contacts {
     margin-top: 1px;

@@ -92,6 +92,31 @@ export const PostsItemStyled = styled(ProfileItemStyled)`
 `
 
 export const LoginWrapStyled = styled(UniversalThemeComponent)`
-    max-width: 320px;
-    margin: 0 auto;
+    position: absolute;
+    top: 57px;
+    right: 0;
+    width: 30%;
+    height: calc(100% - 57px);
+    border-top: 1px solid ${props => (props.theme.mode === "dark" ? '#3C3F41' : 'lightgray')}; 
+    
+    @media(max-width: 1250px){
+        & {
+            width: 40%;
+        }
+    }
+    
+    @media(max-width: 820px){
+        & {
+            width: 100%;
+        }
+    }
+    
+     @media(max-width: 640px){
+        & {
+            z-index: 9999;
+            top: 0;
+            height: calc(100% - 53px);
+        }
+    }
+    
 `
