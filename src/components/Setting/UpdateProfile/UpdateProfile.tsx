@@ -1,16 +1,18 @@
 import React from 'react';
 import Set from './../setting.module.css';
 import styles from "../../Login/Login.module.css";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {InputField} from "../../common/formControls/FormControls";
 import {required} from "../../../utils/validators/validators";
 import ButtonPreloader from "../../../img/Preloader/91.svg";
+import {SettingPropsType} from "../settingContainer";
+import {ProfileType} from "../../../Redux/profileReducer";
 
 
 
 
 
-let FormUpdateProfile = props => {
+let FormUpdateProfile: React.FC<InjectedFormProps<SettingPropsType>> = props => {
     return (<form onSubmit={props.handleSubmit} className={Set.Form}>
                 <div className={styles.Input}>
                     <label>Change name</label>
@@ -43,20 +45,20 @@ let FormUpdateProfile = props => {
 
 let FormUpdate = reduxForm({form: "updateProfile"})(FormUpdateProfile)
 
-const UpdateProfile = props =>  {
+const UpdateProfile: React.FC<SettingPropsType> = props =>  {
 
-    let saveChanges = data => {
+    let saveChanges = (data: ProfileType | null): ProfileType => {
         let updatedData = {
             ...props.profile,
             ...data
         }
 
-        props.putUserData(updatedData)
+        props.putUserDataThunkCreator(updatedData)
     }
 
     return (<>
                 <h2>Update profile</h2>
-                <FormUpdate profile={props.profile} onSubmit={saveChanges} initialValues={props.profile} isUpload={props.isUpload}/>
+                <FormUpdate profile={props.profile} onSubmit={saveChanges} initialValues={props.profile} isUpload={props.isUploadProfile}/>
             </>)
 }
 

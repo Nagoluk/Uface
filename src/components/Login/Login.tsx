@@ -91,7 +91,6 @@ type mapDispatchToPropsType = {
 }
 
 
-
 type loginPropsType = mapDispatchToPropsType & mapStatePropsType
 
 

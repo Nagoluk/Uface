@@ -2,12 +2,12 @@ import React from 'react';
 import Set from './../setting.module.css';
 import styles from "../../Login/Login.module.css";
 import {Field, reduxForm} from "redux-form";
-import {Input} from "../../common/formControls/FormControls";
+import {InputField} from "../../common/formControls/FormControls";
 
 
 
 
-let ContactsForm = props => {
+let ContactsForm = (props: any) => {
   
 
     return (<form onSubmit={props.handleSubmit} className={Set.Form}>

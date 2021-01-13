@@ -54,7 +54,7 @@ class App extends React.Component {
                             <React.Suspense fallback={<Preloader/>}>
                                 <Switch>
                                     <Route path="/dialogs/:userID?" render={() => <NetworkError refresh={() => alert("work")}/>}/>
-                                    <Route path="/setting" render={() => <SettingContainer/>}/>
+                                    {/*<Route path="/setting" render={() => <SettingContainer/>}/>*/}
                                     <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                                     <Route path="/friends" render={() => <UsersContainer/>}/>
                                     <Route path="/login" render={() => <Login/>}/>
