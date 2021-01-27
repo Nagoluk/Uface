@@ -7,7 +7,7 @@ import ProfileContainer from "./components/Profile/profileContainer";
 import Login from './components/Login/Login';
 import {connect} from 'react-redux';
 import {loginThunkCreator, logout} from "./Redux/loginReducer";
-import {ChangeThemeAC, initializeApp} from "./Redux/appReducer";
+import {actionsApp, initializeApp} from "./Redux/appReducer";
 import Preloader from './components/assets/preloader/Preloader';
 import NotFound from "./components/404/notFound";
 import {compose} from "redux";
@@ -77,7 +77,7 @@ const mapStateToProps = (state) => ({
     newMessageCount: state.notification.newMessageCount
 });
 
-export default compose(connect(mapStateToProps, {loginThunkCreator, initializeApp, getNewMessageCountThunkCreator, ChangeThemeAC, logout}),
+export default compose(connect(mapStateToProps, {loginThunkCreator, initializeApp, getNewMessageCountThunkCreator, logout, ...actionsApp}),
                     withRouter)(App)
 
 

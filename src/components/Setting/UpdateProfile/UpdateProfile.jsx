@@ -12,7 +12,7 @@ import {ProfileType} from "../../../Redux/profileReducer";
 
 
 
-let FormUpdateProfile: React.FC<InjectedFormProps<SettingPropsType>> = props => {
+let FormUpdateProfile = props => {
     return (<form onSubmit={props.handleSubmit} className={Set.Form}>
                 <div className={styles.Input}>
                     <label>Change name</label>
@@ -45,9 +45,9 @@ let FormUpdateProfile: React.FC<InjectedFormProps<SettingPropsType>> = props => 
 
 let FormUpdate = reduxForm({form: "updateProfile"})(FormUpdateProfile)
 
-const UpdateProfile: React.FC<SettingPropsType> = props =>  {
+const UpdateProfile = props =>  {
 
-    let saveChanges = (data: ProfileType | null): ProfileType => {
+    let saveChanges = (data) => {
         let updatedData = {
             ...props.profile,
             ...data

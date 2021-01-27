@@ -1,11 +1,11 @@
 import profileReducer from "./profileReducer";
 import messageReducer from "./messageReducer";
-import {combineReducers, createStore} from "redux";
+import {Action, combineReducers, createStore} from "redux";
 import usersReducer from "./usersReducer";
 import setLang from "./settingReducer";
 import loginReducer from "./loginReducer"
 import { applyMiddleware } from "redux";
-import thunkMiddleWare from "redux-thunk";
+import thunkMiddleWare, {ThunkAction} from "redux-thunk";
 import {reducer as formReducer} from "redux-form";
 import appReducer from "./appReducer";
 import notificationReducer from "./notificationReducer";
@@ -33,6 +33,9 @@ const store = createStore(reducers, applyMiddleware(thunkMiddleWare));
 
 type PropertiesType<T> = T extends {[key: string]: infer U} ? U: never
 export type InferActionsTypes<T extends {[key: string]: (...args: any[])=> any}> = ReturnType<PropertiesType<T>>
+
+
+export type BaseThunkType<A extends Action = Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 
 // @ts-ignore
 //window._market = store;

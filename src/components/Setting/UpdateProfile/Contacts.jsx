@@ -7,7 +7,7 @@ import {InputField} from "../../common/formControls/FormControls";
 
 
 
-let ContactsForm = (props: any) => {
+let ContactsForm = (props) => {
   
 
     return (<form onSubmit={props.handleSubmit} className={Set.Form}>

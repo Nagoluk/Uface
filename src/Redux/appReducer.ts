@@ -1,27 +1,22 @@
-import {loginThunkCreator} from "./loginReducer";
-const SET_INITIALIZED: string = "SET_INITIALIZED";
-const CHANGE_THEME: string = "CHANGE_THEME"
+import {loginThunkCreator} from './loginReducer';
+import {InferActionsTypes} from './stateRedux';
 
-export type IntitState = {
-    initialized: boolean,
-    blackTheme: boolean,
-}
 
-let initState: IntitState = {
+let initState = {
    initialized: false,
    blackTheme: false,
 }
 
 
-const appReducer = (state = initState, action: any): IntitState => {
+const appReducer = (state = initState, action: ActionsType): AppInitStateT => {
     switch(action.type){
-        case SET_INITIALIZED:
+        case 'SET_INITIALIZED':
             return {
                 ...state,
                 initialized: true,
             }
 
-        case CHANGE_THEME:
+        case 'CHANGE_THEME':
             return {
                 ...state,
                 blackTheme: !state.blackTheme
@@ -32,22 +27,24 @@ const appReducer = (state = initState, action: any): IntitState => {
         
     }
 }
-type SetInitializedACType = {type: typeof SET_INITIALIZED }
-export let setInitializedAC = ():SetInitializedACType => ({type: SET_INITIALIZED})
 
-type ChangeThemeACT = {type: typeof CHANGE_THEME}
-export const ChangeThemeAC = ():ChangeThemeACT => ({type: CHANGE_THEME})
-
+export const actionsApp = {
+    setInitializedAC: () => ({type: 'SET_INITIALIZED'} as const),
+    ChangeThemeACT: () => ({type: 'CHANGE_THEME'} as const)
+}
 
 
 export let initializeApp = () => {
     return (dispatch: any) => {
         let promise = dispatch(loginThunkCreator());
-
         Promise.all([promise]).then(() => {
-            dispatch(setInitializedAC())
+            dispatch(actionsApp.setInitializedAC())
         });
     }
 }
 
 export default appReducer;
+
+
+type ActionsType = InferActionsTypes<typeof actionsApp>
+export type AppInitStateT = typeof initState

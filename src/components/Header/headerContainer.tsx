@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Header from "./header";
 import {loginThunkCreator, logout} from "../../Redux/loginReducer";
 import {getNewMessageCountThunkCreator} from "../../Redux/notificationReducer";
-import {ChangeThemeAC} from "../../Redux/appReducer";
 import {AppStateType} from "../../Redux/stateRedux";
 import {ProfileType} from "../../Redux/profileReducer";
+import {actionsApp} from "../../Redux/appReducer";
 
 
 type MapStateToPropsType = {
@@ -54,7 +54,7 @@ let Dispatch = {
     loginThunkCreator,
     logout,
     getNewMessageCountThunkCreator,
-    ChangeThemeAC
+    ...actionsApp
 }
 
 export default connect(mapStateToProps, Dispatch)(HeaderContainer);
