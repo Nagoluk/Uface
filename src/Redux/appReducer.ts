@@ -30,7 +30,7 @@ const appReducer = (state = initState, action: ActionsType): AppInitStateT => {
 
 export const actionsApp = {
     setInitializedAC: () => ({type: 'SET_INITIALIZED'} as const),
-    ChangeThemeACT: () => ({type: 'CHANGE_THEME'} as const)
+    ChangeThemeAC: () => ({type: 'CHANGE_THEME'} as const)
 }
 
 
