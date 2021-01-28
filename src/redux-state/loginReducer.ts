@@ -2,43 +2,36 @@ import {AuthAPI, getSecureCaptcha, ProfileAPI} from "../api/api";
 import { stopSubmit } from "redux-form";
 import { ResultsCodes, ResultCodeForCaptcha } from "../api/api-types";
 import {ProfileType} from "./profileReducer";
-
-const SET_USER_LOGIN = "SET_USER_LOGIN";
-const SET_CAPTCHA_URL = "SET_CAPTCHA_URL";
-const SET_OWN_PROFILE = "SET_OWN_PROFILE";
-
+import {nullable} from "../interfaces/common-interfaces";
+import {InferActionsTypes} from "./stateRedux";
 
 
 let initState = {
-    id: null as number | null,
-    email: null as string | null,
-    login: null as string | null,
-    isLogined: false as boolean,
+    id: null as nullable<number>,
+    email: null as nullable<string>,
+    login: null as nullable<string>,
+    isLogined: false,
     captchaURL: "",
-    profile: null as null | ProfileType
+    profile: null as nullable<ProfileType>
 }
 
-export type InitStateType = typeof initState;
-
-
-const loginReducer = (state = initState, action: any):InitStateType => {
+const loginReducer = (state = initState, action: ActionsType):InitLoginStateType => {
 
     switch(action.type){
-       
-        case SET_USER_LOGIN:
+        case 'SET_USER_LOGIN':
             return {
                 ...state, 
                 ...action.data,
                 id: action.data.id,
             }
 
-        case SET_CAPTCHA_URL:
+        case 'SET_CAPTCHA_URL':
             return {
                 ...state,
                 captchaURL: action.URL
             }
 
-        case SET_OWN_PROFILE:
+        case 'SET_OWN_PROFILE':
             return {
                 ...state,
                 profile: action.profile
@@ -50,48 +43,26 @@ const loginReducer = (state = initState, action: any):InitStateType => {
     }
 }
 
-type dataType = {
-    id: number | null
-    login: string | null
-    email: string | null
-    isLogined: boolean
+const actionsLogin = {
+    setUserLoginAC : (id: nullable<number>, login:nullable<string>, email: nullable<string>, isLogined: boolean) => {
+        return ({type: 'SET_USER_LOGIN', data:{id, login, email, isLogined}} as const)
+    },
+
+    setCaptchaUrlAC: (URL: string) => ({type: 'SET_CAPTCHA_URL', URL} as const),
+
+    setProfileAC: (profile: nullable<ProfileType>) => ({type: 'SET_OWN_PROFILE', profile} as const)
 }
-
-type setUserLoginType = {
-    type: typeof SET_USER_LOGIN,
-    data: dataType
-}
-
-export let setUserLoginAC = (id: number | null, login: string | null, email: string | null, isLogined: boolean):setUserLoginType => {
-    return {type: SET_USER_LOGIN, data:{id, login, email, isLogined}}
-}
-
-type setCaptchaUrlACType = {
-    type: typeof SET_CAPTCHA_URL,
-    URL: string
-}
-
-export let setCaptchaUrlAC = (URL: string):setCaptchaUrlACType => ({type: SET_CAPTCHA_URL, URL})
-
-type setProfileACType = {
-    type: typeof SET_OWN_PROFILE,
-    profile: null | ProfileType
-}
-
-export let setProfileAC = (profile: null | ProfileType):setProfileACType => ({type: SET_OWN_PROFILE, profile})
 
 
 export let loginThunkCreator = () => {
     return (dispatch: any) => {
         return AuthAPI.getLogin().then((response: any) => {
-
-            if(response.resultCode === 0){
-
+            if(response.resultCode === ResultsCodes.Success){
                 let {id, login, email} = response.data;
-                dispatch(setUserLoginAC(id, login, email, true));
+                dispatch(actionsLogin.setUserLoginAC(id, login, email, true));
 
                 ProfileAPI.getProfile(id).then((response: any) => {
-                    dispatch(setProfileAC(response.data));
+                    dispatch(actionsLogin.setProfileAC(response.data));
                 })
             }   
         });
@@ -102,17 +73,13 @@ export let loginThunkCreator = () => {
 export let getCaptchaThunkCreator = () => {
     return (dispatch: any) => {
         getSecureCaptcha().then((url: string) => {
-            dispatch(setCaptchaUrlAC(url))
+            dispatch(actionsLogin.setCaptchaUrlAC(url))
         })
     }
 }
 
-
 export let login = (email: string, password: string, rememberMe: boolean = false, captcha: string | null = null ) => {
-   
-
     return (dispatch: any) => {
-
         AuthAPI.login(email, password, rememberMe, captcha).then((response: any) => {
             if(response.data.resultCode === ResultsCodes.Success){
               dispatch(loginThunkCreator())
@@ -129,8 +96,6 @@ export let login = (email: string, password: string, rememberMe: boolean = false
                 dispatch(action)
             }
         });
-
-     
     }
 }
 
@@ -139,12 +104,14 @@ export let logout = () =>{
         AuthAPI.logout().then((response:any)  => {
             if(response.data.resultCode === ResultsCodes.Success){
                 window.location.reload();
-                dispatch(setUserLoginAC(null, null, null, false))
+                dispatch(actionsLogin.setUserLoginAC(null, null, null, false))
             }
-           
         })
     }
 }
 
 
 export default loginReducer;
+
+type ActionsType = InferActionsTypes<typeof actionsLogin>
+export type InitLoginStateType = typeof initState;

@@ -2,9 +2,9 @@ import React from "react";
 import Dialog from "./Dialog";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {getDialogsThunkCreator, getMessagesThunkCreator, sendMessagesThunkCreator} from "../../../Redux/messageReducer";
+import {getDialogsThunkCreator, getMessagesThunkCreator, sendMessagesThunkCreator} from "../../../redux-state/messageReducer";
 import Preloader from "../../assets/preloader/Preloader";
-import {getNewMessageCountThunkCreator} from "../../../Redux/notificationReducer";
+import {getNewMessageCountThunkCreator} from "../../../redux-state/notificationReducer";
 
 class DialogContainer extends React.Component {
 

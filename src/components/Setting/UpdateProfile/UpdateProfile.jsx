@@ -6,7 +6,7 @@ import {InputField} from "../../common/formControls/FormControls";
 import {required} from "../../../utils/validators/validators";
 import ButtonPreloader from "../../../img/Preloader/91.svg";
 import {SettingPropsType} from "../settingContainer";
-import {ProfileType} from "../../../Redux/profileReducer";
+import {ProfileType} from "../../../redux-state/profileReducer";
 
 
 

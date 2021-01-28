@@ -7,9 +7,9 @@ import styles from './Login.module.css';
 
 import {InputField} from '../common/formControls/FormControls';
 import { required } from '../../utils/validators/validators';
-import {login} from '../../Redux/loginReducer';
+import {login} from '../../redux-state/loginReducer';
 
-import {AppStateType} from '../../Redux/stateRedux';
+import {AppStateType} from '../../redux-state/stateRedux';
 import {LoginWrapStyled} from '../../styles/theme';
 import styled from "styled-components";
 

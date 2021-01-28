@@ -7,11 +7,11 @@ import {
     updateStatusThunkCreator,
     getStatusThunkCreator,
     uploadAvatarThunkCreator
-} from "../../Redux/profileReducer";
+} from "../../redux-state/profileReducer";
 import {withRouter} from "react-router-dom";
-import {setRedirectedToDialog, startChatingThunkCreator} from "../../Redux/messageReducer";
-import {getFollowProccesSelector} from "../../Redux/usersSelectors";
-import {followThunkCreator, searchingThunkCreator, unfollowThunkCreator} from "../../Redux/usersReducer";
+import {setRedirectedToDialog, startChatingThunkCreator} from "../../redux-state/messageReducer";
+import {getFollowProccesSelector} from "../../redux-state/usersSelectors";
+import {followThunkCreator, searchingThunkCreator, unfollowThunkCreator} from "../../redux-state/usersReducer";
 
 
 

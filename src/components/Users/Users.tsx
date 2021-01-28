@@ -1,7 +1,7 @@
 import React from 'react';
 import UsersStlyes from './Users.module.css';
 import User from './User';
-import { UserT } from '../../Redux/usersReducer';
+import { UserT } from '../../redux-state/usersReducer';
 import {Pagitator} from '../common/pagitator/Pagitator';
 import {UniversalWrap} from '../../styles/wrap.styles'
 

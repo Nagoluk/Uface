@@ -1,8 +1,8 @@
 import React from 'react';
 import Search from "./Search";
 import {connect} from "react-redux";
-import {searchingThunkCreator} from "../../../Redux/usersReducer";
-import {getProfileThunkCreator} from "../../../Redux/profileReducer";
+import {searchingThunkCreator} from "../../../redux-state/usersReducer";
+import {getProfileThunkCreator} from "../../../redux-state/profileReducer";
 
 class HeaderContainer extends React.Component{
     render() {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ProfileType} from "../Redux/profileReducer";
+import {ProfileType} from "../redux-state/profileReducer";
 import {
     GetLoginResponseType,
     LoginResponseType,

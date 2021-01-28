@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import DialogsList from "./DialogsList";
 import LoginHoc from "../../../hoc/loginHoc";
 import {compose} from "redux";
-import {getDialogsThunkCreator} from "../../../Redux/messageReducer";
+import {getDialogsThunkCreator} from "../../../redux-state/messageReducer";
 import Preloader from "../../assets/preloader/Preloader";
 
 

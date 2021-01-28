@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import MessagesStyle from "./Messages.module.css";
-import {deleteMessageThunkCreator, getMessagesAC, getMessagesThunkCreator} from "../../../../Redux/messageReducer";
+import {deleteMessageThunkCreator, getMessagesAC, getMessagesThunkCreator} from "../../../../redux-state/messageReducer";
 import Alert from "../../../common/alert/alert";
 
 import styled from "styled-components";

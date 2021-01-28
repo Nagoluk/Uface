@@ -1,8 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {getProfileThunkCreator, ProfileType, putUserDataThunkCreator} from "../../Redux/profileReducer";
-import {AppStateType} from "../../Redux/stateRedux";
+import {getProfileThunkCreator, ProfileType, putUserDataThunkCreator} from "../../redux-state/profileReducer";
+import {AppStateType} from "../../redux-state/stateRedux";
 
 import LoginHoc from "../../hoc/loginHoc";
 

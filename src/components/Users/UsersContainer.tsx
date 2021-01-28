@@ -5,7 +5,7 @@ import Users from "./Users";
 import {
     followThunkCreator, unfollowThunkCreator,setUsersThunkCreator,
     UsersActions, UserT,
-} from "../../Redux/usersReducer";
+} from "../../redux-state/usersReducer";
 
 import Preloader from "../assets/preloader/Preloader";
 import {
@@ -15,8 +15,8 @@ import {
     getCurrentPageSelector,
     getIsFetchingSelector,
     getFollowProccesSelector, getPagePagitator
-} from "../../Redux/usersSelectors";
-import {AppStateType} from "../../Redux/stateRedux";
+} from "../../redux-state/usersSelectors";
+import {AppStateType} from "../../redux-state/stateRedux";
 
 type MapStateToPropsType = {
     currentPage: number,
