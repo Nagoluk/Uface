@@ -1,61 +1,25 @@
 import {ProfileAPI, UsersAPI} from "../api/api";
 import { stopSubmit } from "redux-form";
-import {photosT} from "./messageReducer";
+import {PostDataType, ProfileType} from "../interfaces/profile-interfaces";
+import {nullable} from "../interfaces/common-interfaces";
+import {InferActionsTypes} from "./stateRedux";
 
-const ADD_NEW_POST = "ADD_NEW_POST";
-const SET_PROFILE = "SET_PROFILE";
-const SET_STATUS = "SET_STATUS";
-const USERS_IS_FETCHING = "USERS_IS_FETCHING ";
-const DELETE_POST = "DELETE_POST";
-const UPOAL_PROFILE_INFO_PROCCESS = "UPOAL_PROFILE_INFO_PROCCESS";
-const SET_FOLLOW = "SET_FOLLOW";
-
-type PostDataType = {
-    id: number,
-    content: string,
-    likes: number,
-    rep: number,
-    comm: number,
-    dataSend: string
-}
-type ContactsType = {
-    facebook: string | null,
-    website: string | null,
-    vk: string | null,
-    twitter: string | null,
-    instagram: string | null,
-    youtube: string | null,
-    github: string | null,
-    mainLink: string | null
-}
-
-export type ProfileType = {
-    aboutMe: string | null,
-    contacts: ContactsType,
-    lookingForAJob: boolean,
-    lookingForAJobDescription?: string | null,
-    fullName: string,
-    userId: number,
-    photos: photosT
-}
 
 let initialProfilePage = {
     PostsData: [
         {id: 1, content: "Hello Uface!", likes: 0, rep: 0, comm: 0, dataSend: "Sun Mar 15 2020 18:44:42"},
     ] as Array<PostDataType>,
 
-    profile: null as null | ProfileType,
-    status: "" as string,
+    profile: null as nullable<ProfileType>,
+    status: "" as nullable<string>,
     isFetching: true as boolean,
     isUploadProfile: false as boolean,
     isFollowed: false as boolean,
 };
 
-type initialProfilePageType = typeof initialProfilePage;
-
-const profileReducer = (state = initialProfilePage, action: any): initialProfilePageType =>{
+const profileReducer = (state = initialProfilePage, action: ActionsType): initialProfilePageType =>{
     switch(action.type) {
-        case ADD_NEW_POST:
+        case 'ADD_NEW_POST':
             let currentData = new Date().toString().slice(0, 24);
 
             let stateCopy = {
@@ -66,19 +30,19 @@ const profileReducer = (state = initialProfilePage, action: any): initialProfile
             return stateCopy;
 
 
-        case SET_PROFILE:
+        case 'SET_PROFILE':
             return {
                 ...state,
                 profile: action.profile
             };
         
-        case SET_STATUS: 
+        case 'SET_STATUS':
             return {
                 ...state,
                 status: action.status
             };
 
-        case USERS_IS_FETCHING : {
+        case 'USERS_IS_FETCHING' : {
            
             return {
                 ...state,
@@ -86,27 +50,26 @@ const profileReducer = (state = initialProfilePage, action: any): initialProfile
             }
         }
 
-        case DELETE_POST: {
+        case 'DELETE_POST': {
             return {
                 ...state,
                 PostsData: state.PostsData.filter(item => item.id !== action.id)
             }
         }
 
-        case SET_FOLLOW: {
+        case 'SET_FOLLOW': {
             return {
                 ...state,
                 isFollowed: action.payload
             }
         }
 
-        case UPOAL_PROFILE_INFO_PROCCESS: {
+        case 'UPOAL_PROFILE_INFO_PROCCESS': {
             return {
                 ...state,
                 isUploadProfile: action.payload
             }
         }
-
 
         default:
             return state;
@@ -114,53 +77,26 @@ const profileReducer = (state = initialProfilePage, action: any): initialProfile
     }
 }
 
-type addNewPostACT = {type: typeof ADD_NEW_POST, text: string}
-export const addNewPostAC = (text: string): addNewPostACT => ({type: ADD_NEW_POST, text})
-
-type deletePostACT = {type: typeof DELETE_POST, id: number}
-export const deletePostAC = (id:number): deletePostACT => ({type: DELETE_POST, id})
-
-type isUploadProfileACT = {type: typeof UPOAL_PROFILE_INFO_PROCCESS, payload: boolean}
-export const isUploadProfileAC = (payload: boolean): isUploadProfileACT => ({type: UPOAL_PROFILE_INFO_PROCCESS, payload})
-
-type setFollowACT = {type: typeof SET_FOLLOW, payload: boolean}
-export const setFollowAC = (payload: boolean): setFollowACT => ({type: SET_FOLLOW, payload})
-
-type isFetchingACT = {type: typeof USERS_IS_FETCHING, payload: boolean}
-export const isFetchingAC = (condition: boolean): isFetchingACT => {
-    return {
-        type: USERS_IS_FETCHING ,
-        payload: condition
-    }
+export const actionsProfile = {
+    addNewPostAC: (text: string) => ({type: 'ADD_NEW_POST', text} as const),
+    deletePostAC: (id:number) => ({type: 'DELETE_POST', id} as const),
+    isUploadProfileAC: (payload: boolean) => ({type: 'UPOAL_PROFILE_INFO_PROCCESS', payload} as const),
+    setFollowAC: (payload: boolean) => ({type: 'SET_FOLLOW', payload} as const),
+    isFetchingAC: (condition: boolean) => ({type: 'USERS_IS_FETCHING' , payload: condition} as const),
+    setProfile: (profile: ProfileType) =>({type: 'SET_PROFILE', profile: profile} as const),
+    setStatus: (status: string | null) => ({type: 'SET_STATUS', status} as const)
 }
-
-type setProfileACT = {type: typeof SET_PROFILE, profile: ProfileType}
-export const setProfile = (profile: ProfileType): setProfileACT =>{
-    return {
-        type: SET_PROFILE,
-        profile: profile
-    }
-}
-
-type setStatusACT = {type: typeof SET_STATUS, status: string | null}
-export const setStatus = (status: string | null): setStatusACT => {
-    return {
-        type: SET_STATUS,
-        status
-    }
-}
-
 
 export const getProfileThunkCreator = (id: number) => {
 
     return (dispatch: any) =>{
-        dispatch(isFetchingAC(true))
+        dispatch(actionsProfile.isFetchingAC(true))
 
         ProfileAPI.getProfile(id).then((response: any) => {
             UsersAPI.Search(response.data.fullName).then((i: any) =>{
-                dispatch(setFollowAC(i.data.items[0].followed))
-                dispatch(setProfile(response.data))
-                dispatch(isFetchingAC(false))
+                dispatch(actionsProfile.setFollowAC(i.data.items[0].followed))
+                dispatch(actionsProfile.setProfile(response.data))
+                dispatch(actionsProfile.isFetchingAC(false))
             })
 
         });
@@ -170,7 +106,7 @@ export const getProfileThunkCreator = (id: number) => {
 export const getStatusThunkCreator = (id: number) => {
     return (dispatch: any)=>{
         ProfileAPI.getStatus(id).then((response: any) => {
-            dispatch(setStatus(response.data))
+            dispatch(actionsProfile.setStatus(response.data))
         })
     }
 }
@@ -179,7 +115,7 @@ export const updateStatusThunkCreator = (status: string ) => {
     return (dispatch: any)=>{
         ProfileAPI.updateStatus(status).then((response: any) => {
             if(response.data.resultCode === 0)
-                dispatch(setStatus(status))
+                dispatch(actionsProfile.setStatus(status))
         })
     }
 }
@@ -196,22 +132,21 @@ export const uploadAvatarThunkCreator = (avatar: any) => {
 
 export const putUserDataThunkCreator = (data: any) => {
     return (dispatch: any)=>{
-        dispatch(isUploadProfileAC(true));
+        dispatch(actionsProfile.isUploadProfileAC(true));
         ProfileAPI.putProfileData(data).then((response: any) => {
             if(response.data.resultCode === 0){
-                dispatch(isUploadProfileAC(false));
+                dispatch(actionsProfile.isUploadProfileAC(false));
 
             }else {
-                dispatch(isUploadProfileAC(false));
+                dispatch(actionsProfile.isUploadProfileAC(false));
                 let action = stopSubmit("updateProfile", {_error: response.data.messages.join(" ")})
                 dispatch(action)
             }
-
         })
     }
 }
 
-
-
-
 export default profileReducer;
+
+type ActionsType = InferActionsTypes<typeof actionsProfile>
+type initialProfilePageType = typeof initialProfilePage;

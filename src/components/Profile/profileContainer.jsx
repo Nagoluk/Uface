@@ -2,10 +2,9 @@ import React from "react";
 import Profile from "./profile";
 import {connect} from "react-redux";
 import {
-    setProfile,
+    actionsProfile,
     getProfileThunkCreator,
-    updateStatusThunkCreator,
-    getStatusThunkCreator,
+    getStatusThunkCreator, putUserDataThunkCreator, updateStatusThunkCreator,
     uploadAvatarThunkCreator
 } from "../../redux-state/profileReducer";
 import {withRouter} from "react-router-dom";
@@ -85,13 +84,16 @@ let mapStateToProps = (state) => (
 
 let AddURLdate = withRouter(ProfileContainer);
 
-export default connect (mapStateToProps, {setProfile,
-                                            getProfileThunkCreator,
-                                            searchingThunkCreator,
-                                            updateStatusThunkCreator,
-                                            getStatusThunkCreator,
-                                            uploadAvatarThunkCreator,
+export default connect (mapStateToProps, {
                                             startChatingThunkCreator,
                                             setRedirectedToDialog,
                                             followThunkCreator,
-                                            unfollowThunkCreator})(AddURLdate);
+                                            unfollowThunkCreator,
+                                            getProfileThunkCreator,
+                                            getStatusThunkCreator,
+                                            uploadAvatarThunkCreator,
+                                            putUserDataThunkCreator,
+                                            updateStatusThunkCreator,
+                                            ...actionsProfile
+
+})(AddURLdate);

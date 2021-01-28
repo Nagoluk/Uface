@@ -1,13 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {getProfileThunkCreator, ProfileType, putUserDataThunkCreator} from "../../redux-state/profileReducer";
+import {getProfileThunkCreator, putUserDataThunkCreator} from "../../redux-state/profileReducer";
 import {AppStateType} from "../../redux-state/stateRedux";
 
 import LoginHoc from "../../hoc/loginHoc";
 
 import Setting from "./setting";
 import Preloader from "../assets/preloader/Preloader";
+import {ProfileType} from "../../interfaces/profile-interfaces";
 
 
 type MapDispatchToPropsType = {

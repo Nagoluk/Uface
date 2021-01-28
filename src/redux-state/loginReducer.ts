@@ -1,9 +1,9 @@
 import {AuthAPI, getSecureCaptcha, ProfileAPI} from "../api/api";
 import { stopSubmit } from "redux-form";
 import { ResultsCodes, ResultCodeForCaptcha } from "../api/api-types";
-import {ProfileType} from "./profileReducer";
 import {nullable} from "../interfaces/common-interfaces";
 import {InferActionsTypes} from "./stateRedux";
+import {ProfileType} from "../interfaces/profile-interfaces";
 
 
 let initState = {

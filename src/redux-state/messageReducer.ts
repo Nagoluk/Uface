@@ -1,4 +1,5 @@
 import {DialogsAPI} from "../api/api";
+import {photosT} from "../interfaces/profile-interfaces";
 
 const addNewMessage = "ADD-NEW-MESSAGE";
 const GET_DIALOGS = "GET_DIALOGS";
@@ -8,10 +9,6 @@ const ADD_MESSAGE = "ADD_MESSAGE";
 const SET_IS_REDIRECTED_TO_DIALOG = "SET_IS_REDIRECTED_TO_DIALOG";
 const REFRESH = "REFRESH";
 
-export type photosT = {
-    small: string | null,
-    large: string | null
-}
 
 export type dialogT = {
     id: string,
@@ -199,11 +196,6 @@ export const deleteMessageThunkCreator = (messageId: string) => {
         })
     }
 }
-
-
-
-
-
 
 
 

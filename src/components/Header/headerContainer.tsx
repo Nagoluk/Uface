@@ -4,8 +4,8 @@ import Header from "./header";
 import {loginThunkCreator, logout} from "../../redux-state/loginReducer";
 import {getNewMessageCountThunkCreator} from "../../redux-state/notificationReducer";
 import {AppStateType} from "../../redux-state/stateRedux";
-import {ProfileType} from "../../redux-state/profileReducer";
 import {actionsApp} from "../../redux-state/appReducer";
+import {ProfileType} from "../../interfaces/profile-interfaces";
 
 
 type MapStateToPropsType = {

@@ -1,8 +1,9 @@
 import {UsersAPI, unfollowAPI, followAPI} from "../api/api"
 
-import {photosT} from "./messageReducer";
+
 import {AppStateType, InferActionsTypes} from "./stateRedux";
 import {Dispatch} from "redux";
+import {photosT} from "../interfaces/profile-interfaces";
 
 
 const FOLLOW = "FOLLOW";

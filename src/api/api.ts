@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ProfileType} from "../redux-state/profileReducer";
+
 import {
     GetLoginResponseType,
     LoginResponseType,
@@ -8,6 +8,7 @@ import {
     DialogsType,
     BasisType, messageType, MessagesType
 } from "./api-types";
+import {ProfileType} from "../interfaces/profile-interfaces";
 
 const DEBUG = process.env.NODE_ENV === "development";
 
