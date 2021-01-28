@@ -1,18 +1,14 @@
 import {DialogsAPI} from "../api/api";
+import {InferActionsTypes} from "./stateRedux";
 
-const SET_NEW_MESSAGE_COUNT = "SET_NEW_MESSAGE_COUNT";
-
-
-const initalNotification = {
+const initialNotification = {
     newMessageCount: 0 as number | string,
 }
 
-export type initialNotificationT = typeof initalNotification;
-
-const notificationReducer = (state = initalNotification, action: any): initialNotificationT =>{
+const notificationReducer = (state = initialNotification, action: ActionsType): initialNotificationT =>{
 
     switch (action.type) {
-        case SET_NEW_MESSAGE_COUNT: return {
+        case 'SET_NEW_MESSAGE_COUNT': return {
             ...state,
             newMessageCount: action.payload < 100 ? action.payload : "99+"
         }
@@ -20,26 +16,23 @@ const notificationReducer = (state = initalNotification, action: any): initialNo
         default: {
             return state
         }
-
     }
-
 }
-type setNewMessageCountACT = {
-    type: typeof SET_NEW_MESSAGE_COUNT,
-    payload: number
-}
-const setNewMessageCount = (payload: number): setNewMessageCountACT => ({type: SET_NEW_MESSAGE_COUNT, payload})
 
+const actionsNotifications = {
+    setNewMessageCount: (payload: number) => ({type: 'SET_NEW_MESSAGE_COUNT', payload} as const)
+}
 
 export const getNewMessageCountThunkCreator = () => {
     return (dispatch: any) =>{
         DialogsAPI.getMessageCount().then((data: any) => {
-            dispatch(setNewMessageCount(data.data))
+            dispatch(actionsNotifications.setNewMessageCount(data.data))
         })
     }
 }
 
-
-
-
 export default notificationReducer;
+
+
+type ActionsType = InferActionsTypes<typeof actionsNotifications>
+export type initialNotificationT = typeof initialNotification;
