@@ -1,17 +1,15 @@
+import {InferActionsTypes} from "./stateRedux";
 
-const SET_UA = "SET_UA";
-const SET_ENG = "SET_ENG";
-
-let initialUsers = {
-    eng: true as boolean,
-    ua: false as boolean,
+let initialSetting = {
+    eng: true,
+    ua: false,
 };
 
-const setLang = (state = initialUsers, action: any) =>{
+const setLang = (state = initialSetting, action: ActionsType): initialSettingPageType =>{
 
 
     switch(action.type) {
-        case SET_UA:
+        case 'SET_UA':
 
         return {
             ...state,
@@ -19,7 +17,7 @@ const setLang = (state = initialUsers, action: any) =>{
         }
 
 
-        case SET_ENG:
+        case 'SET_ENG':
 
             return{
                 ...state,
@@ -30,9 +28,13 @@ const setLang = (state = initialUsers, action: any) =>{
     }
 }
 
+const actionsSetting = {
+    setUa: () =>({type: 'SET_UA'} as const),
+    setEng: () => ({type: 'SET_ENG'} as const)
+}
 
-export const setUa = () =>({type: SET_UA});
-export const setEng = () => ({type: SET_ENG});
+type ActionsType = InferActionsTypes<typeof actionsSetting>
+type initialSettingPageType = typeof initialSetting;
 
 
 export default setLang;

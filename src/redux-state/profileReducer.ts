@@ -64,7 +64,7 @@ const profileReducer = (state = initialProfilePage, action: ActionsType): initia
             }
         }
 
-        case 'UPOAL_PROFILE_INFO_PROCCESS': {
+        case 'UPLOAD_PROFILE_INFO_PROCESS': {
             return {
                 ...state,
                 isUploadProfile: action.payload
@@ -80,7 +80,7 @@ const profileReducer = (state = initialProfilePage, action: ActionsType): initia
 export const actionsProfile = {
     addNewPostAC: (text: string) => ({type: 'ADD_NEW_POST', text} as const),
     deletePostAC: (id:number) => ({type: 'DELETE_POST', id} as const),
-    isUploadProfileAC: (payload: boolean) => ({type: 'UPOAL_PROFILE_INFO_PROCCESS', payload} as const),
+    isUploadProfileAC: (payload: boolean) => ({type: 'UPLOAD_PROFILE_INFO_PROCESS', payload} as const),
     setFollowAC: (payload: boolean) => ({type: 'SET_FOLLOW', payload} as const),
     isFetchingAC: (condition: boolean) => ({type: 'USERS_IS_FETCHING' , payload: condition} as const),
     setProfile: (profile: ProfileType) =>({type: 'SET_PROFILE', profile: profile} as const),
