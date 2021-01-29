@@ -18,6 +18,10 @@ export const UniversalThemeComponent = styled.div`
     }
 `
 
+export const HeaderStyle = styled(UniversalThemeComponent)`
+ border-bottom: 1px solid ${props => (props.theme.mode === "dark") ? "#3C3F41" : "lightgray"};
+`
+
 export const SearchContainerStyle = styled(UniversalThemeComponent)`
      background: ${props => (props.theme.mode === "dark" ? '#3C3F41' : '#E7EBF0')};
      

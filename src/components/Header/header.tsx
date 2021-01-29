@@ -6,14 +6,14 @@ import {SwitchButton} from "../Nav/adaptiveNav";
 import Nav from "../Nav/nav";
 import {Avatar} from "../assets/avatar/avatar";
 import {VerticalAlign} from "../../styles/vertical.align";
-import {UniversalThemeComponent} from "../../styles/theme";
+import {HeaderStyle} from "../../styles/theme";
 import {HeaderProps} from "./headerContainer";
 
 
 const Header: React.FC<HeaderProps> = (props) => {
 
     return (<header>
-                <UniversalThemeComponent>
+                <HeaderStyle>
                     <div className={headermod.headerWrap}>
                         <div className={headermod.leftside}>
                             <NavLink to="/"><h1><i className="fas fa-dragon"></i>Uface</h1></NavLink>
@@ -46,7 +46,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                             </div>}
                         </div>
                     </div>
-                </UniversalThemeComponent>
+                </HeaderStyle>
             </header>);
 }
 
