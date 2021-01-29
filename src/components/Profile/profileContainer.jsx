@@ -8,7 +8,7 @@ import {
     uploadAvatarThunkCreator
 } from "../../redux-state/profileReducer";
 import {withRouter} from "react-router-dom";
-import {setRedirectedToDialog, startChatingThunkCreator} from "../../redux-state/messageReducer";
+import {actionsMessages, startChatingThunkCreator} from "../../redux-state/messageReducer";
 import {getFollowProccesSelector} from "../../redux-state/usersSelectors";
 import {followThunkCreator, searchingThunkCreator, unfollowThunkCreator} from "../../redux-state/usersReducer";
 
@@ -86,7 +86,6 @@ let AddURLdate = withRouter(ProfileContainer);
 
 export default connect (mapStateToProps, {
                                             startChatingThunkCreator,
-                                            setRedirectedToDialog,
                                             followThunkCreator,
                                             unfollowThunkCreator,
                                             getProfileThunkCreator,
@@ -94,6 +93,7 @@ export default connect (mapStateToProps, {
                                             uploadAvatarThunkCreator,
                                             putUserDataThunkCreator,
                                             updateStatusThunkCreator,
-                                            ...actionsProfile
+                                            ...actionsProfile,
+                                            ...actionsMessages
 
 })(AddURLdate);

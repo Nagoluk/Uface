@@ -1,5 +1,5 @@
-import {dialogT, messageT} from "../redux-state/messageReducer";
 import {UserT} from "../interfaces/users-interfaces";
+import {dialogT, messageT} from "../interfaces/messages-interfaces";
  
 
 export enum ResultsCodes{
