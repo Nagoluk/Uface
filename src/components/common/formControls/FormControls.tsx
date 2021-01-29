@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./FormControls.module.css";
-import {Input} from "antd";
 import {WrappedFieldProps} from "redux-form";
 
 
@@ -10,7 +9,7 @@ export const InputField: InputFieldType = ({input, meta, ...props}): any => {
 
     return (<div className={styles.InputContainer}>
                 <div>
-                    <Input {...props} {...input} size={"large"} />
+                    <input {...props} {...input}/>
                 </div>
                 {hasError && <span><i className="fas fa-exclamation"></i></span>}
                 {hasError && <span>{meta.error}</span>}
