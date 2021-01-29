@@ -76,7 +76,7 @@ let mapStateToProps = (state) => (
     isLogined: state.LoginReducer.isLogined,
     status: state.ProfilePage.status,
     isRedirectedToDialog: state.MessagePage.isRedirectedToDialog,
-     followProcces: getFollowProccesSelector(state),
+     followProccess: getFollowProccesSelector(state),
         isFollowed: state.ProfilePage.isFollowed
 
 });

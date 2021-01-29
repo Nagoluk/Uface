@@ -1,9 +1,9 @@
 import React from 'react';
 import UsersStlyes from './Users.module.css';
 import User from './User';
-import { UserT } from '../../redux-state/usersReducer';
 import {Pagitator} from '../common/pagitator/Pagitator';
 import {UniversalWrap} from '../../styles/wrap.styles'
+import {UserT} from "../../interfaces/users-interfaces";
 
 
 type PropsType = {
@@ -13,7 +13,7 @@ type PropsType = {
     pagePagitator: number,
     setCurrentPagePagitator: (page: number) => void,
     users: Array<UserT>,
-    followProcces: Array<number>,
+    followProcess: Array<number>,
     windowsWidth: number,
     black: boolean,
 

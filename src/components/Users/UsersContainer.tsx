@@ -4,7 +4,7 @@ import {compose} from "redux";
 import Users from "./Users";
 import {
     followThunkCreator, unfollowThunkCreator,setUsersThunkCreator,
-    UsersActions, UserT,
+    UsersActions,
 } from "../../redux-state/usersReducer";
 
 import Preloader from "../assets/preloader/Preloader";
@@ -17,6 +17,7 @@ import {
     getFollowProccesSelector, getPagePagitator
 } from "../../redux-state/usersSelectors";
 import {AppStateType} from "../../redux-state/stateRedux";
+import {UserT} from "../../interfaces/users-interfaces";
 
 type MapStateToPropsType = {
     currentPage: number,
@@ -25,7 +26,7 @@ type MapStateToPropsType = {
     totalUsersCount: number,
     pagePagitator: number,
     users: Array<UserT>,
-    followProcces: Array<number>,
+    followProcess: Array<number>,
 
 }
 
@@ -101,7 +102,7 @@ class userAPIcomponent extends React.Component<PropsTypes, StateTypes> {
                    users={this.props.users}
                    followThunkCreator={this.props.followThunkCreator}
                    unfollowThunkCreator={this.props.unfollowThunkCreator}
-                   followProcces = {this.props.followProcces}
+                   followProcess = {this.props.followProcess}
                    toggleFollowProcessing = {this.props.toggleFollowProcessing}
                    setCurrentPagePagitator = {this.props.setCurrentPagePagitator}
                    pagePagitator = {this.props.pagePagitator}
@@ -120,7 +121,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         totalUsersCount: getTototalUsersCountSelector(state),
         currentPage: getCurrentPageSelector(state),
         isFetching: getIsFetchingSelector(state),
-        followProcces: getFollowProccesSelector(state),
+        followProcess: getFollowProccesSelector(state),
         pagePagitator: getPagePagitator(state)
     }
 }

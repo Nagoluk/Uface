@@ -2,17 +2,18 @@ import React from "react";
 import UsersStlyes from "./Users.module.css";
 import AvatarImg from "../../img/Profile/avatar.png";
 import {NavLink} from "react-router-dom";
-import {UserT} from "../../redux-state/usersReducer";
+
 
 import {UserItemStyled} from "../../styles/theme";
 import {Avatar} from "../assets/avatar/avatar";
+import {UserT} from "../../interfaces/users-interfaces";
 
 
 type PropsType = {
     index: number,
     user: UserT,
     black: boolean,
-    followProcces: Array<number>,
+    followProcess: Array<number>,
     unfollowThunkCreator: (userID: number) => void,
     followThunkCreator: (userID: number) => void,
 }
@@ -39,12 +40,12 @@ let User: React.FC<PropsType> = props => {
 
         <div className={UsersStlyes.buttons}>
             {props.user.followed ?
-                <button disabled={props.followProcces.some(item => item === props.user.id)}
+                <button disabled={props.followProcess.some(item => item === props.user.id)}
                         className={"unfollow"}
                         onClick={() => {
                             props.unfollowThunkCreator(props.user.id)
                         }}>Unfollow</button> :
-                <button disabled={props.followProcces.some(item => item === props.user.id)}
+                <button disabled={props.followProcess.some(item => item === props.user.id)}
                         onClick={() => {
                         props.followThunkCreator(props.user.id)
                 }}>follow</button>

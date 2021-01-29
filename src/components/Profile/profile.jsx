@@ -21,7 +21,7 @@ const Profile = (props) => {
                          loginData={props.loginData}
                          startChatingThunkCreator={props.startChatingThunkCreator}
                          isRedirectedToDialog={props.isRedirectedToDialog}
-                         followProcces={props.followProcces}
+                         followProcces={props.followProccess}
                          isFollowed={props.isFollowed}
                          followThunkCreator={props.followThunkCreator}
                          unfollowThunkCreator={props.unfollowThunkCreator}

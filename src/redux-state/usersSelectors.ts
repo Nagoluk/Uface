@@ -13,5 +13,5 @@ export const getTototalUsersCountSelector = (state: AppStateType) => state.Users
 export const getCurrentPageSelector = (state: AppStateType) => state.UsersReducer.currentPage;
 export const getIsFetchingSelector = (state: AppStateType) => state.UsersReducer.isFetching;
 export const getPagePagitator = (state: AppStateType) => state.UsersReducer.currentPagePagitator;
-export const getFollowProccesSelector = (state: AppStateType) => state.UsersReducer.followProcces;
+export const getFollowProccesSelector = (state: AppStateType) => state.UsersReducer.followProcess;
 export const getIsLoginedSelector = (state: AppStateType) => state.LoginReducer.isLogined;
