@@ -1,7 +1,7 @@
-import {DialogsAPI} from '../api/api';
 import {dialogT, messageT} from '../interfaces/messages-interfaces';
 import {nullable} from '../interfaces/common-interfaces';
 import {InferActionsTypes} from './stateRedux';
+import { DialogsAPI } from '../api/dialogs-api';
 
 
 const initialMessage = {

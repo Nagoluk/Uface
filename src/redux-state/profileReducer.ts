@@ -1,8 +1,9 @@
-import {ProfileAPI, UsersAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';
 import {PostDataType, ProfileType} from '../interfaces/profile-interfaces';
 import {nullable} from '../interfaces/common-interfaces';
 import {InferActionsTypes} from './stateRedux';
+import { ProfileAPI } from '../api/profile-api';
+import { UsersAPI } from '../api/users-api';
 
 
 let initialProfilePage = {

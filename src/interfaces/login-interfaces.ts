@@ -1,8 +1,14 @@
-import {nullable} from "./common-interfaces";
-
 export interface ILogin {
-    id: nullable<number>,
-    login:nullable<string>,
-    email: nullable<string>,
+    id: number,
+    login: string,
+    email: string,
+}
+
+export interface ICaptcha {
+    url: string
+}
+
+export interface LoginResponseDataType {
+    userId: number
 }
 

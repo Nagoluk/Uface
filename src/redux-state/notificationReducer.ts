@@ -1,5 +1,5 @@
-import {DialogsAPI} from '../api/api';
 import {InferActionsTypes} from './stateRedux';
+import { DialogsAPI } from '../api/dialogs-api';
 
 const initialNotification = {
     newMessageCount: 0 as number | string,

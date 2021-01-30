@@ -1,9 +1,7 @@
-import {followAPI, unfollowAPI, UsersAPI} from '../api/api'
-
-
 import {AppStateType, InferActionsTypes} from './stateRedux';
 import {Dispatch} from 'redux';
 import {UserT} from '../interfaces/users-interfaces';
+import { UsersAPI } from '../api/users-api';
 
 
 let initialUsers = {
@@ -133,7 +131,7 @@ export const followThunkCreator = (userID: number) => {
     return (dispatch: currentDispatchType, getState: getStateType) => {
         dispatch(UsersActions.toggleFollowProcessing(userID, true));
 
-        followAPI(userID).then((data: any) => {
+        UsersAPI.followAPI(userID).then((data: any) => {
             if (data.resultCode === 0) {
                 dispatch(UsersActions.follow(userID))
                 // dispatch(setFollowAC(true))
@@ -147,10 +145,9 @@ export const followThunkCreator = (userID: number) => {
 export const unfollowThunkCreator = (userID: number) => {
     return (dispatch: currentDispatchType, getState: getStateType) => {
         dispatch(UsersActions.toggleFollowProcessing(userID, true));
-        unfollowAPI(userID).then((data: any) => {
+        UsersAPI.unfollowAPI(userID).then((data: any) => {
             if (data.resultCode === 0) {
                 dispatch(UsersActions.unfollow(userID))
-                // dispatch(setFollowAC(false))
             }
             dispatch(UsersActions.toggleFollowProcessing(userID, false))
         })
@@ -161,7 +158,7 @@ export const unfollowThunkCreator = (userID: number) => {
 export const searchingThunkCreator = (text: string) => {
     return (dispatch: currentDispatchType, getState: getStateType) => {
         // dispatch(toggleFollowProcessing(userID, true));
-        UsersAPI.Search(text).then((data: any) => {
+        UsersAPI.Search(text).then((data) => {
             if (data.status === 200) dispatch(UsersActions.setFoundedUsers(data.data.items))
         })
     }

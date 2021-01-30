@@ -1,9 +1,9 @@
-import {AuthAPI, getSecureCaptcha, ProfileAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';
-import {ResultsCodes, ResultCodeForCaptcha} from '../api/api-types';
-import {nullable} from '../interfaces/common-interfaces';
+import {nullable, ResultCodeForCaptcha, ResultsCodes} from '../interfaces/common-interfaces';
 import {InferActionsTypes} from './stateRedux';
 import {ProfileType} from '../interfaces/profile-interfaces';
+import {AuthAPI} from '../api/auth-api';
+import {ProfileAPI} from '../api/profile-api';
 
 
 let initState = {
@@ -73,20 +73,19 @@ export let loginThunkCreator = () => {
 
 export let getCaptchaThunkCreator = () => {
     return (dispatch: any) => {
-        getSecureCaptcha().then((url: string) => {
-            dispatch(actionsLogin.setCaptchaUrlAC(url))
+        AuthAPI.getSecureCaptcha().then((response) => {
+            dispatch(actionsLogin.setCaptchaUrlAC(response.url))
         })
     }
 }
 
 export let login = (email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) => {
     return (dispatch: any) => {
-        AuthAPI.login(email, password, rememberMe, captcha).then((response: any) => {
+        AuthAPI.login(email, password, rememberMe, captcha).then((response) => {
             if (response.data.resultCode === ResultsCodes.Success) {
                 dispatch(loginThunkCreator())
 
             } else if (response.data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
-
                 dispatch(getCaptchaThunkCreator());
 
                 let action = stopSubmit('login', {_error: response.data.messages.join(' ')})
@@ -102,8 +101,8 @@ export let login = (email: string, password: string, rememberMe: boolean = false
 
 export let logout = () => {
     return (dispatch: any) => {
-        AuthAPI.logout().then((response: any) => {
-            if (response.data.resultCode === ResultsCodes.Success) {
+        AuthAPI.logout().then((response) => {
+            if (response.resultCode === ResultsCodes.Success) {
                 window.location.reload();
                 dispatch(actionsLogin.setUserLoginAC(null, null, null, false))
             }
