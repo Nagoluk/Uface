@@ -1,6 +1,6 @@
-import React from 'react';
-import {reduxForm, Field, InjectedFormProps} from 'redux-form';
-import {connect} from 'react-redux';
+import React, {useEffect} from 'react';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 import styles from './Login.module.css';
@@ -8,10 +8,9 @@ import styles from './Login.module.css';
 import {InputField} from '../common/formControls/FormControls';
 import {required} from '../../utils/validators/validators';
 import {login} from '../../redux-state/loginReducer';
-
-import {AppStateType} from '../../redux-state/stateRedux';
 import {LoginWrapStyled} from '../../styles/theme';
 import styled from 'styled-components';
+import {getCaptchaSelector, getIsLoginedSelector} from '../../redux-state/selectors/login-selectors';
 
 const Background = styled.div`
     position: absolute;
@@ -95,33 +94,32 @@ type mapDispatchToPropsType = {
 type loginPropsType = mapDispatchToPropsType & mapStatePropsType
 
 
-class Login extends React.Component<loginPropsType> {
-    componentDidMount() {
+export const Login = () => {
+    useEffect(() => {
         document.title = 'Login';
+    }, [])
+
+    const isLogined = useSelector(getIsLoginedSelector)
+    const captcha = useSelector(getCaptchaSelector)
+
+    const dispatch = useDispatch()
+
+
+    let onSubmit = (loginData: loginFormValuesType) => {
+        dispatch(login(loginData.email, loginData.password, loginData.rememberMe, loginData.captcha))
     }
 
-    render() {
-        let onSubmit = (loginData: loginFormValuesType) => {
-            this.props.login(loginData.email, loginData.password, loginData.rememberMe, loginData.captcha)
-        }
-
-        if (this.props.isLogined) {
-            return <Redirect to="/profile"/>
-        }
-
-        return (<div className={styles.Login}>
-            <Background/>
-
-            <LoginWrapStyled>
-                <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha}/>
-            </LoginWrapStyled>
-        </div>)
+    if (isLogined) {
+        return <Redirect to="/profile"/>
     }
+
+    return (<div className={styles.Login}>
+        <Background/>
+
+        <LoginWrapStyled>
+            <ReduxLoginForm onSubmit={onSubmit} captcha={captcha}/>
+        </LoginWrapStyled>
+    </div>)
 }
 
-
-const mapStateToProps = (state: AppStateType): mapStatePropsType => ({
-    isLogined: state.LoginReducer.isLogined,
-    captcha: state.LoginReducer.captchaURL
-})
-export default connect(mapStateToProps, {login})(Login);
+export default Login
