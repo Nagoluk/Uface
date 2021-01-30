@@ -1,5 +1,5 @@
 import React from 'react';
-import NotF from '../../img/Preloader/notFound.gif'
+import notFound from '../../img/Preloader/notFound.gif'
 
 
 class NotFound extends React.Component {
@@ -9,9 +9,9 @@ class NotFound extends React.Component {
 
     render() {
         return (<div style={{textAlign: 'center', marginTop: '40px'}}>
-            <img src={NotF} alt="Not found"/>
-            <h2>404 Not Found</h2>
-        </div>)
+                    <img src={notFound} alt="Not found"/>
+                    <h2>404 Not Found</h2>
+                </div>)
 
     }
 }
