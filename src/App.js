@@ -46,10 +46,7 @@ class App extends React.Component {
                     <Header/>
 
                     <div className="main-wrap">
-                        <AdaptiveMenu black={this.props.isBlackTheme}
-                                      ChangeThemeAC={this.props.ChangeThemeAC}
-                                      isLogined={this.props.isLogined}
-                                      logout={this.props.logout} newMessageCount={this.props.newMessageCount}/>
+                        <AdaptiveMenu />
 
                         <main>
                             <React.Suspense fallback={<Preloader/>}>

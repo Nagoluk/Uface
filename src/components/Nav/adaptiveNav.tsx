@@ -6,6 +6,12 @@ import headermod from './adaptiveNav.module.css';
 import Navmod from './nav.module.css';
 
 import {AdaptiveNav} from '../../styles/theme'
+import {useDispatch, useSelector} from 'react-redux';
+import {getIsLoginedSelector} from '../../redux-state/selectors/login-selectors';
+import {getIsBlackSelector} from '../../redux-state/selectors/app-selectors';
+import {getNewMessagesCountSelector} from '../../redux-state/selectors/notification-selector';
+import { logout } from '../../redux-state/loginReducer';
+import {actionsApp} from '../../redux-state/appReducer';
 
 export const SwitchButton = styled.button`
     background: none;
@@ -17,35 +23,32 @@ export const SwitchButton = styled.button`
     }
 `
 
-type Props = {
-    black: boolean
-    newMessageCount: number
-    isLogined: Function
-    logout: Function
-    ChangeThemeAC: Function
-};
+export const AdaptiveMenu: React.FC = props => {
+    const isLogined = useSelector(getIsLoginedSelector)
+    const black = useSelector(getIsBlackSelector)
+    const newMessageCount = useSelector(getNewMessagesCountSelector)
 
-export const AdaptiveMenu: React.FC<Props> = props => {
+    const dispatch = useDispatch()
 
     return (<AdaptiveNav className={headermod.adaptivemenu}>
-        {props.isLogined && <div className={headermod.note + ' ' + headermod.logout} onClick={() => {
-            props.logout();
+        {isLogined && <div className={headermod.note + ' ' + headermod.logout} onClick={() => {
+           dispatch(logout());
         }}>
             <i className="fas fa-power-off" title={'logout'}></i>
         </div>}
 
-        {!props.isLogined && <div className={headermod.note}>
+        {!isLogined && <div className={headermod.note}>
             <NavLink to="/login">
                 <i className="fas fa-sign-in-alt" title={'logout'}></i>
             </NavLink>
         </div>}
 
         <div className={headermod.adaptiveMenu}>
-            {props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
+            {black && <SwitchButton onClick={() => dispatch(actionsApp.ChangeThemeAC())}>
                 <i className="far fa-moon"></i>
             </SwitchButton>}
 
-            {!props.black && <SwitchButton onClick={() => props.ChangeThemeAC()}>
+            {!black && <SwitchButton onClick={() => dispatch(actionsApp.ChangeThemeAC())}>
                 <i className="fas fa-sun"></i>
             </SwitchButton>}
         </div>
@@ -64,7 +67,7 @@ export const AdaptiveMenu: React.FC<Props> = props => {
             <NavLink to='/dialogs'>
                 <i className="fas fa-envelope"></i>
             </NavLink>
-            {props.newMessageCount ? <div className={headermod.newMessageCount}>{props.newMessageCount}</div> : null}
+            {newMessageCount ? <div className={headermod.newMessageCount}>{newMessageCount}</div> : null}
         </div>
 
         <div className={headermod.adaptiveMenu}>
