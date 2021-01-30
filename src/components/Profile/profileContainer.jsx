@@ -9,7 +9,7 @@ import {
 } from '../../redux-state/profileReducer';
 import {withRouter} from 'react-router-dom';
 import {actionsMessages, startChatingThunkCreator} from '../../redux-state/messageReducer';
-import {getFollowProccesSelector} from '../../redux-state/selectors/usersSelectors';
+import {getFollowProccesSelector} from '../../redux-state/selectors/users-selectors';
 import {followThunkCreator, searchingThunkCreator, unfollowThunkCreator} from '../../redux-state/usersReducer';
 
 

@@ -15,7 +15,7 @@ import {
     getCurrentPageSelector,
     getIsFetchingSelector,
     getFollowProccesSelector, getPagePagitator
-} from "../../redux-state/selectors/usersSelectors";
+} from "../../redux-state/selectors/users-selectors";
 import {AppStateType} from "../../redux-state/stateRedux";
 import {UserT} from "../../interfaces/users-interfaces";
 

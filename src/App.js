@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import UsersContainer from './components/Users/UsersContainer';
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
-import HeaderContainer from './components/Header/headerContainer';
+
 import ProfileContainer from './components/Profile/profileContainer';
 import Login from './components/Login/Login';
 import {connect} from 'react-redux';
@@ -17,8 +17,9 @@ import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import {AdaptiveMenu} from './components/Nav/adaptiveNav';
 //import Dialogs from "./components/Dialogs";
 import {NetworkError} from './components/common/NetworkError/NetworkError';
+import Header from './components/Header/header';
 
-const SettingContainer = React.lazy(() => import('./components/Setting/settingContainer'));
+//const SettingContainer = React.lazy(() => import('./components/Setting/settingContainer'));
 
 
 const GlobalStyle = createGlobalStyle`
@@ -34,7 +35,6 @@ class App extends React.Component {
     }
 
     render() {
-
         if (!this.props.initialized) {
             return <Preloader/>
         }
@@ -43,7 +43,7 @@ class App extends React.Component {
             <ThemeProvider theme={{mode: this.props.isBlackTheme ? 'dark' : 'light'}}>
                 <div className="render">
                     <GlobalStyle/>
-                    <HeaderContainer black={this.props.isBlackTheme}/>
+                    <Header/>
 
                     <div className="main-wrap">
                         <AdaptiveMenu black={this.props.isBlackTheme}
