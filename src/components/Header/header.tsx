@@ -9,9 +9,12 @@ import {VerticalAlign} from '../../styles/vertical.align';
 import {HeaderStyle} from '../../styles/theme';
 
 import {useDispatch, useSelector} from 'react-redux';
-import {getLoginSelector, getIsLoginedSelector} from '../../redux-state/selectors/login-selectors';
+import {
+    getIsLoginedSelector,
+    getLoginSelector,
+    getMyProfileSelector
+} from '../../redux-state/selectors/login-selectors';
 import {getIsBlackSelector} from '../../redux-state/selectors/app-selectors';
-import {getProfileSelector} from '../../redux-state/selectors/profile-selector';
 import {getNewMessagesCountSelector} from '../../redux-state/selectors/notification-selector';
 import {logout} from '../../redux-state/loginReducer';
 import {actionsApp} from '../../redux-state/appReducer';
@@ -23,7 +26,7 @@ const Header: React.FC = () => {
     const login = useSelector(getLoginSelector)
     const black = useSelector(getIsBlackSelector)
     const isLogined = useSelector(getIsLoginedSelector)
-    const profile = useSelector(getProfileSelector)
+    const profile = useSelector(getMyProfileSelector)
     const newMessageCount = useSelector(getNewMessagesCountSelector)
 
     //Dispatch hooks
