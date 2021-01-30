@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import AvatarImg from "../../../img/Profile/avatar.png";
+import React from 'react';
+import styled from 'styled-components';
+import AvatarImg from '../../../img/Profile/avatar.png';
 
 type avatarTypes = {
     link: string | null,
@@ -15,7 +15,7 @@ const AvatarStyled = styled.div<avatarTypes>`
     background-size: cover;
     display: inline-block;
     margin: 0px 10px;
-    border: ${props => (props.theme.mode === "dark" ? "1px solid #2B2B2B" : "1px solid lightgray;")};
+    border: ${props => (props.theme.mode === 'dark' ? '1px solid #2B2B2B' : '1px solid lightgray;')};
 `
 
-export const Avatar:React.FC<avatarTypes> = ({link, size}) => (<AvatarStyled link={link} size={size}/>)
+export const Avatar: React.FC<avatarTypes> = ({link, size}) => (<AvatarStyled link={link} size={size}/>)

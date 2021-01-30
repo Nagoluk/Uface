@@ -1,9 +1,9 @@
-import {followAPI, unfollowAPI, UsersAPI} from "../api/api"
+import {followAPI, unfollowAPI, UsersAPI} from '../api/api'
 
 
-import {AppStateType, InferActionsTypes} from "./stateRedux";
-import {Dispatch} from "redux";
-import {UserT} from "../interfaces/users-interfaces";
+import {AppStateType, InferActionsTypes} from './stateRedux';
+import {Dispatch} from 'redux';
+import {UserT} from '../interfaces/users-interfaces';
 
 
 let initialUsers = {
@@ -17,26 +17,26 @@ let initialUsers = {
     foundedUsers: [] as Array<UserT>
 };
 
-const usersReducer = (state = initialUsers, action: ActionTypes): InitialUsersT =>{
-    switch(action.type) {
+const usersReducer = (state = initialUsers, action: ActionTypes): InitialUsersT => {
+    switch (action.type) {
         case 'FOLLOW':
-        return {
-            ...state,
-            users: state.users.map(u => {
-                if(u.id === action.userID) {
-                    let uc = {...u, followed: true};
-                    
-                    return uc;
-                }
-                return u;
-            })
-        }
+            return {
+                ...state,
+                users: state.users.map(u => {
+                    if (u.id === action.userID) {
+                        let uc = {...u, followed: true};
+
+                        return uc;
+                    }
+                    return u;
+                })
+            }
 
         case 'UNFOLLOW':
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if(u.id === action.userID) {
+                    if (u.id === action.userID) {
                         return {...u, followed: false}
                     }
                     return u;
@@ -50,20 +50,20 @@ const usersReducer = (state = initialUsers, action: ActionTypes): InitialUsersT 
             }
 
         case 'SET_CURRENT_PAGE':
-            return  {
+            return {
                 ...state,
                 currentPage: action.page
             }
 
         case 'SET_TOTAL_USERS_COUNT':
-            return  {
+            return {
                 ...state,
                 totalUsersCount: action.count
 
             }
 
         case 'TOGGLE_IS_FETCHING':
-            return  {
+            return {
                 ...state,
                 isFetching: action.isFetching
             }
@@ -72,7 +72,7 @@ const usersReducer = (state = initialUsers, action: ActionTypes): InitialUsersT 
             return {
                 ...state,
                 followProcess: action.isFetchingFollow ?
-                [...state.followProcess, action.userID] : state.followProcess.filter(id => id !== action.userID)
+                    [...state.followProcess, action.userID] : state.followProcess.filter(id => id !== action.userID)
             }
 
         case 'SET_CURRENT_PAGE_PAGITATOR':
@@ -99,11 +99,14 @@ export const UsersActions = {
     setCurrentPage: (page: number) => ({type: 'SET_CURRENT_PAGE', page} as const),
     setTotalCount: (count: number) => ({type: 'SET_TOTAL_USERS_COUNT', count} as const),
     ToggleFetching: (isFetching: boolean) => ({type: 'TOGGLE_IS_FETCHING', isFetching} as const),
-    toggleFollowProcessing: (userID: number, isFetchingFollow: boolean) => ({type: 'TOGGLE_FOLLOW_IN_PROCESS', userID, isFetchingFollow} as const),
+    toggleFollowProcessing: (userID: number, isFetchingFollow: boolean) => ({
+        type: 'TOGGLE_FOLLOW_IN_PROCESS',
+        userID,
+        isFetchingFollow
+    } as const),
     setCurrentPagePagitator: (payload: number) => ({type: 'SET_CURRENT_PAGE_PAGITATOR', payload} as const),
     setFoundedUsers: (items: Array<UserT>) => ({type: 'SET_FOUNDED_USERS', items} as const)
 }
-
 
 
 //Первый вариант типизации санки
@@ -116,7 +119,7 @@ export const setUsersThunkCreator = (currentPage: number, pageSize: number) => {
         dispatch(UsersActions.setCurrentPage(currentPage));
         dispatch(UsersActions.ToggleFetching(true));
         UsersAPI.getUsers(currentPage, pageSize).then((data: any) => {
-        
+
             dispatch(UsersActions.setUsers(data.items));
             dispatch(UsersActions.setTotalCount(data.totalCount));
             dispatch(UsersActions.ToggleFetching(false));
@@ -127,39 +130,39 @@ export const setUsersThunkCreator = (currentPage: number, pageSize: number) => {
 
 
 export const followThunkCreator = (userID: number) => {
-    return (dispatch: currentDispatchType, getState: getStateType)=> {
+    return (dispatch: currentDispatchType, getState: getStateType) => {
         dispatch(UsersActions.toggleFollowProcessing(userID, true));
 
         followAPI(userID).then((data: any) => {
-                if(data.resultCode === 0) {
-                    dispatch(UsersActions.follow(userID))
-                    // dispatch(setFollowAC(true))
-                }
-        dispatch(UsersActions.toggleFollowProcessing(userID, false))
-      })
+            if (data.resultCode === 0) {
+                dispatch(UsersActions.follow(userID))
+                // dispatch(setFollowAC(true))
+            }
+            dispatch(UsersActions.toggleFollowProcessing(userID, false))
+        })
     }
 }
 
 
 export const unfollowThunkCreator = (userID: number) => {
-    return (dispatch: currentDispatchType, getState: getStateType)=> {
+    return (dispatch: currentDispatchType, getState: getStateType) => {
         dispatch(UsersActions.toggleFollowProcessing(userID, true));
         unfollowAPI(userID).then((data: any) => {
-                if(data.resultCode === 0) {
-                    dispatch(UsersActions.unfollow(userID))
-                    // dispatch(setFollowAC(false))
-                }
-        dispatch(UsersActions.toggleFollowProcessing(userID, false))
-      })
+            if (data.resultCode === 0) {
+                dispatch(UsersActions.unfollow(userID))
+                // dispatch(setFollowAC(false))
+            }
+            dispatch(UsersActions.toggleFollowProcessing(userID, false))
+        })
     }
 }
 
 
 export const searchingThunkCreator = (text: string) => {
-    return (dispatch: currentDispatchType, getState: getStateType)=> {
+    return (dispatch: currentDispatchType, getState: getStateType) => {
         // dispatch(toggleFollowProcessing(userID, true));
         UsersAPI.Search(text).then((data: any) => {
-            if(data.status === 200) dispatch(UsersActions.setFoundedUsers(data.data.items))
+            if (data.status === 200) dispatch(UsersActions.setFoundedUsers(data.data.items))
         })
     }
 }

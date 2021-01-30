@@ -1,4 +1,4 @@
-import {photosT} from "./profile-interfaces";
+import {photosT} from './profile-interfaces';
 
 export type UserT = {
     name: string,

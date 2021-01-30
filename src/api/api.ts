@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 import {
     GetLoginResponseType,
@@ -7,18 +7,17 @@ import {
     GetUsersType,
     DialogsType,
     BasisType, messageType, MessagesType
-} from "./api-types";
-import {ProfileType} from "../interfaces/profile-interfaces";
+} from './api-types';
+import {ProfileType} from '../interfaces/profile-interfaces';
 
-const DEBUG = process.env.NODE_ENV === "development";
-
+const DEBUG = process.env.NODE_ENV === 'development';
 
 
 const instance = axios.create({
     withCredentials: true,
-    baseURL: "https://social-network.samuraijs.com/api/1.0/",
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        "API-KEY": "9b1ed003-d374-49c4-a5a6-e095c440ccd1",  
+        'API-KEY': '9b1ed003-d374-49c4-a5a6-e095c440ccd1',
     }
 })
 
@@ -29,7 +28,9 @@ instance.interceptors.request.use((config) => {
     }
     return config;
 }, (error) => {
-    if (DEBUG) { console.error("✉️ ", error); }
+    if (DEBUG) {
+        console.error('✉️ ', error);
+    }
     return Promise.reject(error);
 });
 
@@ -37,27 +38,28 @@ instance.interceptors.request.use((config) => {
 
 
 export let AuthAPI = {
-    getLogin () {
-        return instance.get<GetLoginResponseType>("auth/me").then(response => response.data);
+    getLogin() {
+        return instance.get<GetLoginResponseType>('auth/me').then(response => response.data);
     },
 
-    login (email: string, password: string, rememberMe = false, captcha: null | string = null){
+    login(email: string, password: string, rememberMe = false, captcha: null | string = null) {
 
-        if(captcha) return instance.post<LoginResponseType>("auth/login", {email, password, rememberMe, captcha});
+        if (captcha) return instance.post<LoginResponseType>('auth/login', {email, password, rememberMe, captcha});
 
-        return instance.post<LoginResponseType>("auth/login", {email, password, rememberMe});
+        return instance.post<LoginResponseType>('auth/login', {email, password, rememberMe});
     },
 
-    logout () {
-        return instance.delete<LogoutResponseType>("auth/login");
+    logout() {
+        return instance.delete<LogoutResponseType>('auth/login');
     }
 };
 
 
 export let UsersAPI = {
+    //todo: &friend=true
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get<GetUsersType>(`users?page=${currentPage}&count=${pageSize}`)
-        .then(response => response.data);
+            .then(response => response.data);
     },
 
     Search(text: string) {
@@ -66,72 +68,71 @@ export let UsersAPI = {
 };
 
 export let DialogsAPI = {
-    getDialogs(){
-        return instance.get<DialogsType>("dialogs")
+    getDialogs() {
+        return instance.get<DialogsType>('dialogs')
     },
 
     startChating(id: number) {
         return instance.put<BasisType>(`dialogs/${id}`)
     },
 
-   sendMessage(id: number, body: string){
+    sendMessage(id: number, body: string) {
         return instance.post<messageType>(`dialogs/${id}/messages`, {body: body}).then(response => response.data)
     },
 
-    getMessages(UserId: number){
+    getMessages(UserId: number) {
         return instance.get<MessagesType>(`dialogs/${UserId}/messages/new?newerThen=2019-4-19`)
     },
 
-    getMessageCount (){
-        return instance.get<number>("dialogs/messages/new/count");
+    getMessageCount() {
+        return instance.get<number>('dialogs/messages/new/count');
     },
 
-    deleteMessage(messageId: string){
+    deleteMessage(messageId: string) {
         return instance.delete<BasisType>(`dialogs/messages/${messageId}`)
     }
 }
 
 
-
 export let ProfileAPI = {
     getProfile(id: number) {
-        return instance.get<ProfileType>("profile/" + id)
+        return instance.get<ProfileType>('profile/' + id)
     },
 
-    getStatus(id: number){
-        return instance.get<string>("profile/status/" + id);
+    getStatus(id: number) {
+        return instance.get<string>('profile/status/' + id);
     },
 
-    putProfileData(data: ProfileType){
-        return instance.put<BasisType>("profile", data)
+    putProfileData(data: ProfileType) {
+        return instance.put<BasisType>('profile', data)
     },
 
-    updateStatus(status: string){
-        return instance.put<BasisType>("profile/status", {status: status});
+    updateStatus(status: string) {
+        return instance.put<BasisType>('profile/status', {status: status});
     },
 
     uploadAvatar(avatar: any) {
         let formData = new FormData();
-        formData.append("image", avatar)
+        formData.append('image', avatar)
 
 
-        return instance.put("profile/photo", formData, {
+        return instance.put('profile/photo', formData, {
             headers: {
-                "Content-Type": "multipart/form-data"
+                'Content-Type': 'multipart/form-data'
             }
         }).then(response => response.data)
     }
 };
 
 export let getSecureCaptcha = () => {
-    return instance.get("security/get-captcha-url").then(response => response.data.url);
+    return instance.get('security/get-captcha-url').then(response => response.data.url);
 }
 
 
 export let followAPI = (id: number) => {
-    return instance.post<BasisType>("follow/" + id, {}).then(response => response.data);
+    return instance.post<BasisType>('follow/' + id, {}).then(response => response.data);
 }
 
 export let unfollowAPI = (id: number) => {
-    return instance.delete<BasisType>("follow/" + id).then(response => response.data)
+    return instance.delete<BasisType>('follow/' + id).then(response => response.data)
 }

@@ -1,17 +1,17 @@
 import React from 'react';
 import {reduxForm, Field, InjectedFormProps} from 'redux-form';
 import {connect} from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 import styles from './Login.module.css';
 
 import {InputField} from '../common/formControls/FormControls';
-import { required } from '../../utils/validators/validators';
+import {required} from '../../utils/validators/validators';
 import {login} from '../../redux-state/loginReducer';
 
 import {AppStateType} from '../../redux-state/stateRedux';
 import {LoginWrapStyled} from '../../styles/theme';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Background = styled.div`
     position: absolute;
@@ -34,52 +34,53 @@ type LoginFormOwnProps = {
 }
 
 let Form: React.FC<InjectedFormProps<loginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = ({
-                                                                                      handleSubmit,
-                                                                                      submitting,
-                                                                                      error,
-                                                                                      captcha
-}) => {
+                                                                                                         handleSubmit,
+                                                                                                         submitting,
+                                                                                                         error,
+                                                                                                         captcha
+                                                                                                     }) => {
     return (<form className={styles.Form} onSubmit={handleSubmit}>
-                <div>
-                    <div>
-                        <h1><i className="fas fa-dragon"></i>Uface</h1>
-                        <h2>Please sing up</h2>
-                    </div>
-                </div>
+        <div>
+            <div>
+                <h1><i className="fas fa-dragon"></i>Uface</h1>
+                <h2>Please sing up</h2>
+            </div>
+        </div>
 
-                <div className={styles.Input}>
-                    <label>Enter your email <span>*</span></label>
-                    <Field type={"text"} placeholder={"enter login"} component={InputField} validate={required} name={"email"}/>
-                </div>
+        <div className={styles.Input}>
+            <label>Enter your email <span>*</span></label>
+            <Field type={'text'} placeholder={'enter login'} component={InputField} validate={required} name={'email'}/>
+        </div>
 
-                <div className={styles.Input}>
-                    <label>Enter your password<span>*</span></label>
-                    <Field type={"password"} placeholder={"enter password"} component={InputField} validate={required} name={"password"}/>
-                </div>
+        <div className={styles.Input}>
+            <label>Enter your password<span>*</span></label>
+            <Field type={'password'} placeholder={'enter password'} component={InputField} validate={required}
+                   name={'password'}/>
+        </div>
 
-                <div className={styles.RememberMe}>
-                    <Field type={"checkbox"} component={"input"} name={"rememberMe"}/> Remember me
-                </div>
+        <div className={styles.RememberMe}>
+            <Field type={'checkbox'} component={'input'} name={'rememberMe'}/> Remember me
+        </div>
 
 
-                {captcha && <div className={styles.Captcha}>
-                                        <img src={captcha} alt="captcha"/>
-                                        <Field type={"text"} 
-                                            placeholder={"enter captcha"} 
-                                            component={InputField}
-                                            name={"captcha"}/>
-                </div>}
+        {captcha && <div className={styles.Captcha}>
+            <img src={captcha} alt="captcha"/>
+            <Field type={'text'}
+                   placeholder={'enter captcha'}
+                   component={InputField}
+                   name={'captcha'}/>
+        </div>}
 
-                {error && <div className={styles.Error}>{error}</div>}
+        {error && <div className={styles.Error}>{error}</div>}
 
-                <div>
-                    <button type="submit" disabled={submitting}>Login in</button>
-                </div>
+        <div>
+            <button type="submit" disabled={submitting}>Login in</button>
+        </div>
 
-            </form>)
+    </form>)
 }
 
-let ReduxLoginForm = reduxForm<loginFormValuesType, LoginFormOwnProps>({form: "login"})(Form)
+let ReduxLoginForm = reduxForm<loginFormValuesType, LoginFormOwnProps>({form: 'login'})(Form)
 
 type mapStatePropsType = {
     isLogined: boolean
@@ -87,16 +88,16 @@ type mapStatePropsType = {
 }
 
 type mapDispatchToPropsType = {
-    login: (email: string, password: string, rememberMe: boolean , captcha: string | null) => void
+    login: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void
 }
 
 
 type loginPropsType = mapDispatchToPropsType & mapStatePropsType
 
 
-class Login extends React.Component<loginPropsType>{
+class Login extends React.Component<loginPropsType> {
     componentDidMount() {
-        document.title = "Login";
+        document.title = 'Login';
     }
 
     render() {
@@ -104,22 +105,22 @@ class Login extends React.Component<loginPropsType>{
             this.props.login(loginData.email, loginData.password, loginData.rememberMe, loginData.captcha)
         }
 
-        if(this.props.isLogined) {
+        if (this.props.isLogined) {
             return <Redirect to="/profile"/>
         }
 
-        return(<div className={styles.Login}>
-                    <Background/>
+        return (<div className={styles.Login}>
+            <Background/>
 
-                    <LoginWrapStyled>
-                        <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha} />
-                    </LoginWrapStyled>
-               </div>)
+            <LoginWrapStyled>
+                <ReduxLoginForm onSubmit={onSubmit} captcha={this.props.captcha}/>
+            </LoginWrapStyled>
+        </div>)
     }
 }
 
 
-const mapStateToProps = (state: AppStateType): mapStatePropsType=> ({
+const mapStateToProps = (state: AppStateType): mapStatePropsType => ({
     isLogined: state.LoginReducer.isLogined,
     captcha: state.LoginReducer.captchaURL
 })

@@ -8,7 +8,7 @@ type OwnPropsType = {
 const Wrap = styled.div`
     margin-top: 30%;
     text-align: center;
-    color: ${props => props.theme.mode === "dark" ? '#fff' : '#474B59'};
+    color: ${props => props.theme.mode === 'dark' ? '#fff' : '#474B59'};
     font-size: 24px;
     
     & svg{

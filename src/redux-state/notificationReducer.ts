@@ -1,17 +1,18 @@
-import {DialogsAPI} from "../api/api";
-import {InferActionsTypes} from "./stateRedux";
+import {DialogsAPI} from '../api/api';
+import {InferActionsTypes} from './stateRedux';
 
 const initialNotification = {
     newMessageCount: 0 as number | string,
 }
 
-const notificationReducer = (state = initialNotification, action: ActionsType): initialNotificationT =>{
+const notificationReducer = (state = initialNotification, action: ActionsType): initialNotificationT => {
 
     switch (action.type) {
-        case 'SET_NEW_MESSAGE_COUNT': return {
-            ...state,
-            newMessageCount: action.payload < 100 ? action.payload : "99+"
-        }
+        case 'SET_NEW_MESSAGE_COUNT':
+            return {
+                ...state,
+                newMessageCount: action.payload < 100 ? action.payload : '99+'
+            }
 
         default: {
             return state
@@ -24,7 +25,7 @@ const actionsNotifications = {
 }
 
 export const getNewMessageCountThunkCreator = () => {
-    return (dispatch: any) =>{
+    return (dispatch: any) => {
         DialogsAPI.getMessageCount().then((data: any) => {
             dispatch(actionsNotifications.setNewMessageCount(data.data))
         })

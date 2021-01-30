@@ -1,12 +1,12 @@
-import React from "react";
-import UsersStlyes from "./Users.module.css";
-import AvatarImg from "../../img/Profile/avatar.png";
-import {NavLink} from "react-router-dom";
+import React from 'react';
+import UsersStlyes from './Users.module.css';
+import AvatarImg from '../../img/Profile/avatar.png';
+import {NavLink} from 'react-router-dom';
 
 
-import {UserItemStyled} from "../../styles/theme";
-import {Avatar} from "../assets/avatar/avatar";
-import {UserT} from "../../interfaces/users-interfaces";
+import {UserItemStyled} from '../../styles/theme';
+import {Avatar} from '../assets/avatar/avatar';
+import {UserT} from '../../interfaces/users-interfaces';
 
 
 type PropsType = {
@@ -32,7 +32,7 @@ let User: React.FC<PropsType> = props => {
 
         <div className={UsersStlyes.content}>
             <div className={UsersStlyes.name}>
-                <NavLink to={"/profile/" + props.user.id}><h2>{props.user.name}</h2></NavLink>
+                <NavLink to={'/profile/' + props.user.id}><h2>{props.user.name}</h2></NavLink>
             </div>
 
             <div className={UsersStlyes.status}>{props.user.status}</div>
@@ -41,14 +41,14 @@ let User: React.FC<PropsType> = props => {
         <div className={UsersStlyes.buttons}>
             {props.user.followed ?
                 <button disabled={props.followProcess.some(item => item === props.user.id)}
-                        className={"unfollow"}
+                        className={'unfollow'}
                         onClick={() => {
                             props.unfollowThunkCreator(props.user.id)
                         }}>Unfollow</button> :
                 <button disabled={props.followProcess.some(item => item === props.user.id)}
                         onClick={() => {
-                        props.followThunkCreator(props.user.id)
-                }}>follow</button>
+                            props.followThunkCreator(props.user.id)
+                        }}>follow</button>
             }
         </div>
 

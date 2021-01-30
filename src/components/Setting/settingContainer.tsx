@@ -1,14 +1,14 @@
-import React from "react";
-import {connect} from "react-redux";
-import {compose} from "redux";
-import {getProfileThunkCreator, putUserDataThunkCreator} from "../../redux-state/profileReducer";
-import {AppStateType} from "../../redux-state/stateRedux";
+import React from 'react';
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {getProfileThunkCreator, putUserDataThunkCreator} from '../../redux-state/profileReducer';
+import {AppStateType} from '../../redux-state/stateRedux';
 
-import LoginHoc from "../../hoc/loginHoc";
+import LoginHoc from '../../hoc/loginHoc';
 
-import Setting from "./setting";
-import Preloader from "../assets/preloader/Preloader";
-import {ProfileType} from "../../interfaces/profile-interfaces";
+import Setting from './setting';
+import Preloader from '../assets/preloader/Preloader';
+import {ProfileType} from '../../interfaces/profile-interfaces';
 
 
 type MapDispatchToPropsType = {
@@ -23,37 +23,35 @@ type MapStateToPropsType = {
     isLogined: boolean
 }
 
-type OwnPropsType = {
-
-}
+type OwnPropsType = {}
 
 export type SettingPropsType = MapDispatchToPropsType & MapStateToPropsType
 
-class SettingContainer extends React.Component<SettingPropsType>{
+class SettingContainer extends React.Component<SettingPropsType> {
     componentDidMount() {
-        document.title = "Setting";
-        if(this.props.profile === null || this.props.profile.userId !== this.props.id) {
+        document.title = 'Setting';
+        if (this.props.profile === null || this.props.profile.userId !== this.props.id) {
             this.props.getProfileThunkCreator(this.props.id);
         }
     }
 
     render() {
 
-        if(this.props.profile === null) return <Preloader/>
+        if (this.props.profile === null) return <Preloader/>
 
-        return(<Setting
-                    getProfileThunkCreator={this.props.getProfileThunkCreator}
-                    putUserDataThunkCreator={this.props.putUserDataThunkCreator}
-                    isLogined={this.props.isLogined}
-                    isUploadProfile={this.props.isUploadProfile}
-                    id={this.props.id}
-                    profile={this.props.profile}
+        return (<Setting
+            getProfileThunkCreator={this.props.getProfileThunkCreator}
+            putUserDataThunkCreator={this.props.putUserDataThunkCreator}
+            isLogined={this.props.isLogined}
+            isUploadProfile={this.props.isUploadProfile}
+            id={this.props.id}
+            profile={this.props.profile}
 
         />)
     }
 }
 
-let mapStateToProps = (state: AppStateType):MapStateToPropsType => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         // state: state.SetLang,
         profile: state.ProfilePage.profile,
@@ -67,6 +65,5 @@ let mapStateToProps = (state: AppStateType):MapStateToPropsType => {
 export default compose(
     connect(mapStateToProps, {putUserDataThunkCreator, getProfileThunkCreator}),
     LoginHoc
-
 )(SettingContainer)
 

@@ -1,4 +1,4 @@
-import {nullable} from "./common-interfaces";
+import {nullable} from './common-interfaces';
 
 export type photosT = {
     small: nullable<string>,

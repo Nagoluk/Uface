@@ -3,7 +3,7 @@ import UsersStlyes from './Users.module.css';
 import User from './User';
 import {Pagitator} from '../common/pagitator/Pagitator';
 import {UniversalWrap} from '../../styles/wrap.styles'
-import {UserT} from "../../interfaces/users-interfaces";
+import {UserT} from '../../interfaces/users-interfaces';
 
 
 type PropsType = {
@@ -17,7 +17,7 @@ type PropsType = {
     windowsWidth: number,
     black: boolean,
 
-    onPageChange: (a: number)=>void,
+    onPageChange: (a: number) => void,
     followThunkCreator: (a: number) => void,
     unfollowThunkCreator: (a: number) => void,
     toggleFollowProcessing: (a: number, b: boolean) => void
@@ -26,20 +26,20 @@ type PropsType = {
 let Users: React.FC<PropsType> = ({totalUsersCount, pageSize, pagePagitator, setCurrentPagePagitator, users, ...props}) => {
 
     return (<UniversalWrap>
-                <Pagitator currentPage={props.currentPage}
-                           onPageChange={props.onPageChange}
-                           pagePagitator={pagePagitator}
-                           pageSize={pageSize}
-                           setCurrentPagePagitator={setCurrentPagePagitator}
-                           totalUsersCount={totalUsersCount}
-                           windowsWidth={props.windowsWidth}
-                    />
+        <Pagitator currentPage={props.currentPage}
+                   onPageChange={props.onPageChange}
+                   pagePagitator={pagePagitator}
+                   pageSize={pageSize}
+                   setCurrentPagePagitator={setCurrentPagePagitator}
+                   totalUsersCount={totalUsersCount}
+                   windowsWidth={props.windowsWidth}
+        />
 
 
-                <div className={UsersStlyes.itemWrap}>
-                    {users.map((user, index) => <User user={user} key={index}index={index} {...props} black={props.black}/>)}
-                </div>
-             </UniversalWrap>)
+        <div className={UsersStlyes.itemWrap}>
+            {users.map((user, index) => <User user={user} key={index} index={index} {...props} black={props.black}/>)}
+        </div>
+    </UniversalWrap>)
 }
 
 

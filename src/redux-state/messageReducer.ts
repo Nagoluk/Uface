@@ -1,10 +1,10 @@
-import {DialogsAPI} from "../api/api";
-import {dialogT, messageT} from "../interfaces/messages-interfaces";
-import {nullable} from "../interfaces/common-interfaces";
-import {InferActionsTypes} from "./stateRedux";
+import {DialogsAPI} from '../api/api';
+import {dialogT, messageT} from '../interfaces/messages-interfaces';
+import {nullable} from '../interfaces/common-interfaces';
+import {InferActionsTypes} from './stateRedux';
 
 
-const initialMessage =  {
+const initialMessage = {
     dialogs: null as nullable<Array<dialogT>>,
 
     messages: {
@@ -18,7 +18,7 @@ const initialMessage =  {
 };
 
 
-const messageReducer = (state = initialMessage, action: ActionTypes):initialMessageType => {
+const messageReducer = (state = initialMessage, action: ActionTypes): initialMessageType => {
     switch (action.type) {
         case 'GET_DIALOGS': {
             return {
@@ -78,9 +78,9 @@ export const actionsMessages = {
 export const getDialogsThunkCreator = () => {
     return (dispatch: any) => {
         dispatch(actionsMessages.isDialogsFetchingAC(true))
-        DialogsAPI.getDialogs().then((data:any) => {
+        DialogsAPI.getDialogs().then((data: any) => {
             dispatch(actionsMessages.isDialogsFetchingAC(false))
-            if(data.status === 200) dispatch(actionsMessages.getDialogsAC(data.data))
+            if (data.status === 200) dispatch(actionsMessages.getDialogsAC(data.data))
         });
     }
 }
@@ -89,7 +89,7 @@ export const getMessagesThunkCreator = (id: number) => {
     return (dispatch: any) => {
         DialogsAPI.getMessages(id).then((data: any) => {
 
-            if(data.status === 200) dispatch(actionsMessages.getMessagesAC(data.data))
+            if (data.status === 200) dispatch(actionsMessages.getMessagesAC(data.data))
         });
     }
 }
@@ -108,7 +108,7 @@ export const startChatingThunkCreator = (id: number) => {
     return (dispatch: any) => {
         DialogsAPI.startChating(id).then((data: any) => {
             DialogsAPI.getDialogs().then((data: any) => {
-               dispatch(actionsMessages.setRedirectedToDialog(true));
+                dispatch(actionsMessages.setRedirectedToDialog(true));
             })
         })
     }

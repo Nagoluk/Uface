@@ -1,11 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Header from "./header";
-import {loginThunkCreator, logout} from "../../redux-state/loginReducer";
-import {getNewMessageCountThunkCreator} from "../../redux-state/notificationReducer";
-import {AppStateType} from "../../redux-state/stateRedux";
-import {actionsApp} from "../../redux-state/appReducer";
-import {ProfileType} from "../../interfaces/profile-interfaces";
+import {connect} from 'react-redux';
+import Header from './header';
+import {loginThunkCreator, logout} from '../../redux-state/loginReducer';
+import {getNewMessageCountThunkCreator} from '../../redux-state/notificationReducer';
+import {AppStateType} from '../../redux-state/stateRedux';
+import {actionsApp} from '../../redux-state/appReducer';
+import {ProfileType} from '../../interfaces/profile-interfaces';
 
 
 type MapStateToPropsType = {
@@ -20,7 +20,7 @@ type MapDispatchToPropsType = {
     loginThunkCreator: () => any
     logout: () => any
     getNewMessageCountThunkCreator: () => any
-    ChangeThemeAC: ()=> void
+    ChangeThemeAC: () => void
 }
 
 type OwnPropsType = {
@@ -31,13 +31,12 @@ export type HeaderProps = MapStateToPropsType & MapDispatchToPropsType & OwnProp
 
 class HeaderContainer extends React.Component<HeaderProps> {
 
-    render(){
+    render() {
         return (
             <Header {...this.props}/>
         );
     }
 }
-
 
 
 let mapStateToProps = (state: AppStateType) => {

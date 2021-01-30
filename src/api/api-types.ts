@@ -1,14 +1,14 @@
-import {UserT} from "../interfaces/users-interfaces";
-import {dialogT, messageT} from "../interfaces/messages-interfaces";
- 
+import {UserT} from '../interfaces/users-interfaces';
+import {dialogT, messageT} from '../interfaces/messages-interfaces';
 
-export enum ResultsCodes{
+
+export enum ResultsCodes {
     Success = 0,
     Error = 1,
 }
 
 export enum ResultCodeForCaptcha {
-    CaptchaIsRequired= 10
+    CaptchaIsRequired = 10
 }
 
 
@@ -51,13 +51,13 @@ export type MessagesType = Array<messageT>
 export type messageType = {
     resultCode: ResultsCodes
     messages: Array<string>
-    data: {message: messageT}
+    data: { message: messageT }
 }
 
 export type StatusType = {
     resultCode: ResultsCodes
     messages: Array<string>,
-    data: {status: string}
+    data: { status: string }
 }
 
 

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import AlertStyles from "./alert.module.css";
+import AlertStyles from './alert.module.css';
 
 type AlertPropsType = {
     deleteMessage: (param: string) => void
@@ -10,10 +10,10 @@ type AlertPropsType = {
 }
 let Alert: React.FC<AlertPropsType> = props => {
     return (<div className={AlertStyles.Wrap}>
-                <h2>Do you really want to delete this message?</h2>
-                <button className={AlertStyles.Yes} onClick={() => props.deleteMessage(props.deleteMessageId)}>Yes</button>
-                <button className={AlertStyles.No} onClick={() => props.setDeleteMessageAlert(false, null)}>No</button>
-           </div>)
+        <h2>Do you really want to delete this message?</h2>
+        <button className={AlertStyles.Yes} onClick={() => props.deleteMessage(props.deleteMessageId)}>Yes</button>
+        <button className={AlertStyles.No} onClick={() => props.setDeleteMessageAlert(false, null)}>No</button>
+    </div>)
 }
 
 export default Alert
