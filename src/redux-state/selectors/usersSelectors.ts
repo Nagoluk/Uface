@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect';
-import {AppStateType} from './stateRedux';
+import {AppStateType} from '../stateRedux';
 
 
 const getUsersSelector = (state: AppStateType) => state.UsersReducer.users;

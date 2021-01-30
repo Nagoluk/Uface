@@ -1,5 +1,5 @@
 import React from "react";
-import profileReducer, {addNewPostAC, deletePostAC} from "./profileReducer";
+import profileReducer, {addNewPostAC, deletePostAC} from "../../redux-state/profileReducer";
 
 let state = {
     PostsData: [
