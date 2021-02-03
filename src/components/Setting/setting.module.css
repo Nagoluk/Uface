@@ -3,12 +3,11 @@
 }
 
 .item {
-    padding: 10px;
-    margin: 5px;
+    padding: 0px 10px 20px 10px;
 }
 
 .formItem {
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .formItem label {
@@ -22,4 +21,8 @@
 
 .buttons button {
     margin: 0 5px;
+}
+
+.tab {
+    margin: 0 10px;
 }

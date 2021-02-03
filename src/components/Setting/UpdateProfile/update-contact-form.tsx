@@ -5,11 +5,10 @@ import {UniversalThemeComponent} from '../../../styles/theme';
 import Styles from '../setting.module.css';
 import {renderField} from './update-profile-form';
 import {ProfileType} from '../../../interfaces/profile-interfaces';
-import {useDispatch, useSelector} from 'react-redux';
-import {actionsProfile, putUserDataThunkCreator} from '../../../redux-state/profileReducer';
 import * as Yup from 'yup';
-import {IKeys} from '../../../interfaces/common-interfaces';
-
+import {IKeys, ResultsCodes} from '../../../interfaces/common-interfaces';
+import {ProfileAPI} from '../../../api/profile-api';
+import {message} from 'antd';
 
 
 type PropsType = {
@@ -18,30 +17,31 @@ type PropsType = {
 
 export const UpdateContactForm: React.FC<PropsType> = ({profile}) => {
     const {contacts} = profile
-    const dispatch = useDispatch()
 
     const validationScheme: IKeys = {}
-    for(let key in contacts){
-          validationScheme[key] = Yup.string().url('Must be url').nullable()
+    for (let key in contacts) {
+        validationScheme[key] = Yup.string().url('Must be url').nullable()
     }
 
     const DisplayingErrorMessagesSchema = Yup.object().shape(validationScheme)
-
 
     return (<Formik
             initialValues={contacts}
             enableReinitialize
             validationSchema={DisplayingErrorMessagesSchema}
-            validate={(values) => {
-
-            }}
-            onSubmit={(values, { setSubmitting, ...props }) => {
+            onSubmit={(values, {setSubmitting}) => {
                 setSubmitting(true)
-                dispatch(putUserDataThunkCreator({...profile, contacts: {...values}}))
-                setSubmitting(false)
+                ProfileAPI.putProfileData({...profile, contacts: {...values}})
+                    .then(res => {
+                        if (res.data.resultCode === ResultsCodes.Success) {
+                            message.success('Success', 1)
+                        } else {
+                            message.error(res.data.messages.join(' '))
+                        }
+                    }).catch(e => message.error(e)).finally(() => setSubmitting(false))
             }}
         >
-            {({ isSubmitting }) => (
+            {({isSubmitting}) => (
                 <Form layout={'vertical'}
                 >
                     <UniversalThemeComponent className={Styles.item}>

@@ -22,7 +22,6 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
 
     let normalizeLink = (link) => {
         if (link.match('https://') || link.match('http://')) {
-
             return link;
         } else {
             return '//' + link;
