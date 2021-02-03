@@ -48,7 +48,7 @@ type MapDispatchToPropsType = {
 }
 
 type OwnToPropsType = {
-    black: boolean
+
 }
 
 
@@ -107,7 +107,6 @@ class userAPIcomponent extends React.Component<PropsTypes, StateTypes> {
                    setCurrentPagePagitator = {this.props.setCurrentPagePagitator}
                    pagePagitator = {this.props.pagePagitator}
                    windowsWidth={this.state.screenWidth}
-                   black={this.props.black}
                    />}
                 </>
     }

@@ -3,10 +3,11 @@ import './index.css';
 import store from './redux-state/stateRedux';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 
 import {HashRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
+import App from './App';
 
 
 ReactDOM.render(<HashRouter>

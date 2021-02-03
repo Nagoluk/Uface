@@ -12,7 +12,6 @@ import {UserT} from '../../interfaces/users-interfaces';
 type PropsType = {
     index: number,
     user: UserT,
-    black: boolean,
     followProcess: Array<number>,
     unfollowThunkCreator: (userID: number) => void,
     followThunkCreator: (userID: number) => void,
