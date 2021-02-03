@@ -41,7 +41,7 @@ const Setting: React.FC = () => {
                 <TabPane tab={
                     <div className={Set.tab}>
                         <ProfileOutlined/>
-                        <span>Profile</span>
+                        <span className={'tab'}>Profile</span>
 
                     </div>
                 } key={'profile'}
@@ -51,7 +51,7 @@ const Setting: React.FC = () => {
                 <TabPane tab={
                     <div>
                         <PhoneOutlined/>
-                        <span>Networks</span>
+                        <span className={'tab'}>Networks</span>
                     </div>
 
                 } key={'contacts'}>
