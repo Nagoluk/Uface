@@ -32,7 +32,7 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 
 export const renderField = (name: string) =>{
     return (<div className={Styles.formItem} key={name}>
-                <Form.Item name={name} label={name} style={{'marginBottom': '15px'}}>
+                <Form.Item name={name} label={name} style={{'marginBottom': '10px'}}>
                     <Input type="text" name={name} placeholder={name}/>
                 </Form.Item>
              </div>)

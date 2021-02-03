@@ -35,7 +35,7 @@ const Setting: React.FC = () => {
 
     if (profile === null) return <Preloader/>
 
-    return (<UniversalWrap maxWidth={700} style={{'marginTop': '50px'}}>
+    return (<UniversalWrap maxWidth={700}>
                 <UniversalThemeComponent>
                         <Tabs defaultActiveKey="info" tabPosition={'left'}>
                                 <TabPane tab={

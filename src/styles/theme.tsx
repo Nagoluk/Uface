@@ -4,6 +4,10 @@ import styled from 'styled-components';
 export const UniversalThemeComponent = styled.div`
     background: ${props => (props.theme.mode === 'dark' ? '#2B2B2B' : '#ffffff')};
     color: ${props => (props.theme.mode === 'dark' ? '#ffffff' : '#474B59;')};
+    
+    & h1, h2, h3 {
+        color: ${props => (props.theme.mode === 'dark' ? '#ffffff' : '#474B59;')};
+    }
    
     & a {
         color: ${props => (props.theme.mode === 'dark' ? '#ffffff' : '#474B59;')};

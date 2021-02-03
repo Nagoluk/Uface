@@ -11,7 +11,7 @@ li {
 body{
     font-family: Calibri, sans-serif;
     overflow-y: scroll;
-    padding-top: 50px!important;
+    padding-top: 62px;
     line-height: 1;
 }
 
@@ -20,7 +20,7 @@ body{
     margin: 0px auto;
 }
 
-h1 {
+ol, ul, dl, h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
