@@ -1,4 +1,5 @@
 import React from 'react';
+import 'antd/dist/antd.css'
 import './App.css';
 import UsersContainer from './components/Users/UsersContainer';
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
@@ -18,6 +19,9 @@ import {AdaptiveMenu} from './components/Nav/adaptiveNav';
 //import Dialogs from "./components/Dialogs";
 import {NetworkError} from './components/common/NetworkError/NetworkError';
 import Header from './components/Header/header';
+
+import Setting from './components/Setting/setting';
+
 
 //const SettingContainer = React.lazy(() => import('./components/Setting/settingContainer'));
 
@@ -53,7 +57,7 @@ class App extends React.Component {
                                 <Switch>
                                     <Route path="/dialogs/:userID?"
                                            render={() => <NetworkError refresh={() => alert('work')}/>}/>
-                                    {/*<Route path="/setting" render={() => <SettingContainer/>}/>*/}
+                                    <Route path="/setting" render={() => <Setting/>}/>
                                     <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                                     <Route path="/friends" render={() => <UsersContainer/>}/>
                                     <Route path="/login" render={() => <Login/>}/>

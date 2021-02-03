@@ -1,48 +1,29 @@
-.wrap h1 {
-    font-weight: 400;
+.wrap {
+    padding: 5px;
 }
 
-.wrap .item {
+.wrap h3 {
+
+}
+
+.item {
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 5px;
 }
 
-.wrap .item h2{
-    font-weight: 200;
+.formItem {
     margin-bottom: 5px;
-    font-size: 20px;
 }
 
-.LookingJob {
-    margin-top: 10px;
+.formItem label {
+    color: gray;
 }
 
-.LookingJob input {
-    margin-right: 5px;
+.buttons {
+    display: flex;
+    justify-content: flex-end;
 }
 
-.SubmitComtainer {
-    height: 35px;
-    margin-top: 10px;
-}
-
-.Send {
-    padding: 7px 16px;
-    outline: none;
-    border: none;
-    color: #2B5278;
-    border: 1px solid #2B5278;
-    background: none;
-    cursor: pointer;
-    transition: all .5s ease-in-out;
-}
-
-.Send:hover {
-    background: #2B5278;
-    color: #fff;
-}
-
-.Processing img {
-    height: 30px;
-    width: 30px;
+.buttons button {
+    margin: 0 5px;
 }

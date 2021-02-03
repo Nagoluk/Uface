@@ -4,6 +4,7 @@ import {nullable} from '../interfaces/common-interfaces';
 import {InferActionsTypes} from './stateRedux';
 import { ProfileAPI } from '../api/profile-api';
 import { UsersAPI } from '../api/users-api';
+import {Dispatch} from 'redux';
 
 
 let initialProfilePage = {
@@ -16,7 +17,8 @@ let initialProfilePage = {
     isFetching: true as boolean,
     isUploadProfile: false as boolean,
     isFollowed: false as boolean,
-};
+    setProfileErrors: [] as Array<string>
+}
 
 const profileReducer = (state = initialProfilePage, action: ActionsType): initialProfilePageType => {
     switch (action.type) {
@@ -36,7 +38,6 @@ const profileReducer = (state = initialProfilePage, action: ActionsType): initia
             };
 
             return stateCopy;
-
 
         case 'SET_PROFILE':
             return {
@@ -79,6 +80,13 @@ const profileReducer = (state = initialProfilePage, action: ActionsType): initia
             }
         }
 
+        case 'SET_PROFILE_ERRORS': {
+            return {
+                ...state,
+                setProfileErrors: action.payload
+            }
+        }
+
         default:
             return state;
 
@@ -92,7 +100,8 @@ export const actionsProfile = {
     setFollowAC: (payload: boolean) => ({type: 'SET_FOLLOW', payload} as const),
     isFetchingAC: (condition: boolean) => ({type: 'USERS_IS_FETCHING', payload: condition} as const),
     setProfile: (profile: ProfileType) => ({type: 'SET_PROFILE', profile: profile} as const),
-    setStatus: (status: string | null) => ({type: 'SET_STATUS', status} as const)
+    setStatus: (status: string | null) => ({type: 'SET_STATUS', status} as const),
+    setProfileErrors: (payload: Array<string>) => ({type: 'SET_PROFILE_ERRORS', payload} as const),
 }
 
 export const getProfileThunkCreator = (id: number) => {
@@ -129,7 +138,7 @@ export const updateStatusThunkCreator = (status: string) => {
 }
 
 export const uploadAvatarThunkCreator = (avatar: any) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch) => {
         ProfileAPI.uploadAvatar(avatar).then((response: any) => {
             if (response.resultCode === 0) {
                 window.location.reload()
@@ -138,17 +147,17 @@ export const uploadAvatarThunkCreator = (avatar: any) => {
     }
 }
 
-export const putUserDataThunkCreator = (data: any) => {
-    return (dispatch: any) => {
+export const putUserDataThunkCreator = (data: ProfileType) => {
+    return (dispatch: Dispatch) => {
         dispatch(actionsProfile.isUploadProfileAC(true));
-        ProfileAPI.putProfileData(data).then((response: any) => {
+        ProfileAPI.putProfileData(data).then((response) => {
             if (response.data.resultCode === 0) {
                 dispatch(actionsProfile.isUploadProfileAC(false));
-
-            } else {
-                dispatch(actionsProfile.isUploadProfileAC(false));
-                let action = stopSubmit('updateProfile', {_error: response.data.messages.join(' ')})
-                dispatch(action)
+            } else if(response.data.messages) {
+                debugger
+                dispatch(actionsProfile.setProfileErrors(response.data.messages))
+            }else {
+               dispatch(actionsProfile.isUploadProfileAC(false));
             }
         })
     }

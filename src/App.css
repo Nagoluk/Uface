@@ -11,12 +11,17 @@ li {
 body{
     font-family: Calibri, sans-serif;
     overflow-y: scroll;
-    padding-top: 50px;
+    padding-top: 50px!important;
+    line-height: 1;
 }
 
 .main-wrap{
     max-width: 960px;
-    margin: 10px auto;
+    margin: 0px auto;
+}
+
+h1 {
+    margin: 0;
 }
 
 .main-wrap main {

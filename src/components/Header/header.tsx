@@ -33,7 +33,7 @@ const Header: React.FC = () => {
 
     const dispatch = useDispatch()
 
-    return (<header>
+    return (<header className={headermod.Header}>
         <HeaderStyle>
             <div className={headermod.headerWrap}>
                 <div className={headermod.leftside}>

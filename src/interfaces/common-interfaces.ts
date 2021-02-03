@@ -1,5 +1,9 @@
 export type nullable<T> = T | null
 
+export interface IKeys {
+    [key: string]: any
+}
+
 export enum ResultsCodes {
     Success = 0,
     Error = 1,
