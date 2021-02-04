@@ -2,17 +2,29 @@ import React, {useState} from 'react'
 import p from '../profile.module.css';
 import Status from './status/statusHook';
 import profileAvatar from '../../../img/Profile/avatar.png';
-import Gellery from '../../common/gallery/gallery';
-import {Redirect} from 'react-router-dom';
-import UsersStlyes from '../../Users/Users.module.css';
 import {ProfileItemStyled} from '../../../styles/theme';
+import {ProfileType} from '../../../interfaces/profile-interfaces';
+import {useDispatch} from 'react-redux';
+import {uploadAvatarThunkCreator} from '../../../redux-state/profileReducer';
+import Gellery from '../../common/gallery/gallery';
 
 
-const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...props}) => {
+
+type ownProps = {
+    profile: ProfileType,
+    myId: string | number | null
+}
+const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
+    const dispatch = useDispatch()
+
     let hasContact = false;
-    let amI = profile.userId === props.loginData.id;
+    let amI: boolean = profile.userId === myId;
+
+
+    const {contacts} = profile
 
     for (let key in contacts) {
+        //@ts-ignore
         if (contacts[key] !== null && contacts[key] !== '') {
             hasContact = true;
         }
@@ -20,7 +32,7 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
 
     let [showGallery, setShowGallery] = useState(false)
 
-    let normalizeLink = (link) => {
+    let normalizeLink = (link: string) => {
         if (link.match('https://') || link.match('http://')) {
             return link;
         } else {
@@ -28,8 +40,10 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
         }
     }
 
-    let uploadPhoto = (e) => {
-        props.uploadAvatarThunkCreator((e.target.files[0]));
+    let uploadPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files !== null){
+            dispatch(uploadAvatarThunkCreator((e.target.files[0])));
+        }
     }
 
     let Gallery = () => {
@@ -38,9 +52,9 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
         }
     }
 
-    if (props.isRedirectedToDialog) {
-        return <Redirect to={'/dialogs/' + profile.userId}/>
-    }
+    // if (props.isRedirectedToDialog) {
+    //     return <Redirect to={'/dialogs/' + profile.userId}/>
+    // }
 
 
     return (<div className={p.profileWrap}>
@@ -76,10 +90,7 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
                     <ul className={p.about}>
                         <li>
                             <span className={p.infoItem}><i className="far fa-smile"></i></span>
-                            <Status status={props.status || 'No status'}
-                                    updateStatusThunkCreator={props.updateStatusThunkCreator}
-                                    amI={amI}
-                            />
+                            <Status amI={amI}/>
                         </li>
 
                         {profile.aboutMe && <li>
@@ -99,27 +110,27 @@ const ProfileInfo = ({profile: {profile}, profile: {profile: {contacts}}, ...pro
 
                 {!amI && <div className={p.Activity}>
 
-                    {props.isFollowed ?
-                        <button disabled={props.followProcces.some(item => item === profile.userId)}
-                                className={UsersStlyes.follower + ' ' + p.ActivityButtons + ' ' + p.Unfollow}
-                                onClick={() => {
+                    {/*{props.isFollowed ?*/}
+                    {/*    <button disabled={props.followProcces.some(item => item === profile.userId)}*/}
+                    {/*            className={UsersStlyes.follower + ' ' + p.ActivityButtons + ' ' + p.Unfollow}*/}
+                    {/*            onClick={() => {*/}
 
-                                    props.unfollowThunkCreator(profile.userId)
-                                }}>Unfollow</button> :
-                        <button disabled={props.followProcces.some(item => item === profile.userId)}
-                                className={UsersStlyes.follower + ' ' + p.ActivityButtons}
-                                onClick={() => {
-                                    props.followThunkCreator(profile.userId)
-                                }}>follow</button>}
+                    {/*                props.unfollowThunkCreator(profile.userId)*/}
+                    {/*            }}>Unfollow</button> :*/}
+                    {/*    <button disabled={props.followProcces.some(item => item === profile.userId)}*/}
+                    {/*            className={UsersStlyes.follower + ' ' + p.ActivityButtons}*/}
+                    {/*            onClick={() => {*/}
+                    {/*                props.followThunkCreator(profile.userId)*/}
+                    {/*            }}>follow</button>}*/}
 
-                    <button onClick={() => props.startChatingThunkCreator(profile.userId)} className={p.Mail}><i
-                        className="far fa-envelope"></i></button>
+                    {/*<button onClick={() => props.startChatingThunkCreator(profile.userId)} className={p.Mail}><i*/}
+                    {/*    className="far fa-envelope"></i></button>*/}
 
 
                 </div>}
             </ProfileItemStyled>
 
-            {hasContact && <ProfileItemStyled className={p.information + ' ' + p.contacts} black={props.black}>
+            {hasContact && <ProfileItemStyled className={p.information + ' ' + p.contacts}>
                 <ul>
                     {contacts.facebook && <li>
                         <a href={normalizeLink(contacts.facebook)} target="_blank" rel="noopener noreferrer">

@@ -99,7 +99,7 @@ export const actionsProfile = {
     isUploadProfileAC: (payload: boolean) => ({type: 'UPLOAD_PROFILE_INFO_PROCESS', payload} as const),
     setFollowAC: (payload: boolean) => ({type: 'SET_FOLLOW', payload} as const),
     isFetchingAC: (condition: boolean) => ({type: 'USERS_IS_FETCHING', payload: condition} as const),
-    setProfile: (profile: ProfileType) => ({type: 'SET_PROFILE', profile: profile} as const),
+    setProfile: (profile: nullable<ProfileType> ) => ({type: 'SET_PROFILE', profile: profile} as const),
     setStatus: (status: string | null) => ({type: 'SET_STATUS', status} as const),
     setProfileErrors: (payload: Array<string>) => ({type: 'SET_PROFILE_ERRORS', payload} as const),
 }

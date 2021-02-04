@@ -1,26 +1,38 @@
 import React, {useState} from 'react';
 import MyPost from './MyPosts.module.css';
 import Post from './post/post';
+// @ts-ignore
 import TextareaAutosize from 'react-textarea-autosize';
 import {PostsItemStyled} from '../../../styles/theme';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+    getMyPostsSelector,
+} from '../../../redux-state/selectors/profile-selector';
+import {actionsProfile} from '../../../redux-state/profileReducer';
+import {ProfileType} from '../../../interfaces/profile-interfaces';
 
+type ownProps = {
+    profile: ProfileType
+}
+const MyPosts: React.FC<ownProps> = ({profile}) => {
 
-const MyPosts = (props) => {
+    const [value, changeVal] = useState('');
+    const [isDisabled, changeDisabled] = useState(true);
+    const [symbols, setSymbols] = useState(0);
 
-    let [value, changeVal] = useState('');
-    let [isDisabled, changeDisabled] = useState(true);
-    let [symbols, setSymbols] = useState(0);
+    const dispatch = useDispatch()
+    const PostsData = useSelector(getMyPostsSelector)
 
-    let addNewPost = (data) => {
+    let addNewPost = () => {
         if (value !== '') {
             changeVal('');
             changeDisabled(true);
-            props.addNewPostAC(value)
+            dispatch(actionsProfile.addNewPostAC(value))
             setSymbols(0)
         }
     }
 
-    let postHandler = (e) => {
+    let postHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         changeVal(e.target.value);
         setSymbols(e.target.value.length)
 
@@ -31,16 +43,9 @@ const MyPosts = (props) => {
         }
     }
 
-    let PostsElements = props.ProfilePage.PostsData.map((currentValue, index) => <Post key={index.toString()}
-                                                                                       message={currentValue.content}
-                                                                                       likes={currentValue.likes}
-                                                                                       rep={currentValue.rep}
-                                                                                       comm={currentValue.comm}
-                                                                                       dataSend={currentValue.dataSend}
-                                                                                       name={props.ProfilePage.profile.fullName}
-                                                                                       photos={props.ProfilePage.profile.photos}
-                                                                                       black={props.black}
-    />).reverse()
+    let PostsElements = PostsData.map((currentValue, index) =>
+        (<Post key={index.toString()} {...currentValue} name={profile.fullName} photos={profile.photos}
+    />)).reverse()
     return (
         <div className={MyPost.myposts}>
             <div className="postwrap">
@@ -55,14 +60,10 @@ const MyPosts = (props) => {
                                 <i className="fab fa-telegram"></i></button>
                         </div>
                     </div>
-
-
                 </PostsItemStyled>
 
                 <div className="news">
-
                     {PostsElements}
-
                 </div>
             </div>
 

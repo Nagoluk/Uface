@@ -1,16 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import styles from './status.module.css';
+import {useDispatch, useSelector} from 'react-redux';
+import {updateStatusThunkCreator} from '../../../../redux-state/profileReducer';
+import {getStatusSelector} from '../../../../redux-state/selectors/profile-selector';
 
 
-const StatusHook = props => {
+const StatusHook: React.FC<{ amI: boolean }> = (props) => {
+    const dispatch = useDispatch()
 
     const [edit, setEdit] = useState(false);
-    const [status, setStatus] = useState(props.status);
 
+    const userStatus = useSelector(getStatusSelector)
+    const [status, setStatus] = useState(userStatus);
 
     useEffect(() => {
-        setStatus(props.status)
-    }, [props.status])
+        setStatus(userStatus)
+    }, [userStatus])
 
 
     let activateEditMode = () => {
@@ -22,20 +27,19 @@ const StatusHook = props => {
     let deactivateEditMode = () => {
         if (props.amI) {
             setEdit(false)
-            props.updateStatusThunkCreator(status)
+            if(status!== null) dispatch(updateStatusThunkCreator(status))
         }
     }
 
 
-    let onStatusChange = (e) => {
-
+    let onStatusChange = (e: any) => {
         setStatus(e.currentTarget.value)
     }
 
 
     return <>{!edit ?
         <span>
-                      <span onDoubleClick={activateEditMode}>{props.status || 'Status'}</span>
+                      <span onDoubleClick={activateEditMode}>{status || 'Status'}</span>
                   </span>
         :
         <span>
@@ -44,7 +48,7 @@ const StatusHook = props => {
                              className={styles.Input}
                              onBlur={deactivateEditMode}
                              type="text"
-                             value={status}
+                             value={status as string}
                              maxLength={300}/>
 
                       <div className={styles.EditMode}>Edit mode</div>

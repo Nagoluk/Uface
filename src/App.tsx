@@ -4,7 +4,6 @@ import './App.css';
 import UsersContainer from './components/Users/UsersContainer';
 import {Redirect, Route, Switch} from 'react-router-dom';
 
-import ProfileContainer from './components/Profile/profileContainer';
 import Login from './components/Login/Login';
 import {useDispatch, useSelector} from 'react-redux';
 import {initializeApp} from './redux-state/appReducer';
@@ -20,6 +19,7 @@ import Header from './components/Header/header';
 
 import Setting from './components/Setting/setting';
 import {getInitializedSelector, getIsBlackSelector} from './redux-state/selectors/app-selectors';
+import Profile from './components/Profile/profile';
 
 
 type themeType = {
@@ -64,7 +64,7 @@ const App = () => {
                                 <Route path="/dialogs/:userID?"
                                        render={() => <NetworkError refresh={() => alert('work')}/>}/>
                                 <Route path="/setting" render={() => <Setting/>}/>
-                                <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
+                                <Route path="/profile/:userID?" render={() => <Profile/>}/>
                                 <Route path="/friends" render={() => <UsersContainer/>}/>
                                 <Route path="/login" render={() => <Login/>}/>
                                 <Route path="/search" render={() => <Search/>}/>

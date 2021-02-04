@@ -2,9 +2,14 @@ import React from 'react';
 import post from './post.module.css';
 import Avatar from './../../../../img/Profile/avatar.png';
 import {PostsItemStyled} from '../../../../styles/theme';
+import {photosT, PostDataType} from '../../../../interfaces/profile-interfaces';
 
+type ownProps = {
+    name: string,
+    photos: photosT
+}
 
-const Post = (props) => {
+const Post: React.FC<PostDataType & ownProps> = (props) => {
 
     return (
         <PostsItemStyled className={post.item}>
@@ -22,7 +27,7 @@ const Post = (props) => {
                 </div>
             </div>
             <div className={post.content + ' Content'}>
-                {props.message}
+                {props.content}
             </div>
 
             <div className={post.activity}>
