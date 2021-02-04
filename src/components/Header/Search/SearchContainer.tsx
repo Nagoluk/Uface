@@ -3,8 +3,15 @@ import Search from "./Search";
 import {connect} from "react-redux";
 import {searchingThunkCreator} from "../../../redux-state/usersReducer";
 import {getProfileThunkCreator} from "../../../redux-state/profileReducer";
+import { UserT } from '../../../interfaces/users-interfaces';
+import {AppStateType} from '../../../redux-state/stateRedux';
 
-class HeaderContainer extends React.Component{
+
+export type ownPropsSearch = {
+    results: UserT[],
+    searchingThunkCreator: (name: string) => void
+}
+class HeaderContainer extends React.Component<ownPropsSearch>{
     render() {
         return (<Search
             results={this.props.results}
@@ -13,7 +20,7 @@ class HeaderContainer extends React.Component{
     }
 }
 
-let mapStateToProps = state => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         results: state.UsersReducer.foundedUsers
     }
