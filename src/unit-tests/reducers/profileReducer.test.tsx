@@ -1,5 +1,6 @@
 import React from "react";
-import profileReducer, {addNewPostAC, deletePostAC} from "../../redux-state/profileReducer";
+import profileReducer, {actionsProfile} from "../../redux-state/profileReducer";
+import {AppStateType} from '../../redux-state/stateRedux';
 
 let state = {
     PostsData: [
@@ -12,12 +13,12 @@ let state = {
     profile: null,
     status: "",
     isFetching: true,
-};
+} as AppStateType['ProfilePage'];
 
 
 
 it('The new post should be added', ()=> {
-    let action = addNewPostAC("Geer")
+    let action = actionsProfile.addNewPostAC("Geer")
     let newState = profileReducer(state, action)
 
     expect(newState.PostsData.length).toBe(4)
@@ -26,7 +27,7 @@ it('The new post should be added', ()=> {
 
 it('The post should be deleted', ()=> {
     //test data
-    let action = deletePostAC(1)
+    let action = actionsProfile.deletePostAC(1)
 
     //new state
     let newState = profileReducer(state, action)
