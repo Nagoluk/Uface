@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { FormEvent} from 'react';
 import galleryStyle from './gallery.module.css';
 import p from '../../Profile/profile.module.css';
 
-
-let Gellery = props => {
-    let clickOnWrap = event => {
-        if (event.target.id !== '') props.setShowGallery(false)
+type ownProps = {
+    setShowGallery: (payload: boolean) => void
+    uploadPhoto: (payload: any) => void
+    amI: boolean
+    img: string
+}
+const Gellery: React.FC<ownProps> = props => {
+    let clickOnWrap = (event: any) => {
+        if(event.target.id !== null) {
+            if (event.target.id !== '') props.setShowGallery(false)
+        }
     }
 
     return (<div className={galleryStyle.Wrap}>

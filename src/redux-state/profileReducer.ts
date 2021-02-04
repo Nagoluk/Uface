@@ -1,4 +1,4 @@
-import {stopSubmit} from 'redux-form';
+
 import {PostDataType, ProfileType} from '../interfaces/profile-interfaces';
 import {nullable} from '../interfaces/common-interfaces';
 import {InferActionsTypes} from './stateRedux';

@@ -181,7 +181,7 @@ const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
             </ProfileItemStyled>}
 
             {showGallery &&
-            <Gellery img={profile.photos.large} setShowGallery={setShowGallery} amI={amI} uploadPhoto={uploadPhoto}/>}
+            <Gellery img={profile.photos.large as string} setShowGallery={setShowGallery} amI={amI} uploadPhoto={uploadPhoto}/>}
 
 
         </div>
