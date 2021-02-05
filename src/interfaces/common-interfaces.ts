@@ -9,6 +9,11 @@ export enum ResultsCodes {
     Error = 1,
 }
 
+export interface IFilters {
+    friends: boolean,
+    term: string
+}
+
 export enum ResultCodeForCaptcha {
     CaptchaIsRequired = 10
 }

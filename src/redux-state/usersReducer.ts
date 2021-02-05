@@ -2,6 +2,7 @@ import {AppStateType, InferActionsTypes} from './stateRedux';
 import {Dispatch} from 'redux';
 import {UserT} from '../interfaces/users-interfaces';
 import { UsersAPI } from '../api/users-api';
+import {IFilters} from '../interfaces/common-interfaces';
 
 
 let initialUsers = {
@@ -111,12 +112,12 @@ export const UsersActions = {
 type getStateType = () => AppStateType
 type currentDispatchType = Dispatch<ActionTypes>
 
-export const setUsersThunkCreator = (currentPage: number, pageSize: number) => {
+export const setUsersThunkCreator = (currentPage: number, pageSize: number, filters: IFilters) => {
     return (dispatch: currentDispatchType, getState: getStateType) => {
 
         dispatch(UsersActions.setCurrentPage(currentPage));
         dispatch(UsersActions.ToggleFetching(true));
-        UsersAPI.getUsers(currentPage, pageSize).then((data: any) => {
+        UsersAPI.getUsers(currentPage, pageSize, filters).then((data: any) => {
 
             dispatch(UsersActions.setUsers(data.items));
             dispatch(UsersActions.setTotalCount(data.totalCount));

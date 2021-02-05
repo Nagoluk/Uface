@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import 'antd/dist/antd.css'
 import './App.css';
-import UsersContainer from './components/Users/UsersContainer';
 import {Redirect, Route, Switch} from 'react-router-dom';
 
 import Login from './components/Login/Login';
@@ -20,6 +19,8 @@ import Header from './components/Header/header';
 import Setting from './components/Setting/setting';
 import {getInitializedSelector, getIsBlackSelector} from './redux-state/selectors/app-selectors';
 import Profile from './components/Profile/profile';
+import SideBar from './components/Sidebar';
+import Users from './components/Users/Users';
 
 
 type themeType = {
@@ -57,7 +58,7 @@ const App = () => {
 
                 <div className="main-wrap">
                     <AdaptiveMenu/>
-
+                    <SideBar/>
                     <main>
                         <React.Suspense fallback={<Preloader/>}>
                             <Switch>
@@ -65,7 +66,7 @@ const App = () => {
                                        render={() => <NetworkError refresh={() => alert('work')}/>}/>
                                 <Route path="/setting" render={() => <Setting/>}/>
                                 <Route path="/profile/:userID?" render={() => <Profile/>}/>
-                                <Route path="/friends" render={() => <UsersContainer/>}/>
+                                <Route path="/friends" render={() => <Users/>}/>
                                 <Route path="/login" render={() => <Login/>}/>
                                 <Route path="/search" render={() => <Search/>}/>
                                 <Redirect exact from="/" to="/profile"/>

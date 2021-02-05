@@ -1,13 +1,16 @@
 
 import {instance} from './api';
-import {IBaseResponse, IGetItems} from '../interfaces/common-interfaces';
+import {IBaseResponse, IFilters, IGetItems} from '../interfaces/common-interfaces';
 import {UserT} from '../interfaces/users-interfaces';
+const qs = require('qs')
 
 
 export let UsersAPI = {
     //todo: &friend=true
-    getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get<IGetItems<UserT>>(`users?page=${currentPage}&count=${pageSize}`)
+    getUsers(currentPage = 1, pageSize = 10, filters: IFilters) {
+        let request = qs.stringify({currentPage, pageSize, ...filters})
+
+        return instance.get<IGetItems<UserT>>(`users?`+request)
             .then(response => response.data);
     },
 
