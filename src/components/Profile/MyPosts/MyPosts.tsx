@@ -10,6 +10,7 @@ import {
 } from '../../../redux-state/selectors/profile-selector';
 import {actionsProfile} from '../../../redux-state/profileReducer';
 import {ProfileType} from '../../../interfaces/profile-interfaces';
+import {useTranslation} from 'react-i18next';
 
 type ownProps = {
     profile: ProfileType
@@ -22,6 +23,7 @@ const MyPosts: React.FC<ownProps> = ({profile}) => {
 
     const dispatch = useDispatch()
     const PostsData = useSelector(getMyPostsSelector)
+    const { t } = useTranslation();
 
     let addNewPost = () => {
         if (value !== '') {
@@ -50,10 +52,10 @@ const MyPosts: React.FC<ownProps> = ({profile}) => {
         <div className={MyPost.myposts}>
             <div className="postwrap">
                 <PostsItemStyled className={MyPost.newpost}>
-                    <TextareaAutosize value={value} onChange={postHandler} placeholder={'Create new post!'}
+                    <TextareaAutosize value={value} onChange={postHandler} placeholder={t('profile.create-post')}
                                       autoComplete={'off'} wrap={'hard'}/>
                     <div className={MyPost.createnewpost}>
-                        <span>Symbols: {symbols}</span>
+                        <span>{t('profile.symbols')}: {symbols}</span>
                         <div>
                             <button className={MyPost.button + ' ' + MyPost.send} disabled={isDisabled}
                                     onClick={addNewPost}>

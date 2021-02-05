@@ -1,0 +1,32 @@
+{
+  "translation": {
+    "profile": {
+      "lookingJob": "В пошуках роботи",
+      "symbols": "Символів",
+      "create-post": "Створіть новий пост!"
+    },
+
+    "header": {
+      "search": "Пошук",
+      "no-result": "Без результатів"
+    },
+
+    "sidebar": {
+      "followed": "Відстежую я",
+      "followers": "Стежать за мною",
+      "goto": "Перейти"
+    },
+
+    "users": {
+      "follow": "Стежити",
+      "unfollow": "Не стежити"
+    },
+    "settings": {
+      "profile": "Профіль",
+      "contacts": "Контакти",
+      "send": "Надіслати",
+      "reset": "Скинути зміни",
+      "languages": "Мови"
+    }
+  }
+}

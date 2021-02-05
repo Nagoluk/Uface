@@ -29,7 +29,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
     if (windowsWidth <= 635) {
         portion = 6;
     } else {
-        portion = 10;
+        portion = 9;
     }
 
     let count = pagePagitator;

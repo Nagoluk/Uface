@@ -7,6 +7,7 @@ import {ProfileType} from '../../../interfaces/profile-interfaces';
 import {useDispatch} from 'react-redux';
 import {uploadAvatarThunkCreator} from '../../../redux-state/profileReducer';
 import Gellery from '../../common/gallery/gallery';
+import {useTranslation} from 'react-i18next';
 
 
 
@@ -16,6 +17,7 @@ type ownProps = {
 }
 const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
     const dispatch = useDispatch()
+    const { t } = useTranslation();
 
     let hasContact = false;
     let amI: boolean = profile.userId === myId;
@@ -100,7 +102,7 @@ const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
 
                         {profile.lookingForAJob && <li>
                             <span className={p.infoItem}><i className="fas fa-briefcase"></i></span>
-                            <b>Looking for a job</b>
+                            <b>{t('profile.lookingJob')}</b>
 
                             <p className={p.description}>{profile.lookingForAJobDescription}</p>
                         </li>}

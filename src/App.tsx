@@ -22,6 +22,24 @@ import Profile from './components/Profile/profile';
 import SideBar from './components/Sidebar';
 import Users from './components/Users/Users';
 
+import i18n from "i18next";
+import { useTranslation, initReactI18next } from "react-i18next";
+import {resources} from './localization';
+
+i18n
+    .use(initReactI18next) // passes i18n down to react-i18next
+    .init({
+        resources: resources,
+        lng: "eng",
+        fallbackLng: "eng",
+
+        interpolation: {
+            escapeValue: false
+        }
+    });
+
+
+
 
 type themeType = {
     theme: {
@@ -39,6 +57,7 @@ const App = () => {
     const dispatch = useDispatch()
     const initialized = useSelector(getInitializedSelector)
     const isBlackTheme = useSelector(getIsBlackSelector)
+
 
     useEffect(() => {
         dispatch(initializeApp())

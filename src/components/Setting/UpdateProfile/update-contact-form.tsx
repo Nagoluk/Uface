@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import {IKeys, ResultsCodes} from '../../../interfaces/common-interfaces';
 import {ProfileAPI} from '../../../api/profile-api';
 import {message} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 
 type PropsType = {
@@ -18,10 +19,13 @@ type PropsType = {
 export const UpdateContactForm: React.FC<PropsType> = ({profile}) => {
     const {contacts} = profile
 
+    const {t} = useTranslation()
+
     const validationScheme: IKeys = {}
     for (let key in contacts) {
         validationScheme[key] = Yup.string().url('Must be url').nullable()
     }
+
 
     const DisplayingErrorMessagesSchema = Yup.object().shape(validationScheme)
 
@@ -45,12 +49,12 @@ export const UpdateContactForm: React.FC<PropsType> = ({profile}) => {
                 <Form layout={'vertical'}
                 >
                     <UniversalThemeComponent className={Styles.item}>
-                        <h2>Contacts</h2>
+                        <h2>{t('settings.contacts')}</h2>
 
                         {Object.keys(contacts).map(renderField)}
                         <div className={Styles.buttons}>
-                            <ResetButton>Reset all</ResetButton>
-                            <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
+                            <ResetButton>{t('settings.reset')}</ResetButton>
+                            <SubmitButton disabled={isSubmitting}>{t('settings.send')}</SubmitButton>
                         </div>
 
                     </UniversalThemeComponent>

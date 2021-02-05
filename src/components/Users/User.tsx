@@ -15,6 +15,7 @@ type PropsType = {
     followProcess: Array<number>,
     unfollowThunkCreator: (userID: number) => void,
     followThunkCreator: (userID: number) => void,
+    t: (key: string) => string
 }
 
 let User: React.FC<PropsType> = props => {
@@ -43,11 +44,11 @@ let User: React.FC<PropsType> = props => {
                         className={'unfollow'}
                         onClick={() => {
                             props.unfollowThunkCreator(props.user.id)
-                        }}>Unfollow</button> :
+                        }}>{props.t('users.unfollow')}</button> :
                 <button disabled={props.followProcess.some(item => item === props.user.id)}
                         onClick={() => {
                             props.followThunkCreator(props.user.id)
-                        }}>follow</button>
+                        }}>{props.t('users.follow')}</button>
             }
         </div>
 

@@ -13,6 +13,7 @@ import {
 } from '../../redux-state/selectors/users-selectors';
 import {setUsersThunkCreator, unfollowThunkCreator, UsersActions, followThunkCreator} from '../../redux-state/usersReducer';
 import Preloader from '../assets/preloader/Preloader';
+import {useTranslation} from 'react-i18next';
 
 
 
@@ -24,6 +25,7 @@ let Users: React.FC = () => {
     const currentPage = useSelector(getCurrentPageSelector)
     const followProcess = useSelector(getFollowProccesSelector)
     const isFetching = useSelector(getIsFetchingSelector)
+    const {t} = useTranslation()
 
     const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
@@ -70,10 +72,6 @@ let Users: React.FC = () => {
     }, [])
 
 
-    if(isFetching){
-        return <Preloader/>
-    }
-
     return (<UniversalWrap>
                 <Pagitator currentPage={currentPage}
                            onPageChange={onPageChange}
@@ -85,14 +83,15 @@ let Users: React.FC = () => {
                 />
 
 
-                <div className={UsersStlyes.itemWrap}>
+        {isFetching ? <Preloader/> : <div className={UsersStlyes.itemWrap}>
                     {users.map((user, index) => <User user={user}
                                                                     followProcess={followProcess}
                                                                     key={index}
+                                                                    t={t}
                                                                     index={index}
                                                                     followThunkCreator={follow}
                                                                     unfollowThunkCreator={unfollow}/>)}
-                </div>
+                </div>}
            </UniversalWrap>)
 }
 

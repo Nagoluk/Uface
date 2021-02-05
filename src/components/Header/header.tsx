@@ -18,6 +18,7 @@ import {getIsBlackSelector} from '../../redux-state/selectors/app-selectors';
 import {getNewMessagesCountSelector} from '../../redux-state/selectors/notification-selector';
 import {logout} from '../../redux-state/loginReducer';
 import {actionsApp} from '../../redux-state/appReducer';
+import {useTranslation} from 'react-i18next';
 
 
 //todo: fdsf

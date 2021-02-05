@@ -1,0 +1,32 @@
+{
+  "translation": {
+    "profile": {
+      "lookingJob": "Looking for a job",
+      "symbols": "Symbols",
+      "create-post": "Create new post!"
+    },
+
+    "header": {
+      "search": "Search",
+      "no-result": "No any results"
+    },
+
+    "sidebar": {
+      "followed": "Followed",
+      "followers": "Followers",
+      "goto": "Go to"
+    },
+
+    "users": {
+      "follow": "Follow",
+      "unfollow": "Unfollow"
+    },
+    "settings": {
+      "profile": "Profile",
+      "contacts": "Contacts",
+      "send": "Send",
+      "reset": "Reset",
+      "languages": "Languages"
+    }
+  }
+}

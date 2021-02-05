@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import {message} from 'antd';
 import { ProfileAPI } from '../../../api/profile-api';
 import {ResultsCodes} from '../../../interfaces/common-interfaces';
+import {useTranslation} from 'react-i18next';
 
 type PropsType = {
     profile: ProfileType
@@ -44,6 +45,7 @@ export const renderField = (name: string) =>{
 
 export const UpdateProfileForm: React.FC<PropsType> = ({profile}) => {
     const {aboutMe, fullName, lookingForAJobDescription, lookingForAJob} = profile
+    const {t} = useTranslation()
 
 
     return (<Formik
@@ -67,7 +69,7 @@ export const UpdateProfileForm: React.FC<PropsType> = ({profile}) => {
                     >
 
                         <UniversalThemeComponent className={Styles.item}>
-                            <h2>Profile</h2>
+                            <h2>{t('settings.profile')}</h2>
 
                             {Object.keys({aboutMe, fullName, lookingForAJobDescription}).map(renderField)}
 
@@ -77,8 +79,8 @@ export const UpdateProfileForm: React.FC<PropsType> = ({profile}) => {
                             </div>
 
                             <div className={Styles.buttons}>
-                                <ResetButton>Reset all</ResetButton>
-                                <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
+                                <ResetButton>{t('settings.reset')}</ResetButton>
+                                <SubmitButton disabled={isSubmitting}>{t('settings.send')}</SubmitButton>
                             </div>
                         </UniversalThemeComponent>
                     </Form>

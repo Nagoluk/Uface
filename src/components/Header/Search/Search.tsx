@@ -5,10 +5,12 @@ import {NavLink} from "react-router-dom";
 import {SearchContainerStyle, UniversalThemeComponent} from "../../../styles/theme";
 import {UserT} from '../../../interfaces/users-interfaces';
 import {ownPropsSearch} from './SearchContainer';
+import {useTranslation} from 'react-i18next';
 
 const Search: React.FC<ownPropsSearch> = props => {
     const [searchMode, setSearchMode] = useState(false);
     const [text, setText] = useState("")
+    const { t } = useTranslation();
 
     let searching = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchMode(true)
@@ -27,12 +29,12 @@ const Search: React.FC<ownPropsSearch> = props => {
 
     return (
         <SearchContainerStyle className={headermod.input} >
-            <input type="text" placeholder={"Search here"} className={headermod.Search} onChange={searching}
+            <input type="text" placeholder={t('header.search')} className={headermod.Search} onChange={searching}
                    onBlur={stopSearching} value={text}/>
 
 
             {searchMode && <UniversalThemeComponent className={headermod.Results}>
-                {!props.results.length && "No results"}
+                {!props.results.length && t('header.no-result')}
                 {props.results.map((item, key) => <Item
                     {...item} key={key.toString()}
                     hideResults={hideResults}/>)}
