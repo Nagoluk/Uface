@@ -46,8 +46,8 @@ const Setting: React.FC = () => {
     if (profile === null) return <Preloader/>
 
     return (<UniversalWrap maxWidth={700}>
-        <UniversalThemeComponent>
-            <Tabs defaultActiveKey='profile' tabPosition={'top'}>
+        <UniversalThemeComponent >
+            <Tabs defaultActiveKey='profile' tabPosition={'bottom'} className={Set.wrap}>
                 <TabPane tab={
                     <div className={Set.tab}>
                         <ProfileOutlined/>

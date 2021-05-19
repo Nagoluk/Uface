@@ -11,7 +11,6 @@ export const InputField: InputFieldType = ({input, meta, ...props}): any => {
         <div>
             <input {...props} {...input}/>
         </div>
-        {hasError && <span><i className="fas fa-exclamation"></i></span>}
         {hasError && <span>{meta.error}</span>}
     </div>)
 }

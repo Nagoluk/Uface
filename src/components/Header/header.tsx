@@ -1,7 +1,6 @@
 import React from 'react';
 import headermod from './header.module.css';
 import {NavLink} from 'react-router-dom';
-import SearchContainer from './Search/SearchContainer';
 import {SwitchButton} from '../Nav/adaptiveNav';
 import Nav from '../Nav/nav';
 import {Avatar} from '../assets/avatar/avatar';
@@ -19,6 +18,7 @@ import {getNewMessagesCountSelector} from '../../redux-state/selectors/notificat
 import {logout} from '../../redux-state/loginReducer';
 import {actionsApp} from '../../redux-state/appReducer';
 import {useTranslation} from 'react-i18next';
+import {AliwangwangOutlined, LogoutOutlined, BellOutlined, SwapOutlined} from '@ant-design/icons';
 
 
 //todo: fdsf
@@ -38,15 +38,11 @@ const Header: React.FC = () => {
         <HeaderStyle>
             <div className={headermod.headerWrap}>
                 <div className={headermod.leftside}>
-                    <NavLink to="/"><h1><i className="fas fa-dragon"></i>Uface</h1></NavLink>
+                    <NavLink to="/"><h1><AliwangwangOutlined />Uface</h1></NavLink>
                     <div style={{'marginTop': '5px'}}>
-                        {black && <SwitchButton onClick={() => dispatch(actionsApp.ChangeThemeAC())}>
-                            <i className="far fa-moon"></i>
-                        </SwitchButton>}
-
-                        {!black && <SwitchButton onClick={() => dispatch(actionsApp.ChangeThemeAC())}>
-                            <i className="fas fa-sun"></i>
-                        </SwitchButton>}
+                        <SwitchButton onClick={() => dispatch(actionsApp.ChangeThemeAC())}>
+                            <SwapOutlined />
+                        </SwitchButton>
                     </div>
 
                     <Nav/>
@@ -55,7 +51,7 @@ const Header: React.FC = () => {
                 <div className={headermod.rightside}>
 
                     <div className={headermod.note + ' ' + headermod.hide}>
-                        <i className="fas fa-bell"></i>
+                        <BellOutlined />
                     </div>
 
                     <h3>{isLogined ?
@@ -66,7 +62,7 @@ const Header: React.FC = () => {
                     {isLogined && <div className={headermod.note + ' ' + headermod.logout} onClick={() => {
                         dispatch(logout());
                     }}>
-                        <i className="fas fa-power-off" title={'logout'}></i>
+                        <LogoutOutlined />
                     </div>}
                 </div>
             </div>

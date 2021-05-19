@@ -11,6 +11,7 @@ import {login} from '../../redux-state/loginReducer';
 import {LoginWrapStyled} from '../../styles/theme';
 import styled from 'styled-components';
 import {getCaptchaSelector, getIsLoginedSelector} from '../../redux-state/selectors/login-selectors';
+import {AliwangwangOutlined} from '@ant-design/icons';
 
 const Background = styled.div`
     position: absolute;
@@ -41,7 +42,7 @@ let Form: React.FC<InjectedFormProps<loginFormValuesType, LoginFormOwnProps> & L
     return (<form className={styles.Form} onSubmit={handleSubmit}>
         <div>
             <div>
-                <h1><i className="fas fa-dragon"></i>Uface</h1>
+                <h1><AliwangwangOutlined />Uface</h1>
                 <h2>Please sing up</h2>
             </div>
         </div>

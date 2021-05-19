@@ -8,6 +8,20 @@ import {useDispatch} from 'react-redux';
 import {uploadAvatarThunkCreator} from '../../../redux-state/profileReducer';
 import Gellery from '../../common/gallery/gallery';
 import {useTranslation} from 'react-i18next';
+import {
+    ExceptionOutlined,
+    FileSearchOutlined,
+    SmileOutlined,
+    FacebookOutlined,
+    DribbbleOutlined,
+    IeOutlined,
+    TwitterOutlined,
+    InstagramOutlined,
+    YoutubeOutlined,
+    GithubOutlined,
+    LinkedinOutlined,
+    CloudUploadOutlined
+} from '@ant-design/icons';
 
 
 
@@ -71,7 +85,7 @@ const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
 
                         <label htmlFor="avatar" className={p.changeAvatar}>
                             <div className={p.AvatarControl}>
-                                <i className="fas fa-upload"></i>
+                                <CloudUploadOutlined />
                                 <input type="file" id="avatar" onInput={uploadPhoto} style={{display: 'none'}}/>
                             </div>
                         </label>
@@ -91,17 +105,17 @@ const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
 
                     <ul className={p.about}>
                         <li>
-                            <span className={p.infoItem}><i className="far fa-smile"></i></span>
+                            <span className={p.infoItem}><SmileOutlined /></span>
                             <Status amI={amI}/>
                         </li>
 
                         {profile.aboutMe && <li>
-                            <span className={p.infoItem}><i className="far fa-address-card"></i></span>
+                            <span className={p.infoItem}><ExceptionOutlined /></span>
                             {profile.aboutMe}
                         </li>}
 
                         {profile.lookingForAJob && <li>
-                            <span className={p.infoItem}><i className="fas fa-briefcase"></i></span>
+                            <span className={p.infoItem}><FileSearchOutlined /></span>
                             <b>{t('profile.lookingJob')}</b>
 
                             <p className={p.description}>{profile.lookingForAJobDescription}</p>
@@ -136,47 +150,48 @@ const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
                 <ul>
                     {contacts.facebook && <li>
                         <a href={normalizeLink(contacts.facebook)} target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-facebook"></i>
+                            <FacebookOutlined />
                         </a>
                     </li>}
 
                     {contacts.website && <li>
                         <a href={normalizeLink(contacts.website)} target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-internet-explorer"></i>
+                            <DribbbleOutlined />
                         </a>
                     </li>}
 
                     {contacts.vk && <li><a href={normalizeLink(contacts.vk)} target="_blank" rel="noopener noreferrer">
-                        <i className="fab fa-vk"></i></a>
+                                <IeOutlined />
+                        </a>
                     </li>}
 
                     {contacts.twitter && <li>
                         <a href={normalizeLink(contacts.twitter)} target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-twitter"></i>
+                            <TwitterOutlined />
                         </a>
                     </li>}
 
                     {contacts.instagram && <li>
                         <a href={normalizeLink(contacts.instagram)} target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-instagram"></i>
+                            <InstagramOutlined />
                         </a>
                     </li>}
 
                     {contacts.youtube && <li>
                         <a href={normalizeLink(contacts.youtube)} target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-youtube"></i>
+                            <YoutubeOutlined />
                         </a>
                     </li>}
 
                     {contacts.github && <li>
                         <a href={normalizeLink(contacts.github)} target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-github"></i>
+                            <GithubOutlined />
                         </a>
                     </li>}
 
                     {contacts.mainLink && <li>
                         <a href={normalizeLink(contacts.mainLink)} target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-linkedin-in"></i>
+                            <LinkedinOutlined />
                         </a>
                     </li>}
                 </ul>

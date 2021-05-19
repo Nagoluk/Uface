@@ -1,6 +1,7 @@
 import React, { FormEvent} from 'react';
 import galleryStyle from './gallery.module.css';
 import p from '../../Profile/profile.module.css';
+import { ToTopOutlined, CloseCircleOutlined, CloudUploadOutlined } from '@ant-design/icons';
 
 type ownProps = {
     setShowGallery: (payload: boolean) => void
@@ -19,11 +20,11 @@ const Gellery: React.FC<ownProps> = props => {
         <div className={galleryStyle.ContentWrapper} onClick={clickOnWrap} id={'wrap'}>
             <div className={galleryStyle.Content}>
                 <div className={galleryStyle.Header}>
-                    <p onClick={() => props.setShowGallery(false)}><i className="fas fa-times"></i>Close</p>
+                    <div onClick={() => props.setShowGallery(false)}><CloseCircleOutlined /></div>
 
                     {props.amI && <div>
                         <label htmlFor="avatar">
-                            <i className="fas fa-upload"></i>
+                            <CloudUploadOutlined />
                             <input type="file" id="avatar" onInput={props.uploadPhoto} style={{display: 'none'}}/>
                         </label>
                     </div>}

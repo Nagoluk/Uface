@@ -14,7 +14,7 @@ export const UniversalThemeComponent = styled.div`
     }
 
     & a.active svg{
-        color: #0078D4;
+        color: #2B5278;
     }
     
     & svg {

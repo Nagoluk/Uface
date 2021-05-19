@@ -18,7 +18,7 @@
 
 button.navs {
     font-weight: bold;
-    background: #1890ff;
+    background: #2B5278;
     padding: 0 5px;
 }
 
@@ -31,7 +31,7 @@ button.navs:disabled {
 }
 
 .settingPanel button.active{
-    background: #1890ff;
+    background: #2B5278;
     color: white;
 }
 

@@ -51,11 +51,14 @@ newpost textarea::-webkit-scrollbar-thumb {
   border-radius: 50%;
   height: 29px;
   width: 29px;
+  cursor: pointer;
 }
 
 .send svg {
   color: #fff;
   margin-right: 5px;
+  font-size: 0.7em;
+
 }
 
 .send:disabled {

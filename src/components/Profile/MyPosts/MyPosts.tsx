@@ -11,6 +11,7 @@ import {
 import {actionsProfile} from '../../../redux-state/profileReducer';
 import {ProfileType} from '../../../interfaces/profile-interfaces';
 import {useTranslation} from 'react-i18next';
+import {SendOutlined} from '@ant-design/icons';
 
 type ownProps = {
     profile: ProfileType
@@ -59,7 +60,7 @@ const MyPosts: React.FC<ownProps> = ({profile}) => {
                         <div>
                             <button className={MyPost.button + ' ' + MyPost.send} disabled={isDisabled}
                                     onClick={addNewPost}>
-                                <i className="fab fa-telegram"></i></button>
+                                <SendOutlined /></button>
                         </div>
                     </div>
                 </PostsItemStyled>

@@ -1,6 +1,7 @@
 import React from 'react';
 import UsersStlyes from '../../Users/Users.module.css';
 import {PagitatorItemStyled} from '../../../styles/theme';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 
 type PagitatorTypes = {
@@ -53,7 +54,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
 
     return (<PagitatorItemStyled className={UsersStlyes.settingPanel}>
         <button className={UsersStlyes.navs} disabled={left <= 1} onClick={leftShift}>
-            <i className="fas fa-chevron-left"></i>
+            <LeftOutlined />
         </button>
 
         {pages.map((p, index) => {
@@ -64,7 +65,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
         })}
 
         <button className={UsersStlyes.navs} onClick={rightShift} disabled={right >= pageCount}>
-            <i className="fas fa-chevron-right"></i>
+            <RightOutlined />
         </button>
     </PagitatorItemStyled>)
 }

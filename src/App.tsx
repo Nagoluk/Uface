@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import 'antd/dist/antd.css'
-import './App.css';
+
+
 import {Redirect, Route, Switch} from 'react-router-dom';
 
 import Login from './components/Login/Login';
@@ -26,6 +26,7 @@ import i18n from "i18next";
 import { useTranslation, initReactI18next } from "react-i18next";
 import {resources} from './localization';
 import DialogContainer from './components/Dialogs/Dialog/DialogContainer';
+
 
 i18n
     .use(initReactI18next) // passes i18n down to react-i18next

@@ -3,6 +3,7 @@ import post from './post.module.css';
 import Avatar from './../../../../img/Profile/avatar.png';
 import {PostsItemStyled} from '../../../../styles/theme';
 import {photosT, PostDataType} from '../../../../interfaces/profile-interfaces';
+import {RetweetOutlined, MessageOutlined, LikeOutlined} from '@ant-design/icons';
 
 type ownProps = {
     name: string,
@@ -31,9 +32,9 @@ const Post: React.FC<PostDataType & ownProps> = (props) => {
             </div>
 
             <div className={post.activity}>
-                <div className={post.likes}><i className="far fa-thumbs-up"></i> {props.likes}</div>
-                <div className="shares"><i className="fas fa-retweet"></i> {props.rep}</div>
-                <div className="comments"><i className="far fa-comments"></i> {props.comm}</div>
+                <div className={post.likes}><LikeOutlined /> {props.likes}</div>
+                <div className="shares"><RetweetOutlined /> {props.rep}</div>
+                <div className="comments"><MessageOutlined /> {props.comm}</div>
             </div>
         </PostsItemStyled>
 
