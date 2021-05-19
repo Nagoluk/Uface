@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import MessagesStyle from "./Messages.module.css";
-import {deleteMessageThunkCreator, getMessagesAC, getMessagesThunkCreator} from "../../../../redux-state/messageReducer";
+import {deleteMessageThunkCreator, actionsMessages, getMessagesThunkCreator} from "../../../../redux-state/messageReducer";
 import Alert from "../../../common/alert/alert";
 
 import styled from "styled-components";
@@ -104,6 +104,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getMessagesThunkCreator, getMessagesAC, deleteMessageThunkCreator})(Messages)
+export default connect(mapStateToProps, {getMessagesThunkCreator, getMessagesAC: actionsMessages.getMessagesAC, deleteMessageThunkCreator})(Messages)
 
 

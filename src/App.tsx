@@ -25,6 +25,7 @@ import Users from './components/Users/Users';
 import i18n from "i18next";
 import { useTranslation, initReactI18next } from "react-i18next";
 import {resources} from './localization';
+import DialogContainer from './components/Dialogs/Dialog/DialogContainer';
 
 i18n
     .use(initReactI18next) // passes i18n down to react-i18next
@@ -77,12 +78,12 @@ const App = () => {
 
                 <div className="main-wrap">
                     <AdaptiveMenu/>
-                    <SideBar/>
+                    {/*<SideBar/>*/}
                     <main>
                         <React.Suspense fallback={<Preloader/>}>
                             <Switch>
                                 <Route path="/dialogs/:userID?"
-                                       render={() => <NetworkError refresh={() => alert('work')}/>}/>
+                                       render={() => <DialogContainer/>}/>
                                 <Route path="/setting" render={() => <Setting/>}/>
                                 <Route path="/profile/:userID?" render={() => <Profile/>}/>
                                 <Route path="/friends" render={() => <Users/>}/>

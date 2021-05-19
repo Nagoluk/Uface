@@ -3,7 +3,7 @@ import UsersStlyes from './Users.module.css';
 import User from './User';
 import {Pagitator} from '../common/pagitator/Pagitator';
 import {UniversalWrap} from '../../styles/wrap.styles'
-import {UserT} from '../../interfaces/users-interfaces';
+
 import {useDispatch, useSelector} from 'react-redux';
 import {
     getPagePagitator,
@@ -14,6 +14,8 @@ import {
 import {setUsersThunkCreator, unfollowThunkCreator, UsersActions, followThunkCreator} from '../../redux-state/usersReducer';
 import Preloader from '../assets/preloader/Preloader';
 import {useTranslation} from 'react-i18next';
+import { Button } from 'antd';
+import Search from 'antd/lib/input/Search';
 
 
 
@@ -72,7 +74,7 @@ let Users: React.FC = () => {
     }, [])
 
 
-    return (<UniversalWrap>
+    return (<UniversalWrap maxWidth={550}>
                 <Pagitator currentPage={currentPage}
                            onPageChange={onPageChange}
                            pagePagitator={pagePagitator}
@@ -81,6 +83,13 @@ let Users: React.FC = () => {
                            totalUsersCount={totalUsersCount}
                            windowsWidth={screenWidth}
                 />
+
+                <div className={UsersStlyes.option}>
+                    <Button type="primary" size={"large"}>All users</Button>
+                    <Button size={"large"}>Following</Button>
+                    <Button size={"large"}>Not following</Button>
+                    <Search placeholder="input search text" size={"large"} enterButton="Search" />
+                </div>
 
 
         {isFetching ? <Preloader/> : <div className={UsersStlyes.itemWrap}>

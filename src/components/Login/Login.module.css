@@ -17,12 +17,11 @@
 }
 
 .Form h2 {
-    font-weight: lighter;
+    font-weight: normal;
     margin-top: 10px;
 }
 
 .Form h1 svg {
-    color: gray;
     margin-right: 5px;
     font-size: 30px;
 }
@@ -35,7 +34,6 @@
 }
 
 .Input {
-    border-bottom: 1px solid lightgray;
     padding-bottom: 10px;
 }
 
@@ -50,6 +48,10 @@
     color: red;
     padding: 2px;
     font-size: 17px;
+}
+
+.Input svg {
+    color: red!important;
 }
 
 .RememberMe {

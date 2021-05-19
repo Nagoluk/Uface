@@ -52,6 +52,8 @@ let User: React.FC<PropsType> = props => {
             }
         </div>
 
+
+
     </UserItemStyled>)
 }
 

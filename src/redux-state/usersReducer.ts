@@ -7,7 +7,7 @@ import {IFilters} from '../interfaces/common-interfaces';
 
 let initialUsers = {
     users: [] as Array<UserT>,
-    pageSize: 12,
+    pageSize: 9,
     totalUsersCount: 16,
     currentPage: 1,
     currentPagePagitator: 0,
@@ -118,7 +118,6 @@ export const setUsersThunkCreator = (currentPage: number, pageSize: number, filt
         dispatch(UsersActions.setCurrentPage(currentPage));
         dispatch(UsersActions.ToggleFetching(true));
         UsersAPI.getUsers(currentPage, pageSize, filters).then((data: any) => {
-
             dispatch(UsersActions.setUsers(data.items));
             dispatch(UsersActions.setTotalCount(data.totalCount));
             dispatch(UsersActions.ToggleFetching(false));

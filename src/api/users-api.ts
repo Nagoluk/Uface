@@ -7,8 +7,8 @@ const qs = require('qs')
 
 export let UsersAPI = {
     //todo: &friend=true
-    getUsers(currentPage = 1, pageSize = 10, filters: IFilters) {
-        let request = qs.stringify({currentPage, pageSize, ...filters})
+    getUsers(currentPage = 1, pageSize = 9, filters: IFilters) {
+        let request = qs.stringify({page: currentPage, count: pageSize})
 
         return instance.get<IGetItems<UserT>>(`users?`+request)
             .then(response => response.data);

@@ -107,6 +107,11 @@ export const LoginWrapStyled = styled(UniversalThemeComponent)`
     height: calc(100% - 57px);
     border-top: 1px solid ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'lightgray')}; 
     
+    & input {
+        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'lightgray')};
+        border: none;
+    };
+    
     @media(max-width: 1250px){
         & {
             width: 40%;

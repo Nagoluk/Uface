@@ -53,7 +53,6 @@ const Header: React.FC = () => {
                 </div>
 
                 <div className={headermod.rightside}>
-                    <SearchContainer/>
 
                     <div className={headermod.note + ' ' + headermod.hide}>
                         <i className="fas fa-bell"></i>

@@ -18,7 +18,7 @@
 
 button.navs {
     font-weight: bold;
-    background: #2B5278;
+    background: #1890ff;
     padding: 0 5px;
 }
 
@@ -31,7 +31,7 @@ button.navs:disabled {
 }
 
 .settingPanel button.active{
-    background: #2B5278;
+    background: #1890ff;
     color: white;
 }
 
@@ -39,6 +39,7 @@ button.navs:disabled {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
 }
 
 .item {
@@ -48,10 +49,25 @@ button.navs:disabled {
     text-align: center;
     padding-bottom: 40px;
     margin: 4px 0;
+    border-radius: 5px;
 }
 
 .item a {
     text-decoration: none;
+}
+
+.option {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    background: #fff;
+}
+
+
+.option button {
+    border-radius: 0px;
 }
 
 @media (max-width: 635px) {
@@ -81,13 +97,14 @@ button.navs:disabled {
 }
 
 .item button{
-    bottom: 10px;
+    bottom: 8px;
     left: 54px;
-    padding: 5px 14px;
+    padding: 8px 14px;
     border-radius: 20px;
     border: 1px solid silver;
     outline: none;
     background: none;
+    cursor: pointer;
 }
 
 .item .buttons {
@@ -101,7 +118,7 @@ button.navs:disabled {
     word-wrap: break-word;
     font-size: 1.5em;
     font-weight: bold;
-    color: #2B5278;
+    color: #1890ff;
     line-height: 1.1;
 }
 
@@ -111,12 +128,5 @@ button.navs:disabled {
     margin: 7px 0;
 }
 
-.getUsers {
-    outline: none;
-    background: #2B5278;
-    color: #ffffff;
-    padding: 7px 13px;
-    border: none;
-}
 
 
