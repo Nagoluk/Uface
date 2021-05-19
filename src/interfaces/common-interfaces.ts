@@ -10,8 +10,8 @@ export enum ResultsCodes {
 }
 
 export interface IFilters {
-    friends: boolean,
-    term: string
+    friend?: boolean,
+    term?: string
 }
 
 export enum ResultCodeForCaptcha {

@@ -16,6 +16,14 @@ body::-webkit-scrollbar-thumb {
   background: lightgray;
 }
 
+.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button {
+  border-radius: 0!important;
+}
+
+.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button svg {
+  color: #fff;
+}
+
 @media (max-width: 635px) {
   body{
     padding-bottom: 54px;

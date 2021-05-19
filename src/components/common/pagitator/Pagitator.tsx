@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import UsersStlyes from '../../Users/Users.module.css';
 import {PagitatorItemStyled} from '../../../styles/theme';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import {IFilters} from '../../../interfaces/common-interfaces';
 
 
 type PagitatorTypes = {
@@ -12,6 +13,7 @@ type PagitatorTypes = {
     currentPage: number,
     setCurrentPagePagitator: (count: number) => void,
     onPageChange: (a: number) => void,
+    filters: IFilters
 }
 
 export const Pagitator: React.FC<PagitatorTypes> = ({
@@ -22,6 +24,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
                                                         setCurrentPagePagitator,
                                                         onPageChange,
                                                         windowsWidth,
+                                                        filters
                                                     }) => {
     let pageCount = Math.ceil(totalUsersCount / pageSize);
     let pages: Array<number> = [];
@@ -34,6 +37,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
     }
 
     let count = pagePagitator;
+
     let left = count * portion + 1;
     let right = left + portion - 1;
 
@@ -49,6 +53,11 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
     let rightShift = () => {
         setCurrentPagePagitator(++count)
     }
+
+    useEffect(() => {
+
+        setCurrentPagePagitator(0)
+    }, [filters])
 
     pages = pages.filter(item => item >= left && item <= right)
 

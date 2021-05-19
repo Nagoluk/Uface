@@ -65,6 +65,10 @@ export const ProfileItemStyled = styled(UniversalThemeComponent)`
     }
 `
 
+export const UserOptionItemStyled = styled(UniversalThemeComponent)`
+    border: ${props => (props.theme.mode === 'dark' ? '1px solid #2B2B2B' : '1px solid lightgray;')};
+`
+
 export const PagitatorItemStyled = styled(ProfileItemStyled)``
 
 export const UserItemStyled = styled(ProfileItemStyled)`
