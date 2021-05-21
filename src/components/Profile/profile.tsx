@@ -8,15 +8,19 @@ import {getMyIdSelector} from '../../redux-state/selectors/login-selectors';
 import MyPosts from './MyPosts/MyPosts';
 import {useParams, useHistory} from 'react-router-dom'
 import {getProfileThunkCreator, getStatusThunkCreator, actionsProfile} from '../../redux-state/profileReducer';
+import {useRedirect} from '../../hook/Redirect';
 
 
 const Profile = () => {
+
     const isFetching = useSelector(getIsProfileFetching)
     const profile = useSelector(getProfileSelector)
     const myId = useSelector(getMyIdSelector)
     const params = useParams<{userID: string}>()
     const history = useHistory()
     const dispatch = useDispatch()
+
+    useRedirect()
 
     const setProfile = () => {
         let userID: string | number | null = params.userID;

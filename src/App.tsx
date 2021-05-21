@@ -24,7 +24,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import {resources} from './localization';
 import DialogContainer from './components/Dialogs/Dialog/DialogContainer';
-import {getIsLoginedSelector} from './redux-state/selectors/login-selectors';
+
 
 
 i18n
@@ -58,8 +58,6 @@ const App = () => {
     const dispatch = useDispatch()
     const initialized = useSelector(getInitializedSelector)
     const isBlackTheme = useSelector(getIsBlackSelector)
-    const isLogined = useSelector(getIsLoginedSelector)
-
 
     useEffect(() => {
         dispatch(initializeApp())

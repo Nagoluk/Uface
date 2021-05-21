@@ -20,11 +20,14 @@ import {IFilters} from '../../interfaces/common-interfaces';
 import { NotFound } from '../common/notFount/NotFound';
 import {UserOptionItemStyled} from '../../styles/theme';
 import { useHistory } from 'react-router-dom';
+import {useRedirect} from '../../hook/Redirect';
 
 const qs = require('qs')
 
 
 let Users: React.FC = () => {
+    useRedirect()
+
     const totalUsersCount = useSelector(getTotalUsersCountSelector)
     const pageSize = useSelector(getPageSizeSelector)
     const pagePagitator = useSelector(getPagePagitator)

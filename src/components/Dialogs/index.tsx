@@ -3,6 +3,7 @@ import DialogsListContainer from "./DialogList/DialogsListContainer";
 import DialogContainer from "./Dialog/DialogContainer";
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 import styled from "styled-components";
+import LoginHoc from '../../hoc/loginHoc';
 
 type BookDetailParams = {
     userID: string; // parameters will always be a string (even if they are numerical)
@@ -29,4 +30,4 @@ export const Dialogs: React.FC<BookDetailProps>= (props) => {
             </DialogWrap>)
 }
 
-export default withRouter(Dialogs)
+export default withRouter(LoginHoc(Dialogs))

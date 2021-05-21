@@ -8,6 +8,7 @@ import {UserItemStyled} from '../../styles/theme';
 import {Avatar} from '../assets/avatar/avatar';
 import {UserT} from '../../interfaces/users-interfaces';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import LoginHoc from '../../hoc/loginHoc';
 
 
 

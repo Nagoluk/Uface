@@ -20,6 +20,7 @@ import Styles from './setting.module.css';
 import i18next from 'i18next';
 
 
+
 const {TabPane} = Tabs
 
 
