@@ -12,13 +12,12 @@ import {getNewMessagesCountSelector} from '../../redux-state/selectors/notificat
 import { logout } from '../../redux-state/loginReducer';
 import {actionsApp} from '../../redux-state/appReducer';
 import {
-    AliwangwangOutlined, IdcardOutlined,
+    IdcardOutlined,
     LogoutOutlined, MenuUnfoldOutlined,
     MessageOutlined,
     SettingOutlined, SwapOutlined,
     UsergroupAddOutlined
 } from '@ant-design/icons';
-import Header from '../Header/header';
 import {Avatar} from '../assets/avatar/avatar';
 import AvatarImg from '../../img/Profile/avatar.png';
 

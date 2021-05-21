@@ -41,7 +41,7 @@ const Profile = () => {
             // dispatch(actionsProfile.setRedirectedToDialog(false));
             dispatch(actionsProfile.setProfile(null));
         }
-    }, [])
+    }, [params])
 
     if (isFetching || profile === null) {
         return (<Preloader/>)
