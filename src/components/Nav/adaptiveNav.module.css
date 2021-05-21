@@ -6,7 +6,43 @@
     display: none;
 }
 
-@media (max-width: 875px) {
+.fullScreen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    scroll-behavior: unset;
+}
+
+.fullScreenWrap {
+    padding: 50px;
+}
+
+.fullScreenWrap h2 {
+    margin-bottom: 20px;
+}
+
+.closeFullScreen {
+    position: absolute;
+    right: 20px;
+    top: 50px;
+}
+
+.fullScreenMenuItems > div {
+    padding: 20px 15px;
+    font-size: 1.3em;
+}
+
+.fullScreenMenuItems > div svg {
+    margin-right: 10px;
+}
+
+.menu svg {
+    color: #2B5278;
+}
+
+@media (max-width: 720px) {
     .adaptivemenu{
         width: 100%;
         display: flex;

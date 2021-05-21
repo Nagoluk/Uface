@@ -1,17 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom';
 
 import styled from 'styled-components';
 import headermod from './adaptiveNav.module.css';
 import Navmod from './nav.module.css';
 
-import {AdaptiveNav} from '../../styles/theme'
+import {AdaptiveNav, UniversalThemeComponent} from '../../styles/theme'
 import {useDispatch, useSelector} from 'react-redux';
-import {getIsLoginedSelector} from '../../redux-state/selectors/login-selectors';
-import {getIsBlackSelector} from '../../redux-state/selectors/app-selectors';
+import {getIsLoginedSelector, getMyProfileSelector} from '../../redux-state/selectors/login-selectors';
 import {getNewMessagesCountSelector} from '../../redux-state/selectors/notification-selector';
 import { logout } from '../../redux-state/loginReducer';
 import {actionsApp} from '../../redux-state/appReducer';
+import {
+    AliwangwangOutlined, IdcardOutlined,
+    LogoutOutlined, MenuUnfoldOutlined,
+    MessageOutlined,
+    SettingOutlined, SwapOutlined,
+    UsergroupAddOutlined
+} from '@ant-design/icons';
+import Header from '../Header/header';
+import {Avatar} from '../assets/avatar/avatar';
+import AvatarImg from '../../img/Profile/avatar.png';
 
 export const SwitchButton = styled.button`
     background: none;
@@ -22,57 +31,94 @@ export const SwitchButton = styled.button`
         color: #0078D4;
     }
 `
-
-export const AdaptiveMenu: React.FC = props => {
-    const isLogined = useSelector(getIsLoginedSelector)
-    const black = useSelector(getIsBlackSelector)
+export const FullScreenMenu: React.FC<{setIsFullScreen: Function}> = ({setIsFullScreen}) => {
+    const profile = useSelector(getMyProfileSelector)
     const newMessageCount = useSelector(getNewMessagesCountSelector)
-
     const dispatch = useDispatch()
 
+    return <UniversalThemeComponent className={headermod.fullScreen}>
+                <div className={headermod.fullScreenWrap}>
+                    <div>
+                        <h2>{profile?.fullName}</h2>
+                        <Avatar link={profile?.photos.small || AvatarImg} size={70}/>
+                        <MenuUnfoldOutlined
+                            className={headermod.closeFullScreen}
+                            onClick={() => setIsFullScreen(false)}
+                        />
+                    </div>
+
+                    <div className={headermod.fullScreenMenuItems} >
+                        <div className={headermod.adaptiveMenu} onClick={() => setIsFullScreen(false)}>
+                            <NavLink to="/profile" activeClassName={Navmod.activeLink}>
+                                <IdcardOutlined />
+                                Profile
+                            </NavLink>
+                        </div>
+
+                        <div className={headermod.adaptiveMenu} onClick={() => setIsFullScreen(false)}>
+                            <NavLink to="/friends" activeClassName={Navmod.activeLink}>
+                                <UsergroupAddOutlined />
+                                Users
+                            </NavLink>
+                        </div>
+
+                        <div className={headermod.adaptiveMenu + ' ' + headermod.messages} onClick={() => setIsFullScreen(false)}>
+                            <NavLink to='/dialogs'>
+                                <MessageOutlined />
+                                Messages
+                            </NavLink>
+                            {newMessageCount ? <div className={headermod.newMessageCount}>{newMessageCount}</div> : null}
+                        </div>
+
+                        <div className={headermod.adaptiveMenu} onClick={() => setIsFullScreen(false)}>
+                            <NavLink to="/setting" activeClassName={Navmod.activeLink}>
+                                <SettingOutlined />
+                                Settings
+                            </NavLink>
+                        </div>
+
+                        <div className={headermod.adaptiveMenu} onClick={() => setIsFullScreen(false)}>
+                            <SwitchButton onClick={() => dispatch(actionsApp.ChangeThemeAC())}>
+                                <SwapOutlined /> Change theme
+                            </SwitchButton>
+                        </div>
+
+                        <div className={headermod.logout} onClick={() => dispatch(logout())}>
+                            <LogoutOutlined/> Logout
+                        </div>
+                    </div>
+                </div>
+           </UniversalThemeComponent>
+}
+
+export const AdaptiveMenu: React.FC = () => {
+    const isLogined = useSelector(getIsLoginedSelector)
+    const newMessageCount = useSelector(getNewMessagesCountSelector)
+    const [isFullScreen, setIsFullScreen] = useState(false)
+
+    if(!isLogined) return null
+
     return (<AdaptiveNav className={headermod.adaptivemenu}>
-        {isLogined && <div className={headermod.note + ' ' + headermod.logout} onClick={() => {
-           dispatch(logout());
-        }}>
-            <i className="fas fa-power-off" title={'logout'}></i>
-        </div>}
+        {isFullScreen && <FullScreenMenu setIsFullScreen={setIsFullScreen}/>}
 
-        {!isLogined && <div className={headermod.note}>
-            <NavLink to="/login">
-                <i className="fas fa-sign-in-alt" title={'logout'}></i>
-            </NavLink>
-        </div>}
-
-        <div className={headermod.adaptiveMenu}>
-            {black && <SwitchButton onClick={() => dispatch(actionsApp.ChangeThemeAC())}>
-                <i className="far fa-moon"></i>
-            </SwitchButton>}
-
-            {!black && <SwitchButton onClick={() => dispatch(actionsApp.ChangeThemeAC())}>
-                <i className="fas fa-sun"></i>
-            </SwitchButton>}
-        </div>
-
-        <div className={headermod.adaptiveMenu}>
-            <NavLink to="/setting" activeClassName={Navmod.activeLink}><i
-                className="fas fa-cogs"></i></NavLink>
-        </div>
-
-        <div className={headermod.adaptiveMenu}>
-            <NavLink to="/friends" activeClassName={Navmod.activeLink}><i
-                className="fas fa-user-friends"></i></NavLink>
+        <div className={headermod.adaptiveMenu} >
+            <NavLink to="/friends" activeClassName={Navmod.activeLink}>
+                <UsergroupAddOutlined /></NavLink>
         </div>
 
         <div className={headermod.adaptiveMenu + ' ' + headermod.messages}>
             <NavLink to='/dialogs'>
-                <i className="fas fa-envelope"></i>
+                <MessageOutlined />
             </NavLink>
             {newMessageCount ? <div className={headermod.newMessageCount}>{newMessageCount}</div> : null}
         </div>
 
         <div className={headermod.adaptiveMenu}>
-            <NavLink to="/profile" activeClassName={Navmod.activeLink}><i
-                className="fas fa-address-card"></i></NavLink>
+            <NavLink to="/profile" activeClassName={Navmod.activeLink}><IdcardOutlined /></NavLink>
+        </div>
+
+        <div className={headermod.adaptiveMenu + " " + headermod.menu} onClick={() => setIsFullScreen(true)}>
+            <MenuUnfoldOutlined />
         </div>
     </AdaptiveNav>)
 }

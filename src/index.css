@@ -23,10 +23,3 @@ body::-webkit-scrollbar-thumb {
 .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button svg {
   color: #fff;
 }
-
-@media (max-width: 635px) {
-  body{
-    padding-bottom: 54px;
-  }
-}
-

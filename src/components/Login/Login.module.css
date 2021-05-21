@@ -1,5 +1,48 @@
 .Login {
-    flex-grow: 1;
+    display: flex;
+    height: calc(100vh - 54px) ;
+}
+
+.Photo {
+  width: 65%;
+}
+
+.LoginForm {
+  width: 35%;
+}
+
+@media(max-width: 1250px){
+    .Photo {
+        width: 40%;
+    }
+
+    .LoginForm {
+        width: 60%;
+    }
+}
+
+@media(max-width: 820px){
+    .Photo {
+        width: 10%;
+    }
+
+    .LoginForm {
+        width: 90%;
+    }
+}
+
+@media(max-width: 720px) {
+    .Login {
+        height: 100vh;
+    }
+
+    .LoginForm {
+        width: 100%;
+    }
+
+    .Photo {
+        display: none;
+    }
 }
 
 .Form {

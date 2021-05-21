@@ -68,7 +68,7 @@ button.navs:disabled {
 
 
 .option button {
-    border-radius: px;
+    border-radius: 0px;
 }
 
 @media (max-width: 635px) {
@@ -84,7 +84,7 @@ button.navs:disabled {
         position: fixed;
         left: 0;
         top: 0;
-        z-index: 999;
+        z-index: 998;
         width: 100%;
     }
 

@@ -3,10 +3,15 @@ import {NavLink} from 'react-router-dom';
 
 import Navmod from './nav.module.css';
 import {NavigationStyle} from '../../styles/theme';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {ProfileOutlined, IdcardOutlined, UsergroupAddOutlined, MessageOutlined, SettingOutlined} from '@ant-design/icons';
+import {IdcardOutlined, UsergroupAddOutlined, MessageOutlined, SettingOutlined} from '@ant-design/icons';
+import {useSelector} from 'react-redux';
+import {getIsLoginedSelector} from '../../redux-state/selectors/login-selectors';
 
 const Nav: React.FC = () => {
+    const isLogined = useSelector(getIsLoginedSelector)
+
+    if(!isLogined) return null
+
     return (<nav>
         <NavigationStyle className={Navmod.navigation}>
             <ul>

@@ -14,9 +14,6 @@ import {getCaptchaSelector, getIsLoginedSelector} from '../../redux-state/select
 import {AliwangwangOutlined} from '@ant-design/icons';
 
 const Background = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 75%;
     height: 100%;
     background: url('https://image.freepik.com/free-vector/season-rain-blue-seamless-background_95169-905.jpg');
@@ -115,12 +112,12 @@ export const Login = () => {
     }
 
     return (<div className={styles.Login}>
-        <Background/>
+                <Background className={styles.Photo}/>
 
-        <LoginWrapStyled>
-            <ReduxLoginForm onSubmit={onSubmit} captcha={captcha}/>
-        </LoginWrapStyled>
-    </div>)
+                <LoginWrapStyled className={styles.LoginForm}>
+                    <ReduxLoginForm onSubmit={onSubmit} captcha={captcha}/>
+                </LoginWrapStyled>
+            </div>)
 }
 
 export default Login

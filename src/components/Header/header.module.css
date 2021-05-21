@@ -121,43 +121,10 @@
     position: relative;
 }
 
-.Results {
-    position: absolute;
-    padding: 10px;
-    border: 1px solid lightgray;
-    top: 40px;
-    min-width: 250px;
-    border-radius: 5px;
-    z-index: 99;
-}
-
-.Results a {
-    text-decoration: none;
-}
-
-.Results .Item {
-    display: flex;
-    border-bottom: 1px solid lightgray;
-    padding: 8px 0;
-}
-
-.Results .Item>div {
-    margin-left: 10px;
-}
-
-.Results .Item p {
-    font-size: 13px;
-}
-
-.Results .Item h3 {
-    padding: 5px 0;
-    margin-left: 0;
-    font-weight: 400;
-    font-size: 20px;
-}
 
 
-@media (max-width: 640px) {
+
+@media (max-width: 720px) {
     header {
         margin: 0;
     }

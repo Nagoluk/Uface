@@ -25,11 +25,6 @@ let User: React.FC<PropsType> = props => {
     return (<UserItemStyled className={UsersStlyes.item} key={props.index.toString()}>
         <div className={UsersStlyes.header}>
             <Avatar size={100} link={(props.user.photos.small !== null) ? props.user.photos.small : AvatarImg}/>
-            {/*<div className={UsersStlyes.avatar}>*/}
-            {/*    <img*/}
-            {/*        src={(props.user.photos.small !== null) ? props.user.photos.small : AvatarImg}*/}
-            {/*        alt="avatar"/>*/}
-            {/*</div>*/}
         </div>
 
         <div className={UsersStlyes.content}>

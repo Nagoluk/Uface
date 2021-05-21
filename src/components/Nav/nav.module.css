@@ -23,9 +23,9 @@ nav ul {
 }
 
 @media (max-width: 875px) {
-    nav{
-        display: none;
-    }
+    /*nav{*/
+    /*    display: none;*/
+    /*}*/
 }
 
 
