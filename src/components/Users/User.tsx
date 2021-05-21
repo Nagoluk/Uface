@@ -7,6 +7,8 @@ import {NavLink} from 'react-router-dom';
 import {UserItemStyled} from '../../styles/theme';
 import {Avatar} from '../assets/avatar/avatar';
 import {UserT} from '../../interfaces/users-interfaces';
+import { InfoCircleOutlined } from '@ant-design/icons';
+
 
 
 type PropsType = {
@@ -35,7 +37,7 @@ let User: React.FC<PropsType> = props => {
                 <NavLink to={'/profile/' + props.user.id}><h2>{props.user.name}</h2></NavLink>
             </div>
 
-            <div className={UsersStlyes.status}>{props.user.status}</div>
+            <div className={UsersStlyes.status}> <InfoCircleOutlined title={props.user.status || 'no status'}/></div>
         </div>
 
         <div className={UsersStlyes.buttons}>

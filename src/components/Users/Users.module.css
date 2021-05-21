@@ -125,12 +125,15 @@ button.navs:disabled {
     font-weight: bold;
     color: #1890ff;
     line-height: 1.1;
+    margin-bottom: 10px;
 }
 
 .status {
     word-wrap: break-word;
-    font-size: 0.8em;
+    font-size: 1.3em;
     margin: 7px 0;
+    position: absolute;
+    top: 0;
 }
 
 

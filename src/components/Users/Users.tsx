@@ -106,7 +106,7 @@ let Users: React.FC = () => {
     }, [filters])
 
 
-    return (<UniversalWrap maxWidth={550}>
+    return (<UniversalWrap maxWidth={600}>
                 <Pagitator currentPage={currentPage}
                            onPageChange={onPageChange}
                            pagePagitator={pagePagitator}

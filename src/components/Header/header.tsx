@@ -38,7 +38,7 @@ const Header: React.FC = () => {
         <HeaderStyle>
             <div className={headermod.headerWrap}>
                 <div className={headermod.leftside}>
-                    <NavLink to="/"><h1><AliwangwangOutlined />Uface</h1></NavLink>
+                    <NavLink to="/"  className={headermod.logo}><h1><AliwangwangOutlined />Uface</h1></NavLink>
                     <div style={{'marginTop': '5px'}}>
                         <SwitchButton onClick={() => dispatch(actionsApp.ChangeThemeAC())}>
                             <SwapOutlined />

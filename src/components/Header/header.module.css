@@ -15,6 +15,11 @@
     position: relative;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .leftside {
     display: flex;
 }
