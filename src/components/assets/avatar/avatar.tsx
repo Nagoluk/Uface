@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import AvatarImg from '../../../img/Profile/avatar.png';
 
+
 type avatarTypes = {
     link: string | null,
     size: number,

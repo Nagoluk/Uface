@@ -18,7 +18,7 @@ import { Button } from 'antd';
 import Search from 'antd/lib/input/Search';
 import {IFilters} from '../../interfaces/common-interfaces';
 import { NotFound } from '../common/notFount/NotFound';
-import {UserOptionItemStyled} from '../../styles/theme';
+import {UniversalThemeComponent, UserOptionItemStyled} from '../../styles/theme';
 import { useHistory } from 'react-router-dom';
 import {useRedirect} from '../../hook/Redirect';
 
@@ -147,7 +147,7 @@ let Users: React.FC = () => {
                 </UserOptionItemStyled>
 
 
-        {isFetching ? <Preloader/> : <div className={UsersStlyes.itemWrap}>
+                {isFetching ? <Preloader/> : <div className={UsersStlyes.itemWrap}>
                     {users.map((user, index) => <User user={user}
                                                                     followProcess={followProcess}
                                                                     key={index}

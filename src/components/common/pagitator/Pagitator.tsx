@@ -62,7 +62,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
     pages = pages.filter(item => item >= left && item <= right)
 
     return (<PagitatorItemStyled className={UsersStlyes.settingPanel}>
-        <button className={UsersStlyes.navs} disabled={left <= 1} onClick={leftShift}>
+        <button className={UsersStlyes.navs + ' navs'} disabled={left <= 1} onClick={leftShift}>
             <LeftOutlined />
         </button>
 
@@ -73,7 +73,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
                            key={index.toString()}>{p}</button>
         })}
 
-        <button className={UsersStlyes.navs} onClick={rightShift} disabled={right >= pageCount}>
+        <button className={UsersStlyes.navs + ' navs'} onClick={rightShift} disabled={right >= pageCount}>
             <RightOutlined />
         </button>
     </PagitatorItemStyled>)

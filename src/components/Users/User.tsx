@@ -1,15 +1,14 @@
 import React from 'react';
 import UsersStlyes from './Users.module.css';
 import AvatarImg from '../../img/Profile/avatar.png';
+import AvatarBlack from '../../img/Profile/avatarBlack.png';
 import {NavLink} from 'react-router-dom';
-
-
 import {UserItemStyled} from '../../styles/theme';
 import {Avatar} from '../assets/avatar/avatar';
-import {UserT} from '../../interfaces/users-interfaces';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import LoginHoc from '../../hoc/loginHoc';
 
+import {UserT} from '../../interfaces/users-interfaces';
+import {useSelector} from 'react-redux';
+import {getIsBlackSelector} from '../../redux-state/selectors/app-selectors';
 
 
 type PropsType = {
@@ -22,10 +21,11 @@ type PropsType = {
 }
 
 let User: React.FC<PropsType> = props => {
+    const isBlack = useSelector(getIsBlackSelector)
 
     return (<UserItemStyled className={UsersStlyes.item} key={props.index.toString()}>
         <div className={UsersStlyes.header}>
-            <Avatar size={100} link={(props.user.photos.small !== null) ? props.user.photos.small : AvatarImg}/>
+            <Avatar size={100} link={(props.user.photos.small !== null) ? props.user.photos.small : (isBlack ? AvatarBlack: AvatarImg)}/>
         </div>
 
         <div className={UsersStlyes.content}>
@@ -33,7 +33,7 @@ let User: React.FC<PropsType> = props => {
                 <NavLink to={'/profile/' + props.user.id}><h2>{props.user.name}</h2></NavLink>
             </div>
 
-            <div className={UsersStlyes.status}> <InfoCircleOutlined title={props.user.status || 'no status'}/></div>
+            <div className={UsersStlyes.status}>{props.user.status || 'no status'}</div>
         </div>
 
         <div className={UsersStlyes.buttons}>
@@ -49,9 +49,6 @@ let User: React.FC<PropsType> = props => {
                         }}>{props.t('users.follow')}</button>
             }
         </div>
-
-
-
     </UserItemStyled>)
 }
 

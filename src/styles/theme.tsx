@@ -67,9 +67,36 @@ export const ProfileItemStyled = styled(UniversalThemeComponent)`
 
 export const UserOptionItemStyled = styled(UniversalThemeComponent)`
     border: ${props => (props.theme.mode === 'dark' ? '1px solid #2B2B2B' : '1px solid lightgray;')};
+    
+    & > button {
+        border: none;
+        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'darkgray')};
+        color: #fff;
+    }
+    
+    & > button:hover {
+        background: #2B5278;
+        color: #fff;
+    }
+    
+    & > button.ant-btn-primary {
+        background: #2B5278;
+    }
 `
 
-export const PagitatorItemStyled = styled(ProfileItemStyled)``
+export const PagitatorItemStyled = styled(ProfileItemStyled)`
+    & > button {
+        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'darkgray')};
+    }
+    
+    & > button.navs {
+        background: #2B5278;
+    }
+    
+    & > button:disabled {
+        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'darkgray')};;
+    }
+`
 
 export const UserItemStyled = styled(ProfileItemStyled)`
     & button {

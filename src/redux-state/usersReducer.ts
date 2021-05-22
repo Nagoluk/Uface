@@ -8,7 +8,7 @@ import {IFilters} from '../interfaces/common-interfaces';
 let initialUsers = {
     users: [] as Array<UserT>,
     pageSize: 9,
-    totalUsersCount: 16,
+    totalUsersCount: 0,
     currentPage: 1,
     currentPagePagitator: 0,
     isFetching: true,
