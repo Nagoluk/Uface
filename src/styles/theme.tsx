@@ -139,3 +139,12 @@ export const LoginWrapStyled = styled(UniversalThemeComponent)`
     };
     
 `
+
+export const SettingStyled = styled(UniversalThemeComponent)`
+   & input {
+        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'lightgray')};
+        color: ${props => (props.theme.mode === 'dark' ? '#fff' : '#000')};
+        border: none;
+    };
+   
+`

@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 
 import Set from './setting.module.css';
 import {UniversalWrap} from '../../styles/wrap.styles';
-import {UniversalThemeComponent} from '../../styles/theme';
+import {UniversalThemeComponent, SettingStyled} from '../../styles/theme';
 
 
 import {useDispatch, useSelector} from 'react-redux';
@@ -47,12 +47,12 @@ const Setting: React.FC = () => {
     if (profile === null) return <Preloader/>
 
     return (<UniversalWrap maxWidth={700}>
-        <UniversalThemeComponent >
-            <Tabs defaultActiveKey='profile' tabPosition={'bottom'} className={Set.wrap}>
+        <SettingStyled >
+            <Tabs defaultActiveKey='profile' tabPosition={'left'} className={Set.wrap}>
                 <TabPane tab={
                     <div className={Set.tab}>
                         <ProfileOutlined/>
-                        <span className={'tab'}>{t('settings.profile')}</span>
+                        {/*<span className={'tab'}>{t('settings.profile')}</span>*/}
 
                     </div>
                 } key={'profile'}
@@ -60,31 +60,31 @@ const Setting: React.FC = () => {
                     <UpdateProfileForm profile={profile}/>
                 </TabPane>
                 <TabPane tab={
-                    <div>
+                    <div className={Set.tab}>
                         <PhoneOutlined/>
-                        <span className={'tab'}>{t('settings.contacts')}</span>
+                        {/*<span className={'tab'}>{t('settings.contacts')}</span>*/}
                     </div>
 
                 } key={'contacts'}>
                     <UpdateContactForm profile={profile}/>
                 </TabPane>
-                <TabPane tab={
-                    <div>
-                        <TranslationOutlined />
-                        <span>{t('settings.languages')}</span>
-                    </div>
-                } key={'language'} >
-                    <UniversalThemeComponent className={Styles.item}>
-                        <h2>{t('settings.languages')}</h2>
-                        <br/>
-                        <Radio.Group onChange={onChange} value={i18next.languages[0]}>
-                            <Radio value={'eng'}>English</Radio>
-                            <Radio value={'ua'}>Українська</Radio>
-                        </Radio.Group>
-                    </UniversalThemeComponent>
-                </TabPane>
+                {/*<TabPane tab={*/}
+                {/*    <div>*/}
+                {/*        <TranslationOutlined />*/}
+                {/*        <span>{t('settings.languages')}</span>*/}
+                {/*    </div>*/}
+                {/*} key={'language'} >*/}
+                {/*    <UniversalThemeComponent className={Styles.item}>*/}
+                {/*        <h2>{t('settings.languages')}</h2>*/}
+                {/*        <br/>*/}
+                {/*        <Radio.Group onChange={onChange} value={i18next.languages[0]}>*/}
+                {/*            <Radio value={'eng'}>English</Radio>*/}
+                {/*            <Radio value={'ua'}>Українська</Radio>*/}
+                {/*        </Radio.Group>*/}
+                {/*    </UniversalThemeComponent>*/}
+                {/*</TabPane>*/}
             </Tabs>
-        </UniversalThemeComponent>
+        </SettingStyled>
     </UniversalWrap>)
 }
 
