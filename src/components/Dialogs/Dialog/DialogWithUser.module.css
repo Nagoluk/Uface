@@ -9,6 +9,8 @@
 
 .dialogHeader h3 {
     font-weight: normal;
+    font-size: 18px;
+    margin-bottom: 5px;
 }
 
 .createNewMessage {
@@ -39,7 +41,6 @@
 
 .dialogHeader{
     position: relative;
-
     padding: 12px;
     display: flex;
     align-items: center;
@@ -82,17 +83,17 @@
     font-family: Calibri, sans-serif;
 }
 
-@media (max-width: 635px) {
+@media (max-width: 720px) {
     .createNewMessage input {
         width: 50%;
     }
 
     .createNewMessage {
         position: fixed;
-        bottom: 53px;
+        bottom: 51px;
         left: 0;
         width: 100%;
-        padding: 8px 8px 0px 3px;
+        padding: 8px 4px;
         display: flex;
         justify-content: space-between;
     }
@@ -106,6 +107,7 @@
         display: flex;
         align-items: center;
         border-bottom: none;
+        z-index: 99;
     }
 
     .dialogHeader .Dialogavatar {
@@ -125,7 +127,7 @@
     }
 
     .backToDialogList a svg{
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .dialogHeader .status {

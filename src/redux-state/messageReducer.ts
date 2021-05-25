@@ -27,16 +27,16 @@ const messageReducer = (state = initialMessage, action: ActionTypes): initialMes
             }
         }
 
-        // case GET_MESSAGES: {
-        //     return {
-        //         ...state,
-        //         messages: {
-        //             items: [...action.messages],
-        //             totalCount: action.totalCount,
-        //             error: action.error,
-        //         }
-        //     }
-        // }
+        case 'GET_MESSAGES': {
+            return {
+                ...state,
+                messages: {
+                    items: [...action.data.items],
+                    totalCount: action.data.totalCount,
+                    error: action.data.error,
+                }
+            }
+        }
 
         case 'IS_DIALOG_FETCHING': {
             return {
@@ -69,7 +69,7 @@ const messageReducer = (state = initialMessage, action: ActionTypes): initialMes
 
 export const actionsMessages = {
     getDialogsAC: (dialogs: Array<dialogT>) => ({type: 'GET_DIALOGS', dialogs} as const),
-    getMessagesAC: (messages: Array<messageT>) => ({type: 'GET_MESSAGES', messages} as const),
+    getMessagesAC: (data: {items: Array<messageT>, totalCount: number, error: string}) => ({type: 'GET_MESSAGES', data} as const),
     isDialogsFetchingAC: (payload: boolean) => ({type: 'IS_DIALOG_FETCHING', payload} as const),
     addMessageAC: (message: messageT) => ({type: 'ADD_MESSAGE', message} as const),
     setRedirectedToDialog: (payload: boolean) => ({type: 'SET_IS_REDIRECTED_TO_DIALOG', payload} as const)

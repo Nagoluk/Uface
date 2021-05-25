@@ -20,7 +20,7 @@ const Profile = () => {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    useRedirect()
+    // useRedirect()
 
     const setProfile = () => {
         let userID: string | number | null = params.userID;

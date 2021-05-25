@@ -1,16 +1,9 @@
-.dialogList {
-
+.dialogs  {
+    min-width: 30%;
+    height: 100%;
+    min-width: 270px;
 }
 
-.dialogListHeader {
-    position: relative;
-}
-
-.dialogListHeader>svg {
-    position: absolute;
-    right: 10px;
-    top: 15px;
-}
 
 .dialogs input {
     margin: 5px 0px;
@@ -28,16 +21,16 @@
 
 .contactList {
     overflow-y: scroll;
-    max-height: 76vh;
+    height: 85.4vh;
 }
 
 .contactList::-webkit-scrollbar {
-    width: 4px;
+    width: 2px;
+
 }
 
-.contactList::-webkit-scrollbar-thumb {
-    background: lightgray;
-    border-radius: 3px;
+.contactList:hover::-webkit-scrollbar-thumb {
+    background: #1890ff;
 }
 
 .contactList li{
@@ -54,10 +47,10 @@
 
 }
 
-.dialogs ul li a{
+.dialogs ul li h3{
     text-decoration: none;
     padding-left: 10px;
-    font-size: 14px;
+    font-size: 16px;
     padding-top: 8px;
 }
 
@@ -78,10 +71,10 @@
 }
 
 .lastMessage {
-    font-size: 0.7em;
+    font-size: 0.9em;
     display: inline-block;
     color: gray;
-    padding: 0px 0px 0px 10px;
+    padding: 5px 0 0 10px;
 }
 
 .DialogItem {
@@ -119,7 +112,7 @@
     border: 1px solid lightgray;
 }
 
-@media (max-width: 635px) {
+@media (max-width: 720px) {
     .dialogList {
         width: 100%;
         border: none;

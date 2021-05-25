@@ -26,7 +26,7 @@ const qs = require('qs')
 
 
 let Users: React.FC = () => {
-    useRedirect()
+    // useRedirect()
 
     const totalUsersCount = useSelector(getTotalUsersCountSelector)
     const pageSize = useSelector(getPageSizeSelector)

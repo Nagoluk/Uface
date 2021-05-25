@@ -3,31 +3,30 @@
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-start;
-    height:75vh;
+    height:74.5vh;
     margin-left: 10px;
     overflow-Y: scroll;
 }
 
 .messages::-webkit-scrollbar {
-    background: #F4F4F4;
-    width: 4px;
+    width: 2px;
 }
 
-.messages::-webkit-scrollbar-thumb {
-    background: lightgray;
-    border-radius: 3px;
+.messages:hover::-webkit-scrollbar-thumb {
+    background: #1890ff;
 }
 
 .messageItem {
-    font-size: 1em;
+    font-size: 1.2em;
     margin: 3px;
     padding: 6px 6px 6px 10px;
     border-radius: 5px;
     position: relative;
     background: #F0F0F0;
     color: #000;
-    max-width: 70%;
+    max-width: 60%;
     word-wrap: break-word;
+    line-height: 1.2;
 }
 
 .data {
@@ -63,26 +62,7 @@
     right: -3px;
 }
 
-
-.messageItem.animation:first-child{
-    position: relative;
-
-    /*transition: all linear .2s;*/
-    -webkit-animation: appearMessage 0.25s;
-    animation: appearMessage 0.25s;
-
-}
-
-@keyframes appearMessage {
-    0%   {
-        left: -30px;
-    }
-    100% {
-        left: 0px;
-    }
-}
-
-@media (max-width: 635px) {
+@media (max-width: 720px) {
 
     .messages {
         border-top: none;
@@ -91,12 +71,12 @@
         bottom: 95px;
         left: 0;
         background: #fff;
-        height: calc(100% - 30px - 44px - 61px);
+        height: calc(100% - 30px);
         margin: 0;
     }
 
     .messageItem {
-        font-size: 0.8em;
+        font-size: 1em;
     }
 
 }

@@ -1,37 +1,32 @@
 import React, {useState} from 'react';
 import MyPost from "../../Profile/MyPosts/MyPosts.module.css";
 import DialogMod from "./DialogWithUser.module.css";
-import {NavLink} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import Avatar from "../../../img/Profile/avatar.png";
-import Messages from "./Messages/Messages";
-import Alert from "../../common/alert/alert";
+import {Messages} from "./Messages/Messages";
 import styled from "styled-components";
+import {CloseCircleOutlined, SendOutlined} from '@ant-design/icons';
+import {useDispatch, useSelector} from 'react-redux';
+import {getIsBlackSelector} from '../../../redux-state/selectors/app-selectors';
+import {getDialogInfoSelector} from '../../../redux-state/selectors/message-selectors';
+import {sendMessagesThunkCreator} from '../../../redux-state/messageReducer';
+
 
 const DialogStyled = styled.div`
-    & > div{
-     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
-    }
-    
-    & textarea {
-        background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
-        color: ${props => (props.black ? '#fff' : '#000')};
-   
-    }
-  
-    && a {
-        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
-    }
-    
-    & h1 {
-        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
-    }
+    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+    margin-left: 5px
+`
+
+const DialogHeader = styled.div`
+    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+    border-bottom: 1px solid ${props => (props.black ? '#3C3F41' : 'lightgray')};
     
     & h3 {
         color: ${props => (props.black ? '#ffffff' : '#474B59;')};
     }
-    
-    & h1 svg {
-        color: ${props => (props.black ? '#0078D4' : '#474B59;')};
+ 
+    & h1 {
+        color: ${props => (props.black ? '#ffffff' : '#474B59;')};
     }
     
     & .last {
@@ -39,60 +34,71 @@ const DialogStyled = styled.div`
     }
 `
 
-const Dialog = (props) => {
-    let [message, setMessageText] = useState("");
-    let [isNewMessage, setIsNewMessage] = useState(false);
+const MessageEditor = styled.div`
+    border-top: 1px solid ${props => (props.black ? '#3C3F41' : 'lightgray')};
+    background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+    
+    & textarea{
+        background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
+        color: ${props => (props.black ? '#fff' : '#000')};
+    }
+    
+    & svg {
+        color: #0078D4;
+    }
+`
 
-    return (<DialogStyled className={DialogMod.dialogWithUser} black={props.black}>
-                <div className={DialogMod.dialogHeader}>
-                    <img src={props.userData.photos.small || props.userData.photos.large || Avatar} alt="avatar" className={DialogMod.Dialogavatar}/>
+
+export const Dialog = () => {
+    const dispatch = useDispatch()
+    const {userID} = useParams()
+    const [message, setMessageText] = useState('')
+
+    const isBlack = useSelector(getIsBlackSelector)
+    const dialogUserData = useSelector((state) => getDialogInfoSelector(state, userID))
+
+    if(!dialogUserData) return null
+
+    return (<DialogStyled className={DialogMod.dialogWithUser} black={isBlack}>
+                <DialogHeader className={DialogMod.dialogHeader} black={isBlack}>
+                    <img src={dialogUserData[0]?.photos.small || dialogUserData[0]?.photos.large || Avatar}
+                         alt="avatar"
+                         className={DialogMod.Dialogavatar}
+                    />
 
                     <div>
-                        <NavLink to={"/profile/"+props.dialogId}><h3>{props.userData.userName}</h3></NavLink>
-                        <div className={DialogMod.status  + " last"}>Was online: {props.userData.lastUserActivityDate.split("T").join(" ").slice(0, 16)}</div>
+                        <NavLink to={"/profile/"+userID}><h3>{dialogUserData[0].userName}</h3></NavLink>
+                        <div className={DialogMod.status  + " last"}>
+                            Was online: {dialogUserData[0]?.lastUserActivityDate.split("T").join(" ").slice(0, 16)}
+                        </div>
                     </div>
 
                     <div className={DialogMod.backToDialogList}>
                         <NavLink to="/dialogs">
-                            <i className="fas fa-chevron-left"></i>
+                            <CloseCircleOutlined />
                         </NavLink>
                     </div>
-                </div>
+                </DialogHeader>
+
+                <Messages dialogId={userID}/>
 
 
-
-               <Messages myId={props.id}
-                         dialogId={props.dialogId}
-                         getNewMessageCountThunkCreator={props.getNewMessageCountThunkCreator}
-                         isNewMessage={isNewMessage}
-                         setIsNewMessage={setIsNewMessage}
-                         black={props.black}
-               />
-
-
-                <DialogStyled className={DialogMod.createNewMessage} black={props.black}>
-
-
-                    <textarea name={"newMessage"} placeholder={"Новое сообщение"}
+                <MessageEditor className={DialogMod.createNewMessage} black={isBlack}>
+                    <textarea name={"newMessage"} placeholder={"New message"}
                               value={message}
                               onChange={(e) => setMessageText(e.target.value)}
                               />
 
                     <div className={DialogMod.createNewMessageAcivities}>
-                        <button className={MyPost.button} disabled><i className="fas fa-photo-video"></i></button>
-                        <button className={MyPost.button} disabled><i className="fas fa-headphones-alt"></i></button>
                         <button
                             className={MyPost.button + " " + MyPost.send}
                             onClick={() =>{
-                                setIsNewMessage(true);
                                 setMessageText("")
-                                props.sendMessagesThunkCreator(props.dialogId, message)
+                                dispatch(sendMessagesThunkCreator(userID, message))
                             }}
-                            disabled={message === ""}>Send <i className="fas fa-paper-plane"></i></button>
+                            disabled={message.trim() === ""}><SendOutlined /></button>
                     </div>
-                </DialogStyled>
+                </MessageEditor>
              </DialogStyled>);
 
 };
-
-export default Dialog;

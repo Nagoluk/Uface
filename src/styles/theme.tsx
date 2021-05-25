@@ -26,15 +26,6 @@ export const HeaderStyle = styled(UniversalThemeComponent)`
  border-bottom: 1px solid ${props => (props.theme.mode === 'dark') ? '#3C3F41' : 'lightgray'};
 `
 
-export const SearchContainerStyle = styled(UniversalThemeComponent)`
-     background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : '#E7EBF0')};
-     
-     & input {
-        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : '#E7EBF0')};
-        color: ${props => (props.theme.mode === 'dark' ? '#fff' : '#000')};
-    }
-`
-
 export const NavigationStyle = styled(UniversalThemeComponent)`
     & a{
          border-right: ${props => (props.theme.mode === 'dark' ? '1px solid #3C3F41' : '1px solid lightgray')};

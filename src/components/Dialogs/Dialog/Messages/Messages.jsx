@@ -1,10 +1,13 @@
-import React from "react";
-import {connect} from "react-redux";
+import React, {useEffect} from 'react';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import MessagesStyle from "./Messages.module.css";
 import {deleteMessageThunkCreator, actionsMessages, getMessagesThunkCreator} from "../../../../redux-state/messageReducer";
 import Alert from "../../../common/alert/alert";
 
 import styled from "styled-components";
+import {getMessagesSelector} from '../../../../redux-state/selectors/message-selectors';
+import {getIsBlackSelector} from '../../../../redux-state/selectors/app-selectors';
+import {getMyIdSelector} from '../../../../redux-state/selectors/login-selectors';
 
 const MessageWrap = styled.div`
     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
@@ -17,7 +20,6 @@ let getCorrectTime = (date) => {
     let temp = (new Date(date)).getTime() - timeZone * 3.6e+6
 
     return new Date(temp).toString().slice(0, 21)
-
 }
 
 
@@ -35,75 +37,29 @@ const Message = (props) => {
     );
 };
 
-class Messages extends React.Component{
+export const Messages = ({dialogId}) => {
+    const dispatch = useDispatch()
 
-    constructor(props){
-        super(props);
+    const messagesData = useSelector(getMessagesSelector)
+    const isBlack = useSelector(getIsBlackSelector)
+    const myId = useSelector(getMyIdSelector)
 
-        this.state = {
-            showMessage: false,
-            deleteMessageId: null
-        }
-    }
-
-    getNewMessages(){
-        this.props.getMessagesThunkCreator(this.props.dialogId)
-    }
-
-    componentDidMount() {
-        this.props.setIsNewMessage(false);
-       this.props.getNewMessageCountThunkCreator();
-    }
-
-    componentWillUnmount() {
-            this.props.getMessagesAC([])
-    }
-
-    deleteMessage = (messageId) => {
-            this.props.deleteMessageThunkCreator(messageId);
-            this.setState({showMessage: false})
-    }
-
-    setDeleteMessageAlert = (value = false, messageId) => {
-        this.setState({showMessage: value})
-        this.setState({deleteMessageId: messageId})
-    }
-
-    render() {
-        let messages = this.props.messagesData.items.map(messageItem => <Message mail={messageItem.body}
-                                                                                 key={messageItem.id}
-                                                                                 messageId = {messageItem.id}
-                                                                                 addedAt={messageItem.addedAt}
-                                                                                 senderId={messageItem.senderId}
-                                                                                 isNewMessage={this.props.isNewMessage}
-                                                                                 myId={this.props.myId}
-                                                                                 setDeleteMessageAlert={this.setDeleteMessageAlert}
-                                                                                                        />).reverse()
+    useEffect(() => {
+        dispatch(getMessagesThunkCreator(dialogId))
+    }, [dialogId])
 
 
-        return  (<>
-                    <MessageWrap className={MessagesStyle.messages}  black={this.props.black}>
-                    {messages}
-                    </MessageWrap>
 
-                    {this.state.showMessage && <Alert
-                                                    deleteMessage = {this.deleteMessage}
-                                                    deleteMessageId={this.state.deleteMessageId}
-                                                    setDeleteMessageAlert={this.setDeleteMessageAlert}
+    const messages = messagesData.items.map(messageItem => <Message mail={messageItem.body}
+                                                                             key={messageItem.id}
+                                                                             messageId = {messageItem.id}
+                                                                             addedAt={messageItem.addedAt}
+                                                                             senderId={messageItem.senderId}
+                                                                             myId={myId}
 
-                    />}
-                </>)
+    />).reverse()
 
-    }
+    return   <MessageWrap className={MessagesStyle.messages} black={isBlack}>
+                {messages}
+             </MessageWrap>
 }
-
-let mapStateToProps = (state) => {
-    return {
-        messagesData: state.MessagePage.messages,
-        refresh: state.MessagePage.refresh
-    }
-}
-
-export default connect(mapStateToProps, {getMessagesThunkCreator, getMessagesAC: actionsMessages.getMessagesAC, deleteMessageThunkCreator})(Messages)
-
-

@@ -11,7 +11,7 @@ import NotFound from './components/404/notFound';
 import {getNewMessageCountThunkCreator} from './redux-state/notificationReducer';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import {AdaptiveMenu} from './components/Nav/adaptiveNav';
-//import Dialogs from "./components/Dialogs";
+import Dialogs from "./components/Dialogs";
 
 import Header from './components/Header/header';
 
@@ -23,7 +23,7 @@ import Users from './components/Users/Users';
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import {resources} from './localization';
-import DialogContainer from './components/Dialogs/Dialog/DialogContainer';
+
 
 
 
@@ -83,7 +83,7 @@ const App = () => {
                         <div className="main-wrap">
                             <main>
                                 <Route path="/dialogs/:userID?"
-                                       render={() => <DialogContainer/>}/>
+                                       render={() => <Dialogs/>}/>
                                 <Route path="/setting" render={() => <Setting/>}/>
                                 <Route path="/profile/:userID?" render={() => <Profile/>}/>
                                 <Route path="/friends" render={() => <Users/>}/>
