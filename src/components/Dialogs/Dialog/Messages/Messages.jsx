@@ -1,18 +1,20 @@
 import React, {useEffect} from 'react';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import MessagesStyle from "./Messages.module.css";
-import {deleteMessageThunkCreator, actionsMessages, getMessagesThunkCreator} from "../../../../redux-state/messageReducer";
-import Alert from "../../../common/alert/alert";
-
+import {getMessagesThunkCreator} from "../../../../redux-state/messageReducer";
 import styled from "styled-components";
-import {getMessagesSelector} from '../../../../redux-state/selectors/message-selectors';
+import {getIsMessagesFetching, getMessagesSelector} from '../../../../redux-state/selectors/message-selectors';
 import {getIsBlackSelector} from '../../../../redux-state/selectors/app-selectors';
 import {getMyIdSelector} from '../../../../redux-state/selectors/login-selectors';
+
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
 
 const MessageWrap = styled.div`
     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
 `
-
 
 let getCorrectTime = (date) => {
     let x = new Date();
@@ -43,6 +45,7 @@ export const Messages = ({dialogId}) => {
     const messagesData = useSelector(getMessagesSelector)
     const isBlack = useSelector(getIsBlackSelector)
     const myId = useSelector(getMyIdSelector)
+    const isMessageFetching = useSelector(getIsMessagesFetching)
 
     useEffect(() => {
         dispatch(getMessagesThunkCreator(dialogId))
@@ -59,7 +62,9 @@ export const Messages = ({dialogId}) => {
 
     />).reverse()
 
-    return   <MessageWrap className={MessagesStyle.messages} black={isBlack}>
+    return   <Spin spinning={isMessageFetching} indicator={antIcon}>
+                <MessageWrap className={MessagesStyle.messages} black={isBlack}>
                 {messages}
-             </MessageWrap>
+                </MessageWrap>
+            </Spin>
 }

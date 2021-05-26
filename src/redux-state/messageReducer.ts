@@ -14,6 +14,7 @@ const initialMessage = {
     },
     isDialogsFetching: false,
     isRedirectedToDialog: false,
+    isDialogFetching: false,
     refresh: false
 };
 
@@ -61,6 +62,13 @@ const messageReducer = (state = initialMessage, action: ActionTypes): initialMes
                 isRedirectedToDialog: action.payload
             }
         }
+
+        case 'SET_IS_DIALOG_FETCHING': {
+            return {
+                ...state,
+                isDialogFetching: action.payload
+            }
+        }
         default:
             return state;
     }
@@ -72,7 +80,8 @@ export const actionsMessages = {
     getMessagesAC: (data: {items: Array<messageT>, totalCount: number, error: string}) => ({type: 'GET_MESSAGES', data} as const),
     isDialogsFetchingAC: (payload: boolean) => ({type: 'IS_DIALOG_FETCHING', payload} as const),
     addMessageAC: (message: messageT) => ({type: 'ADD_MESSAGE', message} as const),
-    setRedirectedToDialog: (payload: boolean) => ({type: 'SET_IS_REDIRECTED_TO_DIALOG', payload} as const)
+    setRedirectedToDialog: (payload: boolean) => ({type: 'SET_IS_REDIRECTED_TO_DIALOG', payload} as const),
+    setIsDialogFetching: (payload: boolean) => ({type: 'SET_IS_DIALOG_FETCHING', payload} as const)
 }
 
 export const getDialogsThunkCreator = () => {
@@ -88,9 +97,11 @@ export const getDialogsThunkCreator = () => {
 
 export const getMessagesThunkCreator = (id: number) => {
     return (dispatch: any) => {
+        dispatch(actionsMessages.setIsDialogFetching(true))
         DialogsAPI.getMessages(id).then((data: any) => {
-
             if (data.status === 200) dispatch(actionsMessages.getMessagesAC(data.data))
+        }).finally(() => {
+            dispatch(actionsMessages.setIsDialogFetching(false))
         });
     }
 }
