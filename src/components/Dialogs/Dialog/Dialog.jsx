@@ -113,6 +113,13 @@ export const Dialog = () => {
                 <MessageEditor className={DialogMod.createNewMessage} black={isBlack}>
                     <textarea name={"newMessage"} placeholder={"New message"}
                               value={message}
+                              onKeyPress={event => {
+                                  if(event.key === 'Enter' && message !== ''){
+                                      event.preventDefault()
+                                      dispatch(sendMessagesThunkCreator(userID, message))
+                                      setMessageText('')
+                                  }
+                              }}
                               onChange={(e) => setMessageText(e.target.value)}
                               />
 
