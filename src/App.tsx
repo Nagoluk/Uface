@@ -7,7 +7,7 @@ import Login from './components/Login/Login';
 import {useDispatch, useSelector} from 'react-redux';
 import {initializeApp} from './redux-state/appReducer';
 import Preloader from './components/assets/preloader/Preloader';
-import NotFound from './components/404/notFound';
+//import NotFound from './components/404/notFound';
 import {getNewMessageCountThunkCreator} from './redux-state/notificationReducer';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import {AdaptiveMenu} from './components/Nav/adaptiveNav';

@@ -1,5 +1,5 @@
 import {loginThunkCreator} from './loginReducer';
-import {InferActionsTypes} from './stateRedux';
+import {AppStateType, InferActionsTypes} from './stateRedux';
 
 
 let initState = {
@@ -17,6 +17,7 @@ const appReducer = (state = initState, action: ActionsType): AppInitStateT => {
             }
 
         case 'CHANGE_THEME':
+            localStorage.setItem('theme', JSON.stringify(!state.blackTheme))
             return {
                 ...state,
                 blackTheme: !state.blackTheme
@@ -35,7 +36,11 @@ export const actionsApp = {
 
 
 export let initializeApp = () => {
-    return (dispatch: any) => {
+    return (dispatch: any, getState: () => AppStateType) => {
+        let isBlack = getState().app.blackTheme
+        let theme = localStorage.getItem('theme')
+        if(theme !== String(isBlack)) dispatch(actionsApp.ChangeThemeAC())
+
         let promise = dispatch(loginThunkCreator());
         Promise.all([promise]).then(() => {
             dispatch(actionsApp.setInitializedAC())
