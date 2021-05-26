@@ -18,7 +18,7 @@
 
 .messageItem {
     font-size: 1.2em;
-    margin: 3px;
+    margin: 3px 20px 3px 3px;
     padding: 6px 6px 6px 10px;
     border-radius: 5px;
     position: relative;
@@ -60,6 +60,17 @@
     position: absolute;
     bottom: 0;
     right: -3px;
+}
+
+
+.messageActions svg{
+    color: #1890ff;
+}
+.messageActions {
+    position: absolute;
+    bottom: -5px;
+    right: -20px;
+    cursor: pointer;
 }
 
 @media (max-width: 720px) {

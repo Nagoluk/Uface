@@ -2,6 +2,7 @@ import {dialogT, messageT} from '../interfaces/messages-interfaces';
 import {nullable} from '../interfaces/common-interfaces';
 import {InferActionsTypes} from './stateRedux';
 import { DialogsAPI } from '../api/dialogs-api';
+import { message } from 'antd';
 
 
 const initialMessage = {
@@ -69,6 +70,17 @@ const messageReducer = (state = initialMessage, action: ActionTypes): initialMes
                 isDialogFetching: action.payload
             }
         }
+
+        case 'DELETE_MESSAGE': {
+            const temp = state.messages.items.filter(m => m.id !== action.messageId)
+            return {
+                ...state,
+                messages: {
+                    ...state.messages,
+                    items: temp
+                }
+            }
+        }
         default:
             return state;
     }
@@ -81,7 +93,8 @@ export const actionsMessages = {
     isDialogsFetchingAC: (payload: boolean) => ({type: 'IS_DIALOG_FETCHING', payload} as const),
     addMessageAC: (message: messageT) => ({type: 'ADD_MESSAGE', message} as const),
     setRedirectedToDialog: (payload: boolean) => ({type: 'SET_IS_REDIRECTED_TO_DIALOG', payload} as const),
-    setIsDialogFetching: (payload: boolean) => ({type: 'SET_IS_DIALOG_FETCHING', payload} as const)
+    setIsDialogFetching: (payload: boolean) => ({type: 'SET_IS_DIALOG_FETCHING', payload} as const),
+    deleteMessage: (messageId: string) => ({type: 'DELETE_MESSAGE', messageId} as const)
 }
 
 export const getDialogsThunkCreator = () => {
@@ -130,7 +143,10 @@ export const startChatingThunkCreator = (id: number) => {
 export const deleteMessageThunkCreator = (messageId: string) => {
     return (dispatch: any) => {
         DialogsAPI.deleteMessage(messageId).then((response: any) => {
-            // dispatch(refreshAC())
+            if(response.status === 200) dispatch(actionsMessages.deleteMessage(messageId))
+
+        }).catch(() => {
+            message.error('Cannot delete message')
         })
     }
 }
