@@ -5,11 +5,12 @@ import {NavLink, useParams} from "react-router-dom";
 import Avatar from "../../../img/Profile/avatar.png";
 import {Messages} from "./Messages/Messages";
 import styled from "styled-components";
-import {CloseCircleOutlined, SendOutlined} from '@ant-design/icons';
+import {CloseCircleOutlined, MessageOutlined, SendOutlined} from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux';
 import {getIsBlackSelector} from '../../../redux-state/selectors/app-selectors';
 import {getDialogInfoSelector} from '../../../redux-state/selectors/message-selectors';
 import {sendMessagesThunkCreator} from '../../../redux-state/messageReducer';
+import NotFound from '../../404/notFound';
 
 
 const DialogStyled = styled.div`
@@ -48,6 +49,28 @@ const MessageEditor = styled.div`
     }
 `
 
+const ChooseDialog = styled.div`
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1890ff;
+    
+    & svg {
+        margin-bottom: 10px;
+        font-size: 4em;
+    }
+`
+export const NoDialogSelected = (<ChooseDialog>
+                                    <div>
+                                        <MessageOutlined />
+                                        <p>Choose Dialog</p>
+                                    </div>
+                                </ChooseDialog>)
+
 
 export const Dialog = () => {
     const dispatch = useDispatch()
@@ -57,7 +80,11 @@ export const Dialog = () => {
     const isBlack = useSelector(getIsBlackSelector)
     const dialogUserData = useSelector((state) => getDialogInfoSelector(state, userID))
 
-    if(!dialogUserData) return null
+    if(!userID) return NoDialogSelected
+
+    if(!dialogUserData[0]) return <NotFound/>
+
+
 
     return (<DialogStyled className={DialogMod.dialogWithUser} black={isBlack}>
                 <DialogHeader className={DialogMod.dialogHeader} black={isBlack}>

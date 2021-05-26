@@ -3,7 +3,8 @@ import DialogsStyles from "./DialogsList.module.css";
 import Avatar from "../../../img/Profile/avatar.png";
 import styled from "styled-components";
 import {SearchOutlined} from '@ant-design/icons';
-import {useHistory} from 'react-router';
+import {useHistory} from 'react-router-dom';
+
 
 const DialogListStyled = styled.div`
     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
@@ -78,7 +79,7 @@ const DialogItem = (props) => {
             </DialogItemStyled>);
 }
 
-const DialogsList = (props) => {
+export const DialogsList = (props) => {
     const history = useHistory()
     const [searchText, setSearchText] = useState('')
 
@@ -105,7 +106,7 @@ const DialogsList = (props) => {
                 <div className={'dialogListHeader'}>
                     <div className={DialogsStyles.searchDialog}>
                         <SearchOutlined />
-                        <input type="text" placeholder={"пошук"} onChange={event => setSearchText(event.target.value)}/>
+                        <input type="text" placeholder={"Search dialog"} onChange={event => setSearchText(event.target.value)}/>
                     </div>
                 </div>
 

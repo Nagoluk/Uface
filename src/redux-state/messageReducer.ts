@@ -79,8 +79,9 @@ export const getDialogsThunkCreator = () => {
     return (dispatch: any) => {
         dispatch(actionsMessages.isDialogsFetchingAC(true))
         DialogsAPI.getDialogs().then((data: any) => {
-            dispatch(actionsMessages.isDialogsFetchingAC(false))
             if (data.status === 200) dispatch(actionsMessages.getDialogsAC(data.data))
+        }).finally(() => {
+            dispatch(actionsMessages.isDialogsFetchingAC(false))
         });
     }
 }
