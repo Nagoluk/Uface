@@ -61,7 +61,7 @@ export const UserOptionItemStyled = styled(UniversalThemeComponent)`
     
     & > button {
         border: none;
-        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'darkgray')};
+        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'lightgray')};
         color: #fff;
     }
     
@@ -77,7 +77,7 @@ export const UserOptionItemStyled = styled(UniversalThemeComponent)`
 
 export const PagitatorItemStyled = styled(ProfileItemStyled)`
     & > button {
-        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'darkgray')};
+        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'lightgray')};
     }
     
     & > button.navs {
@@ -85,7 +85,7 @@ export const PagitatorItemStyled = styled(ProfileItemStyled)`
     }
     
     & > button:disabled {
-        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'darkgray')};;
+        background: ${props => (props.theme.mode === 'dark' ? '#3C3F41' : 'lightgray')};;
     }
 `
 

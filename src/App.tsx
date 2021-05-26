@@ -1,13 +1,11 @@
 import React, {useEffect} from 'react';
-
-
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
 import Login from './components/Login/Login';
 import {useDispatch, useSelector} from 'react-redux';
 import {initializeApp} from './redux-state/appReducer';
 import Preloader from './components/assets/preloader/Preloader';
-//import NotFound from './components/404/notFound';
+
 import {getNewMessageCountThunkCreator} from './redux-state/notificationReducer';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import {AdaptiveMenu} from './components/Nav/adaptiveNav';
@@ -23,9 +21,6 @@ import Users from './components/Users/Users';
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import {resources} from './localization';
-
-
-
 
 i18n
     .use(initReactI18next) // passes i18n down to react-i18next
@@ -85,10 +80,10 @@ const App = () => {
                                 <Route path="/dialogs/:userID?"
                                        render={() => <Dialogs/>}/>
                                 <Route path="/setting" render={() => <Setting/>}/>
-                                <Route path="/profile/:userID?" render={() => <Profile/>}/>
+                                <Route path={['/profile/:userID?', '/']} exact render={() => <Profile/>}/>
                                 <Route path="/friends" render={() => <Users/>}/>
-                                <Redirect exact from="/" to="/profile"/>
-                                {/*<Route render={() => <NotFound/>}/>*/}
+                                {/*<Redirect from="/" to="/profile"/>*/}
+                                {/*<Route path={'*'} exact render={() => <NotFound/>}/>*/}
                             </main>
                         </div>
                     </Switch>
