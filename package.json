@@ -67,6 +67,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/helper-define-map": "^7.13.12",
     "remote-redux-devtools": "^0.5.16"
   }
 }
