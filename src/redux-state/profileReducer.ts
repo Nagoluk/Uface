@@ -168,8 +168,13 @@ export const putUserDataThunkCreator = (data: ProfileType) => {
             } else if(response.data.messages) {
                 dispatch(actionsProfile.setProfileErrors(response.data.messages.join('')))
             }else {
+                message.error('Some error')
                dispatch(actionsProfile.isUploadProfileAC(false));
             }
+        }).catch(() => {
+            message.error('Cannot update user data')
+        }).finally(() => {
+            dispatch(actionsProfile.isUploadProfileAC(false));
         })
     }
 }

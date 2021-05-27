@@ -2,7 +2,6 @@ import profileReducer from './profileReducer';
 import messageReducer from './messageReducer';
 import {Action, combineReducers, compose, createStore} from 'redux';
 import usersReducer from './usersReducer';
-import setLang from './settingReducer';
 import loginReducer from './loginReducer'
 import {applyMiddleware} from 'redux';
 import thunkMiddleWare, {ThunkAction} from 'redux-thunk';
@@ -15,7 +14,6 @@ let reducers = combineReducers({
     ProfilePage: profileReducer,
     MessagePage: messageReducer,
     UsersReducer: usersReducer,
-    SetLang: setLang,
     LoginReducer: loginReducer,
     form: formReducer,
     app: appReducer,

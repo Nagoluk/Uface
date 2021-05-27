@@ -16,7 +16,9 @@ const initialMessage = {
     isDialogsFetching: false,
     isRedirectedToDialog: false,
     isDialogFetching: false,
-    refresh: false
+    refresh: false,
+    getDialogsError: '',
+    getMessagesError: '',
 };
 
 
@@ -71,6 +73,20 @@ const messageReducer = (state = initialMessage, action: ActionTypes): initialMes
             }
         }
 
+        case 'SET_GET_DIALOGS_ERROR': {
+            return {
+                ...state,
+                getDialogsError: action.error
+            }
+        }
+
+        case 'SET_GET_MESSAGES_ERROR': {
+            return {
+                ...state,
+                getMessagesError: action.error
+            }
+        }
+
         case 'DELETE_MESSAGE': {
             const temp = state.messages.items.filter(m => m.id !== action.messageId)
             return {
@@ -94,14 +110,20 @@ export const actionsMessages = {
     addMessageAC: (message: messageT) => ({type: 'ADD_MESSAGE', message} as const),
     setRedirectedToDialog: (payload: boolean) => ({type: 'SET_IS_REDIRECTED_TO_DIALOG', payload} as const),
     setIsDialogFetching: (payload: boolean) => ({type: 'SET_IS_DIALOG_FETCHING', payload} as const),
-    deleteMessage: (messageId: string) => ({type: 'DELETE_MESSAGE', messageId} as const)
+    deleteMessage: (messageId: string) => ({type: 'DELETE_MESSAGE', messageId} as const),
+    setGetDialogsError: (error: string) => ({type: 'SET_GET_DIALOGS_ERROR', error} as const),
+    setGetMessagesError: (error: string) => ({type: 'SET_GET_MESSAGES_ERROR', error} as const)
 }
 
 export const getDialogsThunkCreator = () => {
     return (dispatch: any) => {
         dispatch(actionsMessages.isDialogsFetchingAC(true))
+        dispatch(actionsMessages.setGetDialogsError(''))
+
         DialogsAPI.getDialogs().then((data: any) => {
             if (data.status === 200) dispatch(actionsMessages.getDialogsAC(data.data))
+        }).catch(() => {
+            dispatch(actionsMessages.setGetDialogsError('Network error'))
         }).finally(() => {
             dispatch(actionsMessages.isDialogsFetchingAC(false))
         });
@@ -110,9 +132,12 @@ export const getDialogsThunkCreator = () => {
 
 export const getMessagesThunkCreator = (id: number) => {
     return (dispatch: any) => {
+        dispatch(actionsMessages.setGetMessagesError(''))
         dispatch(actionsMessages.setIsDialogFetching(true))
         DialogsAPI.getMessages(id).then((data: any) => {
             if (data.status === 200) dispatch(actionsMessages.getMessagesAC(data.data))
+        }).catch(() => {
+            dispatch(actionsMessages.setGetMessagesError('Network error'))
         }).finally(() => {
             dispatch(actionsMessages.setIsDialogFetching(false))
         });
@@ -123,8 +148,9 @@ export const sendMessagesThunkCreator = (id: number, body: string) => {
     return (dispatch: any) => {
         DialogsAPI.sendMessage(id, body).then((data: any) => {
             dispatch(actionsMessages.addMessageAC(data.data.message))
+        }).catch(() => {
+            message.error('Cannot send message')
         })
-
     }
 }
 

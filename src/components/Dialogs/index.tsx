@@ -4,10 +4,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getIsBlackSelector} from '../../redux-state/selectors/app-selectors';
 
 import { Dialog } from "./Dialog/Dialog";
-import {getIsDialogsFetching, getDialogsSelector} from '../../redux-state/selectors/message-selectors';
+import {getIsDialogsFetching, getDialogsSelector, getDialogsError} from '../../redux-state/selectors/message-selectors';
 import Preloader from '../assets/preloader/Preloader';
 import DialogsList from "./DialogList/DialogsList";
 import {actionsMessages, getDialogsThunkCreator} from '../../redux-state/messageReducer';
+import {NetworkError} from '../common/NetworkError/NetworkError';
 
 
 const DialogWrap = styled.div`
@@ -20,6 +21,7 @@ export const Dialogs: React.FC = () => {
     const isBlack = useSelector(getIsBlackSelector)
     const isDialogFetching = useSelector(getIsDialogsFetching)
     const dialogs = useSelector(getDialogsSelector)
+    const error = useSelector(getDialogsError)
 
 
     useEffect(() =>{
@@ -29,6 +31,8 @@ export const Dialogs: React.FC = () => {
             dispatch(actionsMessages.getDialogsAC(null))
         }
     }, [])
+
+    if(error) return <NetworkError refresh={() => dispatch(getDialogsThunkCreator())}/>
 
     if(dialogs === null || isDialogFetching) return <Preloader/>
 

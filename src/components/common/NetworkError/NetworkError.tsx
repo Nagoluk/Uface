@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import {FrownOutlined, RedoOutlined, SyncOutlined} from '@ant-design/icons';
+import {SyncOutlined} from '@ant-design/icons';
 import {Button} from 'antd';
 
 type OwnPropsType = {
@@ -11,11 +11,11 @@ const Wrap = styled.div`
     margin-top: 30%;
     text-align: center;
     color: ${props => props.theme.mode === 'dark' ? '#fff' : '#000'};
-    font-size: 18px;
+    font-size: 16px;
     
     & svg{
        color: #2B5278;
-       font-size: 100px; 
+       font-size: 40px; 
        margin: 10px 0px;
     }
 `
@@ -25,8 +25,7 @@ export const NetworkError: React.FC<OwnPropsType> = ({refresh}) =>
         <div>
             <SyncOutlined />
         </div>
-
         <p>Cannot load page</p>
 
-        <Button size={'large'} type={'primary'} onClick={() => refresh()}>Refresh</Button>
+        <Button size={'large'} onClick={() => refresh()}>Refresh</Button>
     </Wrap>)

@@ -3,7 +3,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import MessagesStyle from "./Messages.module.css";
 import {deleteMessageThunkCreator, getMessagesThunkCreator} from '../../../../redux-state/messageReducer';
 import styled from "styled-components";
-import {getIsMessagesFetching, getMessagesSelector} from '../../../../redux-state/selectors/message-selectors';
+import {
+    getIsMessagesFetching,
+    getMessagesError,
+    getMessagesSelector
+} from '../../../../redux-state/selectors/message-selectors';
 import {getIsBlackSelector} from '../../../../redux-state/selectors/app-selectors';
 import {getMyIdSelector} from '../../../../redux-state/selectors/login-selectors';
 
@@ -11,6 +15,7 @@ import { Spin } from 'antd';
 import {DeleteOutlined, EllipsisOutlined, LoadingOutlined} from '@ant-design/icons';
 import {getCorrectTime} from '../../../../utils/date-formater';
 import { Menu, Dropdown } from 'antd';
+import {NetworkError} from '../../../common/NetworkError/NetworkError';
 
 
 const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
@@ -21,6 +26,12 @@ const MessageWrap = styled.div`
 
 const Dots = styled(EllipsisOutlined)`
     color: ${props => (props.theme.mode === 'dark') ? '#fff': '#000'}
+`
+
+const Error = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
 `
 
 
@@ -55,6 +66,7 @@ export const Messages = ({dialogId}) => {
     const isBlack = useSelector(getIsBlackSelector)
     const myId = useSelector(getMyIdSelector)
     const isMessageFetching = useSelector(getIsMessagesFetching)
+    const error = useSelector(getMessagesError)
 
     useEffect(() => {
         dispatch(getMessagesThunkCreator(dialogId))
@@ -63,6 +75,7 @@ export const Messages = ({dialogId}) => {
     const deleteMessage = (messageId) => {
         dispatch(deleteMessageThunkCreator(messageId))
     }
+
 
     const messages = messagesData.items.map(messageItem => <Message mail={messageItem.body}
                                                                              key={messageItem.id}
@@ -77,7 +90,8 @@ export const Messages = ({dialogId}) => {
 
     return   <Spin spinning={isMessageFetching} indicator={antIcon}>
                 <MessageWrap className={MessagesStyle.messages} black={isBlack}>
-                {messages}
+                    {!error && messages}
+                    {error && <Error><NetworkError refresh={() => dispatch(getMessagesThunkCreator(dialogId))}/></Error>}
                 </MessageWrap>
             </Spin>
 }

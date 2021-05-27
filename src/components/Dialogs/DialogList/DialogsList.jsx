@@ -6,6 +6,7 @@ import {SearchOutlined} from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
 
 
+
 const DialogListStyled = styled.div`
     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
     & input, p {
@@ -84,6 +85,7 @@ export const DialogsList = (props) => {
     const [searchText, setSearchText] = useState('')
 
     let dialogsCopied = [...props.dialogs]
+
 
     if(searchText.trim() !== "") {
         dialogsCopied = [...props.dialogs].filter(item => item.userName.toLowerCase().includes(searchText.toLowerCase()))
