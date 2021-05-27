@@ -5,6 +5,9 @@ import {InferActionsTypes} from './stateRedux';
 import { ProfileAPI } from '../api/profile-api';
 import { UsersAPI } from '../api/users-api';
 import {Dispatch} from 'redux';
+import {message} from 'antd';
+
+message.config({duration: 100})
 
 
 let initialProfilePage = {
@@ -17,7 +20,7 @@ let initialProfilePage = {
     isFetching: true as boolean,
     isUploadProfile: false as boolean,
     isFollowed: false as boolean,
-    setProfileErrors: [] as Array<string>
+    setProfileErrors: '' as string
 }
 
 const profileReducer = (state = initialProfilePage, action: ActionsType): initialProfilePageType => {
@@ -101,12 +104,12 @@ export const actionsProfile = {
     isFetchingAC: (condition: boolean) => ({type: 'USERS_IS_FETCHING', payload: condition} as const),
     setProfile: (profile: nullable<ProfileType> ) => ({type: 'SET_PROFILE', profile: profile} as const),
     setStatus: (status: string | null) => ({type: 'SET_STATUS', status} as const),
-    setProfileErrors: (payload: Array<string>) => ({type: 'SET_PROFILE_ERRORS', payload} as const),
+    setProfileErrors: (payload: string) => ({type: 'SET_PROFILE_ERRORS', payload} as const),
 }
 
 export const getProfileThunkCreator = (id: number) => {
-
     return (dispatch: any) => {
+        dispatch(actionsProfile.setProfileErrors(''))
         dispatch(actionsProfile.isFetchingAC(true))
 
         ProfileAPI.getProfile(id).then((response: any) => {
@@ -115,7 +118,10 @@ export const getProfileThunkCreator = (id: number) => {
                 dispatch(actionsProfile.setProfile(response.data))
                 dispatch(actionsProfile.isFetchingAC(false))
             })
-
+        }).catch(() => {
+            dispatch(actionsProfile.setProfileErrors('Network error'))
+        }).finally(() => {
+            dispatch(actionsProfile.isFetchingAC(false))
         });
     }
 }
@@ -124,6 +130,8 @@ export const getStatusThunkCreator = (id: number) => {
     return (dispatch: any) => {
         ProfileAPI.getStatus(id).then((response: any) => {
             dispatch(actionsProfile.setStatus(response.data))
+        }).catch(() => {
+            message.error('Cannot get user status')
         })
     }
 }
@@ -133,16 +141,20 @@ export const updateStatusThunkCreator = (status: string) => {
         ProfileAPI.updateStatus(status).then((response: any) => {
             if (response.data.resultCode === 0)
                 dispatch(actionsProfile.setStatus(status))
+        }).catch(() => {
+            message.error('Cannot update user status')
         })
     }
 }
 
 export const uploadAvatarThunkCreator = (avatar: any) => {
-    return (dispatch: Dispatch) => {
+    return () => {
         ProfileAPI.uploadAvatar(avatar).then((response: any) => {
             if (response.resultCode === 0) {
                 window.location.reload()
             }
+        }).catch(() => {
+            message.error('Logout error')
         })
     }
 }
@@ -154,8 +166,7 @@ export const putUserDataThunkCreator = (data: ProfileType) => {
             if (response.data.resultCode === 0) {
                 dispatch(actionsProfile.isUploadProfileAC(false));
             } else if(response.data.messages) {
-                debugger
-                dispatch(actionsProfile.setProfileErrors(response.data.messages))
+                dispatch(actionsProfile.setProfileErrors(response.data.messages.join('')))
             }else {
                dispatch(actionsProfile.isUploadProfileAC(false));
             }

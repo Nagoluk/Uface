@@ -3,6 +3,7 @@ import {Dispatch} from 'redux';
 import {UserT} from '../interfaces/users-interfaces';
 import { UsersAPI } from '../api/users-api';
 import {IFilters} from '../interfaces/common-interfaces';
+import {message} from 'antd';
 
 
 let initialUsers = {
@@ -13,7 +14,8 @@ let initialUsers = {
     currentPagePagitator: 0,
     isFetching: true,
     followProcess: [] as Array<number>,
-    foundedUsers: [] as Array<UserT>
+    foundedUsers: [] as Array<UserT>,
+    error: '' as string,
 };
 
 const usersReducer = (state = initialUsers, action: ActionTypes): InitialUsersT => {
@@ -86,6 +88,13 @@ const usersReducer = (state = initialUsers, action: ActionTypes): InitialUsersT 
             }
         }
 
+        case 'SET_ERROR': {
+            return {
+                ...state,
+                error: action.error
+            }
+        }
+
         default:
             return state;
     }
@@ -104,7 +113,8 @@ export const UsersActions = {
         isFetchingFollow
     } as const),
     setCurrentPagePagitator: (payload: number) => ({type: 'SET_CURRENT_PAGE_PAGITATOR', payload} as const),
-    setFoundedUsers: (items: Array<UserT>) => ({type: 'SET_FOUNDED_USERS', items} as const)
+    setFoundedUsers: (items: Array<UserT>) => ({type: 'SET_FOUNDED_USERS', items} as const),
+    setError: (error: string) => ({type: 'SET_ERROR', error} as const)
 }
 
 
@@ -114,21 +124,23 @@ type currentDispatchType = Dispatch<ActionTypes>
 
 export const setUsersThunkCreator = (currentPage: number, pageSize: number, filters: IFilters) => {
     return (dispatch: currentDispatchType, getState: getStateType) => {
-
+        dispatch(UsersActions.setError(''))
         dispatch(UsersActions.setCurrentPage(currentPage));
         dispatch(UsersActions.ToggleFetching(true));
         UsersAPI.getUsers(currentPage, pageSize, filters).then((data: any) => {
             dispatch(UsersActions.setUsers(data.items));
             dispatch(UsersActions.setTotalCount(data.totalCount));
+        }).catch(() => {
+            dispatch(UsersActions.setError('Network error'))
+        }).finally(() => {
             dispatch(UsersActions.ToggleFetching(false));
-
         });
     }
 }
 
 
 export const followThunkCreator = (userID: number) => {
-    return (dispatch: currentDispatchType, getState: getStateType) => {
+    return (dispatch: currentDispatchType) => {
         dispatch(UsersActions.toggleFollowProcessing(userID, true));
 
         UsersAPI.followAPI(userID).then((data: any) => {
@@ -136,6 +148,10 @@ export const followThunkCreator = (userID: number) => {
                 dispatch(UsersActions.follow(userID))
                 // dispatch(setFollowAC(true))
             }
+
+        }).catch(() => {
+            message.error('Cannot follow')
+        }).finally(() => {
             dispatch(UsersActions.toggleFollowProcessing(userID, false))
         })
     }
@@ -149,20 +165,15 @@ export const unfollowThunkCreator = (userID: number) => {
             if (data.resultCode === 0) {
                 dispatch(UsersActions.unfollow(userID))
             }
+
+        }).catch(() => {
+            message.error('Cannot unfollow')
+        }).finally(() => {
             dispatch(UsersActions.toggleFollowProcessing(userID, false))
         })
     }
 }
 
-
-export const searchingThunkCreator = (text: string) => {
-    return (dispatch: currentDispatchType, getState: getStateType) => {
-        // dispatch(toggleFollowProcessing(userID, true));
-        UsersAPI.Search(text).then((data) => {
-            if (data.status === 200) dispatch(UsersActions.setFoundedUsers(data.data.items))
-        })
-    }
-}
 
 export default usersReducer;
 

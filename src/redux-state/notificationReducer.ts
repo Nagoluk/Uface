@@ -1,5 +1,6 @@
 import {InferActionsTypes} from './stateRedux';
 import { DialogsAPI } from '../api/dialogs-api';
+import {message} from 'antd';
 
 const initialNotification = {
     newMessageCount: 0 as number | string,
@@ -28,6 +29,8 @@ export const getNewMessageCountThunkCreator = () => {
     return (dispatch: any) => {
         DialogsAPI.getMessageCount().then((data: any) => {
             dispatch(actionsNotifications.setNewMessageCount(data.data))
+        }).catch(() => {
+            message.info('Cannot get notifications')
         })
     }
 }

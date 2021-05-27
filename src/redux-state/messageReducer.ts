@@ -25,7 +25,7 @@ const messageReducer = (state = initialMessage, action: ActionTypes): initialMes
         case 'GET_DIALOGS': {
             return {
                 ...state,
-                dialogs: [...action.dialogs]
+                dialogs: action.dialogs
             }
         }
 
@@ -88,7 +88,7 @@ const messageReducer = (state = initialMessage, action: ActionTypes): initialMes
 }
 
 export const actionsMessages = {
-    getDialogsAC: (dialogs: Array<dialogT>) => ({type: 'GET_DIALOGS', dialogs} as const),
+    getDialogsAC: (dialogs: Array<dialogT> | null) => ({type: 'GET_DIALOGS', dialogs} as const),
     getMessagesAC: (data: {items: Array<messageT>, totalCount: number, error: string}) => ({type: 'GET_MESSAGES', data} as const),
     isDialogsFetchingAC: (payload: boolean) => ({type: 'IS_DIALOG_FETCHING', payload} as const),
     addMessageAC: (message: messageT) => ({type: 'ADD_MESSAGE', message} as const),
@@ -121,7 +121,6 @@ export const getMessagesThunkCreator = (id: number) => {
 
 export const sendMessagesThunkCreator = (id: number, body: string) => {
     return (dispatch: any) => {
-
         DialogsAPI.sendMessage(id, body).then((data: any) => {
             dispatch(actionsMessages.addMessageAC(data.data.message))
         })

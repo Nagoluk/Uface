@@ -7,7 +7,7 @@ import { Dialog } from "./Dialog/Dialog";
 import {getIsDialogsFetching, getDialogsSelector} from '../../redux-state/selectors/message-selectors';
 import Preloader from '../assets/preloader/Preloader';
 import DialogsList from "./DialogList/DialogsList";
-import {getDialogsThunkCreator} from '../../redux-state/messageReducer';
+import {actionsMessages, getDialogsThunkCreator} from '../../redux-state/messageReducer';
 
 
 const DialogWrap = styled.div`
@@ -24,6 +24,10 @@ export const Dialogs: React.FC = () => {
 
     useEffect(() =>{
         dispatch(getDialogsThunkCreator())
+
+        return () => {
+            dispatch(actionsMessages.getDialogsAC(null))
+        }
     }, [])
 
     if(dialogs === null || isDialogFetching) return <Preloader/>

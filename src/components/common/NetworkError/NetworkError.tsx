@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
+import {FrownOutlined, RedoOutlined, SyncOutlined} from '@ant-design/icons';
+import {Button} from 'antd';
 
 type OwnPropsType = {
     refresh: Function
@@ -8,25 +10,23 @@ type OwnPropsType = {
 const Wrap = styled.div`
     margin-top: 30%;
     text-align: center;
-    color: ${props => props.theme.mode === 'dark' ? '#fff' : '#474B59'};
-    font-size: 24px;
+    color: ${props => props.theme.mode === 'dark' ? '#fff' : '#000'};
+    font-size: 18px;
     
     & svg{
-       color: #0078D4;
+       color: #2B5278;
        font-size: 100px; 
-       margin-top: 10px;
+       margin: 10px 0px;
     }
 `
 
 export const NetworkError: React.FC<OwnPropsType> = ({refresh}) =>
     (<Wrap>
         <div>
-            Something wrong.
+            <SyncOutlined />
         </div>
-        <div>
-            Click to try again
-        </div>
-        <div>
-            <i className="fas fa-sad-tear"></i>
-        </div>
+
+        <p>Cannot load page</p>
+
+        <Button size={'large'} type={'primary'} onClick={() => refresh()}>Refresh</Button>
     </Wrap>)

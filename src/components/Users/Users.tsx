@@ -9,7 +9,7 @@ import {
     getPagePagitator,
     getTotalUsersCountSelector,
     getPageSizeSelector,
-    getUsersSelector, getCurrentPageSelector, getFollowProccesSelector, getIsFetchingSelector
+    getUsersSelector, getCurrentPageSelector, getFollowProccesSelector, getIsFetchingSelector, getUsersErrorSelector
 } from '../../redux-state/selectors/users-selectors';
 import {setUsersThunkCreator, unfollowThunkCreator, UsersActions, followThunkCreator} from '../../redux-state/usersReducer';
 import Preloader from '../assets/preloader/Preloader';
@@ -18,9 +18,10 @@ import { Button } from 'antd';
 import Search from 'antd/lib/input/Search';
 import {IFilters} from '../../interfaces/common-interfaces';
 import { NotFound } from '../common/notFount/NotFound';
-import {UniversalThemeComponent, UserOptionItemStyled} from '../../styles/theme';
+import {UserOptionItemStyled} from '../../styles/theme';
 import { useHistory } from 'react-router-dom';
 import {useRedirect} from '../../hook/Redirect';
+import {NetworkError} from '../common/NetworkError/NetworkError';
 
 const qs = require('qs')
 
@@ -35,6 +36,7 @@ let Users: React.FC = () => {
     const currentPage = useSelector(getCurrentPageSelector)
     const followProcess = useSelector(getFollowProccesSelector)
     const isFetching = useSelector(getIsFetchingSelector)
+    const error = useSelector(getUsersErrorSelector)
     const {t} = useTranslation()
 
 
@@ -72,6 +74,15 @@ let Users: React.FC = () => {
         dispatch(followThunkCreator(id))
     }
 
+    const getUsers = () => {
+        let temp = qs.parse(history.location.search, { ignoreQueryPrefix: true })
+        if(temp.term) setSearchStr(temp.term)
+        setFilters(temp)
+
+
+        dispatch(setUsersThunkCreator(currentPage, pageSize, temp));
+    }
+
     const find = (value: string) => {
         if(value === ""){
             setFilters(prevState => {
@@ -88,12 +99,7 @@ let Users: React.FC = () => {
         document.title = "Users"
         window.addEventListener(`resize`, screenWidthHandler, false);
 
-        let temp = qs.parse(history.location.search, { ignoreQueryPrefix: true })
-        if(temp.term) setSearchStr(temp.term)
-        setFilters(temp)
-
-
-        dispatch(setUsersThunkCreator(currentPage, pageSize, temp));
+        getUsers()
 
         return () => {
             window.removeEventListener(`resize`, screenWidthHandler, false)
@@ -107,6 +113,11 @@ let Users: React.FC = () => {
 
         dispatch(setUsersThunkCreator(1, pageSize, filters));
     }, [filters])
+
+    if(error) {
+       return <NetworkError refresh={getUsers}/>
+    }
+
 
 
     return (<UniversalWrap maxWidth={600}>
