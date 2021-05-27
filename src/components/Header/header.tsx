@@ -13,11 +13,10 @@ import {
     getLoginSelector,
     getMyProfileSelector
 } from '../../redux-state/selectors/login-selectors';
-import {getIsBlackSelector} from '../../redux-state/selectors/app-selectors';
+
 import {getNewMessagesCountSelector} from '../../redux-state/selectors/notification-selector';
 import {logout} from '../../redux-state/loginReducer';
 import {actionsApp} from '../../redux-state/appReducer';
-import {useTranslation} from 'react-i18next';
 import {AliwangwangOutlined, LogoutOutlined, BellOutlined, SwapOutlined} from '@ant-design/icons';
 
 
@@ -25,7 +24,6 @@ import {AliwangwangOutlined, LogoutOutlined, BellOutlined, SwapOutlined} from '@
 
 const Header: React.FC = () => {
     const login = useSelector(getLoginSelector)
-    const black = useSelector(getIsBlackSelector)
     const isLogined = useSelector(getIsLoginedSelector)
     const profile = useSelector(getMyProfileSelector)
     const newMessageCount = useSelector(getNewMessagesCountSelector)
@@ -50,8 +48,9 @@ const Header: React.FC = () => {
 
                 <div className={headermod.rightside}>
 
-                    <div className={headermod.note + ' ' + headermod.hide}>
+                    <div className={headermod.note + ' ' + headermod.hide + ' ' + headermod.messages}>
                         <BellOutlined />
+                        {newMessageCount > 0 && <span className={headermod.newMessageCount}>{newMessageCount}</span>}
                     </div>
 
                     <h3>{isLogined ?

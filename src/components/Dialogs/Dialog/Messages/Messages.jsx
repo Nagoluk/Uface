@@ -70,7 +70,7 @@ export const Messages = ({dialogId}) => {
 
     useEffect(() => {
         dispatch(getMessagesThunkCreator(dialogId))
-    }, [dialogId])
+    }, [dialogId, dispatch])
 
     const deleteMessage = (messageId) => {
         dispatch(deleteMessageThunkCreator(messageId))

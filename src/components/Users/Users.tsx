@@ -27,7 +27,7 @@ const qs = require('qs')
 
 
 let Users: React.FC = () => {
-    // useRedirect()
+    useRedirect()
 
     const totalUsersCount = useSelector(getTotalUsersCountSelector)
     const pageSize = useSelector(getPageSizeSelector)
@@ -79,7 +79,6 @@ let Users: React.FC = () => {
         if(temp.term) setSearchStr(temp.term)
         setFilters(temp)
 
-
         dispatch(setUsersThunkCreator(currentPage, pageSize, temp));
     }
 
@@ -112,7 +111,7 @@ let Users: React.FC = () => {
         history.push('/friends?'+uri)
 
         dispatch(setUsersThunkCreator(1, pageSize, filters));
-    }, [filters])
+    }, [filters, dispatch, history, pageSize])
 
     if(error) {
        return <NetworkError refresh={getUsers}/>

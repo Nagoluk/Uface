@@ -79,18 +79,6 @@ let Form: React.FC<InjectedFormProps<loginFormValuesType, LoginFormOwnProps> & L
 
 let ReduxLoginForm = reduxForm<loginFormValuesType, LoginFormOwnProps>({form: 'login'})(Form)
 
-type mapStatePropsType = {
-    isLogined: boolean
-    captcha: string | null
-}
-
-type mapDispatchToPropsType = {
-    login: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void
-}
-
-
-type loginPropsType = mapDispatchToPropsType & mapStatePropsType
-
 
 export const Login = () => {
     useEffect(() => {

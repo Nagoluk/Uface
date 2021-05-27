@@ -57,7 +57,7 @@ const App = () => {
     useEffect(() => {
         dispatch(initializeApp())
         dispatch(getNewMessageCountThunkCreator())
-    }, [])
+    }, [dispatch])
 
 
     if (!initialized) {

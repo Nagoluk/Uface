@@ -33,7 +33,7 @@ const Setting: React.FC = () => {
             dispatch(getProfileThunkCreator(id));
         }
 
-    }, [])
+    }, [dispatch, id])
 
     if(error && id !== null) {
         return <NetworkError refresh={() =>  dispatch(getProfileThunkCreator(id))}/>

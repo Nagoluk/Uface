@@ -57,7 +57,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
     useEffect(() => {
 
         setCurrentPagePagitator(0)
-    }, [filters])
+    }, [filters, setCurrentPagePagitator])
 
     pages = pages.filter(item => item >= left && item <= right)
 

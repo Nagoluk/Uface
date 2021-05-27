@@ -1,7 +1,6 @@
-import React, { FormEvent} from 'react';
+import React from 'react';
 import galleryStyle from './gallery.module.css';
-import p from '../../Profile/profile.module.css';
-import { ToTopOutlined, CloseCircleOutlined, CloudUploadOutlined } from '@ant-design/icons';
+import {CloseCircleOutlined, CloudUploadOutlined } from '@ant-design/icons';
 
 type ownProps = {
     setShowGallery: (payload: boolean) => void

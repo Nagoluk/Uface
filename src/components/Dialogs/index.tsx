@@ -30,7 +30,7 @@ export const Dialogs: React.FC = () => {
         return () => {
             dispatch(actionsMessages.getDialogsAC(null))
         }
-    }, [])
+    }, [dispatch])
 
     if(error) return <NetworkError refresh={() => dispatch(getDialogsThunkCreator())}/>
 
