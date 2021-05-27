@@ -63,9 +63,7 @@
 }
 
 
-.messageActions svg{
-    color: #1890ff;
-}
+
 .messageActions {
     position: absolute;
     bottom: -5px;

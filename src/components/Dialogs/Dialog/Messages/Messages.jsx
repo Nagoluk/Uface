@@ -19,6 +19,10 @@ const MessageWrap = styled.div`
     background: ${props => (props.black ? '#2B2B2B' : '#ffffff')};
 `
 
+const Dots = styled(EllipsisOutlined)`
+    color: ${props => (props.theme.mode === 'dark') ? '#fff': '#000'}
+`
+
 
 const Message = (props) => {
     const messageMenu = (
@@ -37,7 +41,7 @@ const Message = (props) => {
             {props.mail}
             <span className={MessagesStyle.data}>{getCorrectTime(props.addedAt)}</span>
             <Dropdown overlay={messageMenu} trigger={['click']}>
-                <EllipsisOutlined className={MessagesStyle.messageActions}/>
+                <Dots className={MessagesStyle.messageActions}/>
             </Dropdown>
 
         </div>
