@@ -8,6 +8,8 @@ export const getIsDialogsFetching = (state: AppStateType) => state.MessagePage.i
 export const getIsMessagesFetching = (state: AppStateType) => state.MessagePage.isDialogFetching
 export const getDialogsError = (state: AppStateType) => state.MessagePage.getDialogsError
 export const getMessagesError = (state: AppStateType) => state.MessagePage.getMessagesError
+export const getIsRedirectToDialog = (state: AppStateType) => (state.MessagePage.isRedirectedToDialog)
+
 
 export const getDialogInfoSelector = createSelector(
     (state => state.MessagePage.dialogs),

@@ -19,15 +19,15 @@ import Search from 'antd/lib/input/Search';
 import {IFilters} from '../../interfaces/common-interfaces';
 import { NotFound } from '../common/notFount/NotFound';
 import {UserOptionItemStyled} from '../../styles/theme';
-import { useHistory } from 'react-router-dom';
-import {useRedirect} from '../../hook/Redirect';
+import { useHistory} from 'react-router-dom';
+
 import {NetworkError} from '../common/NetworkError/NetworkError';
+import { getIsLoginedSelector } from '../../redux-state/selectors/login-selectors';
 
 const qs = require('qs')
 
 
 let Users: React.FC = () => {
-    useRedirect()
 
     const totalUsersCount = useSelector(getTotalUsersCountSelector)
     const pageSize = useSelector(getPageSizeSelector)
@@ -111,12 +111,12 @@ let Users: React.FC = () => {
         history.push('/friends?'+uri)
 
         dispatch(setUsersThunkCreator(1, pageSize, filters));
-    }, [filters, dispatch, history, pageSize])
+    }, [filters, pageSize])
+
 
     if(error) {
        return <NetworkError refresh={getUsers}/>
     }
-
 
 
     return (<UniversalWrap maxWidth={600}>

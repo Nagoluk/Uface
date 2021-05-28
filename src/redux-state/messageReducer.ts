@@ -5,6 +5,7 @@ import { DialogsAPI } from '../api/dialogs-api';
 import { message } from 'antd';
 
 
+
 const initialMessage = {
     dialogs: null as nullable<Array<dialogT>>,
 
@@ -160,6 +161,8 @@ export const startChatingThunkCreator = (id: number) => {
             DialogsAPI.getDialogs().then((data: any) => {
                 dispatch(actionsMessages.setRedirectedToDialog(true));
             })
+        }).catch(() => {
+            message.error('Error')
         })
     }
 }

@@ -14,6 +14,8 @@ import {useParams, useHistory} from 'react-router-dom'
 import {getProfileThunkCreator, getStatusThunkCreator, actionsProfile} from '../../redux-state/profileReducer';
 import {useRedirect} from '../../hook/Redirect';
 import { NetworkError } from '../common/NetworkError/NetworkError';
+import {getIsRedirectToDialog} from '../../redux-state/selectors/message-selectors';
+import {actionsMessages} from '../../redux-state/messageReducer';
 
 
 const Profile = () => {
@@ -22,6 +24,7 @@ const Profile = () => {
     const profile = useSelector(getProfileSelector)
     const error = useSelector(getProfileErrorSelector)
     const myId = useSelector(getMyIdSelector)
+    const isRedirectToDialog = useSelector(getIsRedirectToDialog)
     const params = useParams<{userID: string}>()
     const history = useHistory()
     const dispatch = useDispatch()
@@ -44,14 +47,16 @@ const Profile = () => {
         dispatch(getProfileThunkCreator(+userID));
         dispatch(getStatusThunkCreator(+userID));
     }
+    useEffect(() => {
+        return () => {
+            dispatch(actionsProfile.setProfile(null));
+            dispatch(actionsMessages.setRedirectedToDialog(false))
+        }
+    }, [])
+
     useEffect(() =>{
         document.title = 'Profile';
         setProfile();
-
-        return () => {
-            // dispatch(actionsProfile.setRedirectedToDialog(false));
-            dispatch(actionsProfile.setProfile(null));
-        }
     }, [params])
 
     if(error) {
@@ -63,7 +68,7 @@ const Profile = () => {
     }
     return (
         <div className={p.profile}>
-            <ProfileInfo profile={profile} myId={myId}/>
+            <ProfileInfo profile={profile} myId={myId} isRedirectToDialog={isRedirectToDialog}/>
 
             {profile.userId === myId && <MyPosts profile={profile}/>}
         </div>

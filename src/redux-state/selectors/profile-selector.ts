@@ -5,3 +5,4 @@ export const getIsProfileFetching = (state: AppStateType) => (state.ProfilePage.
 export const getMyPostsSelector = (state: AppStateType) => (state.ProfilePage.PostsData)
 export const getStatusSelector = (state: AppStateType) => (state.ProfilePage.status)
 export const getProfileErrorSelector = (state: AppStateType) => (state.ProfilePage.setProfileErrors)
+

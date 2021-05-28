@@ -20,16 +20,19 @@ import {
     YoutubeOutlined,
     GithubOutlined,
     LinkedinOutlined,
-    CloudUploadOutlined
+    CloudUploadOutlined, MessageOutlined
 } from '@ant-design/icons';
+import { startChatingThunkCreator } from '../../../redux-state/messageReducer';
+import { Redirect } from 'react-router-dom';
 
 
 
 type ownProps = {
     profile: ProfileType,
-    myId: string | number | null
+    myId: string | number | null,
+    isRedirectToDialog: boolean
 }
-const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
+const ProfileInfo: React.FC<ownProps> = ({profile, myId, isRedirectToDialog}) => {
     const dispatch = useDispatch()
     const { t } = useTranslation();
 
@@ -68,9 +71,9 @@ const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
         }
     }
 
-    // if (props.isRedirectedToDialog) {
-    //     return <Redirect to={'/dialogs/' + profile.userId}/>
-    // }
+    if (isRedirectToDialog) {
+        return <Redirect to={'/dialogs/' + profile.userId}/>
+    }
 
 
     return (<div className={p.profileWrap}>
@@ -139,8 +142,9 @@ const ProfileInfo: React.FC<ownProps> = ({profile, myId}) => {
                     {/*                props.followThunkCreator(profile.userId)*/}
                     {/*            }}>follow</button>}*/}
 
-                    {/*<button onClick={() => props.startChatingThunkCreator(profile.userId)} className={p.Mail}><i*/}
-                    {/*    className="far fa-envelope"></i></button>*/}
+                    <button onClick={() => dispatch(startChatingThunkCreator(profile.userId))} className={p.Mail}>
+                        <MessageOutlined />
+                    </button>
 
 
                 </div>}

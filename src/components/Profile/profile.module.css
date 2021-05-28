@@ -28,8 +28,10 @@
 .avatar{
   height: 100%;
   width: 100%;
+  object-fit: fill;
   border-radius: 50%;
   cursor: pointer;
+  background: #fff;
 }
 
 .changeAvatar {
@@ -152,8 +154,7 @@ li .infoItem {
 }
 
 .Activity .Mail svg {
-  font-size: 1.2em;
-
+  font-size: 1.5em;
 }
 
 .Activity  .ActivityButtons {

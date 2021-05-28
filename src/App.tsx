@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, useHistory} from 'react-router-dom';
 
 import Login from './components/Login/Login';
 import {useDispatch, useSelector} from 'react-redux';
@@ -21,6 +21,8 @@ import Users from './components/Users/Users';
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import {resources} from './localization';
+import {ChatPage} from './components/Chat/Chat';
+import {getIsLoginedSelector} from './redux-state/selectors/login-selectors';
 
 i18n
     .use(initReactI18next) // passes i18n down to react-i18next
@@ -51,8 +53,10 @@ const GlobalStyle = createGlobalStyle<themeType>`
 
 const App = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const initialized = useSelector(getInitializedSelector)
     const isBlackTheme = useSelector(getIsBlackSelector)
+    const isLogined = useSelector(getIsLoginedSelector)
 
     useEffect(() => {
         dispatch(initializeApp())
@@ -62,6 +66,10 @@ const App = () => {
 
     if (!initialized) {
         return <Preloader/>
+    }
+
+    if(!isLogined) {
+        history.push('/login')
     }
 
 
@@ -75,16 +83,18 @@ const App = () => {
                 <React.Suspense fallback={<Preloader/>}>
                     <Switch>
                         <Route path="/login" exact render={() => <Login/>}/>
+                        {!isLogined && <Route path="*" exact render={() => <Login/>}/>}
+
                         <div className="main-wrap">
-                            <main>
+                            {isLogined && <main>
                                 <Route path="/dialogs/:userID?"
                                        render={() => <Dialogs/>}/>
                                 <Route path="/setting" render={() => <Setting/>}/>
+                                <Route path="/chat" render={() => <ChatPage/>}/>
                                 <Route path={['/profile/:userID?', '/']} exact render={() => <Profile/>}/>
                                 <Route path="/friends" render={() => <Users/>}/>
-                                {/*<Redirect from="/" to="/profile"/>*/}
                                 {/*<Route path={'*'} exact render={() => <NotFound/>}/>*/}
-                            </main>
+                            </main>}
                         </div>
                     </Switch>
                 </React.Suspense>
