@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import p from '../profile.module.css';
+import UsersStlyes from '../../Users/Users.module.css'
 import Status from './status/statusHook';
 import profileAvatar from '../../../img/Profile/avatar.png';
 import {ProfileItemStyled} from '../../../styles/theme';
@@ -24,15 +25,23 @@ import {
 } from '@ant-design/icons';
 import { startChatingThunkCreator } from '../../../redux-state/messageReducer';
 import { Redirect } from 'react-router-dom';
+import {followThunkCreator, unfollowThunkCreator} from '../../../redux-state/usersReducer';
 
 
 
 type ownProps = {
     profile: ProfileType,
     myId: string | number | null,
-    isRedirectToDialog: boolean
+    isRedirectToDialog: boolean,
+    isFollowed: boolean,
+    followProcces: number[]
 }
-const ProfileInfo: React.FC<ownProps> = ({profile, myId, isRedirectToDialog}) => {
+const ProfileInfo: React.FC<ownProps> = ({profile,
+                                             myId,
+                                             isRedirectToDialog,
+                                             isFollowed,
+                                             followProcces
+                                         }) => {
     const dispatch = useDispatch()
     const { t } = useTranslation();
 
@@ -74,7 +83,6 @@ const ProfileInfo: React.FC<ownProps> = ({profile, myId, isRedirectToDialog}) =>
     if (isRedirectToDialog) {
         return <Redirect to={'/dialogs/' + profile.userId}/>
     }
-
 
     return (<div className={p.profileWrap}>
             <div className={p.photowrap}></div>
@@ -129,18 +137,18 @@ const ProfileInfo: React.FC<ownProps> = ({profile, myId, isRedirectToDialog}) =>
 
                 {!amI && <div className={p.Activity}>
 
-                    {/*{props.isFollowed ?*/}
-                    {/*    <button disabled={props.followProcces.some(item => item === profile.userId)}*/}
-                    {/*            className={UsersStlyes.follower + ' ' + p.ActivityButtons + ' ' + p.Unfollow}*/}
-                    {/*            onClick={() => {*/}
+                    {isFollowed ?
+                        <button disabled={followProcces.some((item: number) => item === profile.userId)}
+                                className={UsersStlyes.follower + ' ' + p.ActivityButtons + ' ' + p.Unfollow}
+                                onClick={() => {
 
-                    {/*                props.unfollowThunkCreator(profile.userId)*/}
-                    {/*            }}>Unfollow</button> :*/}
-                    {/*    <button disabled={props.followProcces.some(item => item === profile.userId)}*/}
-                    {/*            className={UsersStlyes.follower + ' ' + p.ActivityButtons}*/}
-                    {/*            onClick={() => {*/}
-                    {/*                props.followThunkCreator(profile.userId)*/}
-                    {/*            }}>follow</button>}*/}
+                                    dispatch(unfollowThunkCreator(profile.userId, true))
+                                }}>Unfollow</button> :
+                        <button disabled={followProcces.some((item: number) => item === profile.userId)}
+                                className={UsersStlyes.follower + ' ' + p.ActivityButtons}
+                                onClick={() => {
+                                    dispatch(followThunkCreator(profile.userId, true))
+                                }}>follow</button>}
 
                     <button onClick={() => dispatch(startChatingThunkCreator(profile.userId))} className={p.Mail}>
                         <MessageOutlined />

@@ -22,7 +22,7 @@ import {UserOptionItemStyled} from '../../styles/theme';
 import { useHistory} from 'react-router-dom';
 
 import {NetworkError} from '../common/NetworkError/NetworkError';
-import { getIsLoginedSelector } from '../../redux-state/selectors/login-selectors';
+
 
 const qs = require('qs')
 
@@ -97,8 +97,6 @@ let Users: React.FC = () => {
     useEffect(()=>{
         document.title = "Users"
         window.addEventListener(`resize`, screenWidthHandler, false);
-
-        getUsers()
 
         return () => {
             window.removeEventListener(`resize`, screenWidthHandler, false)

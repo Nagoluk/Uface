@@ -14,6 +14,7 @@ import {Tabs} from 'antd';
 import {PhoneOutlined, ProfileOutlined} from '@ant-design/icons';
 import {UpdateContactForm} from './UpdateProfile/update-contact-form';
 import {NetworkError} from '../common/NetworkError/NetworkError';
+import {useWindowWidthSize} from '../../hook/Resize';
 
 
 const {TabPane} = Tabs
@@ -23,6 +24,7 @@ const Setting: React.FC = () => {
     const profile = useSelector(getProfileSelector)
     const id = useSelector(getMyIdSelector)
     const error = useSelector(getProfileErrorSelector)
+    const windowsWidth = useWindowWidthSize()
 
     const dispatch = useDispatch()
 
@@ -39,11 +41,13 @@ const Setting: React.FC = () => {
         return <NetworkError refresh={() =>  dispatch(getProfileThunkCreator(id))}/>
     }
 
+    console.log(windowsWidth)
+
     if (profile === null) return <Preloader/>
 
     return (<UniversalWrap maxWidth={700}>
         <SettingStyled >
-            <Tabs defaultActiveKey='profile' tabPosition={'left'} className={Set.wrap}>
+            <Tabs defaultActiveKey='profile' tabPosition={windowsWidth > 720 ? 'left' : 'top'} className={Set.wrap}>
                 <TabPane tab={
                     <div className={Set.tab}>
                         <ProfileOutlined/>

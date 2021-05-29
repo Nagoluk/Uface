@@ -4,6 +4,7 @@ import ProfileInfo from './ProfileInfo/profileInfo';
 import Preloader from '../assets/preloader/Preloader';
 import {useDispatch, useSelector} from 'react-redux';
 import {
+    getIsFollowedSelector,
     getIsProfileFetching,
     getProfileErrorSelector,
     getProfileSelector
@@ -16,6 +17,7 @@ import {useRedirect} from '../../hook/Redirect';
 import { NetworkError } from '../common/NetworkError/NetworkError';
 import {getIsRedirectToDialog} from '../../redux-state/selectors/message-selectors';
 import {actionsMessages} from '../../redux-state/messageReducer';
+import {getFollowProccesSelector} from '../../redux-state/selectors/users-selectors';
 
 
 const Profile = () => {
@@ -25,6 +27,9 @@ const Profile = () => {
     const error = useSelector(getProfileErrorSelector)
     const myId = useSelector(getMyIdSelector)
     const isRedirectToDialog = useSelector(getIsRedirectToDialog)
+    const isFollowed = useSelector(getIsFollowedSelector)
+    const followProcces = useSelector(getFollowProccesSelector)
+
     const params = useParams<{userID: string}>()
     const history = useHistory()
     const dispatch = useDispatch()
@@ -68,7 +73,12 @@ const Profile = () => {
     }
     return (
         <div className={p.profile}>
-            <ProfileInfo profile={profile} myId={myId} isRedirectToDialog={isRedirectToDialog}/>
+            <ProfileInfo profile={profile}
+                         myId={myId}
+                         isRedirectToDialog={isRedirectToDialog}
+                         isFollowed={isFollowed}
+                         followProcces={followProcces}
+            />
 
             {profile.userId === myId && <MyPosts profile={profile}/>}
         </div>

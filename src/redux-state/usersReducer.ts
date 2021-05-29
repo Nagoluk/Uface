@@ -4,6 +4,7 @@ import {UserT} from '../interfaces/users-interfaces';
 import { UsersAPI } from '../api/users-api';
 import {IFilters} from '../interfaces/common-interfaces';
 import {message} from 'antd';
+import {actionsProfile} from './profileReducer';
 
 
 let initialUsers = {
@@ -139,14 +140,14 @@ export const setUsersThunkCreator = (currentPage: number, pageSize: number, filt
 }
 
 
-export const followThunkCreator = (userID: number) => {
-    return (dispatch: currentDispatchType) => {
+export const followThunkCreator = (userID: number, fromProfile = false) => {
+    return (dispatch: any) => {
         dispatch(UsersActions.toggleFollowProcessing(userID, true));
 
         UsersAPI.followAPI(userID).then((data: any) => {
             if (data.resultCode === 0) {
                 dispatch(UsersActions.follow(userID))
-                // dispatch(setFollowAC(true))
+                if(fromProfile) dispatch(actionsProfile.setFollowAC(true))
             }
 
         }).catch(() => {
@@ -158,12 +159,13 @@ export const followThunkCreator = (userID: number) => {
 }
 
 
-export const unfollowThunkCreator = (userID: number) => {
-    return (dispatch: currentDispatchType, getState: getStateType) => {
+export const unfollowThunkCreator = (userID: number, fromProfile = false) => {
+    return (dispatch: any, getState: getStateType) => {
         dispatch(UsersActions.toggleFollowProcessing(userID, true));
         UsersAPI.unfollowAPI(userID).then((data: any) => {
             if (data.resultCode === 0) {
                 dispatch(UsersActions.unfollow(userID))
+                if(fromProfile) dispatch(actionsProfile.setFollowAC(false))
             }
 
         }).catch(() => {
