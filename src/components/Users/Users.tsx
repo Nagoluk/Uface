@@ -14,7 +14,7 @@ import {
 import {setUsersThunkCreator, unfollowThunkCreator, UsersActions, followThunkCreator} from '../../redux-state/usersReducer';
 import Preloader from '../assets/preloader/Preloader';
 import {useTranslation} from 'react-i18next';
-import { Button } from 'antd';
+import {Button, Select} from 'antd';
 import Search from 'antd/lib/input/Search';
 import {IFilters} from '../../interfaces/common-interfaces';
 import { NotFound } from '../common/notFount/NotFound';
@@ -22,6 +22,7 @@ import {UserOptionItemStyled} from '../../styles/theme';
 import { useHistory} from 'react-router-dom';
 
 import {NetworkError} from '../common/NetworkError/NetworkError';
+import {useWindowWidthSize} from '../../hook/Resize';
 
 
 const qs = require('qs')
@@ -38,9 +39,9 @@ let Users: React.FC = () => {
     const isFetching = useSelector(getIsFetchingSelector)
     const error = useSelector(getUsersErrorSelector)
     const {t} = useTranslation()
+    const windowsWidth = useWindowWidthSize()
 
 
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
     const [filters, setFilters] = useState<IFilters>({})
     const [searchStr, setSearchStr] = useState('')
 
@@ -48,15 +49,6 @@ let Users: React.FC = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const screenWidthHandler = () => {
-        if(window.innerWidth <= 635 && screenWidth >= 635){
-            setScreenWidth(window.innerWidth)
-        }
-
-        if(window.innerWidth > 635 && screenWidth < 635){
-            setScreenWidth(window.innerWidth)
-        }
-    }
 
     const onPageChange = (p: number) => {
         dispatch(setUsersThunkCreator(p, pageSize, filters));
@@ -94,26 +86,36 @@ let Users: React.FC = () => {
         }
     }
 
-    useEffect(()=>{
-        document.title = "Users"
-        window.addEventListener(`resize`, screenWidthHandler, false);
-
-        return () => {
-            window.removeEventListener(`resize`, screenWidthHandler, false)
-        }
-
-    }, [])
-
     useEffect(() => {
         const uri = qs.stringify(filters)
         history.push('/friends?'+uri)
+        if(windowsWidth < 720) {
+            dispatch(setUsersThunkCreator(1, 6, filters));
+        }else {
+            dispatch(setUsersThunkCreator(1, pageSize, filters));
+        }
 
-        dispatch(setUsersThunkCreator(1, pageSize, filters));
     }, [filters, pageSize])
 
 
     if(error) {
        return <NetworkError refresh={getUsers}/>
+    }
+
+    const setAllFilters = () => {
+        setFilters(prevState => {
+            let temp = {...prevState}
+            delete temp.friend
+            return temp
+        })
+    }
+
+    const setFollowedFollowedFilters = () => {
+        setFilters(prevState => ({...prevState, friend: true}))
+    }
+
+    const setUnfollowedFilters = () => {
+        setFilters(prevState => ({...prevState, friend: false}))
     }
 
 
@@ -124,27 +126,34 @@ let Users: React.FC = () => {
                            pageSize={pageSize}
                            setCurrentPagePagitator={setCurrentPagePagitator}
                            totalUsersCount={totalUsersCount}
-                           windowsWidth={screenWidth}
+                           windowsWidth={windowsWidth}
                            filters={filters}
                 />
 
                 <UserOptionItemStyled className={UsersStlyes.option}>
-                    <Button type={(filters.friend === undefined) ? 'primary': 'default'}
-                            onClick={() => setFilters(prevState => {
-                               let temp = {...prevState}
-                               delete temp.friend
-                               return temp
-                            })}
+                    {windowsWidth > 720 && <><Button type={(filters.friend === undefined) ? 'primary': 'default'}
+                            onClick={setAllFilters}
                             size={"large"}>All
                     </Button>
                     <Button size={"large"}
-                            onClick={() => setFilters(prevState => ({...prevState, friend: true}))}
+                            onClick={setFollowedFollowedFilters}
                             type={(filters.friend) ? 'primary': 'default'}>Followers
                     </Button>
                     <Button size={"large"}
-                            onClick={() => setFilters(prevState => ({...prevState, friend: false}))}
+                            onClick={setUnfollowedFilters}
                             type={(filters.friend === false) ? 'primary': 'default'}>Not followed
-                    </Button>
+                    </Button></>}
+
+                    <Select size={'large'} defaultValue={'all'} onChange={(e:string) => {
+                        if(e === 'all') setAllFilters()
+                        if(e === 'followed') setFollowedFollowedFilters()
+                        if(e === 'not followed') setUnfollowedFilters()
+                    }}>
+                        <option value="all" key={"all"}>All users</option>
+                        <option value="followed" key={"followed"}>Followed</option>
+                        <option value="not followed" key={"notfollowed"}>Not followed </option>
+                    </Select>
+
                     <Search placeholder="input search text"
                             allowClear
                             enterButton
@@ -152,6 +161,8 @@ let Users: React.FC = () => {
                             onChange={e => setSearchStr(e.target.value)}
                             size={"large"} onSearch={find}
                     />
+
+
                 </UserOptionItemStyled>
 
 
