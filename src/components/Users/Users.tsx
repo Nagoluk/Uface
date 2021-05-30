@@ -24,8 +24,8 @@ import { useHistory} from 'react-router-dom';
 import {NetworkError} from '../common/NetworkError/NetworkError';
 import {useWindowWidthSize} from '../../hook/Resize';
 
-
 const qs = require('qs')
+
 
 
 let Users: React.FC = () => {
@@ -144,7 +144,10 @@ let Users: React.FC = () => {
                             type={(filters.friend === false) ? 'primary': 'default'}>Not followed
                     </Button></>}
 
-                    <Select size={'large'} defaultValue={'all'} onChange={(e:string) => {
+                    <Select size={'large'}
+                            className={UsersStlyes.optionSelect}
+                            defaultValue={'all'}
+                            onChange={(e:string) => {
                         if(e === 'all') setAllFilters()
                         if(e === 'followed') setFollowedFollowedFilters()
                         if(e === 'not followed') setUnfollowedFilters()

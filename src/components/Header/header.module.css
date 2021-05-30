@@ -123,11 +123,10 @@
 }
 
 
-
-
 @media (max-width: 720px) {
     header {
         margin: 0;
+        display: none;
     }
 
     .headerWrap {

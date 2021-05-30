@@ -21,7 +21,7 @@
 
 .contactList {
     overflow-y: scroll;
-    height: 85.4vh;
+    /*height: 85.4vh;*/
 }
 
 .contactList::-webkit-scrollbar {
@@ -114,25 +114,24 @@
 
 @media (max-width: 720px) {
     .dialogList {
-        width: 100%;
         border: none;
         margin: 0;
+        left: 0;
         position: fixed;
         height: calc(100% - 52px);
-        left: 0;
+        width: 100%;
+    }
+
+    .dialogs {
+
+
     }
 
     .contactList {
         overflow-y: scroll;
-        height: calc(100% - 3px);
+        height: calc(100% - 56px);
         max-height: none;
 
-    }
-
-    .Notification{
-        position: fixed;
-        bottom: 52px;
-        right: 10px;
     }
 
 }

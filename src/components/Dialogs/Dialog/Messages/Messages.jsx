@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import MessagesStyle from "./Messages.module.css";
-import {deleteMessageThunkCreator, getMessagesThunkCreator} from '../../../../redux-state/messageReducer';
+import {deleteMessageThunkCreator, getMessagesAC, getMessagesThunkCreator} from '../../../../redux-state/messageReducer';
 import styled from "styled-components";
 import {
     getIsMessagesFetching,
@@ -16,6 +16,8 @@ import {DeleteOutlined, EllipsisOutlined, LoadingOutlined} from '@ant-design/ico
 import {getCorrectTime} from '../../../../utils/date-formater';
 import { Menu, Dropdown } from 'antd';
 import {NetworkError} from '../../../common/NetworkError/NetworkError';
+import {useWindowWidthSize} from '../../../../hook/Resize';
+import Preloader from '../../../assets/preloader/Preloader';
 
 
 const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
@@ -67,9 +69,14 @@ export const Messages = ({dialogId}) => {
     const myId = useSelector(getMyIdSelector)
     const isMessageFetching = useSelector(getIsMessagesFetching)
     const error = useSelector(getMessagesError)
+    const width = useWindowWidthSize()
 
     useEffect(() => {
         dispatch(getMessagesThunkCreator(dialogId))
+
+        return () => {
+            dispatch(getMessagesAC({items: [], totalCount: 0, error: ''}))
+        }
     }, [dialogId, dispatch])
 
     const deleteMessage = (messageId) => {
@@ -87,6 +94,14 @@ export const Messages = ({dialogId}) => {
 
 
     />).reverse()
+
+    if(width <= 720) {
+
+        return <MessageWrap className={MessagesStyle.messages} black={isBlack}>
+                {isMessageFetching ? <Preloader/>:<>{!error && messages}
+                    {error && <Error><NetworkError refresh={() => dispatch(getMessagesThunkCreator(dialogId))}/></Error>}</>}
+                </MessageWrap>
+    }
 
     return   <Spin spinning={isMessageFetching} indicator={antIcon}>
                 <MessageWrap className={MessagesStyle.messages} black={isBlack}>

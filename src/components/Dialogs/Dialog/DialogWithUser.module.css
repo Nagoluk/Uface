@@ -111,12 +111,12 @@
     }
 
     .dialogHeader .Dialogavatar {
-        height: 30px;
-        width: 30px;
+        height: 35px;
+        width: 35px;
     }
 
     .dialogHeader h3 {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: bold;
     }
 
@@ -127,11 +127,15 @@
     }
 
     .backToDialogList a svg{
-        font-size: 14px;
+        font-size: 18px;
     }
 
     .dialogHeader .status {
         font-size: 10px;
+    }
+
+    .noDialog {
+        display: none;
     }
 
 }

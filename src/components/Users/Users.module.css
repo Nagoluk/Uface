@@ -1,3 +1,7 @@
+.optionSelect svg {
+    color: #000!important;
+}
+
 .settingPanel {
     text-align: center;
     padding: 5px;

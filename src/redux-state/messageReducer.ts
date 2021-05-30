@@ -183,3 +183,4 @@ export default messageReducer;
 
 export type initialMessageType = typeof initialMessage;
 type ActionTypes = InferActionsTypes<typeof actionsMessages>
+export const {getMessagesAC} = actionsMessages

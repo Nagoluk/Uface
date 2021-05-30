@@ -64,7 +64,7 @@ const ChooseDialog = styled.div`
         font-size: 4em;
     }
 `
-export const NoDialogSelected = (<ChooseDialog>
+export const NoDialogSelected = (<ChooseDialog className={DialogMod.noDialog}>
                                     <div>
                                         <MessageOutlined />
                                         <p>Choose Dialog</p>
