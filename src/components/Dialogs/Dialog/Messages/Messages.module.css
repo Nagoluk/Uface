@@ -77,13 +77,11 @@
         border-top: none;
         position: fixed;
         width: 100%;
-        top: 55px;
-        padding: 5px 0;
+        top: 48px;
         left: 0;
         background: #fff;
-        height: calc(100% - 150px);
+        height: calc(100% - 147px);
         margin: 0;
-        padding: 5px 0px;
     }
 
     .messageItem {
