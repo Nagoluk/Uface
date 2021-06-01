@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Uface/static/css/main.1f5978fe.chunk.css",
+    "main.css": "/Uface/static/css/main.d12f66bf.chunk.css",
     "main.js": "/Uface/static/js/main.2e29a119.chunk.js",
     "main.js.map": "/Uface/static/js/main.2e29a119.chunk.js.map",
     "runtime-main.js": "/Uface/static/js/runtime-main.23f9a2b1.js",
@@ -8,7 +8,7 @@
     "static/js/2.a0f5bcaa.chunk.js": "/Uface/static/js/2.a0f5bcaa.chunk.js",
     "static/js/2.a0f5bcaa.chunk.js.map": "/Uface/static/js/2.a0f5bcaa.chunk.js.map",
     "index.html": "/Uface/index.html",
-    "static/css/main.1f5978fe.chunk.css.map": "/Uface/static/css/main.1f5978fe.chunk.css.map",
+    "static/css/main.d12f66bf.chunk.css.map": "/Uface/static/css/main.d12f66bf.chunk.css.map",
     "static/js/2.a0f5bcaa.chunk.js.LICENSE.txt": "/Uface/static/js/2.a0f5bcaa.chunk.js.LICENSE.txt",
     "static/media/avatar.b03c02f4.png": "/Uface/static/media/avatar.b03c02f4.png",
     "static/media/notFound.7f91e71d.gif": "/Uface/static/media/notFound.7f91e71d.gif",
@@ -17,7 +17,7 @@
   "entrypoints": [
     "static/js/runtime-main.23f9a2b1.js",
     "static/js/2.a0f5bcaa.chunk.js",
-    "static/css/main.1f5978fe.chunk.css",
+    "static/css/main.d12f66bf.chunk.css",
     "static/js/main.2e29a119.chunk.js"
   ]
 }
