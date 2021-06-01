@@ -6,7 +6,6 @@ const DEBUG = process.env.NODE_ENV === 'development';
 export const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    timeout: 1000 * 4,
     headers: {
         'API-KEY': '412c8d28-b10e-4666-9818-7ae2e9743b00',
     }

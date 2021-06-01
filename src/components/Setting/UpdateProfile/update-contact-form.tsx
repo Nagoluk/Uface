@@ -53,8 +53,8 @@ export const UpdateContactForm: React.FC<PropsType> = ({profile}) => {
 
                         {Object.keys(contacts).map(renderField)}
                         <div className={Styles.buttons}>
-                            <ResetButton>{t('settings.reset')}</ResetButton>
-                            <SubmitButton disabled={isSubmitting}>{t('settings.send')}</SubmitButton>
+                            <ResetButton size={'large'}>{t('settings.reset')}</ResetButton>
+                            <SubmitButton disabled={isSubmitting} size={'large'}>{t('settings.send')}</SubmitButton>
                         </div>
 
                     </UniversalThemeComponent>

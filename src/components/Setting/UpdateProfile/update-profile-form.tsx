@@ -79,8 +79,8 @@ export const UpdateProfileForm: React.FC<PropsType> = ({profile}) => {
                             </div>
 
                             <div className={Styles.buttons}>
-                                <ResetButton>{t('settings.reset')}</ResetButton>
-                                <SubmitButton disabled={isSubmitting}>{t('settings.send')}</SubmitButton>
+                                <ResetButton size={'large'}>{t('settings.reset')}</ResetButton>
+                                <SubmitButton size={'large'} disabled={isSubmitting}>{t('settings.send')}</SubmitButton>
                             </div>
                         </UniversalThemeComponent>
                     </Form>

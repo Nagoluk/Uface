@@ -51,7 +51,12 @@ let Users: React.FC = () => {
 
 
     const onPageChange = (p: number) => {
-        dispatch(setUsersThunkCreator(p, pageSize, filters));
+        if(windowsWidth <= 720){
+            dispatch(setUsersThunkCreator(p, 6, filters));
+        }else {
+            dispatch(setUsersThunkCreator(p, pageSize, filters));
+        }
+
     }
 
     const setCurrentPagePagitator = (p: number) => {
@@ -70,8 +75,12 @@ let Users: React.FC = () => {
         let temp = qs.parse(history.location.search, { ignoreQueryPrefix: true })
         if(temp.term) setSearchStr(temp.term)
         setFilters(temp)
+        if(windowsWidth <= 720) {
+            dispatch(setUsersThunkCreator(currentPage, 6, temp));
+        }else {
+            dispatch(setUsersThunkCreator(currentPage, pageSize, temp));
+        }
 
-        dispatch(setUsersThunkCreator(currentPage, pageSize, temp));
     }
 
     const find = (value: string) => {
@@ -89,7 +98,7 @@ let Users: React.FC = () => {
     useEffect(() => {
         const uri = qs.stringify(filters)
         history.push('/friends?'+uri)
-        if(windowsWidth < 720) {
+        if(windowsWidth <= 720) {
             dispatch(setUsersThunkCreator(1, 6, filters));
         }else {
             dispatch(setUsersThunkCreator(1, pageSize, filters));
@@ -131,7 +140,7 @@ let Users: React.FC = () => {
                 />
 
                 <UserOptionItemStyled className={UsersStlyes.option}>
-                    {windowsWidth > 720 && <><Button type={(filters.friend === undefined) ? 'primary': 'default'}
+                    {windowsWidth >= 720 && <><Button type={(filters.friend === undefined) ? 'primary': 'default'}
                             onClick={setAllFilters}
                             size={"large"}>All
                     </Button>
@@ -144,7 +153,7 @@ let Users: React.FC = () => {
                             type={(filters.friend === false) ? 'primary': 'default'}>Not followed
                     </Button></>}
 
-                    <Select size={'large'}
+                    {windowsWidth < 720 && <Select size={'large'}
                             className={UsersStlyes.optionSelect}
                             defaultValue={'all'}
                             onChange={(e:string) => {
@@ -155,7 +164,7 @@ let Users: React.FC = () => {
                         <option value="all" key={"all"}>All users</option>
                         <option value="followed" key={"followed"}>Followed</option>
                         <option value="not followed" key={"notfollowed"}>Not followed </option>
-                    </Select>
+                    </Select>}
 
                     <Search placeholder="input search text"
                             allowClear

@@ -30,7 +30,7 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
     let pages: Array<number> = [];
     let portion;
 
-    if (windowsWidth <= 635) {
+    if (windowsWidth <= 720) {
         portion = 6;
     } else {
         portion = 9;
@@ -55,9 +55,8 @@ export const Pagitator: React.FC<PagitatorTypes> = ({
     }
 
     useEffect(() => {
-
         setCurrentPagePagitator(0)
-    }, [filters, setCurrentPagePagitator])
+    }, [filters])
 
     pages = pages.filter(item => item >= left && item <= right)
 

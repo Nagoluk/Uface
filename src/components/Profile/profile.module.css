@@ -22,8 +22,8 @@
   width: 130px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid #fff;
 }
+
 
 .avatar{
   height: 100%;
@@ -32,6 +32,7 @@
   border-radius: 50%;
   cursor: pointer;
   background: #fff;
+  border: 3px solid #fff;
 }
 
 .changeAvatar {
