@@ -1,127 +1,161 @@
-import React, {useEffect, useState} from 'react';
-import {Avatar, Button, message} from 'antd';
+import React, {useEffect, useRef, useState} from 'react';
+import {Avatar, Button, Input} from 'antd';
+import { ChatMessageType } from '../../api/chat-api';
+import {useDispatch, useSelector} from 'react-redux';
+import {getChatMessagesSelector, getChatStatusSelector} from '../../redux-state/selectors/chat-selector';
+import {
+    actionsChat,
+    sendMessageThunk,
+    startMessagesListening,
+    stopMessagesListening
+} from '../../redux-state/chat-reducer';
+import styled from 'styled-components';
+import {UniversalThemeComponent} from '../../styles/theme';
+import { UniversalWrap } from '../../styles/wrap.styles';
+import { NavLink } from 'react-router-dom';
+import {SendOutlined} from '@ant-design/icons';
 
 
-
-type ChatMessageType = {
-    message: string,
-    photo: string,
-    userId: number,
-    userName: string,
-}
-
-
-
+const ChatPageWrapper = styled(UniversalThemeComponent)`
+    
+`
 
 export const ChatPage = () => {
-    return (
-        <div>
-            <Chat/>
-        </div>
-    );
+    return (<UniversalWrap maxWidth={500}>
+                <ChatPageWrapper>
+                    <Chat/>
+                </ChatPageWrapper>
+            </UniversalWrap>);
 };
 
 const Chat = () => {
-    const [websocket, setWebsocket] = useState<WebSocket | null>(null)
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-        let temp: WebSocket;
-
-        const closeHandler = () => {
-            setTimeout(() => {
-                message.warn('Reconnect...')
-                createChannel()
-            }, 3000)
-        }
-
-        function createChannel() {
-            temp?.removeEventListener('close',closeHandler)
-            temp?.close()
-
-            temp = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx');
-            temp.addEventListener('close', closeHandler)
-            setWebsocket(temp)
-        }
-
-        createChannel()
+    useEffect(() =>{
+        dispatch(startMessagesListening())
 
         return () => {
-            temp?.removeEventListener('close',closeHandler)
-            temp.close()
+            dispatch(actionsChat.messagesReceived([]))
+            dispatch(stopMessagesListening())
         }
     }, [])
 
-    useEffect(() =>{
-        websocket?.addEventListener('close', () => {
-            console.log('close')
-        })
-    }, [websocket])
-
-
     return <div>
-                <Messages websocket={websocket}/>
-                <AddMessageForm websocket={websocket}/>
+                <Messages/>
+                <AddMessageForm />
             </div>
 }
 
-const Messages: React.FC<{websocket: WebSocket | null}> = ({websocket}) => {
-    const [messages, setMessages] = useState<ChatMessageType[]>([])
+const MessagesWrapStyled = styled.div`
+  max-height: calc(100vh - 110px);
+  overflow-y: scroll;
+ 
+  &::-webkit-scrollbar {
+    width: 2px;}
 
-    const setMessagesHandler = (e: MessageEvent) => {
-        console.log('Websocket opened')
-        let messages = JSON.parse(e.data)
-        setMessages(prevState => [...prevState, ...messages])
-    }
+  &:hover::-webkit-scrollbar-thumb {
+    background: #1890ff;}
+    
+  @media(max-width: 720px) {
+    max-height: calc(100vh - 98px);
+  }
+
+`
+const Messages: React.FC = () => {
+    const [isAutoScroll, setIsAutoScroll] = useState(true)
+    const scrollToLastMessageRef = useRef<HTMLDivElement>(null)
+    const messages = useSelector(getChatMessagesSelector)
+
     useEffect(() => {
-        websocket?.addEventListener('message', setMessagesHandler)
-
-
-        return () => {
-            websocket?.removeEventListener('message', setMessagesHandler)
+        if(isAutoScroll){
+            scrollToLastMessageRef.current?.scrollIntoView({behavior: 'smooth'})
         }
-    }, [websocket])
 
-    return <div style={{maxHeight: '400px', overflowY: 'scroll'}}>{messages.map((m, i) => <Message key={i} {...m}/>)}</div>
+    }, [messages, isAutoScroll])
+
+    return <MessagesWrapStyled onScroll={e => {
+        const element = e.currentTarget;
+        if (Math.abs( (element.scrollHeight - element.scrollTop) - element.clientHeight ) < 300)
+        {
+            !isAutoScroll && setIsAutoScroll(true)
+        } else {
+            isAutoScroll && setIsAutoScroll(false)
+        }
+    }}>{messages.map((m, i) => <Message key={m.id} {...m}/>)}
+                <div ref={scrollToLastMessageRef}></div>
+            </MessagesWrapStyled>
 }
 
-const Message: React.FC<ChatMessageType> = (props) => {
-    return <div>
-                <div><Avatar src={props.photo}/> {props.userName}</div>
-                <p>
-                    {props.message}
-                </p>
-                <hr/>
-           </div>
-}
 
-const AddMessageForm:React.FC<{websocket: WebSocket | null}>  = ({websocket}) => {
+const MessagesItemStyled = styled.div`
+  padding: 8px;
+  border-bottom: 1px solid ${props => (props.theme.mode === 'dark') ? '#3C3F41' : 'lightgray'};
+  display: flex;
+  & > div {
+    margin-right: 10px;
+  }
+  
+  & p {
+    padding: 5px 0px;
+  }
+  
+  & b {
+    font-size: 1.2em;
+  }
+`
+const Message: React.FC<ChatMessageType> = React.memo(props => {
+    return <MessagesItemStyled>
+                <div><Avatar src={props.photo} size={40}/> </div>
+                <div>
+                    <NavLink to={'profile/'+props.userId}><b>{props.userName}</b></NavLink>
+                    <p>
+                        {props.message}
+                    </p>
+                </div>
+           </MessagesItemStyled>
+})
+
+const AddMessageFormStyled = styled.div`
+    display: flex;
+    padding: 5px;
+    
+    & input {
+        margin-right: 10px;
+        border: none;
+        color: ${props => (props.theme.mode === 'dark') ? '#fff' : '#000'};
+        background: ${props => (props.theme.mode === 'dark') ? '#3C3F41' : 'lightgray'};
+    }
+    
+    & svg {
+        color: #fff;
+    }
+`
+
+const AddMessageForm:React.FC  = () => {
     const [message, setMessageText] = useState('')
-    const [readyStatus, setReadyStatus] = useState<'open'|'close'>('close')
+    const dispatch = useDispatch()
+    const status = useSelector(getChatStatusSelector)
 
-    const setOpenStatus = () => setReadyStatus('open')
+    const sendMessageHandler = () => {
+        if(message !== '') dispatch(sendMessageThunk(message))
 
-    useEffect(() => {
-        websocket?.addEventListener('open', setOpenStatus )
-
-        return () => {
-            websocket?.removeEventListener('open', setOpenStatus)
-        }
-    }, [websocket])
-
-    const sendMessage = () => {
-        if(message !== '') {
-            websocket?.send(message)
-            setMessageText('')
-        }
+        setMessageText('')
     }
-    return <div>
-            <textarea value={message}
-                      onChange={e => setMessageText(e.target.value)}
-            ></textarea>
+
+    return <AddMessageFormStyled>
+            <Input value={message}
+                   placeholder={'Enter your message'}
+                   onChange={e => setMessageText(e.target.value)}
+                   size={'large'}
+            ></Input>
             <div>
-                <Button disabled={websocket === null || readyStatus !== 'open'} onClick={sendMessage}>Send</Button>
+                <Button type={'primary'}
+                        disabled={status === 'pending'}
+                        size={'large'}
+                        onClick={sendMessageHandler}
+                ><SendOutlined /></Button>
             </div>
-        </div>
+        </AddMessageFormStyled>
 }
 
 

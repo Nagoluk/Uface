@@ -8,6 +8,7 @@ import thunkMiddleWare, {ThunkAction} from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
 import appReducer from './appReducer';
 import notificationReducer from './notificationReducer';
+import { chatReducer } from './chat-reducer';
 
 
 let reducers = combineReducers({
@@ -17,6 +18,7 @@ let reducers = combineReducers({
     LoginReducer: loginReducer,
     form: formReducer,
     app: appReducer,
+    chat: chatReducer,
     notification: notificationReducer
 })
 

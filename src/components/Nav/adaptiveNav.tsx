@@ -16,7 +16,8 @@ import {
     LogoutOutlined, MenuUnfoldOutlined,
     MessageOutlined,
     SettingOutlined, SwapOutlined,
-    UsergroupAddOutlined
+    UsergroupAddOutlined,
+    WechatOutlined
 } from '@ant-design/icons';
 import {Avatar} from '../assets/avatar/avatar';
 import AvatarImg from '../../img/Profile/avatar.png';
@@ -67,6 +68,13 @@ export const FullScreenMenu: React.FC<{setIsFullScreen: Function}> = ({setIsFull
                                 Messages
                             </NavLink>
                             {newMessageCount ? <div className={headermod.newMessageCount}>{newMessageCount}</div> : null}
+                        </div>
+
+                        <div className={headermod.adaptiveMenu} onClick={() => setIsFullScreen(false)}>
+                            <NavLink to="/chat" activeClassName={Navmod.activeLink}>
+                                <WechatOutlined />
+                                Common chat
+                            </NavLink>
                         </div>
 
                         <div className={headermod.adaptiveMenu} onClick={() => setIsFullScreen(false)}>
