@@ -17,7 +17,7 @@ import {
     MessageOutlined,
     SettingOutlined, SwapOutlined,
     UsergroupAddOutlined,
-    WechatOutlined
+    AliwangwangOutlined
 } from '@ant-design/icons';
 import {Avatar} from '../assets/avatar/avatar';
 import AvatarImg from '../../img/Profile/avatar.png';
@@ -72,7 +72,7 @@ export const FullScreenMenu: React.FC<{setIsFullScreen: Function}> = ({setIsFull
 
                         <div className={headermod.adaptiveMenu} onClick={() => setIsFullScreen(false)}>
                             <NavLink to="/chat" activeClassName={Navmod.activeLink}>
-                                <WechatOutlined />
+                                <AliwangwangOutlined />
                                 Common chat
                             </NavLink>
                         </div>

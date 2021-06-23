@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 
 import Navmod from './nav.module.css';
 import {NavigationStyle} from '../../styles/theme';
-import {IdcardOutlined, UsergroupAddOutlined, MessageOutlined, SettingOutlined, WechatOutlined} from '@ant-design/icons';
+import {IdcardOutlined, UsergroupAddOutlined, MessageOutlined, SettingOutlined, AliwangwangOutlined} from '@ant-design/icons';
 import {useSelector} from 'react-redux';
 import {getIsLoginedSelector} from '../../redux-state/selectors/login-selectors';
 
@@ -28,7 +28,7 @@ const Nav: React.FC = () => {
                 </NavLink>
 
                 <NavLink to="/chat" activeClassName={Navmod.activeLink}>
-                    <li><WechatOutlined /></li>
+                    <li><AliwangwangOutlined /></li>
                 </NavLink>
 
                 <NavLink to="/setting" activeClassName={Navmod.activeLink}>
