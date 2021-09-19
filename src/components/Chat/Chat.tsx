@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Avatar, Button, Input} from 'antd';
+import {Avatar, Button, Input, message} from 'antd';
 import { ChatMessageType } from '../../api/chat-api';
 import {useDispatch, useSelector} from 'react-redux';
 import {getChatMessagesSelector, getChatStatusSelector} from '../../redux-state/selectors/chat-selector';
@@ -35,7 +35,7 @@ const Chat = () => {
         dispatch(startMessagesListening())
 
         return () => {
-            dispatch(actionsChat.messagesReceived([]))
+            dispatch(actionsChat.emptyAllMessages())
             dispatch(stopMessagesListening())
         }
     }, [])
@@ -132,18 +132,23 @@ const AddMessageFormStyled = styled.div`
 `
 
 const AddMessageForm:React.FC  = () => {
-    const [message, setMessageText] = useState('')
+    const [messageText, setMessageText] = useState('')
     const dispatch = useDispatch()
     const status = useSelector(getChatStatusSelector)
 
     const sendMessageHandler = () => {
-        if(message !== '') dispatch(sendMessageThunk(message))
+        if(messageText !== '' &&  messageText.trim().length< 99) dispatch(sendMessageThunk(messageText.trim()))
 
-        setMessageText('')
+        if(messageText.trim().length>= 99){
+            message.info('Max message length 100')
+        } else {
+            setMessageText('')
+        }
+
     }
 
     return <AddMessageFormStyled>
-            <Input value={message}
+            <Input value={messageText}
                    placeholder={'Enter your message'}
                    onChange={e => setMessageText(e.target.value)}
                    size={'large'}

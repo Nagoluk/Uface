@@ -25,6 +25,12 @@ export const chatReducer = (state = initState, action: ActionsType): AppInitStat
                 status: action.payload
             }
 
+        case 'EMPTY_ALL_MESSAGES':
+            return {
+                ...state,
+                messages: []
+            }
+
         default: return state
 
     }
@@ -36,7 +42,9 @@ export const actionsChat = {
 
     statusChanged: (status: ChatStatus) => (
         {type: 'SET_STATUS_CHANGED', payload: status} as const
-    )
+    ),
+
+    emptyAllMessages: () => ({type: 'EMPTY_ALL_MESSAGES'} as const)
 }
 let _newStatusHandler: ((status: ChatStatus) => void ) | null = null
 const newStatusHandlerCreator = (dispatch: Dispatch) => {

@@ -11,6 +11,7 @@ import {getIsBlackSelector} from '../../../redux-state/selectors/app-selectors';
 import {getDialogInfoSelector} from '../../../redux-state/selectors/message-selectors';
 import {sendMessagesThunkCreator} from '../../../redux-state/messageReducer';
 import NotFound from '../../404/notFound';
+import TextareaAutosize from 'react-textarea-autosize';
 
 
 const DialogStyled = styled.div`
@@ -111,8 +112,9 @@ export const Dialog = () => {
 
 
                 <MessageEditor className={DialogMod.createNewMessage} black={isBlack}>
-                    <textarea name={"newMessage"} placeholder={"New message"}
+                    <TextareaAutosize name={"newMessage"} placeholder={"New message"}
                               value={message}
+                              autoComplete={'off'} wrap={'hard'}
                               onKeyPress={event => {
                                   if(event.key === 'Enter' && message !== ''){
                                       event.preventDefault()
