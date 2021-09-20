@@ -17,9 +17,7 @@ import {SendOutlined} from '@ant-design/icons';
 
 
 const ChatPageWrapper = styled(UniversalThemeComponent)`
-    
 `
-
 export const ChatPage = () => {
     return (<UniversalWrap maxWidth={500}>
                 <ChatPageWrapper>
@@ -47,7 +45,7 @@ const Chat = () => {
 }
 
 const MessagesWrapStyled = styled.div`
-  max-height: calc(100vh - 110px);
+  height: calc(100vh - 110px);
   overflow-y: scroll;
  
   &::-webkit-scrollbar {
