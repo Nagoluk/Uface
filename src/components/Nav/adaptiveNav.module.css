@@ -13,6 +13,7 @@
     height: 100vh;
     width: 100%;
     scroll-behavior: unset;
+    z-index: 999;
 }
 
 .fullScreenWrap {
@@ -59,4 +60,33 @@
     .adaptivemenu svg{
         font-size: 24px;
     }
+}
+
+.newMessageCount {
+    font-size: 0.7em;
+    background: red;
+    color: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 18px;
+    width: 18px;
+    z-index: 0;
+    position: relative;
+}
+
+.newMessageCountAdaptiveMenu {
+    top: -10px;
+    left: -10px;
+}
+
+.newMessageCountFullscreenMenu {
+    left: 10px;
+    top: 8px;
+}
+
+
+.messages {
+    display: flex;
 }

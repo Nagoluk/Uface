@@ -62,12 +62,15 @@ export const FullScreenMenu: React.FC<{setIsFullScreen: Function}> = ({setIsFull
                             </NavLink>
                         </div>
 
-                        <div className={headermod.adaptiveMenu + ' ' + headermod.messages} onClick={() => setIsFullScreen(false)}>
+                        <div className={headermod.adaptiveMenu + ' ' +
+                        headermod.messages
+                        } onClick={() => setIsFullScreen(false)}>
                             <NavLink to='/dialogs'>
                                 <MessageOutlined />
                                 Messages
+
                             </NavLink>
-                            {newMessageCount ? <div className={headermod.newMessageCount}>{newMessageCount}</div> : null}
+                            {newMessageCount ? <div className={headermod.newMessageCount  + ' ' + headermod.newMessageCountFullscreenMenu}><span>{newMessageCount}</span></div> : null}
                         </div>
 
                         <div className={headermod.adaptiveMenu} onClick={() => setIsFullScreen(false)}>
@@ -117,7 +120,7 @@ export const AdaptiveMenu: React.FC = () => {
             <NavLink to='/dialogs'>
                 <MessageOutlined />
             </NavLink>
-            {newMessageCount ? <div className={headermod.newMessageCount}>{newMessageCount}</div> : null}
+            {newMessageCount ? <div className={headermod.newMessageCount + ' ' + headermod.newMessageCountAdaptiveMenu}><span>{newMessageCount}</span></div> : null}
         </div>
 
         <div className={headermod.adaptiveMenu}>
