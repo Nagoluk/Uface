@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -105,6 +105,14 @@ export const AdaptiveMenu: React.FC = () => {
     const isLogined = useSelector(getIsLoginedSelector)
     const newMessageCount = useSelector(getNewMessagesCountSelector)
     const [isFullScreen, setIsFullScreen] = useState(false)
+
+    useEffect(() => {
+        if(isFullScreen) {
+            document.body.classList.add('menu-open');
+        }else {
+            document.body.classList.remove('menu-open');
+        }
+    }, [isFullScreen])
 
     if(!isLogined) return null
 

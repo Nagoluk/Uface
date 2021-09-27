@@ -16,6 +16,10 @@ body::-webkit-scrollbar-thumb {
   background: lightgray;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
 .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button {
   border-radius: 0!important;
 }
